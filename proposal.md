@@ -1,0 +1,102 @@
+Final Project Proposal
+================
+Jingchen Chai, Wenjia Zhu, Ruihan Zhang, Yifei Zhao, Chenyao Ni
+
+## Motivation of our project
+
+Adults should sleep 7 or more hours per night on a regular basis to
+promote optimal health\[1\]. However, more than one-third of the US
+population gets less than the recommended amount of sleep
+(<https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/>).
+Not getting enough sleep is linked with chronic diseases and adverse
+health conditions\[1\], threateniing the nation’s overall public health.
+Short sleep duration along with other dimensions of poor sleep has been
+associated with weight gain and obesity\[2\], type 2 diabetes\[3\],
+increased risk of hypertension\[4\], cardiovascular disease\[5\] and
+depression\[6, 7\]. Sleep deprivation and disorders are also associated
+with impaired immune function\[8\], chronic pain\[9\], impaired
+performance, increased errors, and greater risk of accidents\[10\].
+Intuitively, we tend to believe that sleep is only related to individual
+habits like caffeine intake or regular exercise. However, numerous
+studies have revealed that sleep is a central problem of public health,
+pointing out that differences in quantity or quality of sleep are
+related to a variety of biological, economic and social factors\[11\].
+It was reported in a CDC survey
+(<https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6412a10.htm>) that 35.2%
+of people with incomes below the poverty line reported getting less than
+6 hours of sleep per day, compared with the proportion of 27.7% among
+those with incomes more than four times the poverty line. The
+disparities between racial groups are even sharper. A rigorous 2015
+study found that compared with whites matched for age and sex, Blacks
+were 5 times as likely to sleep for shorter periods. Hispanics and
+Chinese Americans were roughly 2 times as likely to get fewer hours of
+sleep than whites\[12\]. Furthermore, sleep deprivation and disorders
+could further lead to health problems\[13, 14\], poor academic and work
+performances\[15, 16\], which deepen inequalities among populations in
+the long run. Sleep is a necessary physiological process for
+individuals, interacting with several economic, social and physical
+factors, influencing risks of multiple health problems. Therefore, based
+on NHANES dataset, we focus on sleep-related public health issues to
+carry out our research, hoping to popularize the significance of
+adequate and healthy sleep, arousing the public’s health awareness of
+improving sleep quality and obtaining adequate sleep duration. We also
+want to visualize and discuss the biological, economic and social
+factors interacting with sleep, informing the public and healthcare
+providers on the importance of advocating public policy to promoting the
+nowadays sleep situation and overall public health.
+
+\[1\] WATSON N F, BADR M S, BELENKY G, et al. Recommended Amount of
+Sleep for a Healthy Adult: A Joint Consensus Statement of the American
+Academy of Sleep Medicine and Sleep Research Society \[J\]. Sleep, 2015,
+38(6): 843-4. \[2\] OGILVIE R P, PATEL S R. The epidemiology of sleep
+and obesity \[J\]. Sleep Health, 2017, 3(5): 383-8. \[3\] MURAKI I, WADA
+H, TANIGAWA T. Sleep apnea and type 2 diabetes \[J\]. J Diabetes
+Investig, 2018, 9(5): 991-7. \[4\] PALAGINI L, BRUNO R M, GEMIGNANI A,
+et al. Sleep loss and hypertension: a systematic review \[J\]. Curr
+Pharm Des, 2013, 19(13): 2409-19. \[5\] MAKAREM N, CASTRO‐DIEHL C,
+ST‐ONGE M P, et al. Redefining Cardiovascular Health to Include Sleep:
+Prospective Associations With Cardiovascular Disease in the MESA Sleep
+Study \[J\]. Journal of the American Heart Association, 2022, 11(21):
+e025252. \[6\] TSUNO N, BESSET A, RITCHIE K. Sleep and depression \[J\].
+J Clin Psychiatry, 2005, 66(10): 1254-69. \[7\] FANG H, TU S, SHENG J,
+et al. Depression in sleep disturbance: A review on a bidirectional
+relationship, mechanisms and treatment \[J\]. J Cell Mol Med, 2019,
+23(4): 2324-32. \[8\] BESEDOVSKY L, LANGE T, HAACK M. The Sleep-Immune
+Crosstalk in Health and Disease \[J\]. Physiol Rev, 2019, 99(3):
+1325-80. \[9\] HAACK M, SIMPSON N, SETHNA N, et al. Sleep deficiency and
+chronic pain: potential underlying mechanisms and clinical implications
+\[J\]. Neuropsychopharmacology, 2020, 45(1): 205-16. \[10\] ABRAMS R M.
+Sleep Deprivation \[J\]. Obstet Gynecol Clin North Am, 2015, 42(3):
+493-506. \[11\] GRANDNER M A. Sleep, Health, and Society \[J\]. Sleep
+Med Clin, 2017, 12(1): 1-22. \[12\] CHEN X, WANG R, ZEE P, et
+al. Racial/Ethnic Differences in Sleep Disturbances: The Multi-Ethnic
+Study of Atherosclerosis (MESA) \[J\]. Sleep, 2015, 38(6): 877-88.
+\[13\] CURTIS D S, FULLER-ROWELL T E, EL-SHEIKH M, et al. Habitual sleep
+as a contributor to racial differences in cardiometabolic risk \[J\].
+Proceedings of the National Academy of Sciences, 2017, 114(33): 8889-94.
+\[14\] IRWIN M R. Why Sleep Is Important for Health: A
+Psychoneuroimmunology Perspective \[J\]. Annual Review of Psychology,
+2015, 66(1): 143-72. \[15\] OWENS J. Insufficient sleep in adolescents
+and young adults: an update on causes and consequences \[J\].
+Pediatrics, 2014, 134(3): e921-32. \[16\] OWENS J A, WEISS M R.
+Insufficient sleep in adolescents: causes and consequences \[J\].
+Minerva Pediatr, 2017, 69(4): 326-36.
+
+## Anticipated Data Resources
+
+We plan to utilize data from the
+[CDC](https://www.cdc.gov/sleep/data-and-statistics/adults.html)
+website. The data are based on the Behavioral Risk Factor Surveillance
+System (BRFSS) survey. The data we are using are the age-adjusted
+prevalence of adults aged greater than 18 who reported short sleep
+duration varied by state in 2020. We plan to focus on the states, and
+create a map according to the distributions of the age-adjusted
+prevalence among different states.
+
+The second data set we will use is a [questionnaire sleeping
+data](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/SLQ_J.htm) and also the
+date related with their
+[demographic](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DEMO_J.htm)
+information, both comes from the
+[NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) website. We plan to
+merge the two data sets, and include variables:
