@@ -29,7 +29,8 @@ Sleep is a necessary physiological process for individuals, interacting with sev
 [16]	OWENS J A, WEISS M R. Insufficient sleep in adolescents: causes and consequences [J]. Minerva Pediatr, 2017, 69(4): 326-36.
 
 
-
+## Intended final project
+A report analyzing the prevalence of insufficient sleep in relation to socioeconomic and physiological factors, and an interactive panel to predict the risk of insufficient sleep for individuals. 
 
 
 
@@ -50,6 +51,7 @@ We plan to utilize data from the [CDC](https://www.cdc.gov/sleep/data-and-statis
 
 The second data set we will use is a [questionnaire sleeping data](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/SLQ_J.htm) and also the date related with their [demographic](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DEMO_J.htm) information, both comes from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) website. We plan to merge the two data sets, and include variables: 
 
+The third data set is [PLACES: Census Tract Data] (https://catalog.data.gov/dataset/places-census-tract-data-gis-friendly-format-2020-release-fb1ec). 
 
 
 
