@@ -1,9 +1,20 @@
 ---
 title: "Final Project Proposal"
+<<<<<<< HEAD
 author: Jingchen Chai, Yifei Zhao(大家别忘了把自己名字加上来~)
+=======
+author: Jingchen Chai, Wenjia Zhu, Ruihan Zhang, Yifei Zhao, Chenyao Ni
+>>>>>>> 0d31ef403244622bea3edb2e0319b46a4622cd30
 output: github_document
 ---
 
+```{r include=FALSE}
+library(tidyverse)
+```
+
+## Motivation of our project
+Adults should sleep 7 or more hours per night on a regular basis to promote optimal health.
+However, more than one-third of the US population gets less than the recommended amount of sleep. Sleep is a necessary physiological process for individuals, interacting with several economic, social and physical factors, influencing risks of multiple health problems. Therefore, based on NHANES dataset, we focus on sleep-related public health issues to carry out our research, hoping to popularize the significance of adequate and healthy sleep, arousing the public's health awareness of improving sleep quality and obtaining adequate sleep duration. We also want to visualize and discuss the biological, economic and social factors interacting with sleep, informing the public and healthcare providers on the importance of advocating public policy to promoting the nowadays sleep situation and overall public health.
 
 ```{r}
 library(tidyverse)
@@ -17,6 +28,9 @@ sleepd = read_xpt(
   .name_repair = "unique"
 )
 ```
+
+## Intended final project
+A report analyzing the prevalence of insufficient sleep in relation to socioeconomic and physiological factors, and an interactive panel to predict the risk of insufficient sleep for individuals. 
 
 
 
@@ -37,7 +51,13 @@ We plan to utilize data from the [CDC](https://www.cdc.gov/sleep/data-and-statis
 
 The second data set we will use is a [questionnaire sleeping data](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/SLQ_J.htm) and also the date related with their [demographic](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DEMO_J.htm) information, both comes from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) website. We plan to merge the two data sets, and include variables: 
 
+The third data set is [PLACES: Census Tract Data] (https://catalog.data.gov/dataset/places-census-tract-data-gis-friendly-format-2020-release-fb1ec). 
 
+## Timeline
+```{r echo=FALSE}
+timeline_df = read.csv("timeline.csv")
+timeline_df %>% knitr::kable()
+```
 
 ## The planned analyses / visualizations / coding challenges
 We plan to start from a map GIF image, which illustrates prevalence of short sleep duration among US adults by state from 2016 to 2020. 
