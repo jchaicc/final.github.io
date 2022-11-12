@@ -1,6 +1,6 @@
 ---
 title: "Final Project Proposal"
-author: Jingchen Chai, Wenjia Zhu, Ruihan Zhang, Yifei Zhao, Chenyao Ni(cn2604)
+author: Jingchen Chai, Wenjia Zhu, Ruihan Zhang(rz2614), Yifei Zhao, Chenyao Ni(cn2604)
 output: github_document
 ---
 
