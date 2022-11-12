@@ -1,6 +1,6 @@
 ---
 title: "Final Project Proposal"
-author: Jingchen Chai, Wenjia Zhu, Ruihan Zhang, Yifei Zhao, Chenyao Ni
+author: Jingchen Chai, Wenjia Zhu, Ruihan Zhang, Yifei Zhao, Chenyao Ni(cn2604)
 output: github_document
 ---
 
@@ -12,34 +12,9 @@ library(tidyverse)
 Adults should sleep 7 or more hours per night on a regular basis to promote optimal health.
 However, more than one-third of the US population gets less than the recommended amount of sleep. Sleep is a necessary physiological process for individuals, interacting with several economic, social and physical factors, influencing risks of multiple health problems. Therefore, based on NHANES dataset, we focus on sleep-related public health issues to carry out our research, hoping to popularize the significance of adequate and healthy sleep, arousing the public's health awareness of improving sleep quality and obtaining adequate sleep duration. We also want to visualize and discuss the biological, economic and social factors interacting with sleep, informing the public and healthcare providers on the importance of advocating public policy to promoting the nowadays sleep situation and overall public health.
 
-```{r}
-library(tidyverse)
-library(haven)
-
-sleepd = read_xpt(
-  'P_SLQ.XPT',
-  col_select = NULL,
-  skip = 0,
-  n_max = Inf,
-  .name_repair = "unique"
-)
-```
 
 ## Intended final project
 A report analyzing the prevalence of insufficient sleep in relation to socioeconomic and physiological factors, and an interactive panel to predict the risk of insufficient sleep for individuals. 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Anticipated Data Resources
 
@@ -47,7 +22,7 @@ We plan to utilize data from the [CDC](https://www.cdc.gov/sleep/data-and-statis
 
 The second data set we will use is a [questionnaire sleeping data](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/SLQ_J.htm) and also the date related with their [demographic](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DEMO_J.htm) information, both comes from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) website. We plan to merge the two data sets, and include variables: 
 
-The third data set is [PLACES: Census Tract Data] (https://catalog.data.gov/dataset/places-census-tract-data-gis-friendly-format-2020-release-fb1ec). 
+The third data set is [PLACES: Census Tract Data](https://catalog.data.gov/dataset/places-census-tract-data-gis-friendly-format-2020-release-fb1ec). 
 
 
 
