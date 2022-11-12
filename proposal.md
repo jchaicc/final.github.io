@@ -3,7 +3,7 @@ Final Project Proposal
 Jingchen Chai(jc5929), Wenjia Zhu, Ruihan Zhang(rz2614), Yifei Zhao,
 Chenyao Ni(cn2604)
 
-## **Factors Influencing Sleeping**
+## Title: **Factors Influencing Sleeping Duration**
 
 ## Motivation of our project
 
