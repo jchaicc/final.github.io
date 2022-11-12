@@ -1,10 +1,6 @@
 ---
 title: "Final Project Proposal"
-<<<<<<< HEAD
-author: Jingchen Chai, Yifei Zhao(大家别忘了把自己名字加上来~)
-=======
 author: Jingchen Chai, Wenjia Zhu, Ruihan Zhang, Yifei Zhao, Chenyao Ni
->>>>>>> 0d31ef403244622bea3edb2e0319b46a4622cd30
 output: github_document
 ---
 
@@ -53,11 +49,7 @@ The second data set we will use is a [questionnaire sleeping data](https://wwwn.
 
 The third data set is [PLACES: Census Tract Data] (https://catalog.data.gov/dataset/places-census-tract-data-gis-friendly-format-2020-release-fb1ec). 
 
-## Timeline
-```{r echo=FALSE}
-timeline_df = read.csv("timeline.csv")
-timeline_df %>% knitr::kable()
-```
+
 
 ## The planned analyses / visualizations / coding challenges
 We plan to start from a map GIF image, which illustrates prevalence of short sleep duration among US adults by state from 2016 to 2020. 
@@ -68,5 +60,9 @@ As for PLACES: Census Tract and City Data, we firstly classify the data into two
 
 The coding challenges are mainly from tidying data and do further manipulation like aggregating and creating linear models, since some values are missing, undefined or ourliers, and the models maybe irrational if it is simply based on subjective factors.
 
-
+## Timeline
+```{r echo=FALSE}
+timeline_df = read.csv("timeline.csv")
+timeline_df %>% knitr::kable()
+```
 
