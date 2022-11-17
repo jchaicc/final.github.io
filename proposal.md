@@ -35,7 +35,7 @@ We plan to utilize data from the
 website. The data are based on the Behavioral Risk Factor Surveillance
 System (BRFSS) survey. The data we are using are the age-adjusted
 prevalence of adults aged greater than 18 who reported short sleep
-duration varied by state from 2017 to 2020. We plan to focus on the
+duration varied by state from 2016 to 2020. We plan to focus on the
 states, and create maps of the age-adjusted prevalence among different
 states for each year.
 
