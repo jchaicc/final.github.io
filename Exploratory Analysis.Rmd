@@ -1,6 +1,6 @@
 ---
 title: "Exploratory Analysis"
-output: github_document
+output: html_document
 date: "2022-11-21"
 ---
 
