@@ -16,7 +16,7 @@ library(dplyr)
 library(gganimate)
 library(gifski)
 library(png)
-
+library(plotly)
 ```
 
 ```{r}
@@ -95,6 +95,10 @@ year_df+transition_reveal(year)
 
 ```{r}
 slp_df %>%
-  filter(weekday_slp_hr<6) %>%view()
+  filter(education_level!="don't know" & education_level!="refused") %>%
+  group_by(education_level) %>%
+  summarize(ave_slp_hr=mean(weekday_slp_hr)) %>%
+  mutate(education_level=fct_reorder(education_level,ave_slp_hr)) %>%
+  plot_ly(x=~ education_level,y=~ave_slp_hr,color=~education_level,type="bar")
 
 ```
