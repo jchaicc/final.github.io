@@ -17,6 +17,7 @@ library(gganimate)
 library(gifski)
 library(png)
 library(plotly)
+library(ggridges)
 ```
 
 ```{r}
@@ -129,5 +130,20 @@ gender_plot
 ```
 
 ```{r}
+income_df=slp_df %>%
+  filter(weekday_slp_hr<6) %>%
+  mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
+                           income_poverty_ratio < 1~ "in poverty",
+                           income_poverty_ratio == 1~ "in poverty")) %>%
+  ggplot(aes(x=weekday_slp_hr,y=ip_stat,fill=ip_stat))+
+  geom_density_ridges(
+    aes(point_color = ip_stat, point_shape = ip_stat,point_fill=ip_stat),
+    alpha = .3, point_alpha = 0.7, jittered_points = TRUE
+  ) +scale_x_continuous(
+    breaks = c(2, 4, 6), 
+    labels = c("2hrs", "4hrs", "6hrs"),
+    limits = c(2, 6)
+    )
+  income_df                                                    
 
 ```
