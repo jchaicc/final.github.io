@@ -5,7 +5,10 @@ date: "2022-11-21"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,message=FALSE)
+knitr::opts_chunk$set(echo = TRUE,message=FALSE,
+                      fig.width = 10,
+                      fig.asp = .8,
+                      out.width = "90%")
 ```
 
 ```{r}
@@ -144,7 +147,7 @@ income_df=slp_df %>%
     labels = c("2hrs", "4hrs", "6hrs"),
     limits = c(2, 6)
     )
-  income_df    
+     
   
   
 box_plot=
@@ -158,7 +161,7 @@ box_plot=
             color="red", linetype="dashed")+
   geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")
 
-box_plot
+income_df+box_plot
 
 
 
