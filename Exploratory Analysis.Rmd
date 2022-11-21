@@ -6,6 +6,7 @@ date: "2022-11-21"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,message=FALSE,
+                      warning=FALSE, 
                       fig.width = 10,
                       fig.asp = .8,
                       out.width = "90%")
@@ -129,7 +130,6 @@ gender_plot= slp_df %>%
           colors="viridis",sizes = c(50, 700), marker = list(opacity = 0.7))
 
 layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Female Sleeping less than 6 hrs"), yaxis = list(title = "Number of Male Sleeping less than 6 hrs"))
-gender_plot
 ```
 
 ```{r}
