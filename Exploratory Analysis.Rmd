@@ -93,22 +93,22 @@ year_df+transition_reveal(year)
 
 ```
 
-```{r}
-slp_df %>%
-  filter(education_level!="don't know" & education_level!="refused") %>%
-  group_by(education_level) %>%
-  summarize(ave_slp_hr=mean(weekday_slp_hr)) %>%
-  mutate(education_level=fct_reorder(education_level,ave_slp_hr)) %>%
-  plot_ly(x=~ education_level,y=~ave_slp_hr,color=~education_level,type="bar")
-
-```
 
 ```{r}
-slp_df %>%
+ slp_df %>%
   filter(weekday_slp_hr<6)%>%
-  group_by(education_level) %>%
+  group_by(education_level,gender) %>%
   summarize(obs=n()) %>% 
+  ungroup() %>%
   mutate(education_level=fct_reorder(education_level,obs)) %>%
-  plot_ly(x=~ education_level,y=~obs,color=~education_level,type="bar")
+  ggplot(aes(x=education_level,y=obs,fill=gender))+ geom_bar(stat="identity")+
+  viridis::scale_fill_viridis(
+    name = "gender",
+    discrete = TRUE
+  ) + 
+  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))
+
+
+  
 
 ```
