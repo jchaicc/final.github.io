@@ -95,7 +95,7 @@ year_df+transition_reveal(year)
 
 
 ```{r}
- slp_df %>%
+ edu_plot=slp_df %>%
   filter(weekday_slp_hr<6)%>%
   group_by(education_level,gender) %>%
   summarize(obs=n()) %>% 
@@ -108,7 +108,7 @@ year_df+transition_reveal(year)
   ) + 
   theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))
 
-
+ggplotly(edu_plot)
   
 
 ```
