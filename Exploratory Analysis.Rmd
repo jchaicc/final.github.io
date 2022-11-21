@@ -25,6 +25,23 @@ demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
          age=ridageyr,
          race=ridreth3,
          education_level=dmdeduc2,
-         income_poverty_ratio=indfmpir)
+         income_poverty_ratio=indfmpir) %>%
+  mutate(gender=case_when(gender==1 ~ "male",
+                          gender==2 ~ "female")) %>%
+  mutate(race=case_when(race==1 ~ "Mexican American",
+                        race==2 ~ "Other Hispanic",
+                        race==3 ~ "Non-Hispanic White",
+                        race==4 ~ "Non-Hispanic Black",
+                        race==6 ~ "Non-Hispanic Asian",
+                        race==7 ~ "Other Race")) %>%
+  mutate(education_level=case_when(education_level==1 ~ "less than 9th grade",
+                                   education_level==2 ~ "9-11th grade",
+                                   education_level==3 ~ "high school graduate",
+                                   education_level==4 ~ "college or AA degree",
+                                   education_level==5 ~ "college graduate or above",
+                                   education_level==7 ~ "refused",
+                                   education_level==9 ~ "don't know"))
 
+
+sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT")
 ```
