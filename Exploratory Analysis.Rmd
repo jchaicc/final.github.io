@@ -76,8 +76,9 @@ sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
 ```
 
 ```{r}
-slp_df=inner_join(demo,sleep_df,by="seqn")
-
+slp_df=inner_join(demo,sleep_df,by="seqn") %>%
+  na_if("") %>%
+  na.omit()
 write_csv(slp_df, "data/slp_df.csv")
 ```
 
@@ -87,11 +88,13 @@ year_df=read_csv("data/AdultTrends.csv") %>%
   pivot_longer(cols=c("female", "male"),
                names_to = "sex",
                values_to = "age_adjust_prev") %>%
-  ggplot(aes(x=year,y=age_adjust_prev,col=factor(sex)))+geom_line()+geom_point()
+  ggplot(aes(x=year,y=age_adjust_prev,col=sex))+geom_line()+geom_point()
 year_df+transition_reveal(year)
 
+```
 
-
-
+```{r}
+slp_df %>%
+  filter(weekday_slp_hr<6) %>%view()
 
 ```

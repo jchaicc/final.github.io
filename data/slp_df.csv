@@ -11,7 +11,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 109293,male,44,Non-Hispanic White,high school graduate,0.02,22:00,05:30,7.5,23:00,05:30,6.5,no,5-15 per month
 109295,female,54,Mexican American,less than 9th grade,5,22:00,05:00,7,22:00,05:00,7,yes,never
 109298,male,68,Non-Hispanic White,less than 9th grade,1.75,01:00,07:00,6,01:00,08:00,7,yes,16-30 per month
-109300,female,54,Non-Hispanic Asian,college graduate or above,5,18:00,22:00,4,,,14,no,once a month
 109305,male,55,Non-Hispanic Asian,college graduate or above,5,01:00,07:00,6,01:30,08:00,6.5,no,never
 109307,male,47,Non-Hispanic Asian,less than 9th grade,1.38,23:00,06:30,7.5,23:00,10:00,11,no,never
 109311,female,36,Other Hispanic,college or AA degree,3.39,22:30,04:30,6,22:30,07:30,9,no,2-4 per month
@@ -53,7 +52,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 109391,female,56,Other Hispanic,less than 9th grade,1.64,22:00,07:00,9,21:00,07:00,10,no,once a month
 109393,male,76,Non-Hispanic Black,college or AA degree,0.89,22:00,07:00,9,00:00,08:00,8,yes,5-15 per month
 109394,female,29,Non-Hispanic Black,college or AA degree,0.17,20:00,05:00,9,23:00,11:00,12,no,16-30 per month
-109395,male,56,Non-Hispanic Black,college or AA degree,3.92,,,2,21:00,02:30,5.5,no,16-30 per month
 109396,female,37,Non-Hispanic Asian,college graduate or above,2.38,23:00,06:30,7.5,00:00,09:00,9,yes,never
 109397,female,47,Non-Hispanic White,high school graduate,2.77,22:00,07:00,9,00:00,09:00,9,no,2-4 per month
 109401,female,80,Non-Hispanic White,high school graduate,1.86,21:30,07:30,10,21:30,07:30,10,yes,16-30 per month
@@ -211,7 +209,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 109746,male,47,Non-Hispanic Black,college or AA degree,3.69,22:00,05:00,7,22:00,05:00,7,yes,never
 109747,female,74,Non-Hispanic White,high school graduate,2.07,22:00,06:00,8,23:00,06:00,7,no,2-4 per month
 109754,female,47,Non-Hispanic White,9-11th grade,2.16,21:30,04:00,6.5,22:00,03:00,5,yes,never
-109755,male,23,Other Hispanic,college or AA degree,1.33,01:00,11:00,10,,,14,yes,2-4 per month
 109757,female,30,Non-Hispanic Asian,college graduate or above,3.92,23:00,07:00,8,23:30,08:00,8.5,no,2-4 per month
 109759,male,57,Non-Hispanic Asian,college graduate or above,5,01:00,08:00,7,01:00,08:00,7,no,once a month
 109760,male,53,Other Hispanic,high school graduate,4.62,23:00,06:30,7.5,00:00,07:30,7.5,no,2-4 per month
@@ -226,7 +223,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 109776,female,80,Non-Hispanic White,high school graduate,1.09,22:00,04:00,6,22:00,05:00,7,no,16-30 per month
 109780,female,66,Non-Hispanic Black,high school graduate,1.08,01:00,11:00,10,02:00,09:00,7,yes,5-15 per month
 109782,female,63,Non-Hispanic White,high school graduate,3.69,00:00,08:00,8,00:00,09:00,9,no,2-4 per month
-109783,male,61,Non-Hispanic Black,9-11th grade,0.58,,,2,,,2,yes,once a month
 109786,female,24,Non-Hispanic Black,high school graduate,0.96,21:00,05:00,8,23:00,08:00,9,no,once a month
 109789,female,32,Non-Hispanic White,college graduate or above,5,22:30,06:30,8,23:30,07:30,8,no,once a month
 109791,male,28,Non-Hispanic Black,college or AA degree,2.83,03:00,12:00,9,03:00,12:00,9,no,2-4 per month
@@ -371,7 +367,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 110074,male,41,Mexican American,college graduate or above,4.63,23:00,06:00,7,00:00,07:30,7.5,no,once a month
 110076,male,28,Other Hispanic,high school graduate,1.76,23:00,07:00,8,23:00,07:00,8,no,once a month
 110079,female,54,Non-Hispanic Black,college graduate or above,3.08,00:30,05:00,4.5,02:00,08:00,6,yes,2-4 per month
-110081,male,65,Non-Hispanic Black,high school graduate,0.92,,,2,,,2,yes,never
 110085,male,60,Other Hispanic,high school graduate,3.69,23:00,04:00,5,23:00,06:00,7,no,2-4 per month
 110088,male,30,Other Hispanic,high school graduate,1.7,22:00,05:00,7,21:00,05:00,8,no,once a month
 110090,male,56,Other Hispanic,college or AA degree,5,23:00,07:00,8,00:00,07:30,7.5,no,never
@@ -379,7 +374,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 110092,male,80,Non-Hispanic White,college or AA degree,4.43,00:00,08:00,8,00:00,07:00,7,no,once a month
 110093,female,30,Non-Hispanic Black,9-11th grade,0.02,23:00,06:00,7,00:00,06:00,6,no,2-4 per month
 110096,male,66,Non-Hispanic Black,9-11th grade,0,00:00,07:00,7,00:00,07:00,7,no,never
-110100,female,80,Non-Hispanic White,less than 9th grade,1.6,20:00,10:00,14,,,14,no,16-30 per month
 110102,female,45,Mexican American,high school graduate,2.72,01:00,08:00,7,23:00,10:00,11,no,5-15 per month
 110103,male,80,Non-Hispanic White,college graduate or above,4.98,02:00,08:00,6,02:00,08:00,6,no,2-4 per month
 110105,female,25,Non-Hispanic Black,college or AA degree,2.06,23:00,10:00,11,02:00,11:00,9,no,2-4 per month
@@ -841,7 +835,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 111011,female,47,Mexican American,less than 9th grade,2,22:00,05:45,8,22:00,08:00,10,yes,5-15 per month
 111013,female,76,Non-Hispanic Asian,college graduate or above,5,19:00,06:00,11,19:00,07:00,12,no,once a month
 111014,female,54,Other Race,high school graduate,1.26,02:00,07:00,5,02:00,08:00,6,yes,2-4 per month
-111016,male,80,Non-Hispanic Black,high school graduate,4.25,,,2,19:00,03:00,8,no,never
 111018,male,80,Non-Hispanic Black,college graduate or above,4.56,23:00,07:00,8,23:00,07:00,8,no,2-4 per month
 111021,male,69,Mexican American,less than 9th grade,4.07,21:00,05:00,8,21:00,05:00,8,no,2-4 per month
 111025,male,80,Non-Hispanic White,9-11th grade,2.22,21:00,04:00,7,21:00,04:00,7,no,2-4 per month
@@ -855,7 +848,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 111040,female,48,Non-Hispanic Black,high school graduate,1.46,21:00,04:30,7.5,00:00,10:00,10,no,2-4 per month
 111042,male,41,Non-Hispanic White,college or AA degree,1.88,21:00,05:00,8,21:00,05:00,8,yes,16-30 per month
 111045,male,38,Mexican American,college graduate or above,3.6,21:00,03:00,6,22:00,08:00,10,no,never
-111046,female,50,Non-Hispanic Black,high school graduate,0.95,23:00,07:00,8,,,14,no,5-15 per month
 111050,male,46,Non-Hispanic Asian,college graduate or above,4.58,00:00,06:30,6.5,00:00,09:00,9,no,once a month
 111051,female,23,Non-Hispanic White,college graduate or above,1.73,03:30,08:30,5,03:30,12:00,8.5,yes,16-30 per month
 111053,female,64,Other Race,high school graduate,0.33,21:00,08:00,11,21:00,08:00,11,yes,once a month
@@ -921,7 +913,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 111185,male,69,Other Hispanic,college or AA degree,1.4,22:00,06:00,8,23:00,10:00,11,no,once a month
 111188,male,74,Non-Hispanic White,college or AA degree,2.48,23:30,06:30,7,23:30,06:30,7,no,5-15 per month
 111189,female,36,Other Hispanic,less than 9th grade,1.02,23:00,08:00,9,00:00,11:00,11,no,16-30 per month
-111190,female,51,Non-Hispanic White,high school graduate,3.34,,,2,,,2,yes,2-4 per month
 111191,female,41,Other Hispanic,college or AA degree,5,22:00,06:00,8,23:00,11:00,12,no,2-4 per month
 111192,male,54,Non-Hispanic Asian,high school graduate,1.97,23:00,07:00,8,23:00,07:00,8,no,never
 111194,female,63,Mexican American,high school graduate,5,22:00,05:00,7,22:00,05:00,7,yes,2-4 per month
@@ -970,7 +961,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 111268,male,79,Non-Hispanic White,9-11th grade,1.52,18:00,05:30,11.5,18:00,05:30,11.5,yes,16-30 per month
 111270,male,24,Non-Hispanic Black,less than 9th grade,0.19,00:00,11:00,11,01:00,11:00,10,no,never
 111271,female,28,Non-Hispanic Asian,college graduate or above,5,00:00,07:30,7.5,01:00,10:30,9.5,no,2-4 per month
-111272,female,62,Non-Hispanic Black,high school graduate,0.61,,,2,,,2,no,2-4 per month
 111275,male,43,Non-Hispanic Black,college graduate or above,3.5,22:00,05:45,8,01:30,05:30,4,no,16-30 per month
 111277,female,37,Non-Hispanic Asian,less than 9th grade,1.32,22:00,07:00,9,22:00,08:00,10,no,never
 111279,male,40,Non-Hispanic White,college graduate or above,5,22:00,06:00,8,22:00,06:00,8,no,5-15 per month
@@ -1220,7 +1210,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 111763,female,64,Non-Hispanic Black,college or AA degree,0.91,21:00,04:00,7,21:00,05:00,8,yes,once a month
 111765,male,30,Other Hispanic,college graduate or above,2.02,02:00,08:00,6,02:00,09:00,7,yes,5-15 per month
 111766,female,33,Non-Hispanic Black,college graduate or above,5,23:30,05:00,5.5,21:00,07:00,10,no,never
-111767,male,26,Other Race,high school graduate,0.38,01:00,04:30,3.5,,,2,no,5-15 per month
 111768,male,25,Other Hispanic,college or AA degree,0.1,22:00,08:00,10,03:00,16:00,13,no,2-4 per month
 111770,female,60,Non-Hispanic Black,high school graduate,0.98,19:00,06:00,11,22:00,06:00,8,no,2-4 per month
 111772,male,57,Non-Hispanic Black,9-11th grade,0.86,23:00,06:00,7,00:00,05:00,5,no,2-4 per month
@@ -1260,7 +1249,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 111829,female,61,Other Hispanic,college or AA degree,1.24,02:00,06:00,4,02:00,06:00,4,yes,16-30 per month
 111831,male,41,Non-Hispanic Black,college or AA degree,5,00:00,06:30,6.5,01:00,08:00,7,no,5-15 per month
 111833,female,26,Non-Hispanic Black,college or AA degree,0.1,21:00,07:00,10,21:00,08:00,11,no,once a month
-111834,male,30,Non-Hispanic White,9-11th grade,1.82,,,2,23:00,08:00,9,no,5-15 per month
 111835,male,72,Non-Hispanic White,college or AA degree,3.98,22:45,06:15,7.5,22:45,06:15,7.5,no,5-15 per month
 111840,male,80,Mexican American,college or AA degree,1.19,23:00,07:00,8,23:00,07:00,8,no,2-4 per month
 111843,male,34,Non-Hispanic Asian,college graduate or above,5,00:00,07:00,7,01:00,09:00,8,no,once a month
@@ -1670,7 +1658,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 112643,female,35,Non-Hispanic White,college or AA degree,1.22,21:00,06:00,9,21:30,07:00,9.5,no,2-4 per month
 112644,male,76,Non-Hispanic White,college or AA degree,4.64,23:00,08:00,9,23:00,08:00,9,no,2-4 per month
 112646,male,70,Non-Hispanic White,high school graduate,1.18,21:30,05:30,8,21:30,05:30,8,no,once a month
-112648,male,33,Other Hispanic,9-11th grade,0.25,,,2,22:00,07:30,9.5,no,never
 112650,female,43,Other Race,college or AA degree,0.87,01:00,08:00,7,01:30,08:00,6.5,yes,5-15 per month
 112659,male,32,Non-Hispanic Black,high school graduate,1.2,20:00,10:00,14,00:00,10:00,10,no,2-4 per month
 112660,male,43,Mexican American,college graduate or above,2.8,04:30,10:00,5.5,23:00,09:00,10,yes,2-4 per month
@@ -1764,7 +1751,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 112863,male,28,Other Race,college or AA degree,1.19,23:30,07:00,7.5,01:00,10:00,9,no,never
 112864,female,28,Mexican American,college or AA degree,2.62,23:00,07:00,8,00:00,08:00,8,no,2-4 per month
 112865,female,50,Non-Hispanic Asian,college graduate or above,4.57,23:00,05:20,6.5,23:30,07:30,8,yes,once a month
-112866,female,62,Non-Hispanic Black,high school graduate,1.35,00:00,05:00,5,,,2,yes,2-4 per month
 112868,male,80,Other Hispanic,less than 9th grade,0,00:00,05:00,5,00:00,05:00,5,no,once a month
 112869,female,24,Non-Hispanic White,college or AA degree,2.79,23:00,08:00,9,23:00,07:00,8,no,once a month
 112874,male,57,Non-Hispanic Black,high school graduate,4.25,23:00,06:00,7,00:00,06:00,6,no,once a month
@@ -1796,7 +1782,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 112926,male,67,Non-Hispanic White,college graduate or above,5,22:00,06:30,8.5,22:00,07:00,9,yes,5-15 per month
 112929,female,48,Non-Hispanic Black,high school graduate,0.04,23:00,06:00,7,23:00,06:00,7,yes,never
 112930,male,80,Non-Hispanic White,college graduate or above,5,22:30,07:00,8.5,22:30,07:00,8.5,no,never
-112931,female,42,Non-Hispanic Black,college or AA degree,2.37,,,2,22:00,09:00,11,no,never
 112935,female,60,Non-Hispanic Black,college graduate or above,2.43,23:00,08:00,9,00:00,07:00,7,no,once a month
 112936,female,78,Non-Hispanic Black,high school graduate,3.18,23:00,09:00,10,23:00,07:00,8,yes,16-30 per month
 112937,male,50,Non-Hispanic White,high school graduate,5,21:00,03:30,6.5,22:00,06:00,8,no,2-4 per month
@@ -1840,7 +1825,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 113004,male,62,Non-Hispanic Asian,college graduate or above,5,23:00,06:30,7.5,23:00,08:00,9,no,2-4 per month
 113005,female,51,Non-Hispanic White,college graduate or above,4.38,21:30,06:30,9,21:30,07:00,9.5,no,once a month
 113007,male,62,Non-Hispanic Asian,college graduate or above,5,01:00,09:00,8,02:00,10:00,8,no,2-4 per month
-113008,male,75,Non-Hispanic Black,high school graduate,0.76,,,14,,,14,yes,2-4 per month
 113009,female,44,Non-Hispanic Asian,college graduate or above,0.32,23:00,06:00,7,23:30,08:30,9,no,never
 113010,male,53,Non-Hispanic White,college or AA degree,0,21:00,04:00,7,21:00,04:00,7,yes,16-30 per month
 113011,male,58,Non-Hispanic White,high school graduate,1.28,04:00,08:00,4,04:00,08:00,4,no,never
@@ -1856,7 +1840,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 113030,female,44,Non-Hispanic Asian,high school graduate,1.56,23:00,08:00,9,23:00,08:00,9,no,never
 113033,female,28,Other Race,college graduate or above,3.38,23:00,07:00,8,01:00,09:00,8,yes,once a month
 113037,female,54,Non-Hispanic White,college or AA degree,1.78,00:00,07:30,7.5,01:00,08:00,7,no,never
-113038,male,65,Non-Hispanic Black,high school graduate,2.24,10:00,20:30,10.5,,,14,no,once a month
 113041,female,31,Non-Hispanic Black,college or AA degree,0.52,00:00,09:00,9,05:00,09:00,4,no,2-4 per month
 113046,female,62,Non-Hispanic Black,high school graduate,1.77,22:00,05:00,7,23:00,07:00,8,no,once a month
 113047,male,80,Non-Hispanic White,high school graduate,1.16,18:00,03:00,9,18:00,03:00,9,no,16-30 per month
@@ -1981,7 +1964,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 113287,female,59,Non-Hispanic White,college or AA degree,1.02,01:00,08:00,7,01:00,07:30,6.5,yes,16-30 per month
 113292,male,59,Other Hispanic,college or AA degree,4.31,22:30,05:00,6.5,22:30,08:00,9.5,no,once a month
 113294,male,46,Non-Hispanic Asian,college graduate or above,5,23:00,07:30,8.5,23:00,08:00,9,no,never
-113298,female,58,Non-Hispanic Black,college graduate or above,1.94,,,2,03:00,07:00,4,yes,5-15 per month
 113300,female,47,Non-Hispanic White,high school graduate,2,01:00,09:30,8.5,01:00,09:30,8.5,no,once a month
 113301,female,62,Non-Hispanic White,high school graduate,4.14,23:30,06:00,6.5,00:00,09:00,9,no,2-4 per month
 113303,female,40,Non-Hispanic White,college graduate or above,5,00:00,07:00,7,00:00,08:00,8,yes,2-4 per month
@@ -2144,7 +2126,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 113587,male,60,Non-Hispanic Black,college or AA degree,1.79,23:00,06:00,7,01:00,06:00,5,yes,2-4 per month
 113588,male,61,Mexican American,9-11th grade,4.19,18:00,02:30,8.5,18:00,02:30,8.5,yes,16-30 per month
 113590,male,65,Non-Hispanic White,college or AA degree,0.88,01:00,04:30,3.5,01:00,04:30,3.5,yes,2-4 per month
-113591,male,66,Other Race,high school graduate,1.34,,,14,,,14,no,16-30 per month
 113596,male,27,Mexican American,high school graduate,0.58,20:00,06:30,10.5,21:00,07:30,10.5,yes,2-4 per month
 113597,female,72,Non-Hispanic White,college graduate or above,5,01:00,06:00,5,01:00,06:00,5,no,5-15 per month
 113599,male,31,Non-Hispanic White,college or AA degree,4.09,22:30,06:30,8,23:30,09:00,9.5,no,2-4 per month
@@ -2155,7 +2136,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 113616,male,66,Mexican American,high school graduate,2.42,23:30,08:00,8.5,23:30,08:00,8.5,no,once a month
 113619,female,80,Non-Hispanic White,college graduate or above,1.94,22:00,06:00,8,22:00,06:00,8,yes,2-4 per month
 113620,female,48,Non-Hispanic Asian,college graduate or above,3.85,23:00,07:00,8,00:00,08:00,8,no,never
-113621,female,58,Non-Hispanic White,9-11th grade,1.28,11:00,19:00,8,,,14,no,2-4 per month
 113624,male,45,Mexican American,high school graduate,2.79,21:00,06:00,9,22:00,07:00,9,no,never
 113628,female,37,Non-Hispanic White,college or AA degree,2.19,23:00,06:45,8,00:00,07:00,7,yes,16-30 per month
 113629,male,33,Non-Hispanic Black,college or AA degree,1.22,22:00,05:00,7,02:00,10:00,8,no,once a month
@@ -2171,7 +2151,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 113647,male,58,Mexican American,high school graduate,1.73,00:00,07:30,7.5,02:00,07:30,5.5,no,never
 113648,male,61,Non-Hispanic Black,college graduate or above,5,23:00,06:00,7,00:00,07:00,7,no,2-4 per month
 113649,male,55,Non-Hispanic White,high school graduate,5,22:30,04:00,5.5,22:30,04:00,5.5,yes,16-30 per month
-113651,female,62,Non-Hispanic Asian,college or AA degree,1.11,,,2,04:00,10:00,6,yes,2-4 per month
 113652,male,26,Non-Hispanic Asian,college graduate or above,1.58,23:30,07:00,7.5,00:30,09:30,9,no,once a month
 113655,female,36,Non-Hispanic Asian,college graduate or above,1.99,23:00,06:00,7,23:00,07:00,8,no,never
 113661,female,24,Non-Hispanic White,college or AA degree,4.73,22:00,06:45,9,22:00,07:00,9,no,never
@@ -2219,7 +2198,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 113747,male,29,Non-Hispanic White,college or AA degree,5,22:30,05:00,6.5,22:30,06:00,7.5,no,5-15 per month
 113750,male,60,Non-Hispanic Asian,college graduate or above,5,22:00,05:00,7,22:00,05:00,7,yes,2-4 per month
 113751,male,61,Non-Hispanic White,high school graduate,2.65,21:00,04:30,7.5,22:00,07:00,9,no,never
-113753,female,80,Other Race,high school graduate,1.58,,,14,00:00,12:00,12,no,once a month
 113754,female,49,Non-Hispanic White,college graduate or above,4.8,22:00,06:00,8,23:00,09:00,10,no,2-4 per month
 113755,female,26,Non-Hispanic Black,college or AA degree,2.82,02:00,09:00,7,03:00,12:00,9,no,once a month
 113757,male,21,Non-Hispanic White,college or AA degree,3.4,22:00,06:30,8.5,23:30,09:00,9.5,no,2-4 per month
@@ -2323,7 +2301,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 113945,male,55,Non-Hispanic Asian,college graduate or above,5,01:00,05:30,4.5,01:00,07:00,6,no,once a month
 113946,female,22,Other Race,college or AA degree,2.55,01:00,10:00,9,01:00,12:00,11,no,once a month
 113947,female,31,Non-Hispanic Black,college or AA degree,1.17,08:30,14:00,5.5,21:00,08:00,11,no,never
-113949,female,67,Non-Hispanic Black,high school graduate,0.85,,,14,,,14,no,5-15 per month
 113951,female,36,Non-Hispanic Black,college graduate or above,2.2,23:00,06:30,7.5,23:00,08:00,9,no,once a month
 113954,female,47,Mexican American,9-11th grade,0.01,21:00,04:00,7,21:00,07:00,10,no,once a month
 113957,male,51,Non-Hispanic White,high school graduate,0.92,22:00,08:00,10,22:00,09:00,11,no,2-4 per month
@@ -2413,7 +2390,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 114123,male,63,Non-Hispanic Black,college graduate or above,3.31,23:00,06:00,7,23:00,09:00,10,no,5-15 per month
 114124,female,36,Non-Hispanic White,college or AA degree,5,08:00,16:00,8,23:00,08:00,9,no,5-15 per month
 114125,female,68,Non-Hispanic White,high school graduate,2.88,23:00,07:00,8,23:00,07:00,8,no,2-4 per month
-114128,male,74,Non-Hispanic White,high school graduate,4.26,,,2,,,2,yes,5-15 per month
 114130,female,63,Non-Hispanic Asian,college graduate or above,5,22:00,07:30,9.5,23:00,08:00,9,yes,once a month
 114131,male,68,Non-Hispanic Black,9-11th grade,0.77,22:00,05:30,7.5,23:00,08:00,9,no,2-4 per month
 114133,male,57,Non-Hispanic White,college or AA degree,3.43,22:00,04:00,6,23:00,05:00,6,no,once a month
@@ -2547,7 +2523,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 114391,male,47,Mexican American,college or AA degree,2.72,23:30,04:45,5.5,01:00,07:00,6,no,once a month
 114392,female,50,Non-Hispanic White,college graduate or above,5,23:00,06:00,7,23:00,08:00,9,no,5-15 per month
 114393,male,23,Non-Hispanic White,college or AA degree,0,23:30,07:30,8,22:30,08:00,9.5,no,2-4 per month
-114403,female,54,Non-Hispanic Black,high school graduate,0,22:00,09:00,11,,,14,yes,2-4 per month
 114404,male,60,Non-Hispanic Black,college or AA degree,5,00:00,05:00,5,00:00,05:00,5,no,once a month
 114405,female,36,Mexican American,college graduate or above,5,23:00,05:45,7,00:00,08:00,8,yes,never
 114406,female,60,Mexican American,less than 9th grade,5,21:00,04:00,7,21:00,07:00,10,no,never
@@ -2627,7 +2602,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 114543,male,32,Non-Hispanic White,college or AA degree,1.98,12:00,20:00,8,04:00,13:00,9,no,5-15 per month
 114545,male,80,Non-Hispanic White,college graduate or above,5,23:30,07:00,7.5,23:30,07:00,7.5,no,5-15 per month
 114546,female,45,Mexican American,9-11th grade,1.66,23:30,06:00,6.5,22:00,07:00,9,no,once a month
-114547,male,64,Non-Hispanic White,college or AA degree,1.65,,,14,,,14,no,5-15 per month
 114553,female,43,Non-Hispanic Black,high school graduate,2.15,20:00,07:00,11,20:00,07:00,11,no,once a month
 114554,male,80,Non-Hispanic White,9-11th grade,2.16,21:00,06:00,9,21:00,06:00,9,no,never
 114555,female,45,Non-Hispanic Asian,high school graduate,4.76,21:00,04:00,7,00:00,08:00,8,no,never
@@ -2754,7 +2728,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 114809,female,33,Non-Hispanic White,college graduate or above,5,23:00,07:00,8,23:00,08:00,9,no,once a month
 114810,female,46,Non-Hispanic White,college or AA degree,1.82,00:00,07:00,7,00:00,08:00,8,no,2-4 per month
 114811,female,80,Other Hispanic,college or AA degree,0.86,22:00,05:00,7,22:00,05:00,7,no,never
-114813,female,47,Non-Hispanic Black,high school graduate,1.24,22:00,06:15,8.5,,,14,no,5-15 per month
 114818,male,45,Non-Hispanic White,college graduate or above,0.35,23:00,06:00,7,00:00,08:00,8,no,5-15 per month
 114819,female,21,Other Hispanic,college or AA degree,3.88,23:00,07:00,8,02:00,11:00,9,no,5-15 per month
 114820,female,29,Non-Hispanic White,9-11th grade,2.09,23:00,05:00,6,22:00,05:00,7,no,5-15 per month
@@ -2826,7 +2799,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 114944,male,37,Non-Hispanic White,high school graduate,2.46,21:00,05:00,8,22:30,07:30,9,no,once a month
 114948,female,80,Other Race,high school graduate,0.92,21:00,07:30,10.5,21:00,07:30,10.5,no,5-15 per month
 114950,male,78,Non-Hispanic Black,9-11th grade,1.46,21:00,05:00,8,21:00,05:00,8,no,once a month
-114953,male,29,Non-Hispanic Black,college or AA degree,2,01:00,06:30,5.5,,,2,no,5-15 per month
 114955,male,40,Non-Hispanic Black,college or AA degree,3.34,00:00,06:00,6,02:00,08:00,6,no,never
 114958,male,59,Non-Hispanic White,high school graduate,0.93,22:00,07:30,9.5,22:00,07:30,9.5,yes,once a month
 114961,female,80,Non-Hispanic White,less than 9th grade,1.08,21:00,06:45,10,21:00,06:45,10,no,once a month
@@ -2851,7 +2823,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 114993,female,36,Non-Hispanic White,college or AA degree,1.51,23:00,06:00,7,23:00,08:00,9,no,never
 114994,male,33,Non-Hispanic White,college graduate or above,4.29,21:00,04:30,7.5,21:00,04:30,7.5,no,5-15 per month
 114995,female,62,Mexican American,high school graduate,1.94,22:00,06:00,8,22:00,08:00,10,no,once a month
-114996,female,55,Non-Hispanic Black,college or AA degree,4.73,00:00,10:00,10,,,14,no,never
 114997,male,41,Non-Hispanic White,high school graduate,2.89,23:00,04:30,5.5,23:00,09:00,10,no,2-4 per month
 114998,male,80,Mexican American,less than 9th grade,1.03,22:00,04:00,6,20:00,04:00,8,no,never
 115003,female,48,Non-Hispanic White,college or AA degree,4.73,22:00,06:00,8,22:00,08:00,10,no,2-4 per month
@@ -2870,7 +2841,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 115028,female,38,Mexican American,college graduate or above,3.85,23:00,06:30,7.5,23:30,09:00,9.5,no,once a month
 115030,female,68,Mexican American,college graduate or above,0.69,23:30,09:00,9.5,01:00,09:30,8.5,yes,2-4 per month
 115034,female,29,Non-Hispanic White,college graduate or above,3.84,01:00,08:30,7.5,01:00,11:00,10,no,2-4 per month
-115035,male,40,Non-Hispanic White,college or AA degree,3.11,,,2,01:00,04:00,3,yes,16-30 per month
 115036,female,54,Non-Hispanic White,college graduate or above,5,23:00,06:00,7,00:00,06:00,6,no,once a month
 115037,male,26,Non-Hispanic Black,high school graduate,2.17,04:00,07:00,3,06:00,12:00,6,no,once a month
 115039,male,69,Non-Hispanic Asian,9-11th grade,1.5,21:30,04:00,6.5,21:30,08:00,10.5,yes,2-4 per month
@@ -3038,7 +3008,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 115362,male,23,Other Race,college graduate or above,4.14,00:00,08:30,8.5,01:00,09:00,8,no,once a month
 115363,female,60,Non-Hispanic White,college or AA degree,0.97,22:00,06:00,8,22:00,06:00,8,no,5-15 per month
 115365,female,38,Non-Hispanic White,college graduate or above,5,23:00,06:15,7.5,23:00,08:30,9.5,no,once a month
-115367,female,29,Mexican American,college or AA degree,1.32,,,2,06:00,14:00,8,no,16-30 per month
 115369,female,44,Non-Hispanic Black,high school graduate,0.18,20:30,05:30,9,21:00,06:00,9,yes,2-4 per month
 115370,female,34,Non-Hispanic Asian,college graduate or above,5,00:00,06:30,6.5,00:00,06:30,6.5,no,once a month
 115371,female,74,Non-Hispanic White,college or AA degree,2.46,22:00,05:00,7,22:00,06:00,8,no,2-4 per month
@@ -3119,7 +3088,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 115516,male,80,Non-Hispanic White,less than 9th grade,1.69,22:00,06:00,8,22:00,06:00,8,no,2-4 per month
 115520,female,38,Non-Hispanic White,high school graduate,0.91,21:00,04:30,7.5,22:00,07:00,9,no,16-30 per month
 115521,female,70,Non-Hispanic White,college or AA degree,2.06,22:00,06:00,8,22:00,06:00,8,no,2-4 per month
-115524,male,51,Non-Hispanic Black,high school graduate,1.45,,,2,,,2,yes,never
 115526,male,80,Non-Hispanic White,college or AA degree,4.43,22:00,05:00,7,22:00,05:00,7,no,2-4 per month
 115531,male,60,Non-Hispanic White,high school graduate,0.89,22:00,05:00,7,22:00,08:00,10,yes,5-15 per month
 115532,female,36,Mexican American,college or AA degree,3.32,00:00,04:45,5,23:00,07:00,8,yes,16-30 per month
@@ -3251,7 +3219,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 115827,male,41,Mexican American,9-11th grade,2.89,21:00,05:00,8,21:00,08:00,11,no,once a month
 115829,male,23,Non-Hispanic White,9-11th grade,1.18,00:00,09:00,9,02:00,14:00,12,no,5-15 per month
 115831,female,28,Other Race,high school graduate,0.84,02:00,06:30,4.5,03:00,12:00,9,yes,5-15 per month
-115833,male,37,Other Hispanic,less than 9th grade,0.86,,,2,10:00,17:00,7,yes,2-4 per month
 115834,female,72,Non-Hispanic Black,high school graduate,2.63,23:00,09:00,10,02:00,10:00,8,no,once a month
 115841,female,52,Non-Hispanic Black,high school graduate,0.74,01:00,10:00,9,02:00,09:00,7,yes,5-15 per month
 115842,female,41,Non-Hispanic Black,college or AA degree,1.04,21:30,04:00,6.5,21:30,08:00,10.5,no,2-4 per month
@@ -3344,7 +3311,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 116010,female,73,Non-Hispanic Black,college graduate or above,5,21:30,06:30,9,21:30,06:30,9,yes,2-4 per month
 116013,female,58,Non-Hispanic Black,college or AA degree,2.32,23:00,06:00,7,23:00,05:00,6,no,once a month
 116014,male,34,Non-Hispanic Black,high school graduate,5,23:00,04:00,5,23:00,04:00,5,no,never
-116016,male,56,Non-Hispanic White,high school graduate,2.36,12:30,23:30,11,,,14,yes,2-4 per month
 116019,female,63,Non-Hispanic Asian,college graduate or above,3.39,22:00,07:00,9,22:00,08:00,10,no,once a month
 116021,male,59,Non-Hispanic Black,high school graduate,2.4,21:00,02:00,5,21:00,04:00,7,yes,once a month
 116022,male,34,Non-Hispanic White,high school graduate,0.96,00:00,05:00,5,00:00,05:00,5,yes,16-30 per month
@@ -3452,7 +3418,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 116207,female,34,Non-Hispanic White,college graduate or above,2.16,23:30,08:00,8.5,23:00,10:00,11,yes,once a month
 116208,male,67,Non-Hispanic Black,less than 9th grade,1.16,19:00,09:00,14,21:00,07:00,10,no,never
 116210,female,52,Non-Hispanic White,college or AA degree,5,23:00,05:45,7,23:00,05:00,6,yes,once a month
-116211,female,60,Mexican American,college or AA degree,5,,,2,01:00,06:00,5,yes,once a month
 116213,male,62,Non-Hispanic Asian,college graduate or above,5,00:00,06:00,6,21:00,08:00,11,no,2-4 per month
 116216,female,80,Non-Hispanic White,high school graduate,5,00:00,06:30,6.5,00:00,06:30,6.5,no,5-15 per month
 116219,male,22,Non-Hispanic Asian,college graduate or above,3.85,01:30,09:00,7.5,02:00,11:00,9,no,2-4 per month
@@ -3676,7 +3641,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 116672,female,30,Mexican American,less than 9th grade,0.45,21:30,05:30,8,22:00,08:30,10.5,no,once a month
 116673,female,49,Non-Hispanic White,college or AA degree,1.37,00:45,06:00,5.5,00:45,07:00,6.5,no,2-4 per month
 116675,female,42,Non-Hispanic Black,college graduate or above,5,23:00,05:30,6.5,01:00,09:00,8,yes,2-4 per month
-116676,female,50,Non-Hispanic Black,high school graduate,0.91,00:00,12:00,12,,,14,yes,2-4 per month
 116677,male,50,Mexican American,less than 9th grade,0.4,21:00,06:00,9,21:00,06:00,9,no,once a month
 116678,female,20,Mexican American,9-11th grade,0.45,21:00,08:00,11,23:00,10:00,11,no,5-15 per month
 116680,female,46,Mexican American,9-11th grade,1.1,22:00,06:00,8,23:30,08:00,8.5,no,once a month
@@ -3766,7 +3730,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 116857,female,70,Non-Hispanic Asian,college or AA degree,5,11:00,14:00,3,11:00,18:00,7,no,never
 116858,male,53,Non-Hispanic Black,high school graduate,1.76,21:30,05:00,7.5,22:30,05:00,6.5,no,2-4 per month
 116859,male,63,Non-Hispanic Black,high school graduate,0.79,20:00,07:00,11,22:00,07:00,9,no,2-4 per month
-116861,female,44,Other Race,college or AA degree,2.49,09:00,13:00,4,,,2,yes,16-30 per month
 116864,male,64,Non-Hispanic Black,college graduate or above,3.03,22:00,04:00,6,22:00,04:30,6.5,no,5-15 per month
 116866,female,80,Non-Hispanic White,high school graduate,2.16,22:30,06:30,8,22:30,06:30,8,no,2-4 per month
 116867,female,52,Mexican American,college or AA degree,5,23:00,07:00,8,01:00,07:00,6,no,2-4 per month
@@ -3829,7 +3792,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 116970,male,21,Non-Hispanic White,high school graduate,5,22:00,09:00,11,00:00,10:30,10.5,no,2-4 per month
 116972,female,48,Mexican American,college or AA degree,4.31,20:30,02:00,5.5,21:00,09:00,12,no,5-15 per month
 116973,female,73,Non-Hispanic Black,high school graduate,3.1,20:00,04:00,8,21:00,04:00,7,yes,2-4 per month
-116976,male,65,Non-Hispanic Black,9-11th grade,0.71,21:00,08:00,11,,,14,no,2-4 per month
 116978,male,67,Non-Hispanic White,9-11th grade,3.86,22:00,05:30,7.5,22:30,05:30,7,no,16-30 per month
 116979,male,28,Non-Hispanic Asian,9-11th grade,2.15,22:00,06:00,8,00:00,08:00,8,yes,never
 116981,male,37,Non-Hispanic Black,9-11th grade,2.31,06:00,10:00,4,06:00,14:00,8,no,2-4 per month
@@ -3865,10 +3827,8 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 117040,female,35,Non-Hispanic White,college or AA degree,3.5,01:00,08:00,7,01:00,09:30,8.5,no,never
 117044,male,70,Other Hispanic,high school graduate,1.99,23:00,06:00,7,23:00,07:00,8,no,never
 117045,female,57,Non-Hispanic White,college or AA degree,3.37,20:00,04:30,8.5,20:00,04:30,8.5,no,once a month
-117049,female,21,Non-Hispanic Black,college or AA degree,3.4,,,2,22:00,08:00,10,no,16-30 per month
 117050,male,80,Other Race,high school graduate,1.48,22:00,05:00,7,22:00,05:00,7,no,5-15 per month
 117052,male,80,Non-Hispanic White,9-11th grade,1.19,23:00,07:00,8,23:00,07:00,8,no,16-30 per month
-117053,male,22,Non-Hispanic Black,9-11th grade,1.2,21:00,07:55,11,,,14,no,once a month
 117054,female,38,Mexican American,college or AA degree,2.92,04:00,12:00,8,23:00,10:00,11,no,2-4 per month
 117055,male,68,Non-Hispanic Black,9-11th grade,0.57,22:30,06:00,7.5,22:00,06:30,8.5,yes,5-15 per month
 117058,female,60,Other Race,college or AA degree,2.8,22:00,05:00,7,23:00,05:00,6,no,2-4 per month
@@ -3928,7 +3888,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 117173,male,67,Non-Hispanic White,college graduate or above,5,01:00,10:00,9,01:00,10:00,9,yes,once a month
 117174,female,34,Non-Hispanic White,college or AA degree,3.5,01:00,06:00,5,01:00,10:00,9,no,2-4 per month
 117178,female,25,Mexican American,college or AA degree,0.81,23:00,10:00,11,23:00,10:30,11.5,no,2-4 per month
-117180,male,29,Non-Hispanic Black,college or AA degree,1.54,,,14,22:00,12:00,14,no,2-4 per month
 117181,female,47,Other Hispanic,college or AA degree,3.98,21:30,06:30,9,22:00,07:30,9.5,no,2-4 per month
 117182,male,29,Non-Hispanic White,high school graduate,0.24,04:00,11:00,7,04:00,12:00,8,no,once a month
 117184,female,42,Mexican American,less than 9th grade,0.45,21:00,07:00,10,22:00,08:00,10,no,once a month
@@ -3937,13 +3896,11 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 117188,male,60,Non-Hispanic White,college or AA degree,3.88,22:00,05:30,7.5,23:00,06:00,7,yes,once a month
 117190,female,32,Non-Hispanic Asian,college or AA degree,1.38,22:30,08:00,9.5,00:00,10:30,10.5,no,never
 117191,female,36,Mexican American,college graduate or above,3.98,23:00,06:30,7.5,23:00,09:00,10,no,16-30 per month
-117192,male,60,Non-Hispanic Black,high school graduate,5,,,2,22:00,06:00,8,no,2-4 per month
 117193,female,69,Non-Hispanic Black,less than 9th grade,1.25,22:00,10:00,12,22:00,10:00,12,no,never
 117194,male,38,Non-Hispanic Asian,college graduate or above,4.41,23:00,05:00,6,23:00,07:00,8,no,5-15 per month
 117198,male,36,Non-Hispanic White,college graduate or above,5,23:00,08:30,9.5,00:00,08:30,8.5,no,2-4 per month
 117200,male,33,Non-Hispanic White,college or AA degree,1.18,21:00,04:30,7.5,00:00,07:00,7,no,16-30 per month
 117203,male,65,Non-Hispanic Black,9-11th grade,4.16,01:00,08:00,7,02:00,08:00,6,no,never
-117208,female,62,Other Hispanic,high school graduate,1.18,,,2,03:00,06:00,3,yes,once a month
 117209,female,35,Mexican American,high school graduate,2.17,23:00,04:00,5,23:00,05:00,6,no,16-30 per month
 117210,female,63,Non-Hispanic Asian,less than 9th grade,5,22:30,05:00,6.5,23:30,05:00,5.5,yes,never
 117211,male,70,Non-Hispanic Asian,college graduate or above,5,23:00,08:00,9,23:00,08:00,9,no,never
@@ -4148,7 +4105,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 117640,female,65,Non-Hispanic Asian,college or AA degree,1.02,00:00,09:00,9,00:00,09:00,9,yes,never
 117641,female,23,Other Hispanic,high school graduate,2.69,22:00,07:00,9,00:00,11:00,11,no,once a month
 117643,female,61,Mexican American,high school graduate,1.59,21:30,02:30,5,21:30,06:00,8.5,no,5-15 per month
-117644,female,30,Non-Hispanic Black,high school graduate,1.44,22:00,04:30,6.5,,,14,no,never
 117645,female,60,Non-Hispanic Black,college or AA degree,3.75,23:30,07:00,7.5,01:00,11:00,10,no,once a month
 117646,female,27,Mexican American,high school graduate,1.71,22:00,05:00,7,22:00,08:00,10,no,5-15 per month
 117647,female,32,Other Hispanic,college or AA degree,2.65,08:00,14:00,6,00:00,07:00,7,no,5-15 per month
@@ -4306,7 +4262,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 117959,male,24,Non-Hispanic White,college graduate or above,4.2,22:30,05:30,7,00:00,07:00,7,no,2-4 per month
 117960,male,63,Non-Hispanic Asian,college graduate or above,2.44,00:00,09:00,9,00:00,09:00,9,no,16-30 per month
 117961,male,24,Mexican American,college or AA degree,2,23:00,06:00,7,00:00,06:00,6,no,16-30 per month
-117962,male,80,Other Race,high school graduate,1.34,,,2,,,2,yes,5-15 per month
 117964,male,60,Non-Hispanic Black,college or AA degree,1.48,21:00,04:00,7,21:00,04:00,7,no,once a month
 117965,male,51,Non-Hispanic White,less than 9th grade,2.33,02:00,09:00,7,02:00,09:00,7,yes,16-30 per month
 117966,female,26,Non-Hispanic Asian,college or AA degree,2.43,23:00,07:00,8,02:00,09:00,7,no,2-4 per month
@@ -4445,7 +4400,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 118239,male,58,Other Hispanic,9-11th grade,2.4,22:00,05:00,7,23:00,09:30,10.5,no,once a month
 118242,male,76,Non-Hispanic White,high school graduate,5,21:00,07:00,10,21:00,07:00,10,no,5-15 per month
 118244,female,60,Non-Hispanic White,college or AA degree,3.67,22:30,07:30,9,22:30,08:00,9.5,no,once a month
-118245,female,21,Mexican American,high school graduate,1.22,,,14,04:00,13:00,9,no,2-4 per month
 118247,female,74,Non-Hispanic White,college or AA degree,1.97,22:00,07:00,9,22:00,07:00,9,no,5-15 per month
 118249,male,42,Non-Hispanic White,high school graduate,5,22:00,05:30,7.5,23:00,07:00,8,no,once a month
 118250,male,71,Non-Hispanic White,college graduate or above,5,21:30,06:00,8.5,21:30,06:00,8.5,no,2-4 per month
@@ -4489,7 +4443,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 118315,male,29,Non-Hispanic White,college or AA degree,5,00:00,07:15,7.5,01:00,10:00,9,no,never
 118316,female,60,Other Hispanic,high school graduate,5,23:00,06:30,7.5,23:00,06:30,7.5,no,never
 118317,male,33,Non-Hispanic White,high school graduate,2.02,20:30,03:00,6.5,20:30,03:00,6.5,no,2-4 per month
-118318,female,48,Non-Hispanic White,9-11th grade,0.03,,,2,00:00,03:00,3,yes,5-15 per month
 118319,male,27,Other Hispanic,high school graduate,5,10:00,16:00,6,23:00,07:00,8,no,2-4 per month
 118322,female,80,Non-Hispanic White,college or AA degree,1.16,21:30,08:00,10.5,22:00,08:00,10,no,5-15 per month
 118324,female,52,Non-Hispanic Asian,high school graduate,0.96,23:00,08:00,9,00:00,08:00,8,no,never
@@ -4533,7 +4486,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 118395,female,56,Non-Hispanic White,college or AA degree,0,00:00,07:00,7,00:00,07:00,7,yes,5-15 per month
 118399,male,66,Non-Hispanic Black,college or AA degree,3.52,22:00,04:15,6.5,00:00,04:15,4.5,no,once a month
 118406,male,42,Non-Hispanic White,college graduate or above,5,23:00,06:30,7.5,23:30,07:30,8,no,once a month
-118408,male,26,Mexican American,college or AA degree,1.94,11:30,17:30,6,,,14,no,2-4 per month
 118409,female,37,Non-Hispanic White,college graduate or above,5,22:00,04:30,6.5,23:00,06:00,7,yes,2-4 per month
 118411,male,67,Non-Hispanic White,college or AA degree,3.6,22:30,05:30,7,23:00,06:00,7,no,2-4 per month
 118412,female,68,Non-Hispanic Black,college graduate or above,3.73,23:00,05:00,6,23:00,05:00,6,yes,2-4 per month
@@ -4893,7 +4845,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 119109,female,33,Non-Hispanic Asian,college graduate or above,1.22,22:00,05:30,7.5,23:00,07:00,8,no,never
 119112,female,33,Other Hispanic,9-11th grade,1.07,23:00,10:00,11,23:00,10:00,11,no,2-4 per month
 119117,male,66,Non-Hispanic Black,9-11th grade,1.4,23:00,06:00,7,22:00,07:00,9,no,5-15 per month
-119119,female,28,Non-Hispanic White,college or AA degree,0.48,,,2,02:30,08:00,5.5,yes,16-30 per month
 119123,male,57,Other Race,high school graduate,0.06,21:00,10:00,13,20:00,07:00,11,no,never
 119126,male,80,Other Race,high school graduate,1.19,23:30,06:30,7,00:00,06:30,6.5,no,never
 119127,male,33,Other Race,college graduate or above,2.48,22:00,04:45,7,21:30,08:00,10.5,no,2-4 per month
@@ -5060,7 +5011,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 119442,male,40,Other Hispanic,less than 9th grade,5,22:00,05:00,7,00:00,07:00,7,no,once a month
 119444,male,62,Other Hispanic,high school graduate,2.8,23:00,04:30,5.5,23:00,04:30,5.5,no,16-30 per month
 119447,male,64,Non-Hispanic Black,9-11th grade,2.4,00:00,06:00,6,23:00,04:00,5,no,2-4 per month
-119450,male,67,Other Race,college graduate or above,0.99,,,2,,,2,no,never
 119451,male,68,Non-Hispanic White,less than 9th grade,1.45,00:00,08:00,8,00:00,08:00,8,yes,16-30 per month
 119453,female,39,Non-Hispanic Asian,college graduate or above,5,00:00,07:00,7,01:00,09:00,8,yes,2-4 per month
 119455,female,63,Non-Hispanic White,high school graduate,1.02,23:00,08:30,9.5,23:00,08:30,9.5,yes,once a month
@@ -5078,7 +5028,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 119483,male,38,Non-Hispanic Asian,less than 9th grade,1.17,00:00,07:00,7,22:00,07:00,9,no,never
 119484,female,21,Other Hispanic,high school graduate,5,01:00,11:00,10,03:00,14:00,11,no,5-15 per month
 119485,female,21,Non-Hispanic White,9-11th grade,2.08,22:30,09:00,10.5,23:00,10:00,11,no,5-15 per month
-119489,female,59,Non-Hispanic White,college or AA degree,0.84,23:00,13:00,14,,,14,yes,5-15 per month
 119491,male,79,Non-Hispanic White,high school graduate,3.08,22:00,06:00,8,22:00,06:00,8,yes,2-4 per month
 119492,female,80,Non-Hispanic White,college or AA degree,1.58,23:00,07:30,8.5,23:00,07:30,8.5,no,never
 119493,female,80,Non-Hispanic White,high school graduate,3.33,21:30,07:30,10,21:30,07:30,10,no,16-30 per month
@@ -5107,7 +5056,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 119548,female,76,Other Hispanic,9-11th grade,1.6,20:00,04:00,8,21:00,04:00,7,yes,never
 119549,female,27,Non-Hispanic White,college or AA degree,1.48,21:00,00:00,3,21:00,05:30,8.5,yes,5-15 per month
 119551,male,49,Mexican American,high school graduate,0.96,22:00,05:30,7.5,03:00,12:00,9,no,once a month
-119552,female,74,Non-Hispanic Black,college or AA degree,2.72,22:00,05:00,7,,,14,yes,2-4 per month
 119556,female,52,Non-Hispanic Black,high school graduate,2.16,07:00,13:00,6,01:00,07:00,6,no,5-15 per month
 119557,male,22,Other Hispanic,high school graduate,3.29,23:30,05:30,6,01:30,07:30,6,yes,16-30 per month
 119559,male,54,Mexican American,college graduate or above,5,22:30,07:30,9,00:00,08:00,8,yes,never
@@ -5118,7 +5066,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 119571,female,52,Non-Hispanic White,college or AA degree,1.77,20:30,05:00,8.5,22:00,10:00,12,yes,5-15 per month
 119572,female,56,Non-Hispanic Black,college or AA degree,5,23:30,08:00,8.5,23:30,08:00,8.5,yes,once a month
 119580,female,27,Mexican American,college or AA degree,5,22:00,07:00,9,00:00,08:00,8,no,once a month
-119581,male,45,Non-Hispanic Black,college graduate or above,3.13,,,2,01:00,11:00,10,no,once a month
 119584,male,51,Non-Hispanic Black,college or AA degree,5,23:30,04:50,5.5,00:30,07:00,6.5,no,once a month
 119585,female,63,Non-Hispanic Black,high school graduate,0.58,00:00,03:00,3,00:00,07:00,7,no,once a month
 119586,male,62,Non-Hispanic Black,high school graduate,3.6,22:00,05:00,7,02:00,09:00,7,no,never
@@ -5153,7 +5100,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 119630,female,55,Mexican American,college or AA degree,1.11,22:00,05:00,7,22:00,05:00,7,no,5-15 per month
 119631,female,51,Non-Hispanic White,college graduate or above,5,21:30,06:00,8.5,22:00,08:00,10,yes,2-4 per month
 119632,female,68,Other Hispanic,college or AA degree,1.45,22:30,08:00,9.5,23:00,08:00,9,yes,2-4 per month
-119636,female,64,Other Race,college or AA degree,1.48,,,2,04:00,07:00,3,yes,5-15 per month
 119637,female,65,Non-Hispanic Black,college or AA degree,1.15,01:00,07:00,6,01:00,09:00,8,yes,16-30 per month
 119638,male,29,Non-Hispanic White,college or AA degree,4.12,02:00,09:45,8,02:00,09:45,8,no,5-15 per month
 119642,female,59,Non-Hispanic White,high school graduate,0.65,02:00,08:00,6,02:00,08:00,6,yes,5-15 per month
@@ -5403,7 +5349,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 120156,male,60,Non-Hispanic White,high school graduate,1.98,23:00,06:00,7,23:00,07:00,8,no,2-4 per month
 120158,male,66,Non-Hispanic Black,high school graduate,1.89,21:00,01:00,4,21:00,05:00,8,no,5-15 per month
 120159,female,80,Non-Hispanic White,college or AA degree,1.48,23:00,06:30,7.5,23:00,06:30,7.5,no,2-4 per month
-120160,female,27,Non-Hispanic Black,college or AA degree,0.92,,,2,02:00,06:00,4,yes,5-15 per month
 120163,female,46,Non-Hispanic Asian,high school graduate,0.64,22:30,06:00,7.5,22:30,06:00,7.5,no,never
 120165,male,44,Non-Hispanic White,college or AA degree,1.71,02:00,10:00,8,02:00,10:00,8,no,once a month
 120171,female,47,Non-Hispanic Black,college graduate or above,5,21:30,05:00,7.5,21:30,05:00,7.5,yes,never
@@ -5518,7 +5463,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 120392,female,27,Non-Hispanic White,college or AA degree,5,23:00,07:30,8.5,23:00,07:30,8.5,no,once a month
 120393,female,58,Non-Hispanic Black,college graduate or above,1.22,01:00,06:00,5,01:00,07:00,6,no,2-4 per month
 120395,male,33,Other Race,college graduate or above,5,23:00,07:00,8,00:00,08:30,8.5,no,2-4 per month
-120396,female,67,Non-Hispanic Black,high school graduate,0.67,,,2,,,2,no,once a month
 120397,female,51,Non-Hispanic Black,college graduate or above,5,23:00,05:00,6,00:00,06:00,6,no,once a month
 120398,male,30,Non-Hispanic White,high school graduate,2.47,00:00,08:00,8,00:00,11:00,11,no,2-4 per month
 120401,male,77,Non-Hispanic White,9-11th grade,0.58,01:00,05:00,4,01:00,08:00,7,no,once a month
@@ -5653,7 +5597,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 120658,female,65,Non-Hispanic White,high school graduate,1.27,03:00,11:30,8.5,03:00,11:30,8.5,yes,2-4 per month
 120661,female,20,Non-Hispanic White,high school graduate,0.08,00:00,08:00,8,02:00,09:00,7,no,2-4 per month
 120662,male,46,Mexican American,high school graduate,1.64,00:00,06:00,6,01:00,06:00,5,no,5-15 per month
-120666,male,49,Non-Hispanic Black,high school graduate,0,,,2,,,2,no,once a month
 120667,female,68,Non-Hispanic White,college or AA degree,2.96,23:00,08:00,9,23:00,08:00,9,no,2-4 per month
 120671,female,57,Non-Hispanic Black,college or AA degree,0.2,03:00,12:00,9,01:00,12:00,11,yes,once a month
 120675,female,45,Non-Hispanic Black,college graduate or above,5,23:30,05:30,6,23:30,05:30,6,no,once a month
@@ -5897,7 +5840,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 121173,female,63,Non-Hispanic Black,college or AA degree,1,22:00,07:30,9.5,21:00,07:30,10.5,yes,2-4 per month
 121174,male,55,Non-Hispanic Asian,college graduate or above,4.62,22:30,05:30,7,22:30,05:30,7,no,never
 121175,male,63,Non-Hispanic Black,college graduate or above,1.33,23:00,06:30,7.5,21:00,09:30,12.5,no,2-4 per month
-121176,female,60,Non-Hispanic Black,college or AA degree,2.09,01:30,08:30,7,,,2,yes,2-4 per month
 121178,male,72,Non-Hispanic Black,college or AA degree,5,00:00,06:30,6.5,00:00,06:30,6.5,yes,2-4 per month
 121179,male,48,Non-Hispanic Black,9-11th grade,4.72,10:00,16:00,6,23:00,05:00,6,no,never
 121182,male,45,Non-Hispanic Asian,college graduate or above,0.32,22:30,06:00,7.5,23:00,08:00,9,no,once a month
@@ -5911,7 +5853,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 121200,female,49,Mexican American,less than 9th grade,4.45,22:00,07:00,9,23:00,10:00,11,no,once a month
 121201,male,36,Mexican American,high school graduate,2.86,23:30,04:00,4.5,01:00,10:00,9,no,2-4 per month
 121203,female,80,Non-Hispanic White,college or AA degree,2.06,22:00,06:00,8,22:00,06:00,8,no,never
-121204,female,70,Other Hispanic,high school graduate,5,,,2,23:00,06:00,7,yes,never
 121205,male,70,Other Hispanic,less than 9th grade,1.27,20:00,05:00,9,22:00,05:00,7,no,2-4 per month
 121207,male,65,Non-Hispanic Black,college or AA degree,2.16,21:00,03:00,6,21:00,07:00,10,no,once a month
 121208,female,40,Other Hispanic,high school graduate,0.32,22:00,06:00,8,23:00,06:00,7,no,never
@@ -6397,7 +6338,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 122152,female,42,Non-Hispanic White,high school graduate,3.23,00:00,05:30,5.5,03:00,10:30,7.5,no,once a month
 122153,male,63,Non-Hispanic White,college graduate or above,5,00:00,06:30,6.5,00:00,08:00,8,yes,5-15 per month
 122154,male,72,Non-Hispanic White,college graduate or above,5,22:30,07:00,8.5,22:30,07:00,8.5,yes,2-4 per month
-122156,male,60,Non-Hispanic White,high school graduate,1,,,2,,,2,yes,2-4 per month
 122158,female,20,Mexican American,college or AA degree,0.82,22:30,05:00,6.5,22:30,08:00,9.5,no,2-4 per month
 122159,female,77,Non-Hispanic Black,less than 9th grade,1.4,22:00,07:00,9,22:00,08:00,10,yes,2-4 per month
 122163,male,31,Non-Hispanic White,college or AA degree,3.45,02:00,09:00,7,03:00,11:00,8,yes,once a month
@@ -6519,7 +6459,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 122405,male,67,Non-Hispanic Asian,college graduate or above,3.63,23:00,08:00,9,23:00,09:00,10,no,once a month
 122407,male,61,Non-Hispanic Asian,college graduate or above,1.7,00:00,08:00,8,00:00,08:00,8,no,never
 122408,female,42,Non-Hispanic White,9-11th grade,2.56,23:00,06:00,7,00:00,06:00,6,no,never
-122409,female,77,Non-Hispanic Black,9-11th grade,0.74,,,2,,,2,yes,16-30 per month
 122412,male,49,Non-Hispanic White,high school graduate,1.99,20:30,04:30,8,21:00,04:30,7.5,no,once a month
 122414,female,56,Other Hispanic,9-11th grade,5,22:00,06:00,8,22:00,08:00,10,no,2-4 per month
 122415,male,60,Non-Hispanic White,high school graduate,1.54,01:00,10:30,9.5,01:00,10:30,9.5,no,16-30 per month
@@ -6689,7 +6628,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 122734,male,69,Non-Hispanic White,9-11th grade,0.65,02:00,10:00,8,02:00,10:00,8,yes,16-30 per month
 122736,male,54,Non-Hispanic Black,less than 9th grade,0.66,01:00,08:30,7.5,03:00,12:00,9,yes,2-4 per month
 122737,female,25,Non-Hispanic White,9-11th grade,1.75,23:00,07:00,8,01:00,09:00,8,no,once a month
-122740,female,24,Non-Hispanic White,high school graduate,2.55,,,2,04:00,07:30,3.5,yes,5-15 per month
 122741,female,70,Non-Hispanic Black,college or AA degree,3.6,23:00,08:00,9,23:00,08:00,9,no,never
 122742,male,57,Mexican American,college graduate or above,4.31,20:00,04:00,8,23:00,07:00,8,yes,5-15 per month
 122743,male,75,Non-Hispanic Black,high school graduate,2.72,23:30,09:00,9.5,00:00,11:00,11,no,2-4 per month
@@ -6767,7 +6705,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 122886,male,31,Non-Hispanic Black,college or AA degree,2.89,23:30,05:00,5.5,02:00,06:00,4,no,2-4 per month
 122888,male,53,Other Race,high school graduate,0.25,00:00,10:30,10.5,03:00,12:30,9.5,no,2-4 per month
 122893,female,45,Non-Hispanic Black,college or AA degree,2.58,22:00,04:30,6.5,22:00,07:30,9.5,no,2-4 per month
-122894,male,39,Non-Hispanic Black,high school graduate,4.77,,,2,21:00,08:00,11,no,5-15 per month
 122895,male,80,Non-Hispanic White,college or AA degree,1.35,21:00,06:00,9,21:00,06:00,9,no,never
 122896,male,74,Other Hispanic,college or AA degree,1.73,22:00,07:00,9,22:00,07:00,9,no,never
 122898,male,75,Non-Hispanic White,college graduate or above,5,22:30,07:00,8.5,22:30,07:00,8.5,yes,5-15 per month
@@ -6842,7 +6779,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 123033,female,60,Non-Hispanic Asian,high school graduate,1.36,22:00,06:00,8,22:00,06:00,8,yes,never
 123037,male,67,Non-Hispanic White,college or AA degree,5,23:00,07:00,8,23:00,07:00,8,no,once a month
 123040,male,64,Mexican American,less than 9th grade,1.22,21:00,04:30,7.5,21:00,04:30,7.5,no,once a month
-123041,female,66,Non-Hispanic Black,college or AA degree,3.25,23:30,06:00,6.5,,,14,yes,2-4 per month
 123042,female,50,Non-Hispanic Black,college or AA degree,0.97,22:00,04:00,6,00:00,08:00,8,yes,2-4 per month
 123043,female,54,Other Hispanic,less than 9th grade,1.08,22:00,03:00,5,22:00,06:00,8,no,2-4 per month
 123045,female,80,Non-Hispanic Black,9-11th grade,0.68,22:00,10:00,12,00:00,07:00,7,no,once a month
@@ -6960,7 +6896,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 123273,female,20,Non-Hispanic Black,college or AA degree,1.14,00:00,04:30,4.5,02:30,08:00,5.5,yes,never
 123274,male,32,Other Race,college or AA degree,2.1,20:00,04:30,8.5,22:00,09:00,11,no,16-30 per month
 123275,male,30,Non-Hispanic Black,high school graduate,1.44,00:00,09:50,10,00:00,10:30,10.5,no,never
-123276,female,66,Non-Hispanic Black,college graduate or above,3.97,02:30,11:00,8.5,,,14,no,once a month
 123277,male,54,Non-Hispanic White,9-11th grade,0.87,23:30,08:00,8.5,23:30,08:00,8.5,yes,2-4 per month
 123278,male,59,Non-Hispanic Black,high school graduate,5,22:30,06:00,7.5,22:30,06:00,7.5,yes,never
 123279,male,62,Non-Hispanic White,high school graduate,1.06,23:00,10:30,11.5,23:00,10:30,11.5,no,once a month
@@ -7216,7 +7151,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 123787,male,56,Non-Hispanic White,college graduate or above,5,23:00,07:00,8,00:30,08:00,7.5,no,2-4 per month
 123788,female,63,Non-Hispanic Asian,high school graduate,0.8,19:30,03:30,8,19:30,03:30,8,no,16-30 per month
 123791,female,60,Non-Hispanic White,college graduate or above,5,23:00,06:00,7,23:00,06:00,7,no,never
-123792,male,46,Non-Hispanic Black,college or AA degree,3.62,04:00,11:00,7,,,14,no,never
 123796,female,28,Non-Hispanic Black,college graduate or above,1.18,22:00,04:15,6.5,22:00,08:00,10,no,once a month
 123797,male,32,Non-Hispanic Asian,college graduate or above,5,00:00,08:30,8.5,00:00,09:00,9,no,5-15 per month
 123798,female,73,Non-Hispanic White,college graduate or above,5,22:00,07:00,9,22:00,07:00,9,no,2-4 per month
@@ -7270,7 +7204,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 123884,male,64,Non-Hispanic Black,high school graduate,1.6,23:00,06:00,7,00:00,04:00,4,no,2-4 per month
 123890,male,60,Mexican American,high school graduate,5,22:00,04:00,6,00:00,09:00,9,no,5-15 per month
 123898,female,26,Non-Hispanic White,college or AA degree,2.43,21:00,07:00,10,21:00,07:00,10,yes,16-30 per month
-123899,female,54,Non-Hispanic Black,high school graduate,0.95,,,2,,,2,yes,16-30 per month
 123902,female,34,Other Race,college or AA degree,0.98,02:30,09:30,7,02:30,09:30,7,no,2-4 per month
 123903,female,75,Non-Hispanic Black,high school graduate,1.93,00:00,06:00,6,00:00,07:00,7,no,2-4 per month
 123904,female,22,Non-Hispanic Black,high school graduate,0.51,23:00,07:00,8,23:00,07:00,8,no,once a month
@@ -7293,7 +7226,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 123936,male,51,Non-Hispanic Black,college or AA degree,3.11,21:00,05:15,8.5,22:00,09:00,11,yes,2-4 per month
 123937,female,50,Mexican American,college or AA degree,3.84,22:30,07:50,9.5,23:00,09:00,10,no,once a month
 123939,male,62,Other Race,high school graduate,0.74,22:00,05:00,7,00:00,06:30,6.5,no,2-4 per month
-123941,male,80,Non-Hispanic Black,college or AA degree,1.75,,,14,,,14,no,5-15 per month
 123942,male,69,Non-Hispanic Black,high school graduate,5,19:00,05:00,10,19:00,05:00,10,no,never
 123943,male,78,Non-Hispanic White,high school graduate,5,22:00,05:30,7.5,00:00,08:00,8,yes,once a month
 123945,male,50,Non-Hispanic White,college or AA degree,3.2,03:30,10:00,6.5,03:30,09:45,6.5,no,2-4 per month
@@ -7336,7 +7268,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 124019,male,34,Mexican American,college or AA degree,5,22:30,06:30,8,23:00,08:00,9,yes,2-4 per month
 124021,male,27,Non-Hispanic White,college or AA degree,4.08,22:00,07:00,9,00:00,07:00,7,no,5-15 per month
 124025,female,59,Non-Hispanic Black,high school graduate,4.02,22:00,05:00,7,23:00,06:00,7,no,once a month
-124028,male,62,Non-Hispanic White,college or AA degree,3.52,18:00,05:00,11,,,14,no,once a month
 124030,male,35,Non-Hispanic Asian,college graduate or above,3.14,23:00,05:45,7,23:00,06:00,7,no,2-4 per month
 124037,male,41,Non-Hispanic White,college or AA degree,2.13,01:00,06:00,5,01:00,08:00,7,yes,16-30 per month
 124039,male,40,Non-Hispanic Asian,college graduate or above,4.78,22:30,07:30,9,23:30,08:00,8.5,no,5-15 per month
@@ -7427,7 +7358,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 124195,female,31,Non-Hispanic White,college or AA degree,1.67,22:00,06:30,8.5,00:00,08:30,8.5,no,16-30 per month
 124196,female,75,Other Race,college or AA degree,5,21:00,04:00,7,21:00,04:00,7,no,once a month
 124197,male,69,Non-Hispanic Black,high school graduate,1.08,21:00,05:00,8,21:00,05:00,8,yes,once a month
-124198,female,56,Non-Hispanic White,college or AA degree,0.74,,,2,,,2,yes,5-15 per month
 124199,male,80,Non-Hispanic White,high school graduate,2.75,21:00,01:30,4.5,21:00,02:30,5.5,no,never
 124203,female,73,Other Hispanic,college or AA degree,1.72,01:00,08:00,7,23:00,09:00,10,no,2-4 per month
 124207,female,66,Mexican American,college or AA degree,0.39,22:00,07:00,9,22:00,08:30,10.5,yes,5-15 per month
@@ -7562,7 +7492,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 124468,female,23,Mexican American,college or AA degree,1.1,22:00,07:00,9,22:00,07:00,9,no,5-15 per month
 124471,female,60,Non-Hispanic Black,college graduate or above,1.88,22:00,05:00,7,23:00,08:00,9,no,2-4 per month
 124472,female,58,Non-Hispanic Black,9-11th grade,0.87,21:00,06:00,9,00:00,10:00,10,no,never
-124473,female,44,Non-Hispanic Black,9-11th grade,0.07,,,14,02:00,13:00,11,yes,5-15 per month
 124477,male,59,Mexican American,high school graduate,1.66,22:00,07:00,9,22:00,07:00,9,yes,2-4 per month
 124482,male,61,Non-Hispanic White,college graduate or above,5,23:00,07:00,8,23:00,07:30,8.5,no,2-4 per month
 124484,female,56,Non-Hispanic Asian,college or AA degree,1.54,10:00,15:00,5,00:00,07:00,7,yes,2-4 per month
@@ -7714,7 +7643,6 @@ seqn,gender,age,race,education_level,income_poverty_ratio,weekday_slp_time,weekd
 124780,female,36,Non-Hispanic White,college or AA degree,0.33,22:00,06:00,8,22:00,07:00,9,no,16-30 per month
 124781,male,20,Mexican American,college or AA degree,3.4,06:00,15:00,9,07:00,16:00,9,no,2-4 per month
 124783,female,28,Non-Hispanic Black,college graduate or above,5,23:00,06:30,7.5,22:00,06:30,8.5,yes,5-15 per month
-124784,female,80,Non-Hispanic Black,high school graduate,2.73,,,14,20:00,10:00,14,no,never
 124785,female,67,Mexican American,less than 9th grade,1.85,21:00,07:00,10,21:00,08:30,11.5,no,once a month
 124788,male,60,Non-Hispanic Black,high school graduate,4.69,19:00,05:30,10.5,21:00,07:00,10,no,never
 124789,male,28,Non-Hispanic Black,college or AA degree,1.2,00:00,06:30,6.5,03:00,10:00,7,no,never
