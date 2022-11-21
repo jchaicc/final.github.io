@@ -14,7 +14,7 @@ library(patchwork)
 library(knitr)
 library(dplyr)
 library(gganimate)
-library(png)
+library(gifski)
 
 ```
 
@@ -87,7 +87,7 @@ year_df=read_csv("data/AdultTrends.csv") %>%
                names_to = "sex",
                values_to = "age_adjust_prev") %>%
   ggplot(aes(x=year,y=age_adjust_prev,col=factor(sex)))+geom_line()+geom_point()
-year_df+ transition_reveal(year)
+year_df+transition_reveal(year)
 
 
 
