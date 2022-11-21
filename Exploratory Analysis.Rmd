@@ -146,9 +146,9 @@ income_df=slp_df %>%
     breaks = c(2, 4, 6), 
     labels = c("2hrs", "4hrs", "6hrs"),
     limits = c(2, 6)
-    )
+    )+  scale_fill_manual(values = c("#fde725","#440154")) 
+
      
-  
   
 box_plot=
   slp_df %>%
@@ -157,6 +157,7 @@ box_plot=
                            income_poverty_ratio < 1~ "in poverty",
                            income_poverty_ratio == 1~ "in poverty")) %>%
   ggplot(aes(y=weekday_slp_hr))+geom_boxplot(aes(fill = ip_stat), alpha = 0.3)+
+  scale_fill_manual(values = c("#fde725","#440154")) +
   geom_hline(aes(yintercept=median(weekday_slp_hr)),
             color="red", linetype="dashed")+
   geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")
