@@ -60,8 +60,15 @@ sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
   filter(weekend_slp_time!=77777 & weekend_slp_time != 99999) %>%
   filter(weekend_wake_time!= 77777 & weekend_wake_time != 99999) %>%
   filter(trouble_slp!=7 & trouble_slp!= 9) %>%
-  filter(sleepy_freq!= 7 & sleepy_freq!=9)
-  
-  
+  filter(sleepy_freq!= 7 & sleepy_freq!=9) %>%
+  drop_na() %>%
+  mutate(trouble_slp=case_when(trouble_slp==1 ~ "yes",
+                               trouble_slp==2 ~ "no")) %>%
+  mutate(sleepy_freq=case_when(sleepy_freq==0 ~ "never",
+                               sleepy_freq==1 ~ "once a month",
+                               sleepy_freq==2 ~ "2-4 per month",
+                               sleepy_freq==3 ~ "5-15 per month",
+                               sleepy_freq==4 ~ "16-30 per month",
+                               ))
   
 ```
