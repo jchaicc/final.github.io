@@ -112,3 +112,18 @@ ggplotly(edu_plot)
   
 
 ```
+
+```{r}
+gender_plot= slp_df %>%
+  filter(weekday_slp_hr<6) %>%
+  group_by(race,education_level) %>%
+  summarize(total_f=sum(gender=="female"),
+            total_m=sum(gender=="male"),
+            gap=total_m-total_f) %>%
+  mutate(text_lable=str_c("Race=",race,"\nEducation level: ", education_level)) %>%
+  plot_ly(x=~total_f,y=~total_m,text=~text_lable,color=~race,size=~gap,type="scatter",mode="markers",
+          colors="viridis",sizes = c(50, 700), marker = list(opacity = 0.7))
+
+layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Female Attacked"), yaxis = list(title = "Number of Male Attacked"))
+gender_plot
+```
