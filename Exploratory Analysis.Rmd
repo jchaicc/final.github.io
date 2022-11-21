@@ -102,3 +102,13 @@ slp_df %>%
   plot_ly(x=~ education_level,y=~ave_slp_hr,color=~education_level,type="bar")
 
 ```
+
+```{r}
+slp_df %>%
+  filter(weekday_slp_hr<6)%>%
+  group_by(education_level) %>%
+  summarize(obs=n()) %>% 
+  mutate(education_level=fct_reorder(education_level,obs)) %>%
+  plot_ly(x=~ education_level,y=~obs,color=~education_level,type="bar")
+
+```
