@@ -70,5 +70,10 @@ sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
                                sleepy_freq==3 ~ "5-15 per month",
                                sleepy_freq==4 ~ "16-30 per month",
                                ))
-  
+```
+
+```{r}
+slp_df=inner_join(demo,sleep_df,by="seqn")
+
+write_csv(slp_df, "data/slp_df.csv")
 ```
