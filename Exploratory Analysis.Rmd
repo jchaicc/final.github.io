@@ -15,6 +15,7 @@ library(knitr)
 library(dplyr)
 library(gganimate)
 library(gifski)
+library(png)
 
 ```
 
