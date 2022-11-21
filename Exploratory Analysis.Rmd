@@ -13,7 +13,7 @@ library(tidyverse)
 library(patchwork)
 library(knitr)
 library(dplyr)
-library(plotly)
+library(gganimate)
 ```
 
 ```{r}
@@ -76,4 +76,19 @@ sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
 slp_df=inner_join(demo,sleep_df,by="seqn")
 
 write_csv(slp_df, "data/slp_df.csv")
+```
+
+```{r}
+year_df=read_csv("data/AdultTrends.csv") %>%
+  janitor::clean_names() %>%
+  pivot_longer(cols=c("female", "male"),
+               names_to = "sex",
+               values_to = "age_adjust_prev") %>%
+  ggplot(aes(x=year,y=age_adjust_prev,col=factor(sex)))+geom_line()+geom_point()
+year_df+ transition_time(year)
+
+
+
+
+
 ```
