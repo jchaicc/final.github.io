@@ -1,0 +1,30 @@
+---
+title: "Exploratory Analysis"
+output: html_document
+date: "2022-11-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,message=FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(patchwork)
+library(knitr)
+library(dplyr)
+library(plotly)
+```
+
+```{r}
+demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
+  janitor::clean_names() %>%
+  select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
+  drop_na() %>%
+  rename(gender=riagendr,
+         age=ridageyr,
+         race=ridreth3,
+         education_level=dmdeduc2,
+         income_poverty_ratio=indfmpir)
+
+```
