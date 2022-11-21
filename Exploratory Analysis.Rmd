@@ -43,5 +43,25 @@ demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
                                    education_level==9 ~ "don't know"))
 
 
-sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT")
+sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
+  janitor::clean_names() %>% 
+  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
+  rename(weekday_slp_time=slq300,
+         weekday_wake_time=slq310,
+         weekday_slp_hr=sld012,
+         weekend_slp_time=slq320,
+         weekend_wake_time=slq330,
+         weekend_slp_hr=sld013,
+         trouble_slp=slq050,
+         sleepy_freq=slq120
+         )              %>%
+  filter(weekday_slp_time!=77777 & weekday_slp_time!= 99999) %>%
+  filter(weekday_wake_time!=77777 & weekday_wake_time!= 99999) %>%
+  filter(weekend_slp_time!=77777 & weekend_slp_time != 99999) %>%
+  filter(weekend_wake_time!= 77777 & weekend_wake_time != 99999) %>%
+  filter(trouble_slp!=7 & trouble_slp!= 9) %>%
+  filter(sleepy_freq!= 7 & sleepy_freq!=9)
+  
+  
+  
 ```
