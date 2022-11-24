@@ -22,6 +22,7 @@ library(gifski)
 library(png)
 library(plotly)
 library(ggridges)
+
 ```
 
 ```{r}
@@ -99,12 +100,7 @@ year_df+transition_reveal(year)
 
 ```
 
-```{r}
 
-
-
-
-```
 
 ```{r}
  edu_plot=slp_df %>%
@@ -186,4 +182,16 @@ income_df+box_plot
 
 ```
 
+```{r}
+slp_df %>%
+  filter(weekday_slp_hr<7 & weekend_slp_hr<7) %>%
+  group_by(trouble_slp) %>%
+  summarise(ave_mean_weekday=mean(weekday_slp_hr),
+            ave_mean_weekend=mean(weekend_slp_hr)) %>%
+  kable() %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped")) %>%
+  kableExtra::kable_styling(font_size = 18)
+   
+  
 
+```
