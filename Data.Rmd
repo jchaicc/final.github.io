@@ -1,13 +1,26 @@
 ---
 title: "Data"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
 date: "2022-11-24"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(dplyr)
+knitr::opts_chunk$set(
+  fig.height = 6,
+  fig.width = 8,
+  message = F,
+  echo = T,
+  warning = F
+)
+```
 ## Data Sources
 
 *  The second data set was downloaded from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) database.
@@ -16,11 +29,77 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Data Processing and Cleaning
 
-
 *  For data from the NHANES database:
 
 
+```{r}
+demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
+  janitor::clean_names() %>%
+  select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
+  drop_na() %>%
+  rename(gender=riagendr,
+         age=ridageyr,
+         race=ridreth3,
+         education_level=dmdeduc2,
+         income_poverty_ratio=indfmpir) %>%
+  mutate(gender=case_when(gender==1 ~ "male",
+                          gender==2 ~ "female")) %>%
+  mutate(race=case_when(race==1 ~ "Mexican American",
+                        race==2 ~ "Other Hispanic",
+                        race==3 ~ "Non-Hispanic White",
+                        race==4 ~ "Non-Hispanic Black",
+                        race==6 ~ "Non-Hispanic Asian",
+                        race==7 ~ "Other Race")) %>%
+  mutate(education_level=case_when(education_level==1 ~ "less than 9th grade",
+                                   education_level==2 ~ "9-11th grade",
+                                   education_level==3 ~ "high school graduate",
+                                   education_level==4 ~ "college or AA degree",
+                                   education_level==5 ~ "college graduate or above",
+                                   education_level==7 ~ "refused",
+                                   education_level==9 ~ "don't know"))
+
+
+sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
+  janitor::clean_names() %>% 
+  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
+  rename(weekday_slp_time=slq300,
+         weekday_wake_time=slq310,
+         weekday_slp_hr=sld012,
+         weekend_slp_time=slq320,
+         weekend_wake_time=slq330,
+         weekend_slp_hr=sld013,
+         trouble_slp=slq050,
+         sleepy_freq=slq120
+         )              %>%
+  filter(weekday_slp_time!=77777 & weekday_slp_time!= 99999) %>%
+  filter(weekday_wake_time!=77777 & weekday_wake_time!= 99999) %>%
+  filter(weekend_slp_time!=77777 & weekend_slp_time != 99999) %>%
+  filter(weekend_wake_time!= 77777 & weekend_wake_time != 99999) %>%
+  filter(trouble_slp!=7 & trouble_slp!= 9) %>%
+  filter(sleepy_freq!= 7 & sleepy_freq!=9) %>%
+  drop_na() %>%
+  mutate(trouble_slp=case_when(trouble_slp==1 ~ "yes",
+                               trouble_slp==2 ~ "no")) %>%
+  mutate(sleepy_freq=case_when(sleepy_freq==0 ~ "never",
+                               sleepy_freq==1 ~ "once a month",
+                               sleepy_freq==2 ~ "2-4 per month",
+                               sleepy_freq==3 ~ "5-15 per month",
+                               sleepy_freq==4 ~ "16-30 per month",
+                               ))
+
+```
+
+```{r}
+slp_df=inner_join(demo,sleep_df,by="seqn") %>%
+  na_if("") %>%
+  na.omit()
+write_csv(slp_df, "data/slp_df.csv")
+```
+
+
 ## Data Description
+
+
 
 #### Social factors related to Sleeping Status Data
 
@@ -31,15 +110,17 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   * `seqn`. The sequence number of the candidate.
   * `gender`. Gender of the candidate.
   * `age`. Age of the candidate.
-  * `race``. Race of the candidate.
+  * `race`. Race of the candidate.
   * `hour`. Time(hour) violation occurred.
   * `education_level`. The education level of the candidate.
-  * `income_poverty_ratioiolati
-  * `street_name`. Street name of summons issued.
-  * `intersecting_street`. Violation near intersecting street.
-  * `vehicle_color`. Color of car written on summons.
-  * `vehicle_year`. Year of car written on summons.
-  * `long`. Longitude violation occurred.
-  * `lat`. Latitude violation occurred.
-  * `borough`. Borough of violation.
-  * `fine_amount`. Fine amount.
+  * `income_poverty_ratio`. A ratio to classify poverty and not poverty. Ratio greater than 1 will be considered as not        poverty, ratio less than 1 will considered as poverty.
+  * `weekday_slp_time`. Sleep time on weekdays or workdays.
+  * `weekday_wake_time`. Wake time on weekdays and workdays.
+  * `weekday_slp_hr`. Average sleeping hours on weekdays or workdays.
+  * `weekend_slp_time`. Sleep time on weekends.
+  * `weekday_wake_time`.Wake time on weekends.
+  * `weekend_slp_hr`. Average sleeping hours on weekends.
+  * `trouble_slp`. A response on whether telling the doctor having trouble sleeping.
+  * `vehicle_make`. Make of car written on summons.
+  * `sleepy_freq`. Average sleeply times during daytime per month.
+  
