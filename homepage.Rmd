@@ -16,10 +16,27 @@ library("maps")
 library("plyr")
 library("plotly")
 library("DT")
+
+df_500 <- read.csv("./500_Citie.csv")
 ```
-  
+  <div align=center>
 ```{r,echo=FALSE}
-qplot(long,lat,data = us.cities,color = I('blue')) + borders("state",size = 0.5)
+qplot(long,lat,data = us.cities,color = I('blue')) + borders("state",size = 0.2)
+fig <- plot_geo(df_500, locationmode = 'USA-states') 
+fig <- fig %>% 
+  add_trace(
+    locations = ~code,
+    type = 'choropleth',
+    z = ~definte,
+    text = ~hover,
+    colorscale = "Reds"
+)
+
+fig <- fig %>% 
+  layout(
+    title = 'Sleeping less than 7 hours among adults'
+)
+
 ```
   
 
