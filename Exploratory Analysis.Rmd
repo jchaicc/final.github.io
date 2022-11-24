@@ -22,6 +22,7 @@ library(gifski)
 library(png)
 library(plotly)
 library(ggridges)
+
 ```
 
 ```{r}
@@ -94,9 +95,11 @@ year_df=read_csv("data/AdultTrends.csv") %>%
                names_to = "sex",
                values_to = "age_adjust_prev") %>%
   ggplot(aes(x=year,y=age_adjust_prev,col=sex))+geom_line()+geom_point()
+
 year_df+transition_reveal(year)
 
 ```
+
 
 
 ```{r}
@@ -116,6 +119,19 @@ year_df+transition_reveal(year)
 ggplotly(edu_plot)
   
 
+```
+
+
+```{r}
+race_plot=slp_df %>%
+  filter(weekday_slp_hr<6) %>%
+  group_by(race,weekday_slp_hr) %>%
+  summarise(obs=n()) %>%
+  plot_ly(
+    x = ~weekday_slp_hr, y = ~race, z = ~obs, type = "heatmap", colors = "BuPu"
+  ) %>%
+  colorbar(title = "Number of People", x = 1, y = 0.5) 
+race_plot
 ```
 
 ```{r}
@@ -166,14 +182,4 @@ income_df+box_plot
 
 ```
 
-```{r}
-age_prev=slp_df %>%
-  filter(weekday_slp_hr<6) %>%
-  mutate(text_label = str_c("Age:", age, "\nGender: ", gender)) %>% 
-  plot_ly(
-    x = ~weekday_slp_time, y = ~weekday_wake_time, type = "scatter", mode = "markers",
-    color = ~age, text = ~text_label, alpha = 0.5)
-age_prev
 
-
-```
