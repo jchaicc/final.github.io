@@ -1,0 +1,45 @@
+---
+title: "Data"
+output: html_document
+date: "2022-11-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Sources
+
+*  The second data set was downloaded from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) database.
+
+
+
+## Data Processing and Cleaning
+
+
+*  For data from the NHANES database:
+
+
+## Data Description
+
+#### Social factors related to Sleeping Status Data
+
+The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp_df)` rows of data on `r ncol(slp_df)` variables, the list below is our variables of interest:
+
+
+
+  * `seqn`. The sequence number of the candidate.
+  * `gender`. Gender of the candidate.
+  * `age`. Age of the candidate.
+  * `race``. Race of the candidate.
+  * `hour`. Time(hour) violation occurred.
+  * `education_level`. The education level of the candidate.
+  * `income_poverty_ratioiolati
+  * `street_name`. Street name of summons issued.
+  * `intersecting_street`. Violation near intersecting street.
+  * `vehicle_color`. Color of car written on summons.
+  * `vehicle_year`. Year of car written on summons.
+  * `long`. Longitude violation occurred.
+  * `lat`. Latitude violation occurred.
+  * `borough`. Borough of violation.
+  * `fine_amount`. Fine amount.
