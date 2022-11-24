@@ -9,6 +9,20 @@ output:
 
 ## Did you sleep well? 
   Adults should sleep 7 or more hours per night on a regular basis to promote optimal health. However, more than one-third of the US population gets less than the recommended amount of sleep (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/). 
+```{r,echo=FALSE,message=FALSE}
+library("ggplot2")
+library("RColorBrewer")
+library("maps")
+library("plyr")
+library("plotly")
+library("DT")
+```
+  
+```{r,echo=FALSE}
+qplot(long,lat,data = us.cities,color = I('blue')) + borders("state",size = 0.5)
+```
+  
+
   
 ***
 
