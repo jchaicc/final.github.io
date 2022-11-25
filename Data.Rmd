@@ -121,6 +121,5 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   * `weekday_wake_time`.Wake time on weekends.
   * `weekend_slp_hr`. Average sleeping hours on weekends.
   * `trouble_slp`. A response on whether telling the doctor having trouble sleeping.
-  * `vehicle_make`. Make of car written on summons.
   * `sleepy_freq`. Average sleeply times during daytime per month.
   
