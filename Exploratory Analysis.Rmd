@@ -7,8 +7,8 @@ date: "2022-11-21"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,message=FALSE,
                       warning=FALSE, 
-                      fig.width = 10,
-                      fig.asp = .8,
+                      fig.width = 6,
+                      fig.asp = .6,
                       out.width = "90%")
 ```
 
@@ -25,6 +25,71 @@ library(ggridges)
 
 ```
 
+
+```{r,echo=FALSE}
+demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
+  janitor::clean_names() %>%
+  select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
+  drop_na() %>%
+  rename(gender=riagendr,
+         age=ridageyr,
+         race=ridreth3,
+         education_level=dmdeduc2,
+         income_poverty_ratio=indfmpir) %>%
+  mutate(gender=case_when(gender==1 ~ "male",
+                          gender==2 ~ "female")) %>%
+  mutate(race=case_when(race==1 ~ "Mexican American",
+                        race==2 ~ "Other Hispanic",
+                        race==3 ~ "Non-Hispanic White",
+                        race==4 ~ "Non-Hispanic Black",
+                        race==6 ~ "Non-Hispanic Asian",
+                        race==7 ~ "Other Race")) %>%
+  mutate(education_level=case_when(education_level==1 ~ "less than 9th grade",
+                                   education_level==2 ~ "9-11th grade",
+                                   education_level==3 ~ "high school graduate",
+                                   education_level==4 ~ "college or AA degree",
+                                   education_level==5 ~ "college graduate or above",
+                                   education_level==7 ~ "refused",
+                                   education_level==9 ~ "don't know"))
+
+
+sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
+  janitor::clean_names() %>% 
+  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
+  rename(weekday_slp_time=slq300,
+         weekday_wake_time=slq310,
+         weekday_slp_hr=sld012,
+         weekend_slp_time=slq320,
+         weekend_wake_time=slq330,
+         weekend_slp_hr=sld013,
+         trouble_slp=slq050,
+         sleepy_freq=slq120
+         )              %>%
+  filter(weekday_slp_time!=77777 & weekday_slp_time!= 99999) %>%
+  filter(weekday_wake_time!=77777 & weekday_wake_time!= 99999) %>%
+  filter(weekend_slp_time!=77777 & weekend_slp_time != 99999) %>%
+  filter(weekend_wake_time!= 77777 & weekend_wake_time != 99999) %>%
+  filter(trouble_slp!=7 & trouble_slp!= 9) %>%
+  filter(sleepy_freq!= 7 & sleepy_freq!=9) %>%
+  drop_na() %>%
+  mutate(trouble_slp=case_when(trouble_slp==1 ~ "yes",
+                               trouble_slp==2 ~ "no")) %>%
+  mutate(sleepy_freq=case_when(sleepy_freq==0 ~ "never",
+                               sleepy_freq==1 ~ "once a month",
+                               sleepy_freq==2 ~ "2-4 per month",
+                               sleepy_freq==3 ~ "5-15 per month",
+                               sleepy_freq==4 ~ "16-30 per month",
+                               ))
+
+```
+
+```{r,echo=FALSE}
+slp_df=inner_join(demo,sleep_df,by="seqn") %>%
+  na_if("") %>%
+  na.omit()
+write_csv(slp_df, "data/slp_df.csv")
+```
+
 ```{r}
 year_df=read_csv("data/AdultTrends.csv") %>%
   janitor::clean_names() %>%
@@ -38,20 +103,19 @@ year_df+transition_reveal(year)
 ```
 
 
-
 ```{r}
  edu_plot=slp_df %>%
   filter(weekday_slp_hr<6)%>%
   group_by(education_level,gender) %>%
-  summarize(obs=n()) %>% 
+  summarize(ave_sleep=mean(weekday_slp_hr)) %>% 
   ungroup() %>%
-  mutate(education_level=fct_reorder(education_level,obs)) %>%
-  ggplot(aes(x=education_level,y=obs,fill=gender))+ geom_bar(stat="identity")+
+  mutate(education_level=fct_reorder(education_level,ave_sleep)) %>%
+  ggplot(aes(x=education_level,y=ave_sleep,fill=gender))+ geom_bar(stat="identity")+
   viridis::scale_fill_viridis(
     name = "gender",
     discrete = TRUE
   ) + 
-  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))
+  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))+coord_flip()
 
 ggplotly(edu_plot)
   
