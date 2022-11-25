@@ -10,33 +10,53 @@ output:
 ## Did you sleep well? 
   Adults should sleep 7 or more hours per night on a regular basis to promote optimal health. However, more than one-third of the US population gets less than the recommended amount of sleep (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/). 
 ```{r,echo=FALSE,message=FALSE}
+library("tidyverse")
 library("ggplot2")
 library("RColorBrewer")
 library("maps")
 library("plyr")
 library("plotly")
 library("DT")
+library("rjson")
 
-df_500 <- read.csv("./500_Citie.csv")
+df_500 <- read.csv("./500_Citie.csv") %>%
+  as_tibble()
 ```
   <div align=center>
 ```{r,echo=FALSE}
 qplot(long,lat,data = us.cities,color = I('blue')) + borders("state",size = 0.2)
-fig <- plot_geo(df_500, locationmode = 'USA-states') 
-fig <- fig %>% 
-  add_trace(
-    locations = ~code,
-    type = 'choropleth',
-    z = ~definte,
-    text = ~hover,
-    colorscale = "Reds"
-)
-
+fig <- plot_geo(df_500, locationmode = 'USA-states',colorscale = 'Portland')
 fig <- fig %>% 
   layout(
     title = 'Sleeping less than 7 hours among adults'
-)
+  )
 
+fig <- fig %>% 
+  add_trace(
+    type = 'choropleth',
+    locations = df_500$CityName,
+    z = ~df_500$CityName,
+    text = ~CityName,
+    colorscale = "Reds",
+    colorbar(title = "Sleep deficiency Rate (%)")
+)
+```
+  <div align=center>
+```{r}
+df_500$GeoLocation <- gsub(pattern = '[()]', replacement = '', df_500$GeoLocation)
+df_500 <- df_500 %>%
+  separate(GeoLocation, into = c("latitude", "longitude"), sep = ",") %>%
+  na.omit()
+
+fig_plotly <- plot_ly(
+    x = df_500$latitude,
+    y = df_500$longitude,
+    color = df_500$StateDesc,
+    text = df_500$CityName,
+    alpha = .2,
+    mode = "markers"
+  )
+fig_plotly
 ```
   
 
