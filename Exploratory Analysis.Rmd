@@ -149,7 +149,7 @@ gender_plot= slp_df %>%
 layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Female Sleeping less than 6 hrs"), yaxis = list(title = "Number of Male Sleeping less than 6 hrs"))
 ```
 
-```{r}
+```{r,fig.width=10,fig.asp=.6}
 income_df=slp_df %>%
   filter(weekday_slp_hr<6) %>%
   mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
