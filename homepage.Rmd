@@ -9,6 +9,7 @@ output:
 
 ## Did you sleep well? 
 Adults should sleep 7 or more hours per night on a regular basis to promote optimal health[1]. However, more than one-third of the US population gets less than the recommended amount of sleep (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/). 
+Zoom the webpage to view more geographic details. Click on the circle markers to show the state name, city name, the number of people participating in the survey and the sleeping duration respectively.
 ```{r,echo=FALSE,message=FALSE}
 library(tidyverse)
 library(ggplot2)
