@@ -1,9 +1,14 @@
 ---
 title: "References"
-author: "wz2631"
-date: "2022-11-28"
-output: html_document
+output: 
+  html_document:
+    toc: false
+    toc_float: false
+    theme: journal
 ---
+***
+
+## Sleep & Individual Health
 
 [1]	WATSON N F, BADR M S, BELENKY G, et al. Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society [J]. Sleep, 2015, 38(6): 843-4.
 
@@ -25,6 +30,10 @@ output: html_document
 
 [10]	ABRAMS R M. Sleep Deprivation [J]. Obstet Gynecol Clin North Am, 2015, 42(3): 493-506.
 
+***
+
+## Sleep & Public Health
+
 [11]	GRANDNER M A. Sleep, Health, and Society [J]. Sleep Med Clin, 2017, 12(1): 1-22.
 
 [12]	CHEN X, WANG R, ZEE P, et al. Racial/Ethnic Differences in Sleep Disturbances: The Multi-Ethnic Study of Atherosclerosis (MESA) [J]. Sleep, 2015, 38(6): 877-88.
@@ -37,3 +46,4 @@ output: html_document
 
 [16]	OWENS J A, WEISS M R. Insufficient sleep in adolescents: causes and consequences [J]. Minerva Pediatr, 2017, 69(4): 326-36.
 
+***
