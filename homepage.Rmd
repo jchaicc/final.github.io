@@ -10,57 +10,51 @@ output:
 ## Did you sleep well? 
   Adults should sleep 7 or more hours per night on a regular basis to promote optimal health. However, more than one-third of the US population gets less than the recommended amount of sleep (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/). 
 ```{r,echo=FALSE,message=FALSE}
-library("tidyverse")
-library("ggplot2")
-library("RColorBrewer")
-library("maps")
-library("plyr")
-library("plotly")
-library("DT")
-library("rjson")
+library(tidyverse)
+library(ggplot2)
+library(plyr)
+library(plotly)
+library(sf)
+library(terra)
+library(rgeos)
+library(rgdal)
+library(maptools)
+library(dplyr)
+library(leaflet)
+library(scales)
 
 df_500 <- read.csv("./500_Citie.csv") %>%
   as_tibble()
 ```
-  <div align=center>
-```{r,echo=FALSE}
-qplot(long,lat,data = us.cities,color = I('blue')) + borders("state",size = 0.2)
-fig <- plot_geo(df_500, locationmode = 'USA-states',colorscale = 'Portland')
-fig <- fig %>% 
-  layout(
-    title = 'Sleeping less than 7 hours among adults'
-  )
 
-fig <- fig %>% 
-  add_trace(
-    type = 'choropleth',
-    locations = df_500$CityName,
-    z = ~df_500$CityName,
-    text = ~CityName,
-    colorscale = "Reds",
-    colorbar(title = "Sleep deficiency Rate (%)")
-)
-```
-  <div align=center>
-```{r}
+```{r, warning=FALSE, echo=FALSE}
 df_500$GeoLocation <- gsub(pattern = '[()]', replacement = '', df_500$GeoLocation)
 df_500 <- df_500 %>%
+  mutate(sleep_duration = Data_Value * 24 / 100) %>%
   separate(GeoLocation, into = c("latitude", "longitude"), sep = ",") %>%
   na.omit()
-
-fig_plotly <- plot_ly(
-    x = df_500$latitude,
-    y = df_500$longitude,
-    color = df_500$StateDesc,
-    text = df_500$CityName,
-    alpha = .2,
-    mode = "markers"
-  )
-fig_plotly
 ```
   
+  <div align=center>
+```{r, echo=FALSE}
+bins = c(3,5,7,9,11,13,15)
+pal = colorBin("Reds", domain = df_500$sleep_duration, bins = bins)
+leaflet(df_500) %>% 
+  addProviderTiles("Esri.WorldStreetMap") %>%
+  addCircleMarkers(~as.numeric(longitude),
+                   ~as.numeric(latitude),
+                  color = ~pal(sleep_duration),
+                   stroke = FALSE,
+                   fillOpacity = 1,
+                   radius = 3,
+                   popup = paste(df_500$StateDesc, '<br>', df_500$CityName,"<br>","Population:", df_500$PopulationCount,"Counts", "<br>","Sleep Duration:",df_500$sleep_duration,"hours")) %>%
+  addLegend("bottomright", 
+            pal = pal, 
+            values = ~sleep_duration, 
+            title = "Sleep duration/hour", 
+            opacity = 1)
+```
 
-  
 ***
 
 ## Sleep & Individual Health
