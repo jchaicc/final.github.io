@@ -1,0 +1,30 @@
+---
+title: "Shiny Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r}
+library(shiny)
+library(tidyverse)
+library(viridis)
+library(plotly)
+```
+
+```{r}
+selectInput(
+  "Sleep Quality Scale", 
+  label = h3("I have difficulty falling asleep."),
+  choices = c(1,2,3,4))
+```
+
+```{r}
+selectInput(
+  "Sleep Quality Scale", 
+  label = h3("I fall into a deep sleep."),
+  choices = c(1,2,3,4))
+```
+
