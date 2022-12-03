@@ -90,9 +90,11 @@ Sleep is a necessary physiological process for individuals, interacting with sev
 
 ***
 
-<img src = "images/content_disease.jpg" style="width:10%">
-<img src = "images/content_society.png" style="width:10%">
-<img src = "images/sleep-med-icon.png" style="width:10%">
+<a href ="References.html"><img src = "images/content_disease.jpg" style="width:10%"></a>
+
+<a href ="References.html"><img src = "images/content_society.png" style="width:10%"></a>
+
+<a href ="References.html"><img src = "images/sleep-med-icon.png" style="width:10%"></a>
 
 ***
 
