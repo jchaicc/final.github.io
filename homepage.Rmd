@@ -89,8 +89,8 @@ It was reported in a CDC survey (https://www.cdc.gov/mmwr/preview/mmwrhtml/mm641
 Sleep is a necessary physiological process for individuals, interacting with several economic, social, and physical factors, influencing risks of multiple health problems. Therefore, based on NHANES dataset, we focus on sleep-related public health issues to carry out our research, hoping to popularize the significance of adequate and healthy sleep, arousing the public's health awareness of improving sleep quality and obtaining adequate sleep duration. We also want to visualize and discuss the biological, economic, and social factors interacting with sleep, informing the public and healthcare providers on the importance of advocating public policy to promoting the nowadays sleep situation and overall public health.
 
 ***
-
-<a href ="References.html"><img src = "images/content_disease.jpg" style="width:10%"></a>
+<div align=center>
+<a href ="References.html"><img src = "images/content_disease.png" style="width:10%"></a>
 *[Sleep & Diseases](References.html)*
 
 <a href ="References.html"><img src = "images/content_society.png" style="width:10%"></a>
