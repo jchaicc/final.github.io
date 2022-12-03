@@ -91,13 +91,13 @@ Sleep is a necessary physiological process for individuals, interacting with sev
 ***
 <div align=left>
 <a href ="References.html"><img src = "images/content_disease.png" style="width:10%"></a>
-*[Sleep & Diseases](References.html)*
+*[Sleep & Diseases](References.html)* Correlation analysis, modeling and prediction of sleep and disease.
 
 <a href ="References.html"><img src = "images/content_society.png" style="width:10%"></a>
-*[Sleep & Social factors](References.html)*
+*[Sleep & Social factors](References.html)* Correlation analysis, modeling and prediction of sleep with major social factors.
 
 <a href ="References.html"><img src = "images/sleep-med-icon.png" style="width:10%"></a>
-*[Survey](References.html)*
+*[Survey](References.html)* A questionnaire about sleep.
 
 
 ***
