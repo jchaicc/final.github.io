@@ -1,0 +1,230 @@
+---
+title: "Correlation between prevalance of insufficient sleep and physiological disease"
+author: "Cary Ni"
+output: 
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(glmnet)
+library(modelr)
+library(corrplot)
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	message = FALSE,
+	fig.width = 8, 
+  fig.height = 6,
+  out.width = "90%"
+)
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+```
+
+### Interested physiological risk factors
+`ARTHRITIS`: Arthritis among adults aged >=18 Years\
+`BPHIGH`: High blood pressure among adults aged >=18 Years\
+`CANCER`: Cancer (excluding skin cancer) among adults aged >=18 Years\
+`CASTHMA`: Asthma among adults aged >=18 Years\
+`CHD`: Coronary heart disease among adults aged >=18 Years\
+`COPD`: Chronic obstructive pulmonary diseases among adults aged >=18 Years\
+`DEPRESSION`: Depression among adults aged >=18 Years\
+`DIABETES`: Diagnosed diabetes among adults aged >=18 Years\
+`HIGHCHOL`: High cholesterol among adults aged >=18 Years who have been screened in the past 5 Years\
+`KIDNEY`: Chronic kidney disease among adults aged >=18 Years\
+`OBESITY`: Obesity among adults aged >=18 Years
+
+### Outcome measured
+`SLEEP`: Sleeping less than 7 hours among adults aged >=18 Years
+
+## Select interested physiological diseases and sample state
+```{r import_data}
+data_df = read_csv('PLACES__Census_Tract_Data__GIS_Friendly_Format___2022_release.csv') %>% 
+  janitor::clean_names() %>% 
+  select(county_name,total_population, state_abbr, 
+         starts_with('arthritis'), starts_with('bphigh'), 
+         starts_with('cancer'), starts_with('casthma'), starts_with('chd'),
+         starts_with('copd'),starts_with('depression'), starts_with('diabetes'),
+         starts_with('highchol'), starts_with('kidney'), starts_with('obesity'),
+         starts_with('sleep')) 
+
+data_df %>% 
+  group_by(state_abbr) %>% 
+  summarise(
+    number_of_regions = n(),
+    population = sum(total_population)
+  ) %>% 
+  arrange(-population) %>% 
+  head() %>% knitr::kable()
+```
+
+The dataset has `r nrow(na.omit(data_df))` observations across the country, each represents a summarized estimate of a district. We select New York state as our sample data to build the model as it has third largest population with sufficient amount of sample. 
+
+### Extract NY state as target sample
+```{r}
+ny_data = data_df %>% 
+  filter(state_abbr == 'NY') %>% 
+  select(ends_with('prev')) %>% 
+  rename_with(~str_remove(., '_crude_prev'))
+
+```
+
+## Show the statistics of risk factors prevalence
+
+The following is a boxplot of the prevalences of all of the interested variables. The risk factors with highest prevalence involve screening and medication (HIGHCHOL, BPHIGH and OBESITY). The risk factors with the lowest prevlances are diseases (KIDNEY, CHD, COPD). There is also a general trend that risk factors with higher prevalences have higher variance. 
+
+```{r}
+ny_data %>% select(-sleep) %>% 
+  pivot_longer(
+    everything(), 
+    names_to = "risk_factor",
+    values_to = "prevelance"
+  ) %>% 
+  ggplot(aes(x = reorder(risk_factor, -prevelance), y = prevelance, 
+             color = risk_factor)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1),
+        legend.position = "none") +
+  labs(
+      title = "Physiological risk Factor Prevalence in NY State 2020",
+      x = "Risk Factor",
+      y = "Prevalence (%)",
+      caption = "Data from the CDC"
+    ) + 
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+## Examine correlation of chosen factors
+```{r}
+par(mfrow = c(1, 1))
+ny_data %>% select(-sleep) %>% cor() %>% corrplot(
+  method = "circle", addCoef.col = "black", tl.col="black", tl.srt=90, 
+  insig = "blank", diag=FALSE, number.cex = .5)
+```
+
+## Build model with elastic net
+
+Since some of the variables have relatively high correlation with each other according to the correlation matrix, the process of model selection starts by using elastic net regression in order to remedy for potential multicollinearity. We find the best lambda with lowest se through cross validation, and then fit an elastic net model with coefficients shown below. 
+
+```{r}
+set.seed(2023)
+
+predictors = data.matrix(ny_data %>% select(-sleep))
+outcome = ny_data %>% pull(sleep)
+# 5 folds cv is used 
+cv_object = cv.glmnet(predictors, outcome, nfolds = 5)
+# Find the best lambda with lowest se
+best_lambda = cv_object %>% broom::glance() %>% pull(lambda.min)
+# build elastic net model
+elastic_model = glmnet(predictors, outcome, lambda = best_lambda, alpha = 0.5)
+model_coef = coef.glmnet(elastic_model) %>% as.matrix() %>% as.data.frame()
+model_coef[model_coef == 0] = NA
+plot(cv_object)
+model_coef 
+```
+
+## Build model with multiple linear regression
+
+A multiple linear regression is then built with all of the variables selected above. Since the variable of obesity does not show significant influence in predicting prevalance of insufficient sleep, another multiple linear regression excluding obesity is built. The anova result tells that the second MLR model excluding obesity is favored because of the principle of parsimony. 
+
+```{r}
+mlr_model_1 = lm(sleep ~ arthritis + bphigh + cancer + casthma + chd + copd + depression + diabetes + highchol + kidney + obesity, data = ny_data)
+
+# Use backward elimination based on AIC to find a mlr model 
+mlr_model_2 = step(mlr_model_1, direction = "backward")
+
+
+summary(mlr_model_2) %>% broom::tidy() %>% knitr::kable(digits = 3)
+
+anova(mlr_model_2, mlr_model_1)
+
+```
+
+## Examine assumptions for the chosen MLR model
+
+```{r}
+par(mfrow = c(2, 2))
+plot(mlr_model_2)
+```
+
+The diagnostic plots indicates that all of the assumptions of MLR below are met.\
+1.Residuals are normally distributed\
+2.Variance of residuals is constant across the range of variables\
+3.Residuals are independent of one another
+
+## Comparing elastic net regression model with the chosen MLR model
+
+```{r}
+# Pseudo adjusted R squared of elastic model
+elastic_model %>% broom::tidy() %>% select(dev.ratio) %>% unique()
+
+# Adjusted R squared of MLR model
+summary(mlr_model_2) %>% broom::glance() %>% select(adj.r.squared)
+
+```
+
+The dev.ratio and adjusted r.squared of `0.892` above shows that the elastic net regression model and MLR model give equally good fit to the training data from NY state.  
+
+```{r, echo=FALSE}
+# Use the data from the rest of states as test data
+nation_df = data_df %>% 
+  filter(state_abbr != 'NY') %>% 
+  select(state_abbr, ends_with('prev')) %>% 
+  rename_with(~str_remove(., '_crude_prev')) 
+
+nation_df_2 = nation_df %>% select(-c(state_abbr, sleep)) %>% data.matrix()
+ 
+predict_mlr = nation_df %>% add_predictions(mlr_model_2, var = "mlr_pred") %>% select(state_abbr, sleep, mlr_pred)
+
+predict_elastic = predict(elastic_model, nation_df_2) %>% as_tibble() %>% select(elas_pred = s0)
+
+result_mse = cbind(predict_mlr, predict_elastic) %>% 
+  mutate(
+    sse_mlr = (sleep - mlr_pred)^2,
+    sse_elas = (sleep - elas_pred)^2
+  ) %>% 
+  group_by(state_abbr) %>% 
+  summarise(
+    n = n(),
+    mse_mlr = sum(sse_mlr)/n,
+    mse_elas = sum(sse_elas)/n
+  ) %>% na.omit()
+
+result_mse %>% 
+  select(starts_with('mse')) %>% 
+  pivot_longer(
+    everything(), 
+    names_to = "model",
+    values_to = "mse",
+    names_prefix = "mse_"
+  ) %>% 
+  ggplot(aes(x = model, y = mse, fill = model)) + 
+  geom_violin() +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  scale_fill_brewer(palette="RdBu") + theme_minimal() +
+   labs(
+      x = "Model",
+      y = "Test MSE",
+      caption = "Data from the CDC"
+    ) 
+result_mse %>% 
+  select(starts_with('mse')) %>% 
+  summary() %>% 
+  knitr::kable()
+
+```
+
+We then use the data from rest of the country to test the performance of the two models in predicting the prevalence of inadequate sleep in other `50` states. The violion plot above shows that the test mean squared error of the elastic net regression and the multiple linear regression model. The statistics show that there is no significant difference between these two models in terms of predictive performance. Therefore, we conclude that both of models could be used for regression analysis while the elastic net model is more preferred for prediction since it has smaller test MSE (minimal difference though) and retain more information of the potential risk factors. 
+
+On the other hand, the multiple linear regression model is favored for its simplicity of interpretation. While all of the physiological risk factors except for `OBESITY` have significant correlation with the prevalence of insufficient adult sleep, `ARTHRITIS`, `BPHIGH`, `CASTHMA`, `COPD`, `DIABETES` shows a positive correlation while `CANCER`, `CHD`, `DEPRESSION`, `HIGHCHOL`, `KIDNEY` suggest a negative correlation. It is worth noticing that an 1% increase in the prevalence of most disease factors leads to a less than 1% change in the prevalence of insufficient sleep except for `CANCER` and `KIDNEY`, which lead to a drop of 1.7% and 2.7% in prevalence of insufficient sleep respectively. A reasonable explanation is that the adults suffered from cancer and kidney diseases are more likely to have challenged body functions, which force them to spend more time on sleep/lay in bed for recovery and thus lower the prevalence of short sleep. 
