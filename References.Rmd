@@ -1,0 +1,49 @@
+---
+title: "References"
+output: 
+  html_document:
+    toc: false
+    toc_float: false
+    theme: journal
+---
+***
+
+## Sleep & Individual Health
+
+[1]	WATSON N F, BADR M S, BELENKY G, et al. Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society [J]. Sleep, 2015, 38(6): 843-4.
+
+[2]	OGILVIE R P, PATEL S R. The epidemiology of sleep and obesity [J]. Sleep Health, 2017, 3(5): 383-8.
+
+[3]	MURAKI I, WADA H, TANIGAWA T. Sleep apnea and type 2 diabetes [J]. J Diabetes Investig, 2018, 9(5): 991-7.
+
+[4]	PALAGINI L, BRUNO R M, GEMIGNANI A, et al. Sleep loss and hypertension: a systematic review [J]. Curr Pharm Des, 2013, 19(13): 2409-19.
+
+[5]	MAKAREM N, CASTRO‐DIEHL C, ST‐ONGE M P, et al. Redefining Cardiovascular Health to Include Sleep: Prospective Associations With Cardiovascular Disease in the MESA Sleep Study [J]. Journal of the American Heart Association, 2022, 11(21): e025252.
+
+[6]	TSUNO N, BESSET A, RITCHIE K. Sleep and depression [J]. J Clin Psychiatry, 2005, 66(10): 1254-69.
+
+[7]	FANG H, TU S, SHENG J, et al. Depression in sleep disturbance: A review on a bidirectional relationship, mechanisms and treatment [J]. J Cell Mol Med, 2019, 23(4): 2324-32.
+
+[8]	BESEDOVSKY L, LANGE T, HAACK M. The Sleep-Immune Crosstalk in Health and Disease [J]. Physiol Rev, 2019, 99(3): 1325-80.
+
+[9]	HAACK M, SIMPSON N, SETHNA N, et al. Sleep deficiency and chronic pain: potential underlying mechanisms and clinical implications [J]. Neuropsychopharmacology, 2020, 45(1): 205-16.
+
+[10]	ABRAMS R M. Sleep Deprivation [J]. Obstet Gynecol Clin North Am, 2015, 42(3): 493-506.
+
+***
+
+## Sleep & Public Health
+
+[11]	GRANDNER M A. Sleep, Health, and Society [J]. Sleep Med Clin, 2017, 12(1): 1-22.
+
+[12]	CHEN X, WANG R, ZEE P, et al. Racial/Ethnic Differences in Sleep Disturbances: The Multi-Ethnic Study of Atherosclerosis (MESA) [J]. Sleep, 2015, 38(6): 877-88.
+
+[13]	CURTIS D S, FULLER-ROWELL T E, EL-SHEIKH M, et al. Habitual sleep as a contributor to racial differences in cardiometabolic risk [J]. Proceedings of the National Academy of Sciences, 2017, 114(33): 8889-94.
+
+[14]	IRWIN M R. Why Sleep Is Important for Health: A Psychoneuroimmunology Perspective [J]. Annual Review of Psychology, 2015, 66(1): 143-72.
+
+[15]	OWENS J. Insufficient sleep in adolescents and young adults: an update on causes and consequences [J]. Pediatrics, 2014, 134(3): e921-32.
+
+[16]	OWENS J A, WEISS M R. Insufficient sleep in adolescents: causes and consequences [J]. Minerva Pediatr, 2017, 69(4): 326-36.
+
+***

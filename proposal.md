@@ -1,6 +1,13 @@
 Final Project Proposal
 ================
+<<<<<<< HEAD
 Jingchen Chai, Wenjia Zhu, Ruihan Zhang, Yifei Zhao, Chenyao Ni(cn2604)
+=======
+Jingchen Chai(jc5929), Wenjia Zhu, Ruihan Zhang(rz2614), Yifei
+Zhao(yz4433), Chenyao Ni(cn2604)
+
+## **Factors Influencing Sleeping Duration**
+>>>>>>> e44d6c6a7379f4c7977f078f28f3f44692a71161
 
 ## Motivation of our project
 
@@ -19,7 +26,7 @@ informing the public and healthcare providers on the importance of
 advocating public policy to promoting the nowadays sleep situation and
 overall public health.
 
-## Intended final project
+## Intended Final Project
 
 A report analyzing the prevalence of insufficient sleep in relation to
 socioeconomic and physiological factors, and an interactive panel to
@@ -32,18 +39,45 @@ We plan to utilize data from the
 website. The data are based on the Behavioral Risk Factor Surveillance
 System (BRFSS) survey. The data we are using are the age-adjusted
 prevalence of adults aged greater than 18 who reported short sleep
-duration varied by state in 2020. We plan to focus on the states, and
-create a map according to the distributions of the age-adjusted
-prevalence among different states.
+duration varied by state from 2016 to 2020. We plan to focus on the
+states, and create maps of the age-adjusted prevalence among different
+states for each year.
 
 The second data set we will use is a [questionnaire sleeping
 data](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/SLQ_J.htm) and also the
 date related with their
 [demographic](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DEMO_J.htm)
 information, both comes from the
-[NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) website. We plan to
-merge the two data sets, and include variables:
+[NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) website. Our final
+dataset that we will be using will be based on the above datasets by
+joining them together.
 
+The third data set is [PLACES: Census Tract
+Data](https://catalog.data.gov/dataset/places-census-tract-data-gis-friendly-format-2020-release-fb1ec).
+
+## The planned analyses / visualizations / coding challenges
+
+We plan to start from a map GIF image, which illustrates prevalence of
+short sleep duration among US adults by state from 2016 to 2020.
+
+For NHANES datasets, firstly, We can simply build a linear model between
+sleep disorder factors and length of sleep, and from this model we could
+briefly obtain the sleep length with sleep behavioral factors. Secondly,
+we classify the people into two groups by length of sleep, people with
+sufficient sleep and people with insufficient sleep. We plan to use
+scatterplot and barplot to show the basic features of sleep conditions
+of the data. Thirdly, after joint with other datasets, we could discover
+the correlation among sleep conditions and social economic factors using
+bubble charts and heatmap.
+
+As for PLACES: Census Tract Data, we focus on the key variables like
+countyname, (disease name)\_crudeprev, sleep_crudeprev, sleep_crude95ci,
+geolocation and totalpopulation. Visulization method will include
+Leaflet for mapping with sleepcrude values and populationcount,
+correlation plots among sleep figures and other disease values, and
+linear model for such factors.
+
+<<<<<<< HEAD
 The third data set is [PLACES: Census Tract
 Data](https://catalog.data.gov/dataset/places-census-tract-data-gis-friendly-format-2020-release-fb1ec).
 
@@ -71,6 +105,8 @@ Visulization method will include Leaflet for mapping with corrsponding
 category and populationcount, correlation plots among sleep datavalue
 and other disease datavalues, and linear model for such factors.
 
+=======
+>>>>>>> e44d6c6a7379f4c7977f078f28f3f44692a71161
 The coding challenges are mainly from tidying data and do further
 manipulation like aggregating and creating linear models, since some
 values are missing, undefined or ourliers, and the models maybe

@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+author: "Ruihan Zhang"
+date: "2022-11-24"
+output: html_document
+---
+
+1. Exercise
+Not only can taking brisk daily walks help you lose weight, but they will also help you sleep better at night. Melatonin and other naturally occurring sleep chemicals work better when exercised. According to a study published in the journal Sleep, postmenopausal women who worked out for roughly three and a half hours a week had an easier time falling asleep than those who worked out less frequently. Just be mindful of when you exercise. Too soon before bedtime exercise might be stimulating. Exercise in the morning that exposes you to bright light will support the body's innate circadian rhythm.
+
+2. Reserve bed for sleep and sex
+Avoid using your bed as an office to take calls and reply to emails. Do not watch late-night television there either. Instead of a trigger for wakefulness, the bed should encourage sleeping. Sleep and sexual activity belong in your bed.
+
+3. Keep it comfortable
+There are other possible distractions in your bedroom besides television. The environment can also impact how well you sleep. Make sure your bedroom is as cozy as you can make it. Ideal conditions include a calm, dark, and cool setting. These all aid in the start of sleep.
+
+4. Start a sleep ritual
+When you were a youngster, your mother used to tell you a bedtime tale and tuck you into bed every night to help you fall asleep. A series of sleep rituals can have a similar impact even in adults. Rituals aid in alerting the body and mind that bedtime is approaching. savor a warm milk glass. Take a shower. As an alternative, try relaxing music.
+
+5. Eat—but not too much
+Although an overstuffed stomach might also keep you awake, a grumbling stomach can. Avoid eating a substantial meal two to three hours before bed. Eat a modest, healthy snack (such an apple with a slice of cheese or a few whole-wheat crackers) if you're feeling peckish right before bed to keep you full until breakfast.
+
+6. Avoid alcohol and caffeine
+If you do eat something before going to bed, it shouldn't include wine or chocolate. Caffeine is a stimulant found in chocolate. Unexpectedly, alcohol also has the same result. Although it temporarily induces sleep, it actually acts as a stimulant and prevents sound sleep at night. Avoid anything spicy or acidic, which might cause heartburn, such as citrus fruits and liquids.
+
+7. De-stress
+Your task list is a mile long and the bills are mounting. Evenings often bring problems from the day to the surface. A stimulus is stress. The fight-or-flight hormones are triggered, which interfere with sleep. Allow yourself enough time to unwind before bed. Learning how to relax can help you sleep better and feel less anxious during the day. Try deep breathing techniques to unwind. Take a long, steady breath in, and then let it out.
+
+8. Get checked
+Three common sleep disorders, including restless legs syndrome, sleep apnea, and gastroesophageal reflux disease or GERD, can cause snoring, a burning discomfort in the chest, throat, or stomach. Visit your doctor for a diagnosis if these symptoms are keeping you up at night or making you tired throughout the day.
+
+https://www.health.harvard.edu/newsletter_article/8-secrets-to-a-good-nights-sleep
