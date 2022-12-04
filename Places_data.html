@@ -856,10 +856,26 @@ mean squared error of the elastic net regression and the multiple linear
 regression model. The statistics show that there is no significant
 difference between these two models in terms of predictive performance.
 Therefore, we conclude that both of models could be used for regression
-analysis while the elastic net model is more preferred since it has
-smaller test MSE (minimal difference though) and retain more information
-of the potential risk factors.</p>
-<p>Based on the coefficient of the elastic net regression model,</p>
+analysis while the elastic net model is more preferred for prediction
+since it has smaller test MSE (minimal difference though) and retain
+more information of the potential risk factors.</p>
+<p>On the other hand, the multiple linear regression model is favored
+for its simplicity of interpretation. While all of the physiological
+risk factors except for <code>OBESITY</code> have significant
+correlation with the prevalence of insufficient adult sleep,
+<code>ARTHRITIS</code>, <code>BPHIGH</code>, <code>CASTHMA</code>,
+<code>COPD</code>, <code>DIABETES</code> shows a positive correlation
+while <code>CANCER</code>, <code>CHD</code>, <code>DEPRESSION</code>,
+<code>HIGHCHOL</code>, <code>KIDNEY</code> suggest a negative
+correlation. It is worth noticing that an 1% increase in the prevalence
+of most disease factors leads to a less than 1% change in the prevalence
+of insufficient sleep except for <code>CANCER</code> and
+<code>KIDNEY</code>, which lead to a drop of 1.7% and 2.7% in prevalence
+of insufficient sleep respectively. A reasonable explanation is that the
+adults suffered from cancer and kidney diseases are more likely to have
+challenged body functions, which force them to spend more time on
+sleep/lay in bed for recovery and thus lower the prevalence of short
+sleep.</p>
 </div>
 
 
