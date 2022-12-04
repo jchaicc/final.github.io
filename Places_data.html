@@ -549,13 +549,13 @@ data_df %&gt;%
 represents a summarized estimate of a district. We select New York state
 as our sample data to build the model as it has third largest population
 with sufficient amount of sample.</p>
-</div>
-<div id="extract-ny-state-as-target-sample" class="section level2">
-<h2>Extract NY state as target sample</h2>
+<div id="extract-ny-state-as-target-sample" class="section level3">
+<h3>Extract NY state as target sample</h3>
 <pre class="r"><code>ny_data = data_df %&gt;% 
   filter(state_abbr == &#39;NY&#39;) %&gt;% 
   select(ends_with(&#39;prev&#39;)) %&gt;% 
   rename_with(~str_remove(., &#39;_crude_prev&#39;))</code></pre>
+</div>
 </div>
 <div id="show-the-statistics-of-risk-factors-prevalence" class="section level2">
 <h2>Show the statistics of risk factors prevalence</h2>
