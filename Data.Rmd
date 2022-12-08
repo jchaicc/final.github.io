@@ -99,8 +99,6 @@ write_csv(slp_df, "data/slp_df.csv")
 
 ## Data Description
 
-
-
 #### Social factors related to Sleeping Status Data
 
 The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp_df)` rows of data on `r ncol(slp_df)` variables, the list below is our variables of interest:
