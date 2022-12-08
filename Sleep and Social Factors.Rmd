@@ -15,9 +15,6 @@ knitr::opts_chunk$set(echo = TRUE,message=FALSE,
                       fig.width = 6,
                       fig.asp = .6,
                       out.width = "90%")
-```
-
-```{r}
 library(tidyverse)
 library(patchwork)
 library(knitr)
@@ -27,7 +24,12 @@ library(gifski)
 library(png)
 library(plotly)
 library(ggridges)
-
+library(xgboost)
+library(readr)
+library(stringr)
+library(caret)
+library(leaps)
+library(modelr)
 ```
 
 ## Data Sources
