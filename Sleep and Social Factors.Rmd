@@ -98,7 +98,7 @@ write_csv(slp_df, "data/slp_df.csv")
 
 ## National trends in short sleep duration
 
-Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2014 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
+Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
 
 ```{r}
 year_df=read_csv("data/AdultTrends.csv") %>%
@@ -181,7 +181,7 @@ layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(t
 ```
 ## Poverty Status
 
-We can observe that 
+We can observe that people who are in poverty tend to have less sleeping hours than those who are not in poverty. 
 
 ```{r,fig.width=10,fig.asp=.6}
 income_df=slp_df %>%
@@ -197,11 +197,13 @@ income_df=slp_df %>%
     breaks = c(2, 4, 6), 
     labels = c("2hrs", "4hrs", "6hrs"),
     limits = c(2, 6)
+    )+labs(
+    x = " Average Sleeping Hours"
     )
   
 box_plot=
   slp_df %>%
-  filter(weekday_slp_hr<6) %>%
+  filter(weekday_slp_hr<7) %>%
   mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
                            income_poverty_ratio < 1~ "in poverty",
                            income_poverty_ratio == 1~ "in poverty")) %>%
@@ -209,7 +211,10 @@ box_plot=
   ggplot(aes(x=ip_stat,y=sleep_ave))+geom_boxplot(aes(fill = ip_stat), alpha = 0.3)+
   geom_hline(aes(yintercept=median(sleep_ave),
             color="red", linetype="dashed"))+
-  geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")
+  geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")+labs(
+    x = " Poverty Status",
+    y = "Average Sleeping Hours"
+    )
 
 comb=income_df+box_plot
 comb+plot_annotation(
@@ -217,6 +222,9 @@ comb+plot_annotation(
 ) 
 
 ```
+
+## Age
+A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.66 hours per day.
 
 ```{r}
 age_group= slp_df%>%
@@ -233,7 +241,7 @@ age_group= slp_df%>%
   mutate(age_gp=fct_reorder(age_gp,ave_slp)) %>%
   ggplot(aes(x=age_gp,y=ave_slp,fill=age_gp))+ geom_bar(stat="identity")+ scale_fill_viridis_d()+
   theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))+
-  geom_text(aes(label = round(ave_slp, 2)),position = position_stack(vjust=0.9), color = "white", size = 4)
+  geom_text(aes(label = round(ave_slp, 2)),position = position_stack(vjust=0.9), color = "white", size = 4)+labs(x="Age Group",y="Average Sleeping Hours Per Day",title="Distribution of Sleeping Hours across Age Group")
 age_group
 
 ```
