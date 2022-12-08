@@ -122,7 +122,6 @@ year_df+transition_reveal(year)
 
 ggplotly(edu_plot)
   
-
 ```
 
 
