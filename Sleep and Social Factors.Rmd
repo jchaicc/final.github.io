@@ -115,7 +115,8 @@ year_df=read_csv("data/AdultTrends.csv") %>%
 year_df+transition_reveal(year)
 
 ```
-## Education Level
+
+## Education level
  
 We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per week in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
 
@@ -162,7 +163,8 @@ layout(race_plot, xaxis = list(title = "Average Sleeping Hours Per Day"), yaxis 
 ```
 ### Race Gender Gap by Education Level
 
-The below plot demonstr
+The below plot demonstrates the gender gap in the patients for different races. Male outnumber female for sleeping less than 7 hours per day for all race, except Non-Hispanic Black and Non-Hispanic Asian. The bubble represents the degree of the gap, along inlcuding their education level. 
+
 ```{r}
 gender_plot=slp_df %>%
   filter(weekday_slp_hr<7) %>%
@@ -171,12 +173,15 @@ gender_plot=slp_df %>%
             total_m=sum(gender=="male"),
             gap=total_m-total_f) %>%
   mutate(text_lable=str_c("Race=",race,"\nEducation level: ", education_level)) %>%
-  plot_ly(x=~total_f,y=~total_m,text=~text_lable,color=~race,size=~gap,type="scatter",mode="markers",
+  plot_ly(x=~total_m,y=~total_f,text=~text_lable,color=~race,size=~gap,type="scatter",mode="markers",
           colors="viridis",sizes = c(50, 700), marker = list(opacity = 0.7))
 
-layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Female Sleeping less than 7 hrs"), yaxis = list(title = "Number of Male Sleeping less than 7 hrs"))
+layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Male Sleeping less than 7 hrs"), yaxis = list(title = "Number of Female Sleeping less than 7 hrs"))
 
 ```
+## Poverty Status
+
+We can observe that 
 
 ```{r,fig.width=10,fig.asp=.6}
 income_df=slp_df %>%
@@ -193,8 +198,6 @@ income_df=slp_df %>%
     labels = c("2hrs", "4hrs", "6hrs"),
     limits = c(2, 6)
     )
-
-     
   
 box_plot=
   slp_df %>%
@@ -208,8 +211,10 @@ box_plot=
             color="red", linetype="dashed"))+
   geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")
 
-income_df+box_plot
-
+comb=income_df+box_plot
+comb+plot_annotation(
+  title = "Sleeping Hours By Poverty Status"
+) 
 
 ```
 
