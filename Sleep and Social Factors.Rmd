@@ -1,0 +1,212 @@
+---
+title: "Sleep and Social Factors"
+output: 
+  html_document:
+    toc: false
+    toc_float: false
+    code_folding: hide
+          
+---
+On this page, we will be exploring the overall trends for our key outcome- sleeping hours per week, as well as trends for how these outcomes correlate with the predictors, including demographic variables like age, race, sex, education level, and poverty status.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,message=FALSE,
+                      warning=FALSE, 
+                      fig.width = 6,
+                      fig.asp = .6,
+                      out.width = "90%")
+```
+
+```{r}
+library(tidyverse)
+library(patchwork)
+library(knitr)
+library(dplyr)
+library(gganimate)
+library(gifski)
+library(png)
+library(plotly)
+library(ggridges)
+
+```
+
+
+```{r,echo=FALSE}
+demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
+  janitor::clean_names() %>%
+  select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
+  drop_na() %>%
+  rename(gender=riagendr,
+         age=ridageyr,
+         race=ridreth3,
+         education_level=dmdeduc2,
+         income_poverty_ratio=indfmpir) %>%
+  mutate(gender=case_when(gender==1 ~ "male",
+                          gender==2 ~ "female")) %>%
+  mutate(race=case_when(race==1 ~ "Mexican American",
+                        race==2 ~ "Other Hispanic",
+                        race==3 ~ "Non-Hispanic White",
+                        race==4 ~ "Non-Hispanic Black",
+                        race==6 ~ "Non-Hispanic Asian",
+                        race==7 ~ "Other Race")) %>%
+  mutate(education_level=case_when(education_level==1 ~ "less than 9th grade",
+                                   education_level==2 ~ "9-11th grade",
+                                   education_level==3 ~ "high school graduate",
+                                   education_level==4 ~ "college or AA degree",
+                                   education_level==5 ~ "college graduate or above",
+                                   education_level==7 ~ "refused",
+                                   education_level==9 ~ "don't know"))
+
+
+sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
+  janitor::clean_names() %>% 
+  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
+  rename(weekday_slp_time=slq300,
+         weekday_wake_time=slq310,
+         weekday_slp_hr=sld012,
+         weekend_slp_time=slq320,
+         weekend_wake_time=slq330,
+         weekend_slp_hr=sld013,
+         trouble_slp=slq050,
+         sleepy_freq=slq120
+         )              %>%
+  filter(weekday_slp_time!=77777 & weekday_slp_time!= 99999) %>%
+  filter(weekday_wake_time!=77777 & weekday_wake_time!= 99999) %>%
+  filter(weekend_slp_time!=77777 & weekend_slp_time != 99999) %>%
+  filter(weekend_wake_time!= 77777 & weekend_wake_time != 99999) %>%
+  filter(trouble_slp!=7 & trouble_slp!= 9) %>%
+  filter(sleepy_freq!= 7 & sleepy_freq!=9) %>%
+  drop_na() %>%
+  mutate(trouble_slp=case_when(trouble_slp==1 ~ "yes",
+                               trouble_slp==2 ~ "no")) %>%
+  mutate(sleepy_freq=case_when(sleepy_freq==0 ~ "never",
+                               sleepy_freq==1 ~ "once a month",
+                               sleepy_freq==2 ~ "2-4 per month",
+                               sleepy_freq==3 ~ "5-15 per month",
+                               sleepy_freq==4 ~ "16-30 per month",
+                               ))
+
+```
+
+```{r,echo=FALSE}
+slp_df=inner_join(demo,sleep_df,by="seqn") %>%
+  na_if("") %>%
+  na.omit()
+write_csv(slp_df, "data/slp_df.csv")
+```
+
+
+```{r}
+year_df=read_csv("data/AdultTrends.csv") %>%
+  janitor::clean_names() %>%
+  pivot_longer(cols=c("female", "male"),
+               names_to = "sex",
+               values_to = "age_adjust_prev") %>%
+  ggplot(aes(x=year,y=age_adjust_prev,col=sex))+geom_line()+geom_point()
+
+year_df+transition_reveal(year)
+
+```
+
+
+```{r}
+ edu_plot=slp_df %>%
+  filter(weekday_slp_hr<7)%>%
+  group_by(education_level,gender) %>%
+  summarize(ave_sleep=mean((weekday_slp_hr*5+weekend_slp_hr*2)/7)) %>% 
+  ungroup() %>%
+  mutate(education_level=fct_reorder(education_level,ave_sleep)) %>%
+  ggplot(aes(x=education_level,y=ave_sleep,fill=gender))+ geom_bar(width=0.5,stat="identity")+
+  viridis::scale_fill_viridis(
+    name = "gender",
+    discrete = TRUE
+  ) + geom_text(aes(label = round(ave_sleep, 2)),position = position_stack(vjust=0.9), color = "white", size = 4)+
+  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))
+edu_plot
+  
+
+```
+
+
+```{r}
+race_plot=slp_df %>%
+  filter(weekday_slp_hr<7) %>%
+  group_by(race,weekday_slp_hr) %>%
+  summarise(obs=n()) %>%
+  plot_ly(
+    x = ~weekday_slp_hr, y = ~race, z = ~obs, type = "heatmap", colors = "BuPu"
+  ) %>%
+  colorbar(title = "Number of People", x = 1, y = 0.5) 
+race_plot
+```
+
+```{r}
+gender_plot= slp_df %>%
+  filter(weekday_slp_hr<7) %>%
+  group_by(race,education_level) %>%
+  summarize(total_f=sum(gender=="female"),
+            total_m=sum(gender=="male"),
+            gap=total_m-total_f) %>%
+  mutate(text_lable=str_c("Race=",race,"\nEducation level: ", education_level)) %>%
+  plot_ly(x=~total_f,y=~total_m,text=~text_lable,color=~race,size=~gap,type="scatter",mode="markers",
+          colors="viridis",sizes = c(50, 700), marker = list(opacity = 0.7))
+
+layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Female Sleeping less than 7 hrs"), yaxis = list(title = "Number of Male Sleeping less than 7 hrs"))
+gender_plot
+```
+
+```{r,fig.width=10,fig.asp=.6}
+income_df=slp_df %>%
+  filter(weekday_slp_hr<7) %>%
+  mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
+                           income_poverty_ratio < 1~ "in poverty",
+                           income_poverty_ratio == 1~ "in poverty")) %>%
+  ggplot(aes(x=weekday_slp_hr,y=ip_stat,fill=ip_stat))+
+  geom_density_ridges(
+    aes(point_color = ip_stat, point_shape = ip_stat,point_fill=ip_stat),
+    alpha = .3, point_alpha = 0.7)+
+   scale_x_continuous(
+    breaks = c(2, 4, 6), 
+    labels = c("2hrs", "4hrs", "6hrs"),
+    limits = c(2, 6)
+    )+  scale_fill_manual(values = c("#fde725","#440154")) 
+
+     
+  
+box_plot=
+  slp_df %>%
+  filter(weekday_slp_hr<6) %>%
+  mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
+                           income_poverty_ratio < 1~ "in poverty",
+                           income_poverty_ratio == 1~ "in poverty")) %>%
+  mutate(sleep_ave=(weekday_slp_hr*5+weekend_slp_hr*2)/7) %>%
+  ggplot(aes(x=ip_stat,y=sleep_ave))+geom_boxplot(aes(fill = ip_stat), alpha = 0.3)+
+  scale_fill_manual(values = c("#fde725","#440154")) +
+  geom_hline(aes(yintercept=median(sleep_ave),
+            color="red", linetype="dashed"))+
+  geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")
+
+income_df+box_plot
+
+
+```
+
+```{r}
+age_group= slp_df%>%
+  filter(weekday_slp_hr<7) %>%
+  mutate(age_gp=case_when(age>=20 & age<=30 ~ "20-30",
+                          age>=31 &age <=40 ~ "31-40",
+                          age>=41 &age<=50 ~ "41-50",
+                          age>=51 &age<=60 ~ "51-60",
+                          age>=61 &age<=70 ~ "61-70",
+                          age>=71 & age <=80 ~ "71-80")) %>%
+  group_by(age_gp) %>%
+  summarise(ave_slp=mean((weekday_slp_hr*5+weekend_slp_hr*2)/7))%>%
+  ungroup() %>%
+  mutate(age_gp=fct_reorder(age_gp,ave_slp)) %>%
+  ggplot(aes(x=age_gp,y=ave_slp,fill=age_gp))+ geom_bar(stat="identity")+ scale_fill_viridis_d()+
+  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))+
+  geom_text(aes(label = round(ave_slp, 2)),position = position_stack(vjust=0.9), color = "white", size = 4)
+age_group
+
+```
