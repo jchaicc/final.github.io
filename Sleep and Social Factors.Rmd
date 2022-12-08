@@ -2,8 +2,8 @@
 title: "Sleep and Social Factors"
 output: 
   html_document:
-    toc: false
-    toc_float: false
+    toc: True
+    toc_float: True
     code_folding: hide
           
 ---
@@ -15,6 +15,9 @@ knitr::opts_chunk$set(echo = TRUE,message=FALSE,
                       fig.width = 6,
                       fig.asp = .6,
                       out.width = "90%")
+```
+
+```{r}
 library(tidyverse)
 library(patchwork)
 library(knitr)
@@ -24,86 +27,10 @@ library(gifski)
 library(png)
 library(plotly)
 library(ggridges)
-library(xgboost)
-library(readr)
-library(stringr)
-library(caret)
-library(leaps)
-library(modelr)
-```
-
-
-```{r,echo=FALSE}
-demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
-  janitor::clean_names() %>%
-  select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
-  drop_na() %>%
-  rename(gender=riagendr,
-         age=ridageyr,
-         race=ridreth3,
-         education_level=dmdeduc2,
-         income_poverty_ratio=indfmpir) %>%
-  mutate(gender=case_when(gender==1 ~ "male",
-                          gender==2 ~ "female")) %>%
-  mutate(race=case_when(race==1 ~ "Mexican American",
-                        race==2 ~ "Other Hispanic",
-                        race==3 ~ "Non-Hispanic White",
-                        race==4 ~ "Non-Hispanic Black",
-                        race==6 ~ "Non-Hispanic Asian",
-                        race==7 ~ "Other Race")) %>%
-  mutate(education_level=case_when(education_level==1 ~ "less than 9th grade",
-                                   education_level==2 ~ "9-11th grade",
-                                   education_level==3 ~ "high school graduate",
-                                   education_level==4 ~ "college or AA degree",
-                                   education_level==5 ~ "college graduate or above",
-                                   education_level==7 ~ "refused",
-                                   education_level==9 ~ "don't know"))
-
-
-sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
-  janitor::clean_names() %>% 
-  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
-  rename(weekday_slp_time=slq300,
-         weekday_wake_time=slq310,
-         weekday_slp_hr=sld012,
-         weekend_slp_time=slq320,
-         weekend_wake_time=slq330,
-         weekend_slp_hr=sld013,
-         trouble_slp=slq050,
-         sleepy_freq=slq120
-         )              %>%
-  filter(weekday_slp_time!=77777 & weekday_slp_time!= 99999) %>%
-  filter(weekday_wake_time!=77777 & weekday_wake_time!= 99999) %>%
-  filter(weekend_slp_time!=77777 & weekend_slp_time != 99999) %>%
-  filter(weekend_wake_time!= 77777 & weekend_wake_time != 99999) %>%
-  filter(trouble_slp!=7 & trouble_slp!= 9) %>%
-  filter(sleepy_freq!= 7 & sleepy_freq!=9) %>%
-  drop_na() %>%
-  mutate(trouble_slp=case_when(trouble_slp==1 ~ "yes",
-                               trouble_slp==2 ~ "no")) %>%
-  mutate(sleepy_freq=case_when(sleepy_freq==0 ~ "never",
-                               sleepy_freq==1 ~ "once a month",
-                               sleepy_freq==2 ~ "2-4 per month",
-                               sleepy_freq==3 ~ "5-15 per month",
-                               sleepy_freq==4 ~ "16-30 per month",
-<<<<<<< HEAD:Exploratory Analysis.Rmd
-                               )) %>% 
-  mutate(ave_slp_hr = (5*weekday_slp_hr + 2*weekend_slp_hr)/7)
-=======
-                               )) 
-  
->>>>>>> 144ef921ca384fb7b4a83a26d87e979447bb2ff0:Sleep and Social Factors.Rmd
 
 ```
 
-```{r,echo=FALSE}
-slp_df=inner_join(demo,sleep_df,by="seqn") %>%
-  na_if("") %>%
-  na.omit()
-write_csv(slp_df, "data/slp_df.csv")
-```
-
-# National trends in short sleep duration
+## National trends in short sleep duration
 
 Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
 
@@ -253,111 +180,72 @@ age_group
 
 ```
 
+# Statistical Analysis
 ## Models
-### tidy data
+### MLR and Logistic
 ```{r}
-df_mod = slp_df %>% 
-  select(gender, age, race, education_level, income_poverty_ratio, trouble_slp, sleepy_freq, ave_slp_hr)
+lm0 = lm(ave_slp_hr ~ gender + age +race +education_level + income_poverty_ratio + trouble_slp + sleepy_freq, data = slp_df)
 ```
 
-### split data
 ```{r}
+slp_suf_df = slp_df %>% 
+  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0))
+glm0 = glm(sufficient_slp ~ gender + age +race +education_level + income_poverty_ratio + trouble_slp + sleepy_freq, data = slp_suf_df, family = binomial)
+```
+
+```{r}
+summary(lm0)
+```
+
+```{r}
+par(mfrow = c(2,2))
+plot(lm0, cex.lab = 1)
+```
+
+```{r}
+summary(glm0)
+```
+
+```{r}
+windows(width = 5, height = 5)
+plot(glm0, cex.lab = 1)
+```
+
+### xgboost
+```{r}
+clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
+dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = slp_df)
+slp_oh = as.data.frame(predict(dums, newdata = slp_df))
+slp_df_new = cbind(slp_df[,-c(which(colnames(slp_df) %in% clafeats))],slp_oh)
+```
+
+```{r}
+# slp_df_newx = slp_df_new[,-10]
+# slp_df_newy = data.frame(slp_df_new[,10])
+# names(slp_df_newy) = c('ave_slp_hr')
+```
+
+```{r}
+# slp_df_xgb = slp_df_new[,c(gender + age +race +education_level + income_poverty_ratio + trouble_slp + sleepy_freq)]
+```
+
+```{r}
+slp_df_new = slp_df_new[,-1]
 set.seed(1)
 rt = 0.8
-sub = sample(1:nrow(df_mod), round(nrow(df_mod)*rt))
-data_train = df_mod[sub,]
-data_test = df_mod[-sub,]
+sub = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
+data_train = slp_df_new[sub,]
+data_test = slp_df_new[-sub,]
 dim(data_train)
 dim(data_test)
 ```
 
-### initial MLR and Logistic models
 ```{r}
-lmraw = lm(ave_slp_hr ~ ., data = df_mod)
-summary(lmraw)
-```
-
-The MLR model is $sleep\_hour=8.03-0.30I(gender = male)-0.31I(race = Non-Hispanic Black)-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)-0.05income_poverty_ratio-0.13trouble_slpyes+0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)$
-
-```{r}
-par(mfrow = c(2,2))
-plot(lmraw, cex.lab = 1)
-```
-
-### test model
-```{r}
-set.seed(1)
-train = trainControl(method = "cv", number = 100)
-model_caret = train(ave_slp_hr ~ ., data = df_mod, method = 'lm', na.action = na.pass)
-model_caret$finalModel
-```
-
-```{r}
-model_caret
-```
-
-```{r}
-# raw_pred = predict(lmraw, newdata = data_test)
-```
-
-```{r}
-# res_raw = residuals(lmraw)
-# segments(obs, pred, obs, pred_res)
-```
-
-```{r}
-slp_suf_df = df_mod %>% 
-  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0))
-glmraw = glm(sufficient_slp ~ ., data = slp_suf_df, family = binomial)
-summary(glmraw)
-```
-
-```{r}
-# windows(width = 5, height = 5)
-# plot(glmraw, cex.lab = 1)
-```
-
-### refine linear model using stepwise method 
-```{r}
-lm0 = lm(ave_slp_hr ~ 1, data = df_mod)
-lmstep = step(lm0, direction = 'both', scope=formula(lmraw), trace=0)
-summary(lmstep)
-```
-
-The model after stepwise both direction is $sleep\_hour=8.04-0.30I(gender = male)-0.30I(race = Non-Hispanic Black)+ 0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)-0.05income_poverty_ratio-0.13trouble_slpyes-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)$
-
-### adjust R2 Cp
-```{r}
-# par(mfrow = c(1,1))
-# leaps = regsubsets(ave_slp_hr ~ ., data = df_mod, nbest=20)
-# plot(leaps, scale = 'adjr2')
-```
-
-### xgboost
-#### data preparation
-```{r}
-clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
-dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = df_mod)
-slp_oh = as.data.frame(predict(dums, newdata = df_mod))
-slp_df_new =cbind(df_mod[,-c(which(colnames(df_mod) %in% clafeats))],slp_oh)
-```
-
-```{r}
-set.seed(1)
-rtxg = 0.8
-subxg = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
-data_trainxg = slp_df_new[sub,]
-data_testxg = slp_df_new[-sub,]
-dim(data_trainxg)
-dim(data_testxg)
-```
-
-```{r}
-data_trainx = data_trainxg[,-3]
-data_trainy = data.frame(data_trainxg[,3])
+data_trainx = data_train[,-3:-9]
+data_trainy = data.frame(data_train[,9])
 names(data_trainy) = c('label')
-data_testx = data_testxg[,-3]
-data_testy = data.frame(data_testxg[,3])
+data_testx = data_test[,-3:-9]
+data_testy = data.frame(data_test[,9])
 names(data_testy) = c('label')
 ```
 
@@ -368,25 +256,22 @@ dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
 dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 ```
 
-#### model training
 ```{r}
-# xgb0 =  xgboost(
-#     data = dtrain,
-#     nrounds = 2000,
-#     objective = "reg:squarederror",
-#     early_stopping_rounds = 3,
-#     max_depth = 6,
-#     eta = .25
-#   )   
-# print(xgb0)
+xgb0 =  xgboost(
+    data = dtrain,
+    nrounds = 2000,
+    objective = "reg:squarederror",
+    early_stopping_rounds = 3,
+    max_depth = 6,
+    eta = .25
+  )   
 ```
 
 ```{r}
 xgb1 = xgboost(data = dtrain, max.depth = 10, nrounds = 300)
-print(xgb1)
+print(xgbc)
 ```
 
-#### model prediction
 ```{r}
 pred_y = predict(xgb1, dtest)
 ```
@@ -400,7 +285,8 @@ cat("MSE: ", mse, "MAE: ", mae, " RMSE: ", rmse)
 ```
 
 ```{r}
-par(mfrow = c(1,1))
+windows(width = 12, height = 10)
+# par(mfrow = c(3,3))
 x = 1:length(data_testy$label)
 plot(x, data_testy$label, col = "red", type = "l")
 lines(x, pred_y, col = "blue", type = "l")
@@ -409,7 +295,16 @@ lines(x, pred_y, col = "blue", type = "l")
 ```
 
 ```{r}
+windows(width = 8, height = 6)
 names = dimnames(as.matrix(data_testx))[[2]]
 importance_matrix = xgb.importance(names, model = xgb1)
 xgb.plot.importance(importance_matrix[1:10,])
+```
+
+## Regression plot
+```{r}
+# p <- ggplot() +
+#   geom_point(data = slp_df, mapping = aes(x = age, y = ave_slp_hr)) +
+#   theme_bw()
+# p
 ```
