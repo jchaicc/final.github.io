@@ -245,3 +245,131 @@ age_group= slp_df%>%
 age_group
 
 ```
+
+## Models
+### MLR and Logistic
+```{r}
+lm0 = lm(ave_slp_hr ~ gender + age +race +education_level + income_poverty_ratio + trouble_slp + sleepy_freq, data = slp_df)
+```
+
+```{r}
+slp_suf_df = slp_df %>% 
+  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0))
+glm0 = glm(sufficient_slp ~ gender + age +race +education_level + income_poverty_ratio + trouble_slp + sleepy_freq, data = slp_suf_df, family = binomial)
+```
+
+```{r}
+summary(lm0)
+```
+
+```{r}
+par(mfrow = c(2,2))
+plot(lm0, cex.lab = 1)
+```
+
+```{r}
+summary(glm0)
+```
+
+```{r}
+windows(width = 5, height = 5)
+plot(glm0, cex.lab = 1)
+```
+
+### xgboost
+```{r}
+clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
+dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = slp_df)
+slp_oh = as.data.frame(predict(dums, newdata = slp_df))
+slp_df_new = cbind(slp_df[,-c(which(colnames(slp_df) %in% clafeats))],slp_oh)
+```
+
+```{r}
+# slp_df_newx = slp_df_new[,-10]
+# slp_df_newy = data.frame(slp_df_new[,10])
+# names(slp_df_newy) = c('ave_slp_hr')
+```
+
+```{r}
+# slp_df_xgb = slp_df_new[,c(gender + age +race +education_level + income_poverty_ratio + trouble_slp + sleepy_freq)]
+```
+
+```{r}
+slp_df_new = slp_df_new[,-1]
+set.seed(1)
+rt = 0.8
+sub = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
+data_train = slp_df_new[sub,]
+data_test = slp_df_new[-sub,]
+dim(data_train)
+dim(data_test)
+```
+
+```{r}
+data_trainx = data_train[,-3:-9]
+data_trainy = data.frame(data_train[,9])
+names(data_trainy) = c('label')
+data_testx = data_test[,-3:-9]
+data_testy = data.frame(data_test[,9])
+names(data_testy) = c('label')
+```
+
+```{r}
+# train_slp = list(data=data_trainx[,-1],label=data_trainy$label) 
+# test_slp = list(data=data_testx[,-1],label=data_testy$label) 
+dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
+dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
+```
+
+```{r}
+xgb0 =  xgboost(
+    data = dtrain,
+    nrounds = 2000,
+    objective = "reg:squarederror",
+    early_stopping_rounds = 3,
+    max_depth = 6,
+    eta = .25
+  )   
+```
+
+```{r}
+xgb1 = xgboost(data = dtrain, max.depth = 10, nrounds = 300)
+print(xgbc)
+```
+
+```{r}
+pred_y = predict(xgb1, dtest)
+```
+
+```{r}
+mse = mean((data_testy$label - pred_y)^2)
+mae = caret::MAE(data_testy$label, pred_y)
+rmse = caret::RMSE(data_testy$label, pred_y)
+
+cat("MSE: ", mse, "MAE: ", mae, " RMSE: ", rmse)
+```
+
+```{r}
+windows(width = 12, height = 10)
+# par(mfrow = c(3,3))
+x = 1:length(data_testy$label)
+plot(x, data_testy$label, col = "red", type = "l")
+lines(x, pred_y, col = "blue", type = "l")
+# legend(x = 1, y = 38,  legend = c("original test_y", "predicted test_y"), 
+#        col = c("red", "blue"), box.lty = 1, cex = 0.8, lty = c(1, 1))
+```
+
+```{r}
+windows(width = 8, height = 6)
+names = dimnames(as.matrix(data_testx))[[2]]
+importance_matrix = xgb.importance(names, model = xgb1)
+xgb.plot.importance(importance_matrix[1:10,])
+```
+
+## Regression plot
+```{r}
+# p <- ggplot() +
+#   geom_point(data = slp_df, mapping = aes(x = age, y = ave_slp_hr)) +
+#   theme_bw()
+# p
+```
