@@ -96,7 +96,7 @@ slp_df=inner_join(demo,sleep_df,by="seqn") %>%
 write_csv(slp_df, "data/slp_df.csv")
 ```
 
-## National trends in short sleep duration
+# National trends in short sleep duration
 
 Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
 
