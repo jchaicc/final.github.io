@@ -7,7 +7,7 @@ output:
     code_folding: hide
           
 ---
-On this page, we will be exploring the overall trends for our key outcome- sleeping hours per week, and how these outcomes correlate with the predictors, including demographic variables like age, race, sex, education level, and poverty status.
+On this page, we will be exploring the overall trends for our key outcome- sleeping hours per day, and how these outcomes correlate with the predictors, including demographic variables like age, race, sex, education level, and poverty status.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,message=FALSE,
@@ -115,9 +115,8 @@ year_df=read_csv("data/AdultTrends.csv") %>%
 year_df+transition_reveal(year)
 
 ```
-## Sleeping Hours Frequency
-### Categorized by Education Level
-
+## Education Level
+ 
 We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per week in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
 
 ```{r}
@@ -132,13 +131,21 @@ We first want to get the distribution of sleeping hours less than 7 hours across
     name = "gender",
     discrete = TRUE
   ) + geom_text(aes(label = round(ave_sleep, 2)),position = position_stack(vjust=0.9), color = "white", size = 4)+
-  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))
+  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))+labs(
+    title = "Distribution of sleeping hours across education level",
+    x = "Education Level",
+    y = "Average Sleeping hours per day"
+    )
 edu_plot
   
 
 ```
-From the plot, high school graduates has the least sleeping hours per week, while college graduates or above has the highest. Female and male does not have a significant difference in both groups.
 
+From the above plot, high school graduates has the least sleeping hours, while college graduates or above has the highest. Female and male does not have a significant difference in both groups.
+
+## Race
+
+A heat map was made to visualize sleeping hours less than 7 hours among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
 
 ```{r}
 race_plot=slp_df %>%
@@ -150,9 +157,12 @@ race_plot=slp_df %>%
     x = ~sleep_ave, y = ~race, z = ~obs, type = "heatmap", colors = "BuPu"
   ) %>%
   colorbar(title = "Number of People", x = 1, y = 0.5) 
-race_plot
-```
+layout(race_plot, xaxis = list(title = "Average Sleeping Hours Per Day"), yaxis = list(title = "Race"))
 
+```
+### Race Gender Gap by Education Level
+
+The below plot demonstr
 ```{r}
 gender_plot=slp_df %>%
   filter(weekday_slp_hr<7) %>%
