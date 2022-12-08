@@ -1,13 +1,8 @@
 ---
-title: "Sleep and Social Factors"
-output: 
-  html_document:
-    toc: false
-    toc_float: false
-    code_folding: hide
-          
+title: "Exploratory Analysis"
+output: html_document
+date: "2022-11-21"
 ---
-On this page, we will be exploring the overall trends for our key outcome- sleeping hours per day, and how these outcomes correlate with the predictors, including demographic variables like age, race, sex, education level, and poverty status.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,message=FALSE,
@@ -86,13 +81,8 @@ sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
                                sleepy_freq==2 ~ "2-4 per month",
                                sleepy_freq==3 ~ "5-15 per month",
                                sleepy_freq==4 ~ "16-30 per month",
-<<<<<<< HEAD:Exploratory Analysis.Rmd
                                )) %>% 
   mutate(ave_slp_hr = (5*weekday_slp_hr + 2*weekend_slp_hr)/7)
-=======
-                               )) 
-  
->>>>>>> 144ef921ca384fb7b4a83a26d87e979447bb2ff0:Sleep and Social Factors.Rmd
 
 ```
 
@@ -103,35 +93,24 @@ slp_df=inner_join(demo,sleep_df,by="seqn") %>%
 write_csv(slp_df, "data/slp_df.csv")
 ```
 
-# National trends in short sleep duration
-
-Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
-
 ```{r}
 year_df=read_csv("data/AdultTrends.csv") %>%
   janitor::clean_names() %>%
   pivot_longer(cols=c("female", "male"),
                names_to = "sex",
                values_to = "age_adjust_prev") %>%
-  ggplot(aes(x=year,y=age_adjust_prev,col=sex))+geom_line()+geom_point()+labs(
-    title = "National trends in short sleep duration",
-    x = "Year",
-    y = "Age Adjusted Prevalence %"
-    )
+  ggplot(aes(x=year,y=age_adjust_prev,col=sex))+geom_line()+geom_point()
 
 year_df+transition_reveal(year)
 
 ```
 
-## Education level
- 
-We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per week in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
 
 ```{r}
  edu_plot=slp_df %>%
-  filter(weekday_slp_hr<7)%>%
+  filter(weekday_slp_hr<6)%>%
   group_by(education_level,gender) %>%
-  summarize(ave_sleep=mean((weekday_slp_hr*5+weekend_slp_hr*2)/7)) %>% 
+  summarize(ave_sleep=mean(weekday_slp_hr)) %>% 
   ungroup() %>%
   mutate(education_level=fct_reorder(education_level,ave_sleep)) %>%
   ggplot(aes(x=education_level,y=ave_sleep,fill=gender))+ geom_bar(width=0.5,stat="identity")+
@@ -139,60 +118,43 @@ We first want to get the distribution of sleeping hours less than 7 hours across
     name = "gender",
     discrete = TRUE
   ) + geom_text(aes(label = round(ave_sleep, 2)),position = position_stack(vjust=0.9), color = "white", size = 4)+
-  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))+labs(
-    title = "Distribution of sleeping hours across education level",
-    x = "Education Level",
-    y = "Average Sleeping hours per day"
-    )
-edu_plot
+  theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))
+
+ggplotly(edu_plot)
   
 
 ```
 
-From the above plot, high school graduates has the least sleeping hours, while college graduates or above has the highest. Female and male does not have a significant difference in both groups.
-
-## Race
-
-A heat map was made to visualize sleeping hours less than 7 hours among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
 
 ```{r}
 race_plot=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
-  mutate(sleep_ave=(weekday_slp_hr*5+weekend_slp_hr*2)/7) %>%
-  group_by(race,sleep_ave) %>%
+  filter(weekday_slp_hr<6) %>%
+  group_by(race,weekday_slp_hr) %>%
   summarise(obs=n()) %>%
   plot_ly(
-    x = ~sleep_ave, y = ~race, z = ~obs, type = "heatmap", colors = "BuPu"
+    x = ~weekday_slp_hr, y = ~race, z = ~obs, type = "heatmap", colors = "BuPu"
   ) %>%
   colorbar(title = "Number of People", x = 1, y = 0.5) 
-layout(race_plot, xaxis = list(title = "Average Sleeping Hours Per Day"), yaxis = list(title = "Race"))
-
+race_plot
 ```
-### Race Gender Gap by Education Level
-
-The below plot demonstrates the gender gap in the patients for different races. Male outnumber female for sleeping less than 7 hours per day for all race, except Non-Hispanic Black and Non-Hispanic Asian. The bubble represents the degree of the gap, along inlcuding their education level. 
 
 ```{r}
-gender_plot=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+gender_plot= slp_df %>%
+  filter(weekday_slp_hr<6) %>%
   group_by(race,education_level) %>%
   summarize(total_f=sum(gender=="female"),
             total_m=sum(gender=="male"),
             gap=total_m-total_f) %>%
   mutate(text_lable=str_c("Race=",race,"\nEducation level: ", education_level)) %>%
-  plot_ly(x=~total_m,y=~total_f,text=~text_lable,color=~race,size=~gap,type="scatter",mode="markers",
+  plot_ly(x=~total_f,y=~total_m,text=~text_lable,color=~race,size=~gap,type="scatter",mode="markers",
           colors="viridis",sizes = c(50, 700), marker = list(opacity = 0.7))
 
-layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Male Sleeping less than 7 hrs"), yaxis = list(title = "Number of Female Sleeping less than 7 hrs"))
-
+layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Female Sleeping less than 6 hrs"), yaxis = list(title = "Number of Male Sleeping less than 6 hrs"))
 ```
-## Poverty Status
-
-We can observe that people who are in poverty tend to have less sleeping hours than those who are not in poverty. 
 
 ```{r,fig.width=10,fig.asp=.6}
 income_df=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(weekday_slp_hr<6) %>%
   mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
                            income_poverty_ratio < 1~ "in poverty",
                            income_poverty_ratio == 1~ "in poverty")) %>%
@@ -204,38 +166,30 @@ income_df=slp_df %>%
     breaks = c(2, 4, 6), 
     labels = c("2hrs", "4hrs", "6hrs"),
     limits = c(2, 6)
-    )+labs(
-    x = " Average Sleeping Hours"
-    )
+    )+  scale_fill_manual(values = c("#fde725","#440154")) 
+
+     
   
 box_plot=
   slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(weekday_slp_hr<6) %>%
   mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
                            income_poverty_ratio < 1~ "in poverty",
                            income_poverty_ratio == 1~ "in poverty")) %>%
-  mutate(sleep_ave=(weekday_slp_hr*5+weekend_slp_hr*2)/7) %>%
-  ggplot(aes(x=ip_stat,y=sleep_ave))+geom_boxplot(aes(fill = ip_stat), alpha = 0.3)+
-  geom_hline(aes(yintercept=median(sleep_ave),
-            color="red", linetype="dashed"))+
-  geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")+labs(
-    x = " Poverty Status",
-    y = "Average Sleeping Hours"
-    )
+  ggplot(aes(x=ip_stat,y=weekday_slp_hr))+geom_boxplot(aes(fill = ip_stat), alpha = 0.3)+
+  scale_fill_manual(values = c("#fde725","#440154")) +
+  geom_hline(aes(yintercept=median(weekday_slp_hr)),
+            color="red", linetype="dashed")+
+  geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")
 
-comb=income_df+box_plot
-comb+plot_annotation(
-  title = "Sleeping Hours By Poverty Status"
-) 
+income_df+box_plot
+
 
 ```
 
-## Age
-A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.66 hours per day.
-
 ```{r}
 age_group= slp_df%>%
-  filter(weekday_slp_hr<7) %>%
+  filter(weekday_slp_hr<6) %>%
   mutate(age_gp=case_when(age>=20 & age<=30 ~ "20-30",
                           age>=31 &age <=40 ~ "31-40",
                           age>=41 &age<=50 ~ "41-50",
@@ -243,14 +197,22 @@ age_group= slp_df%>%
                           age>=61 &age<=70 ~ "61-70",
                           age>=71 & age <=80 ~ "71-80")) %>%
   group_by(age_gp) %>%
-  summarise(ave_slp=mean((weekday_slp_hr*5+weekend_slp_hr*2)/7))%>%
+  summarise(ave_slp=mean(weekday_slp_hr))%>%
   ungroup() %>%
   mutate(age_gp=fct_reorder(age_gp,ave_slp)) %>%
   ggplot(aes(x=age_gp,y=ave_slp,fill=age_gp))+ geom_bar(stat="identity")+ scale_fill_viridis_d()+
   theme(axis.text.x = element_text(angle = -90, vjust = 0.5, hjust=1))+
-  geom_text(aes(label = round(ave_slp, 2)),position = position_stack(vjust=0.9), color = "white", size = 4)+labs(x="Age Group",y="Average Sleeping Hours Per Day",title="Distribution of Sleeping Hours across Age Group")
+  geom_text(aes(label = round(ave_slp, 2)),position = position_stack(vjust=0.9), color = "white", size = 4)
 age_group
 
+age_plot = slp_df %>%
+  filter(weekday_slp_hr<6) %>%
+  mutate(text_label = str_c("Age: $", age, "\nGender: ", gender)) %>% 
+  plot_ly(
+    x = ~weekday_slp_time, y = ~weekday_wake_time, type = "scatter", mode = "markers",size = 15,
+    color = ~age, text = ~text_label, alpha = 0.5)
+
+age_plot
 ```
 
 ## Models
