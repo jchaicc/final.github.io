@@ -23,7 +23,9 @@ knitr::opts_chunk$set(
 ```
 ## Data Sources
 
-*  The second data set was downloaded from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) database.
+*  The first data set that was used to explore the association between sleeping and social factors was downloaded from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) database.
+
+*  The second data set was from [CDC](https://www.cdc.gov/sleep/data-and-statistics/adults.html).
 
 
 
