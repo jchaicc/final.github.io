@@ -27,12 +27,10 @@ knitr::opts_chunk$set(
 
 *  The second data set was from [CDC](https://www.cdc.gov/sleep/data-and-statistics/adults.html).
 
-
-
 ## Data Processing and Cleaning
 
-*  For data from the NHANES database:
-
+*  For data from the NHANES database: The predictors and the response variable were from different data base in NHANES. First, the the column name for these response variables was changed to appropriate names. The original data included numbers to represent difference levels for each predictor, specific names was also replaced for each number. Then, the response variable related to sleeping was from another data base. For this data set, similar steps was used with dealing with the predictors data set. All column names was converted to appropriate names, and character names also replaced the numbers as well.
+   For the third step, all empty cells was removed. Finally, the two cleaned data sets was joined through the patients' unique sequence number. 
 
 ```{r}
 demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
