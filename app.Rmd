@@ -33,7 +33,7 @@ library(ggplot2)
       tags$p("3: 3-5 times a week"),
       tags$p("4: 6-7 times a week"),
       
-    numericInput("s1", "I have difficulty falling asleep.",
+    sliderInput("s1", "I have difficulty falling asleep.",
                     min = 1, max = 4,
                     value = 1),
     sliderInput("s2", "I fall into a deep sleep.",
