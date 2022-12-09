@@ -1,0 +1,5 @@
+name: "Our Website"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
