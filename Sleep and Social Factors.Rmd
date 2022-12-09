@@ -30,6 +30,8 @@ library(stringr)
 library(caret)
 library(leaps)
 library(modelr)
+library(performance)
+library(see)
 ```
 
 ## Data Sources
@@ -313,6 +315,7 @@ The MLR model is $sleep\_hour=8.03-0.30I(gender = male)-0.31I(race = Non-Hispani
 ```{r}
 par(mfrow = c(2,2))
 plot(lmraw, cex.lab = 1)
+
 ```
 
 ### test model
