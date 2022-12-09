@@ -85,7 +85,8 @@ sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
                                sleepy_freq==2 ~ "2-4 per month",
                                sleepy_freq==3 ~ "5-15 per month",
                                sleepy_freq==4 ~ "16-30 per month",
-                               ))
+                               ))%>% 
+  mutate(ave_slp_hr = (5*weekday_slp_hr + 2*weekend_slp_hr)/7)
 
 ```
 
