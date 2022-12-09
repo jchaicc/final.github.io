@@ -13,19 +13,17 @@ library(tidyverse)
 library(viridis)
 library(plotly)
 library(shinyWidgets)
+library(shinysurveys)
+library(shinydashboard)
+
 ```
 
 
-
-
-## Column {data-width="500"}
-
-### Questionnaire
-
 ```{r}
-ui <- fluidPage(
-  titlePanel("Sleep Quality Scale (SQS)"),
-  sidebarLayout(
+
+  ui <- fluidPage(table = "SQS",
+    titlePanel("Sleep Quality Scale (SQS)"),
+    sidebarLayout(
     sidebarPanel(
       style = "height: 90vh; overflow-y: auto;", 
       h4("The following survey is to know the quality of sleep you had for the last one month. Read the questions and check the closest answer."),
@@ -33,179 +31,176 @@ ui <- fluidPage(
       tags$p("2: 1-2 times a week"),
       tags$p("3: 3-5 times a week"),
       tags$p("4: 6-7 times a week"),
-      tags$hr(),
-      br(),
-      selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I have difficulty falling asleep."),
-  choices = c(1,2,3,4)),
-      br(),
-      selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I fall into a deep sleep."),
-  choices = c(1,2,3,4)),
-      br(),
-      selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I wake up while sleeping."),
-  choices = c(1,2,3,4)),
-      br(),
-      selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I have difficulty getting back to sleep once I wake up in middle of the night."),
-  choices = c(1,2,3,4)),
-      br(),
-      selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I wake up easily because of noise."),
-  choices = c(1,2,3,4)),
-      br(),
-      selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I toss and turn."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I never go back to sleep after awakening during sleep."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I feel refreshed after sleep."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I feel unlikely to sleep after sleep."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep gives me headaches."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes me irritated."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I would like to sleep more after waking up."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("My sleep hours are enough."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes me lose my appetite."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes hard for me to think."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I feel vigorous after sleep."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes me lose interest in work or others."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("My fatigue is relieved after sleep."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep causes me to make mistakes at work"),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I am satisfied with my sleep."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes me forget things more easily"),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes it hard to concentrate at work."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Sleepiness interferes wity my daily life."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes me lose desire in all things"),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I have difficulty getting out of bed."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes me easily tired at work"),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("I have a clear head after sleep."),
-  choices = c(1,2,3,4)),
-  br(),
-  selectInput(
-  "Sleep Quality Scale", 
-  label = h3("Poor sleep makes my life painful."),
-  choices = c(1,2,3,4))
-    ),
-    
+      
+    numericInput("s1", "I have difficulty falling asleep.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s2", "I fall into a deep sleep.",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s3", "I wake up while sleeping.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s4", "I have difficulty getting back to sleep once I wake up in middle of the night.",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s5", "I wake up easily because of noise.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s6", "I toss and turn.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s7","I never go back to sleep after awakening during sleep.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s8", "I don't feel refreshed after sleep.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s9", "I feel unlikely to sleep after sleep.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s10", "Poor sleep gives me headaches.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s11", "Poor sleep makes me irritated.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s12", "I would like to sleep more after waking up.",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s13", "My sleep hours are not enough.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s14", "Poor sleep makes me lose my appetite.",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s15", "Poor sleep makes hard for me to think.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s16", "I don't feel vigorous after sleep.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s17", "Poor sleep makes me lose interest in work or others.",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s18", "My fatigue is not relieved after sleep.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s19", "Poor sleep causes me to make mistakes at work",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s20", "I am not satisfied with my sleep.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s21", "Poor sleep makes me forget things more easily",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s22", "Poor sleep makes it hard to concentrate at work.",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s23", "Sleepiness interferes wity my daily life.",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s24","I have difficulty getting out of bed.",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s25", "Poor sleep makes me easily tired at work",
+                    min = 1, max = 4,
+                    value = 1),
+     sliderInput("s26", "I don't have a clear head after sleep.",
+                    min = 1, max = 4,
+                    value = 1),
+    sliderInput("s27", "Poor sleep makes my life painful.",
+                    min = 1, max = 4,
+                    value = 1),
+        actionButton("submit", "Submit")
+        
+      ),
     mainPanel(
-      plotOutput("distPlot")
-    )
-    
-  )
-)
-server <- renderUI({
-   selectizeInput("Please answer the questions", c(1,2,3,4)) 
-  })
-shinyApp(ui = ui, server = server)
-
-
+     textOutput("yoursqs"),
+      textOutput("txtOutput"),
+      textOutput("he"),
+     textOutput("she"),
+     textOutput("it")
+    )))
+ 
 
 ```
 
-## Column {data-width="500"}
 
-### Suggestion
-1. Not only can taking brisk daily walks help you lose weight, but they will also help you sleep better at night. Melatonin and other naturally occurring sleep chemicals work better when exercised. According to a study published in the journal Sleep, postmenopausal women who worked out for roughly three and a half hours a week had an easier time falling asleep than those who worked out less frequently. Just be mindful of when you exercise. Too soon before bedtime exercise might be stimulating. Exercise in the morning that exposes you to bright light will support the body's innate circadian rhythm.
+
+```{r}
+server = function(input,output,session) {
+  sliderValues <- reactive({
+   
+    
+  })
+
+ observeEvent(input$submit, {
+   output$yoursqs = renderText({"Your Sleeping Qality Score is: " })
+   output$txtOutput <- renderPrint({
+      input$s1+input$s2+input$s3+input$s4+input$s5+input$s6+input$s7+input$s8+input$s9+input$s10+input$s11+input$s12+input$s13+input$s14+input$s15+input$s16+input$s17+input$s18+input$s19+input$s20+input$s21+input$s22+input$s23+input$s24+input$s25+input$s26+input$s27
+    })
+   if (input$s1+input$s2+input$s3+input$s4+input$s5+input$s6+input$s7+input$s8+input$s9+input$s10+input$s11+input$s12+input$s13+input$s14+input$s15+input$s16+input$s17+input$s18+input$s19+input$s20+input$s21+input$s22+input$s23+input$s24+input$s25+input$s26+input$s27 <40){
+    output$he <- renderText({
+     "1. Not only can taking brisk daily walks help you lose weight, but they will also help you sleep better at night. Melatonin and other naturally occurring sleep chemicals work better when exercised. According to a study published in the journal Sleep, postmenopausal women who worked out for roughly three and a half hours a week had an easier time falling asleep than those who worked out less frequently. Just be mindful of when you exercise. Too soon before bedtime exercise might be stimulating. Exercise in the morning that exposes you to bright light will support the body's innate circadian rhythm.
+
 
 2. Avoid using your bed as an office to take calls and reply to emails. Do not watch late-night television there either. Instead of a trigger for wakefulness, the bed should encourage sleeping. Sleep and sexual activity belong in your bed.
 
+
 3. There are other possible distractions in your bedroom besides television. The environment can also impact how well you sleep. Make sure your bedroom is as cozy as you can make it. Ideal conditions include a calm, dark, and cool setting. These all aid in the start of sleep.
+"})}
+   else if (input$s1+input$s2+input$s3+input$s4+input$s5+input$s6+input$s7+input$s8+input$s9+input$s10+input$s11+input$s12+input$s13+input$s14+input$s15+input$s16+input$s17+input$s18+input$s19+input$s20+input$s21+input$s22+input$s23+input$s24+input$s25+input$s26+input$s27 <60 &input$s1+input$s2+input$s3+input$s4+input$s5+input$s6+input$s7+input$s8+input$s9+input$s10+input$s11+input$s12+input$s13+input$s14+input$s15+input$s16+input$s17+input$s18+input$s19+input$s20+input$s21+input$s22+input$s23+input$s24+input$s25+input$s26+input$s27 >40){
+     output$she<- renderText({"
+1. Not only can taking brisk daily walks help you lose weight, but they will also help you sleep better at night. Melatonin and other naturally occurring sleep chemicals work better when exercised. According to a study published in the journal Sleep, postmenopausal women who worked out for roughly three and a half hours a week had an easier time falling asleep than those who worked out less frequently. Just be mindful of when you exercise. Too soon before bedtime exercise might be stimulating. Exercise in the morning that exposes you to bright light will support the body's innate circadian rhythm.
+
+
+2. Avoid using your bed as an office to take calls and reply to emails. Do not watch late-night television there either. Instead of a trigger for wakefulness, the bed should encourage sleeping. Sleep and sexual activity belong in your bed.
+
+
+3. There are other possible distractions in your bedroom besides television. The environment can also impact how well you sleep. Make sure your bedroom is as cozy as you can make it. Ideal conditions include a calm, dark, and cool setting. These all aid in the start of sleep.
+
 
 4. When you were a youngster, your mother used to tell you a bedtime tale and tuck you into bed every night to help you fall asleep. A series of sleep rituals can have a similar impact even in adults. Rituals aid in alerting the body and mind that bedtime is approaching. savor a warm milk glass. Take a shower. As an alternative, try relaxing music.
 
+
 5. Although an overstuffed stomach might also keep you awake, a grumbling stomach can. Avoid eating a substantial meal two to three hours before bed. Eat a modest, healthy snack (such an apple with a slice of cheese or a few whole-wheat crackers) if you're feeling peckish right before bed to keep you full until breakfast.
 
-6. If you do eat something before going to bed, it shouldn't include wine or chocolate. Caffeine is a stimulant found in chocolate. Unexpectedly, alcohol also has the same result. Although it temporarily induces sleep, it actually acts as a stimulant and prevents sound sleep at night. Avoid anything spicy or acidic, which might cause heartburn, such as citrus fruits and liquids.
 
+6. If you do eat something before going to bed, it shouldn't include wine or chocolate. Caffeine is a stimulant found in chocolate. Unexpectedly, alcohol also has the same result. Although it temporarily induces sleep, it actually acts as a stimulant and prevents sound sleep at night. Avoid anything spicy or acidic, which might cause heartburn, such as citrus fruits and liquids."})
+   }
+   else{
+     output$it = renderText({"
+1. Not only can taking brisk daily walks help you lose weight, but they will also help you sleep better at night. Melatonin and other naturally occurring sleep chemicals work better when exercised. According to a study published in the journal Sleep, postmenopausal women who worked out for roughly three and a half hours a week had an easier time falling asleep than those who worked out less frequently. Just be mindful of when you exercise. Too soon before bedtime exercise might be stimulating. Exercise in the morning that exposes you to bright light will support the body's innate circadian rhythm.
+
+
+2. Avoid using your bed as an office to take calls and reply to emails. Do not watch late-night television there either. Instead of a trigger for wakefulness, the bed should encourage sleeping. Sleep and sexual activity belong in your bed.
+
+
+3. There are other possible distractions in your bedroom besides television. The environment can also impact how well you sleep. Make sure your bedroom is as cozy as you can make it. Ideal conditions include a calm, dark, and cool setting. These all aid in the start of sleep.
+
+
+4. When you were a youngster, your mother used to tell you a bedtime tale and tuck you into bed every night to help you fall asleep. A series of sleep rituals can have a similar impact even in adults. Rituals aid in alerting the body and mind that bedtime is approaching. savor a warm milk glass. Take a shower. As an alternative, try relaxing music.
+
+
+5. Although an overstuffed stomach might also keep you awake, a grumbling stomach can. Avoid eating a substantial meal two to three hours before bed. Eat a modest, healthy snack (such an apple with a slice of cheese or a few whole-wheat crackers) if you're feeling peckish right before bed to keep you full until breakfast.
+
+
+6. If you do eat something before going to bed, it shouldn't include wine or chocolate. Caffeine is a stimulant found in chocolate. Unexpectedly, alcohol also has the same result. Although it temporarily induces sleep, it actually acts as a stimulant and prevents sound sleep at night. Avoid anything spicy or acidic, which might cause heartburn, such as citrus fruits and liquids.
+       
 7. Your task list is a mile long and the bills are mounting. Evenings often bring problems from the day to the surface. A stimulus is stress. The fight-or-flight hormones are triggered, which interfere with sleep. Allow yourself enough time to unwind before bed. Learning how to relax can help you sleep better and feel less anxious during the day. Try deep breathing techniques to unwind. Take a long, steady breath in, and then let it out.
 
-8. Three common sleep disorders, including restless legs syndrome, sleep apnea, and gastroesophageal reflux disease or GERD, can cause snoring, a burning discomfort in the chest, throat, or stomach. Visit your doctor for a diagnosis if these symptoms are keeping you up at night or making you tired throughout the day.
+8. Three common sleep disorders, including restless legs syndrome, sleep apnea, and gastroesophageal reflux disease or GERD, can cause snoring, a burning discomfort in the chest, throat, or stomach. Visit your doctor for a diagnosis if these symptoms are keeping you up at night or making you tired throughout the day."})
+   }
+    
+})
+}
+
+ 
+
+shinyApp(ui = ui, server = server)        
+    
+```
+
+
