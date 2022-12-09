@@ -9,12 +9,12 @@ runtime: shiny
 
 ```{r}
 library(shiny)
-library(tidyverse)
 library(viridis)
 library(plotly)
 library(shinyWidgets)
 library(shinysurveys)
 library(shinydashboard)
+library(tidyverse)
 
 ```
 
