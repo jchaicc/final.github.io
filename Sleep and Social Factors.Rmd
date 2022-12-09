@@ -159,7 +159,7 @@ We first want to get the distribution of sleeping hours less than 7 hours across
 
 ```{r}
  edu_plot=slp_df %>%
-  filter(weekday_slp_hr<7)%>%
+  filter(ave_slp_hr<7)%>%
   group_by(education_level,gender) %>%
   summarize(ave_sleep=mean((weekday_slp_hr*5+weekend_slp_hr*2)/7)) %>% 
   ungroup() %>%
@@ -187,7 +187,7 @@ A heat map was made to visualize sleeping hours less than 7 hours among differen
 
 ```{r}
 race_plot=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   mutate(sleep_ave=(weekday_slp_hr*5+weekend_slp_hr*2)/7) %>%
   group_by(race,sleep_ave) %>%
   summarise(obs=n()) %>%
@@ -204,7 +204,7 @@ The below plot demonstrates the gender gap in the patients for different races. 
 
 ```{r}
 gender_plot=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   group_by(race,education_level) %>%
   summarize(total_f=sum(gender=="female"),
             total_m=sum(gender=="male"),
@@ -222,7 +222,7 @@ We can observe that people who are in poverty tend to have less sleeping hours t
 
 ```{r,fig.width=10,fig.asp=.6}
 income_df=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
                            income_poverty_ratio < 1~ "in poverty",
                            income_poverty_ratio == 1~ "in poverty")) %>%
@@ -240,7 +240,7 @@ income_df=slp_df %>%
   
 box_plot=
   slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
                            income_poverty_ratio < 1~ "in poverty",
                            income_poverty_ratio == 1~ "in poverty")) %>%
@@ -261,11 +261,11 @@ comb+plot_annotation(
 ```
 
 ## Age
-A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.66 hours per day.
+A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day.
 
 ```{r}
 age_group= slp_df%>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   mutate(age_gp=case_when(age>=20 & age<=30 ~ "20-30",
                           age>=31 &age <=40 ~ "31-40",
                           age>=41 &age<=50 ~ "41-50",
