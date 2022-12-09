@@ -249,7 +249,7 @@ box_plot=
   ggplot(aes(x=ip_stat,y=sleep_ave))+geom_boxplot(aes(fill = ip_stat), alpha = 0.3)+
   geom_hline(aes(yintercept=median(sleep_ave),
             color="red", linetype="dashed"))+
-  geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")+labs(
+  geom_text(aes(0, median(ave_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")+labs(
     x = " Poverty Status",
     y = "Average Sleeping Hours"
     )
