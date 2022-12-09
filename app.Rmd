@@ -15,6 +15,7 @@ library(plotly)
 library(shinyWidgets)
 library(shinysurveys)
 library(shinydashboard)
+library(ggplot2)
 
 ```
 
