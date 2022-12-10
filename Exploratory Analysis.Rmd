@@ -1,7 +1,11 @@
 ---
 title: "Exploratory Analysis"
-output: html_document
-date: "2022-11-21"
+output:
+  html_document:
+    toc: True
+    toc_float: True
+    code_folding: hide
+          
 ---
 
 ```{r setup, include=FALSE}
