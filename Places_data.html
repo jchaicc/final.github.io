@@ -304,8 +304,30 @@ insufficient sleep and physiological disease</h1>
 </div>
 
 
-<div id="interested-physiological-risk-factors" class="section level3">
-<h3>Interested physiological risk factors</h3>
+<div id="data-sources" class="section level1">
+<h1>Data Sources</h1>
+<ul>
+<li>This data set is retrieved from Centers for Disease Control and
+Prevention, National Center for Chronic Disease Prevention and Health
+Promotion, Division of Population Health updated December 6, 2022, named
+<a
+href="https://chronicdata.cdc.gov/500-Cities-Places/PLACES-County-Data-GIS-Friendly-Format-2022-releas/i46a-9kgh">PLACES</a>.</li>
+</ul>
+</div>
+<div id="data-cleaning" class="section level1">
+<h1>Data Cleaning</h1>
+<ul>
+<li>We have extracted 11 physiological dieases to estimate the
+prevalence of insufficient sleep along with the identification variables
+including country name, population, and states. While all of the suffix
+of the raw varieties are changed, we finally keep all of the crude
+estimate of each risk factors as our predictors.</li>
+</ul>
+</div>
+<div id="data-description" class="section level1">
+<h1>Data Description</h1>
+<div id="interested-physiological-risk-factors" class="section level2">
+<h2>Interested physiological risk factors</h2>
 <p><code>ARTHRITIS</code>: Arthritis among adults aged &gt;=18
 Years<br />
 <code>BPHIGH</code>: High blood pressure among adults aged &gt;=18
@@ -327,11 +349,14 @@ who have been screened in the past 5 Years<br />
 Years<br />
 <code>OBESITY</code>: Obesity among adults aged &gt;=18 Years</p>
 </div>
-<div id="outcome-measured" class="section level3">
-<h3>Outcome measured</h3>
+<div id="outcome-measured" class="section level2">
+<h2>Outcome measured</h2>
 <p><code>SLEEP</code>: Sleeping less than 7 hours among adults aged
 &gt;=18 Years</p>
 </div>
+</div>
+<div id="exploratory-analysis" class="section level1">
+<h1>Exploratory Analysis</h1>
 <div id="select-interested-physiological-diseases-and-sample-state"
 class="section level2">
 <h2>Select interested physiological diseases and sample state</h2>
@@ -397,13 +422,13 @@ data_df %&gt;%
 represents a summarized estimate of a district. We select New York state
 as our sample data to build the model as it has third largest population
 with sufficient amount of sample.</p>
-<div id="extract-ny-state-as-target-sample" class="section level3">
-<h3>Extract NY state as target sample</h3>
+</div>
+<div id="extract-ny-state-as-target-sample" class="section level2">
+<h2>Extract NY state as target sample</h2>
 <pre class="r"><code>ny_data = data_df %&gt;% 
   filter(state_abbr == &#39;NY&#39;) %&gt;% 
   select(ends_with(&#39;prev&#39;)) %&gt;% 
   rename_with(~str_remove(., &#39;_crude_prev&#39;))</code></pre>
-</div>
 </div>
 <div id="show-the-statistics-of-risk-factors-prevalence"
 class="section level2">
@@ -442,6 +467,9 @@ ny_data %&gt;% select(-sleep) %&gt;% cor() %&gt;% corrplot(
   insig = &quot;blank&quot;, diag=FALSE, number.cex = .5)</code></pre>
 <p><img src="Places_data_files/figure-html/unnamed-chunk-3-1.png" width="90%" /></p>
 </div>
+</div>
+<div id="statistical-analysis" class="section level1">
+<h1>Statistical Analysis</h1>
 <div id="build-model-with-elastic-net" class="section level2">
 <h2>Build model with elastic net</h2>
 <p>Since some of the variables have relatively high correlation with
@@ -729,6 +757,7 @@ adults suffered from cancer and kidney diseases are more likely to have
 challenged body functions, which force them to spend more time on
 sleep/lay in bed for recovery and thus lower the prevalence of short
 sleep.</p>
+</div>
 </div>
 
 
