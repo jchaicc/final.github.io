@@ -247,14 +247,14 @@ age_group
 
 ```
 
+# Statistical Analysis
 ## Models
-### tidy data
+### Data
 ```{r}
 df_mod = slp_df %>% 
   select(gender, age, race, education_level, income_poverty_ratio, trouble_slp, sleepy_freq, ave_slp_hr)
 ```
 
-### split data
 ```{r}
 set.seed(1)
 rt = 0.8
@@ -265,30 +265,48 @@ dim(data_train)
 dim(data_test)
 ```
 
-### initial MLR and Logistic models
+### Multiple Linear Regression (MLR) 
 ```{r}
-lmraw = lm(ave_slp_hr ~ ., data = df_mod)
+lmraw = lm(ave_slp_hr ~ ., data = data_train)
 summary(lmraw)
 ```
 
-The MLR model is $sleep\_hour=8.03-0.30I(gender = male)-0.31I(race = Non-Hispanic Black)-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)-0.05income_poverty_ratio-0.13trouble_slpyes+0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)$
+The model driven by multiple linear regression is $sleep\_hour=8.03-0.30I(gender = male)-0.31I(race = Non-Hispanic Black)-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)-0.05income_poverty_ratio-0.13trouble_slpyes+0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)$. We find it strongly relating to 
 
 ```{r}
 par(mfrow = c(2,2))
 plot(lmraw, cex.lab = 1)
-```
 
-### test model
-```{r}
-set.seed(1)
-train = trainControl(method = "cv", number = 100)
-model_caret = train(ave_slp_hr ~ ., data = df_mod, method = 'lm', na.action = na.pass)
-model_caret$finalModel
 ```
 
 ```{r}
-model_caret
+step1 = step(lmraw, direction = 'both', trace=0)
+summary(step1)
 ```
+
+The model after stepwise both direction is $sleep\_hour=8.04-0.30I(gender = male)-0.30I(race = Non-Hispanic Black)+ 0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)-0.05income_poverty_ratio-0.13trouble_slpyes-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)$
+
+#### Testing : Cross-Validation
+```{r}
+# set.seed(1)
+# train = trainControl(method = "cv", number = 100)
+# model_caret = train(ave_slp_hr ~ ., data = data_train, method = 'lm', na.action = na.pass)
+# model_caret$finalModel
+# model_caret
+```
+
+```{r}
+raw_pred = predict(lmraw, newdata = data_test)
+
+dlm =  data.frame(
+    Error = c("MSE", "MAE", "RMSE"), 
+    Value = c(mean((data_test$ave_slp_hr - raw_pred)^2),
+              caret::MAE(data_test$ave_slp_hr, raw_pred), 
+              caret::RMSE(data_test$ave_slp_hr, raw_pred)))
+
+knitr::kable(dlm)
+```
+
 
 ```{r}
 # raw_pred = predict(lmraw, newdata = data_test)
@@ -299,11 +317,59 @@ model_caret
 # segments(obs, pred, obs, pred_res)
 ```
 
+### logistic
 ```{r}
-slp_suf_df = df_mod %>% 
-  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0))
-glmraw = glm(sufficient_slp ~ ., data = slp_suf_df, family = binomial)
+data_logtrain = data_train %>% 
+  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0)) %>% 
+  select(-ave_slp_hr)
+glmraw = glm(sufficient_slp ~ ., data = data_logtrain, family = binomial)
 summary(glmraw)
+```
+
+The first logistic model shows the significant predictors are gender, race, education_level, trouble_types, and sleep_freq.
+
+```{r}
+step2 = step(glmraw, direction = 'both', trace=0)
+summary(step2)
+```
+
+The model after stepwise method shows the significant predictors are still gender, race, education_level, trouble_types, and sleep_freq, but the estimated coefficients change.
+
+```{r}
+anova(object = glmraw,test = "Chisq")
+```
+
+We did model significance test, ANOVA, and determine the significant predictors for logistic regression model are the same from stepwise results.
+
+#### testing
+```{r}
+data_logtest = data_test %>% 
+  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 'sufficient', 'insufficient')) %>% 
+  select(-ave_slp_hr)
+prob2 = predict(object = glmraw, newdata = data_logtest,type = "response")
+pred2 = ifelse(prob2 >= 0.5, 'sufficient', 'insufficient')
+pred2 = factor(pred2, levels = c('insufficient', 'sufficient'), order=TRUE)
+tablog = table(data_logtest$sufficient_slp, pred2)
+tablog
+```
+
+From the table, we find:
+1. the logistic model works well on sufficient sleep. $\frac{1166}{1166+5} = 99.57\%$
+2. the logistic model works not well on sufficient sleep. $\frac{6}{6+356} =  0.02\%$
+3. the total accuracy of the model prediction is $\frac{1166+6}{1166+5+6+356} = 76.45\%$
+
+#### ROC-AUC curve
+```{r}
+roc_curve = roc(data_logtest$sufficient_slp, prob2)
+names(roc_curve)
+x = 1-roc_curve$specificities
+y = roc_curve$sensitivities
+
+ggplot(data = NULL, aes(x = x, y = y)) + 
+  geom_line(colour = 'red') + 
+  geom_abline(intercept = 0, slope = 1) +
+  annotate('text', x = 0.5, y = 0.5, label =paste('AUC=',round(roc_curve$auc,2))) +
+  labs(x = '1-specificities',y = 'sensitivities', title = 'ROC Curve')
 ```
 
 ```{r}
@@ -311,24 +377,20 @@ summary(glmraw)
 # plot(glmraw, cex.lab = 1)
 ```
 
-### refine linear model using stepwise method 
 ```{r}
-lm0 = lm(ave_slp_hr ~ 1, data = df_mod)
-lmstep = step(lm0, direction = 'both', scope=formula(lmraw), trace=0)
-summary(lmstep)
+# lm0 = lm(ave_slp_hr ~ 1, data = df_mod)
+# lmstep = step(lm0, direction = 'both', scope=formula(lmraw), trace=0)
+# summary(lmstep)
 ```
 
-The model after stepwise both direction is $sleep\_hour=8.04-0.30I(gender = male)-0.30I(race = Non-Hispanic Black)+ 0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)-0.05income_poverty_ratio-0.13trouble_slpyes-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)$
-
-### adjust R2 Cp
+#### adjust R2 Cp
 ```{r}
 # par(mfrow = c(1,1))
 # leaps = regsubsets(ave_slp_hr ~ ., data = df_mod, nbest=20)
 # plot(leaps, scale = 'adjr2')
 ```
 
-### xgboost
-#### data preparation
+### xgboost (compare with mlr)
 ```{r}
 clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
 dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = df_mod)
@@ -382,16 +444,25 @@ print(xgb1)
 
 #### model prediction
 ```{r}
-pred_y = predict(xgb1, dtest)
+# pred_y = predict(xgb1, dtest)
+# 
+# mse = mean((data_testy$label - pred_y)^2)
+# mae = caret::MAE(data_testy$label, pred_y)
+# rmse = caret::RMSE(data_testy$label, pred_y)
+# 
+# cat("MSE: ", mse, "MAE: ", mae, " RMSE: ", rmse)
+
+xg_pred = predict(xgb1, dtest)
+
+dlm =  data.frame(
+    Error = c("MSE", "MAE", "RMSE"), 
+    Value = c(mean((data_testy$label - xg_pred)^2),
+              caret::MAE(data_testy$label, xg_pred), 
+              caret::RMSE(data_testy$label, xg_pred)))
+
+knitr::kable(dlm)
 ```
 
-```{r}
-mse = mean((data_testy$label - pred_y)^2)
-mae = caret::MAE(data_testy$label, pred_y)
-rmse = caret::RMSE(data_testy$label, pred_y)
-
-cat("MSE: ", mse, "MAE: ", mae, " RMSE: ", rmse)
-```
 
 ```{r}
 par(mfrow = c(1,1))
@@ -405,5 +476,129 @@ lines(x, pred_y, col = "blue", type = "l")
 ```{r}
 names = dimnames(as.matrix(data_testx))[[2]]
 importance_matrix = xgb.importance(names, model = xgb1)
+xgb.plot.importance(importance_matrix[1:10,])
+```
+
+### xgboost (compare with logit)
+```{r}
+clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
+dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = df_mod)
+slp_oh = as.data.frame(predict(dums, newdata = df_mod))
+slp_df_new =cbind(df_mod[,-c(which(colnames(df_mod) %in% clafeats))],slp_oh) %>% 
+  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0)) %>% 
+  select(-ave_slp_hr, sufficient_slp)
+```
+
+```{r}
+set.seed(1)
+rtxg = 0.8
+subxg = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
+data_trainxg = slp_df_new[sub,]
+data_testxg = slp_df_new[-sub,]
+dim(data_trainxg)
+dim(data_testxg)
+```
+
+```{r}
+data_trainx = data_trainxg[,-25]
+data_trainy = data.frame(data_trainxg[,25])
+names(data_trainy) = c('label')
+data_testx = data_testxg[,-25]
+data_testy = data.frame(data_testxg[,25])
+names(data_testy) = c('label')
+```
+
+```{r}
+# train_slp = list(data=data_trainx[,-1],label=data_trainy$label) 
+# test_slp = list(data=data_testx[,-1],label=data_testy$label) 
+dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
+dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
+```
+
+#### model training
+```{r}
+# xgb0 =  xgboost(
+#     data = dtrain,
+#     nrounds = 2000,
+#     objective = "reg:squarederror",
+#     early_stopping_rounds = 3,
+#     max_depth = 6,
+#     eta = .25
+#   )   
+# print(xgb0)
+```
+
+```{r}
+xgb2 = xgboost(data = dtrain, max.depth = 10, nrounds = 500)
+print(xgb2)
+```
+
+#### model prediction
+```{r}
+# pred_y = predict(xgb1, dtest)
+# 
+# mse = mean((data_testy$label - pred_y)^2)
+# mae = caret::MAE(data_testy$label, pred_y)
+# rmse = caret::RMSE(data_testy$label, pred_y)
+# 
+# cat("MSE: ", mse, "MAE: ", mae, " RMSE: ", rmse)
+
+xg_pred = predict(xgb2, dtest)
+
+dlm =  data.frame(
+    Error = c("MSE", "MAE", "RMSE"), 
+    Value = c(mean((data_testy$label - xg_pred)^2),
+              caret::MAE(data_testy$label, xg_pred), 
+              caret::RMSE(data_testy$label, xg_pred)))
+
+knitr::kable(dlm)
+```
+
+
+#### testing
+```{r}
+# data_logtest = data_test %>% 
+#   mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 'sufficient', 'insufficient')) %>% 
+#   select(-ave_slp_hr)
+# prob2 = predict(object = glmraw, newdata = data_logtest,type = "response")
+# pred2 = ifelse(prob2 >= 0.5, 'sufficient', 'insufficient')
+# pred2 = factor(pred2, levels = c('insufficient', 'sufficient'), order=TRUE)
+# tablog = table(data_logtest$sufficient_slp, pred2)
+# tablog
+```
+
+#### ROC-AUC curve
+```{r}
+pre_xgb = round(predict(xgb2,newdata = dtest))
+table(data_testy$label,pre_xgb,dnn=c("true","pre"))
+```
+
+From the table, we find:
+1. the logistic model works well on sufficient sleep. $\frac{966}{966+205} = 82.50\%$
+2. the logistic model works not well on sufficient sleep. $\frac{81}{81+281} =  22.38\%$
+3. the total accuracy of the model prediction is $\frac{81+966}{81+281+966+205} = 68.30\%$
+
+```{r}
+# xgboost_roc <- roc(data_testy$label,as.numeric(pre_xgb))
+# plot(xgboost_roc, print.auc=TRUE, auc.polygon=TRUE, 
+#   grid=c(0.1, 0.2),grid.col=c("green", "red"), 
+#   max.auc.polygon=TRUE,auc.polygon.col="skyblue", 
+#   print.thres=TRUE,main='ROC curve')
+
+roc_curve = roc(data_testy$label, pre_xgb)
+names(roc_curve)
+x = 1-roc_curve$specificities
+y = roc_curve$sensitivities
+
+ggplot(data = NULL, aes(x = x, y = y)) + 
+  geom_line(colour = 'red') + 
+  geom_abline(intercept = 0, slope = 1) +
+  annotate('text', x = 0.5, y = 0.5, label =paste('AUC=',round(roc_curve$auc,2))) +
+  labs(x = '1-specificities',y = 'sensitivities', title = 'ROC Curve')
+```
+
+```{r}
+names = dimnames(as.matrix(data_testx))[[2]]
+importance_matrix = xgb.importance(names, model = xgb2)
 xgb.plot.importance(importance_matrix[1:10,])
 ```
