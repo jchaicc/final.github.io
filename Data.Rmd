@@ -11,8 +11,21 @@ output:
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(patchwork)
 library(knitr)
 library(dplyr)
+library(gganimate)
+library(gifski)
+library(png)
+library(plotly)
+library(ggridges)
+library(xgboost)
+library(readr)
+library(stringr)
+library(caret)
+library(leaps)
+library(modelr)
+library(pROC)
 knitr::opts_chunk$set(
   fig.height = 6,
   fig.width = 8,
