@@ -31,7 +31,6 @@ library(caret)
 library(leaps)
 library(modelr)
 library(pROC)
-library(knitr)
 ```
 
 ## Data Sources
