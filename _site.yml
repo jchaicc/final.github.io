@@ -4,11 +4,11 @@ navbar:
   title: "Home"
   right:
     - text: "Sleep & Diseases"
-      href: References.html
+      href: Places_data.html
     - text: "Sleep & Social factors"
-      href: References.html
+      href: Sleep-and-Social-Factors.html
     - text: "Survey about sleep"
-      href: References.html
+      href: app.html
     - icon: fa-envelope fa-lg
       href: mailto:<wz2631@cumc.columbia.edu>
     - icon: fa-github fa-lg
