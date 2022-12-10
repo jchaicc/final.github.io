@@ -49,7 +49,7 @@ demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
   janitor::clean_names() %>%
   select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
   drop_na() %>%
-  rename(gender=riagendr,
+  dplyr::rename(gender=riagendr,
          age=ridageyr,
          race=ridreth3,
          education_level=dmdeduc2,
