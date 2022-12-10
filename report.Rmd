@@ -55,6 +55,10 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 Adults should sleep 7 or more hours per night on a regular basis to promote optimal health.
 However, more than one-third of the US population gets less than the recommended amount of sleep. Sleep is a necessary physiological process for individuals, interacting with several economic, social and physical factors, influencing risks of multiple health problems. Therefore, based on NHANES dataset, we focus on sleep-related public health issues to carry out our research, hoping to popularize the significance of adequate and healthy sleep, arousing the public's health awareness of improving sleep quality and obtaining adequate sleep duration. We also want to visualize and discuss the biological, economic and social factors interacting with sleep, informing the public and healthcare providers on the importance of advocating public policy to promoting the nowadays sleep situation and overall public health.
 
+#Related Work
+According to the website of American Academy of Sleep Medicine (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/), seven or more hours of sleep per night is  a health necessity for adults. There are also thought-provoking articles in this website discussing the influences of social factors on the sleep of Americans, like how financial and political worries make people difficult to fall asleep(https://aasm.org/politics-are-keeping-americans-up-at-night-nearly-60-of-adults-struggle-to-fall-asleep-due-to-political-worries/).
+Inspired by these works, we identified the main topics of our website to explore the biological, economic and social factors interacting with sleep, as well as collect and analyze more sleep data through the questionnaire page of our website.
+
 # Initial Questions and Planned Analysis
 
  1. What is the correlation between insufficient sleep and physiological disease?
