@@ -10,7 +10,7 @@ library(glmnet)
 library(modelr)
 library(corrplot)
 library(knitr)
-library(dplyr)
+require(dplyr)
 knitr::opts_chunk$set(
 	echo = TRUE,
 	warning = FALSE,
