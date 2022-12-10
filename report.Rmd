@@ -6,11 +6,11 @@ output:
 ---
 ```{r setup, include=FALSE}
 library(tidyverse)
-library(dplyr)
 library(glmnet)
 library(modelr)
 library(corrplot)
 library(knitr)
+library(dplyr)
 knitr::opts_chunk$set(
 	echo = TRUE,
 	warning = FALSE,
