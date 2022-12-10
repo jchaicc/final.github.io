@@ -500,7 +500,7 @@ A bar plot was made to see the distribution of average sleeping hours less than 
 <img src="plots/age.jpg" height="600px" width="1000px" />
 </center>
 
-## Statistical Analysis
+# Statistical Analysis
 ## Multiple Linear Regression (MLR) 
 ### Data
 ```{r}
@@ -514,17 +514,17 @@ rt = 0.8
 sub = sample(1:nrow(df_mod), round(nrow(df_mod)*rt))
 data_train = df_mod[sub,]
 data_test = df_mod[-sub,]
-dim(data_train)
-dim(data_test)
 ```
 
 ### Modeling
 ```{r}
 lmraw = lm(ave_slp_hr ~ ., data = data_train)
-summary(lmraw)
 ```
 
-The model driven by multiple linear regression is $sleep\_hour=8.09-0.31I(gender = male)-0.31I(race = Non-Hispanic Black)-0.22I(education_level = college graduate or above)-0.28I(education_level = college or AA degree)-0.05income_poverty_ratio-0.10trouble_slpyes+0.32I(sleepy_freq = 2-4 per month)+0.37I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce a month)$. We find it strongly relating to gender, trouble_types, income_poverty_ratio, and some levels in race, education_level and sleep frequency.
+The model driven by multiple linear regression is:
+$$\scriptsize
+sleep\_hour=8.09-0.31*I(gender = male)-0.31*I(race = Non-Hispanic Black)\\\scriptsize+0.32*I(sleepy_freq = 2-4 per month)+0.37*I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce month)\\\scriptsize-0.05*income_poverty_ratio-0.10*trouble_slpyes -0.22*I(education_level = college graduate or above)-0.28*I(education_level = college or AA degree).$$ 
+We find it strongly relating to gender, trouble_types, income_poverty_ratio, and some levels in race, education_level and sleep frequency.
 
 ### Diagnostic plots
 ```{r}
@@ -540,10 +540,12 @@ Overall, the diagnostic plots indicates that all of the assumptions of MLR below
 ### MLR under stepwise
 ```{r}
 step1 = step(lmraw, direction = 'both', trace=0)
-summary(step1)
 ```
 
-The model after stepwise method is $sleep\_hour=8.10-0.31I(gender = male)-0.28I(race = Non-Hispanic Black)+ 0.32I(sleepy_freq = 2-4 per month)+0.37I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce a month)-0.05income_poverty_ratio-0.10trouble_slpyes-0.22I(education_level = college graduate or above)-0.28I(education_level = college or AA degree)$ We find it is nearly the same as previous multiple linear regression model.
+The model after stepwise method is: 
+$$\scriptsize
+sleep\_hour=8.10-0.31I(gender = male)-0.28I(race = Non-Hispanic Black) \\\scriptsize+ 0.32I(sleepy_freq = 2-4 per month)+0.37I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce a month)\\\scriptsize-0.05income_poverty_ratio-0.10trouble_slpyes-0.22I(education_level = college graduate or above)-0.28I(education_level = college or AA degree).$$
+We find it is nearly the same as previous multiple linear regression model.
 
 ### Testing
 ```{r}
@@ -566,7 +568,6 @@ data_logtrain = data_train %>%
   mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0)) %>% 
   select(-ave_slp_hr)
 glmraw = glm(sufficient_slp ~ ., data = data_logtrain, family = binomial)
-summary(glmraw)
 ```
 
 The first logistic model shows the significant predictors are gender, race, education_level, trouble_types, and sleep_freq.
@@ -596,124 +597,62 @@ tablog = table(data_logtest$sufficient_slp, pred2, dnn=c("true","pre"))
 tablog
 ```
 
-From the table, we find:
-1. the logistic model works well on sufficient sleep. $\frac{1166}{1166+5} = 99.57\%$
-2. the logistic model works not well on sufficient sleep. $\frac{6}{6+356} =  0.02\%$
+From the table, we find:\
+1. the logistic model works well on sufficient sleep, $\frac{1166}{1166+5} = 99.57\%$\
+2. the logistic model works not well on sufficient sleep, $\frac{6}{6+356} =  0.02\%$\
 3. the total accuracy of the model prediction is $\frac{1166+6}{1166+5+6+356} = 76.45\%$
 
-### XGBoost (Optimizing MLR)
-#### Data
+We find the model does not have the ability to predict insufficient sleep cases, and the extreme gap extreme gap of the prediction ability between sufficient sleep and insufficient sleep inspires us to optimize logistic regression model.
+
+## XGBoost
+Boosting is a well-known machine learning method, and we decide to use XGBoost algorithm to optimize the prediction ability based on the logistic objective.
+
+### Data
 ```{r}
 clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
 dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = df_mod)
 slp_oh = as.data.frame(predict(dums, newdata = df_mod))
-slp_df_new =cbind(df_mod[,-c(which(colnames(df_mod) %in% clafeats))],slp_oh)
-```
+slp_df_new =cbind(df_mod[,-c(which(colnames(df_mod) %in% clafeats))],slp_oh) %>% 
+  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0)) %>% 
+  select(-ave_slp_hr)
 
-```{r}
-set.seed(1)
+set.seed(123)
 rtxg = 0.8
 subxg = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
 data_trainxg = slp_df_new[sub,]
 data_testxg = slp_df_new[-sub,]
-```
 
-```{r}
-data_trainx = data_trainxg[,-3]
-data_trainy = data.frame(data_trainxg[,3])
-names(data_trainy) = c('label')
-data_testx = data_testxg[,-3]
-data_testy = data.frame(data_testxg[,3])
-names(data_testy) = c('label')
-```
-
-```{r}
-dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
-dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
-```
-
-#### Training
-```{r}
-xgb1 = xgboost(data=dtrain, booster = "gblinear", max_depth=5, eta = 0.1, nround = 300, objective = "reg:squarederror")
-```
-
-We choose the gblinear booster and reg:squarederror objective for training XGBoost model and comparing with MLR later.
-
-#### Testing
-```{r}
-xgbpred1 = predict(xgb1, dtest)
-
-dxg =  data.frame(
-    Error = c("MSE", "MAE", "RMSE"), 
-    Value = c(mean((data_testy$label - xgbpred1)^2),
-              caret::MAE(data_testy$label, xgbpred1), 
-              caret::RMSE(data_testy$label, xgbpred1)))
-
-knitr::kable(dxg)
-```
-
-We find the table above for XGBoost shows the similar statistical measurement results with the linear model. We claim XGBoost model using gblinear booster here does not simply work better than MLR model.
-
-```{r}
-xgb_imp1 = xgb.importance(feature_names = xgb1$feature_names, model = xgb1)
-xgb.ggplot.importance(xgb_imp1, top_n =10, n_clusters = 2)
-```
-
-The feature importance plot of XGBoost model indicates some levels of education_level and race factors are much important. Meanwhile, the result differs from MLR models as race:Mexican American and race:Non-Hispanic white are also important.
-
-### XGBoost (Optimizing Logistic)
-#### Data
-```{r}
-slp_df_new2 = slp_df_new %>% 
-  mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0)) %>% 
-  select(-ave_slp_hr)
-```
-
-```{r}
-set.seed(123)
-rtxg = 0.8
-subxg = sample(1:nrow(slp_df_new2), round(nrow(slp_df_new2)*rt))
-data_trainxg = slp_df_new2[sub,]
-data_testxg = slp_df_new2[-sub,]
-dim(data_trainxg)
-dim(data_testxg)
-```
-
-```{r}
 data_trainx = data_trainxg[,-25]
 data_trainy = data.frame(data_trainxg[,25])
 names(data_trainy) = c('label')
 data_testx = data_testxg[,-25]
 data_testy = data.frame(data_testxg[,25])
 names(data_testy) = c('label')
-```
 
-```{r}
 dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
 dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 ```
 
-#### Training
+### Training
 ```{r}
-xgb2 = xgboost(data = dtrain, booster = "gbtree", max.depth = 10, nround = 2000, objective = "binary:logistic")
-print(xgb2)
+xgb2 = xgboost(data = dtrain, booster = "gbtree", max_depth = 10, nround = 2000, objective = "binary:logistic", verbose = 0)
 ```
 
 We choose the gbtree booster and binary:logistic objective for training XGBoost model and comparing with Logistic regression model later.
 
-#### Testing
+### Testing
 ```{r}
 xgbpred2 = round(predict(xgb2, dtest))
 tablog = table(data_testy$label, xgbpred2, dnn=c("true","pre"))
 tablog
 ```
 
-From the table, we find:
-1. the logistic model works well on sufficient sleep. $\frac{970}{970+201} = 82.84\%$
-2. the logistic model works not well on sufficient sleep. $\frac{75}{75+287} =  20.72\%$
+From the table, we find:\
+1. the logistic model works well on sufficient sleep, $\frac{970}{970+201} = 82.84\%$\
+2. the logistic model works not well on sufficient sleep, $\frac{75}{75+287} =  20.72\%$\
 3. the total accuracy of the model prediction is $\frac{75+970}{75+287+970+201} = 68.17\%$
 
-Compared with logistic regression model, we find although the correctly prediction ability of XGBoost under gbtree booster and binary:logistic objective for sufficient sleep and the total are lower, the model actually is much reasonable as it could predict larger proportions of insufficient sleep cases with no extreme gap between the prediction ability between two groups.
+Compared with logistic regression model, we find although the correctly prediction ability of XGBoost under gbtree booster and binary:logistic objective for sufficient sleep and the total are lower, the model actually is much reasonable as it could predict larger proportions of insufficient sleep cases with no extreme gap of the prediction ability between two groups.
 
 ```{r}
 xgb_imp2 = xgb.importance(feature_names = xgb2$feature_names, model = xgb2)
@@ -722,7 +661,7 @@ xgb.ggplot.importance(xgb_imp2, top_n =10, n_clusters = 2)
 
 The feature importance plot of XGBoost model indicates two extremely important factors, income_poverty_ratio and age. Which differs from linear models so that we want to explore the decision tree structure.
 
-#### Tree plot
+### Tree plot
 ```{r}
 xgb.plot.tree(model = xgb2, trees=1999, plot_width = 900)
 ```
@@ -736,3 +675,4 @@ We made a questionnaire using Sleep Quality Scale and make different suggestions
  * People from age group **71-80** has the shortest average sleeping time. However, what need to consider is that older people usually tend to have shorter sleeping time due to physical factors. For elder people, there is a possibility that short sleeping time does not mean insufficient sleep for them.
  * **High school graduates** has the shortest average sleeping time, and **9-11th** grade has the second lowest sleeping length.
  * People who are in **poverty** status tends to have shorter sleeping length than people who are not in poverty. 
+ * The logistic model performs well on sufficient sleep.
