@@ -11,7 +11,7 @@
 
 
 
-<title>Final report</title>
+<title>report</title>
 
 <script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -30,11 +30,8 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -219,9 +216,6 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -285,459 +279,19 @@ $(document).ready(function () {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
 
 
-
-<h1 class="title toc-ignore">Final report</h1>
 
 </div>
 
 
-<div
-id="analysis-of-correlation-between-physiological-risk-factors-and-sleep"
-class="section level1">
-<h1>Analysis of correlation between physiological risk factors and
-sleep</h1>
-<div id="interested-physiological-risk-factors" class="section level3">
-<h3>Interested physiological risk factors</h3>
-<p><code>ARTHRITIS</code>: Arthritis among adults aged &gt;=18
-Years<br />
-<code>BPHIGH</code>: High blood pressure among adults aged &gt;=18
-Years<br />
-<code>CANCER</code>: Cancer (excluding skin cancer) among adults aged
-&gt;=18 Years<br />
-<code>CASTHMA</code>: Asthma among adults aged &gt;=18 Years<br />
-<code>CHD</code>: Coronary heart disease among adults aged &gt;=18
-Years<br />
-<code>COPD</code>: Chronic obstructive pulmonary diseases among adults
-aged &gt;=18 Years<br />
-<code>DEPRESSION</code>: Depression among adults aged &gt;=18
-Years<br />
-<code>DIABETES</code>: Diagnosed diabetes among adults aged &gt;=18
-Years<br />
-<code>HIGHCHOL</code>: High cholesterol among adults aged &gt;=18 Years
-who have been screened in the past 5 Years<br />
-<code>KIDNEY</code>: Chronic kidney disease among adults aged &gt;=18
-Years<br />
-<code>OBESITY</code>: Obesity among adults aged &gt;=18 Years</p>
-</div>
-<div id="outcome-measured" class="section level3">
-<h3>Outcome measured</h3>
-<p><code>SLEEP</code>: Sleeping less than 7 hours among adults aged
-&gt;=18 Years</p>
-</div>
-<div id="select-interested-physiological-diseases-and-sample-state"
-class="section level2">
-<h2>Select interested physiological diseases and sample state</h2>
-<pre class="r"><code>data_df = read_csv(&#39;PLACES__Census_Tract_Data__GIS_Friendly_Format___2022_release.csv&#39;) %&gt;% 
-  janitor::clean_names() %&gt;% 
-  select(county_name,total_population, state_abbr, 
-         starts_with(&#39;arthritis&#39;), starts_with(&#39;bphigh&#39;), 
-         starts_with(&#39;cancer&#39;), starts_with(&#39;casthma&#39;), starts_with(&#39;chd&#39;),
-         starts_with(&#39;copd&#39;),starts_with(&#39;depression&#39;), starts_with(&#39;diabetes&#39;),
-         starts_with(&#39;highchol&#39;), starts_with(&#39;kidney&#39;), starts_with(&#39;obesity&#39;),
-         starts_with(&#39;sleep&#39;)) 
-
-data_df %&gt;% 
-  group_by(state_abbr) %&gt;% 
-  summarise(
-    number_of_regions = n(),
-    population = sum(total_population)
-  ) %&gt;% 
-  arrange(-population) %&gt;% 
-  head() %&gt;% knitr::kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">state_abbr</th>
-<th align="right">number_of_regions</th>
-<th align="right">population</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">CA</td>
-<td align="right">8005</td>
-<td align="right">37253680</td>
-</tr>
-<tr class="even">
-<td align="left">TX</td>
-<td align="right">5222</td>
-<td align="right">25145397</td>
-</tr>
-<tr class="odd">
-<td align="left">NY</td>
-<td align="right">4840</td>
-<td align="right">19377658</td>
-</tr>
-<tr class="even">
-<td align="left">FL</td>
-<td align="right">4165</td>
-<td align="right">18801111</td>
-</tr>
-<tr class="odd">
-<td align="left">IL</td>
-<td align="right">3114</td>
-<td align="right">12830630</td>
-</tr>
-<tr class="even">
-<td align="left">PA</td>
-<td align="right">3196</td>
-<td align="right">12702210</td>
-</tr>
-</tbody>
-</table>
-<p>The dataset has 70338 observations across the country, each
-represents a summarized estimate of a district. We select New York state
-as our sample data to build the model as it has third largest population
-with sufficient amount of sample.</p>
-<div id="extract-ny-state-as-target-sample" class="section level3">
-<h3>Extract NY state as target sample</h3>
-<pre class="r"><code>ny_data = data_df %&gt;% 
-  filter(state_abbr == &#39;NY&#39;) %&gt;% 
-  select(ends_with(&#39;prev&#39;)) %&gt;% 
-  rename_with(~str_remove(., &#39;_crude_prev&#39;))</code></pre>
-</div>
-</div>
-<div id="show-the-statistics-of-risk-factors-prevalence"
-class="section level2">
-<h2>Show the statistics of risk factors prevalence</h2>
-<p>The following is a boxplot of the prevalences of all of the
-interested variables. The risk factors with highest prevalence involve
-screening and medication (HIGHCHOL, BPHIGH and OBESITY). The risk
-factors with the lowest prevlances are diseases (KIDNEY, CHD, COPD).
-There is also a general trend that risk factors with higher prevalences
-have higher variance.</p>
-<pre class="r"><code>ny_data %&gt;% select(-sleep) %&gt;% 
-  pivot_longer(
-    everything(), 
-    names_to = &quot;risk_factor&quot;,
-    values_to = &quot;prevelance&quot;
-  ) %&gt;% 
-  ggplot(aes(x = reorder(risk_factor, -prevelance), y = prevelance, 
-             color = risk_factor)) + 
-  geom_boxplot() +
-  theme(axis.text.x = element_text(angle = 60, hjust = 1),
-        legend.position = &quot;none&quot;) +
-  labs(
-      title = &quot;Physiological risk Factor Prevalence in NY State 2020&quot;,
-      x = &quot;Risk Factor&quot;,
-      y = &quot;Prevalence (%)&quot;,
-      caption = &quot;Data from the CDC&quot;
-    ) + 
-  theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="report_files/figure-html/unnamed-chunk-2-1.png" width="90%" /></p>
-</div>
-<div id="examine-correlation-of-chosen-factors" class="section level2">
-<h2>Examine correlation of chosen factors</h2>
-<pre class="r"><code>par(mfrow = c(1, 1))
-ny_data %&gt;% select(-sleep) %&gt;% cor() %&gt;% corrplot(
-  method = &quot;circle&quot;, addCoef.col = &quot;black&quot;, tl.col=&quot;black&quot;, tl.srt=90, 
-  insig = &quot;blank&quot;, diag=FALSE, number.cex = .5)</code></pre>
-<p><img src="report_files/figure-html/unnamed-chunk-3-1.png" width="90%" /></p>
-</div>
-<div id="build-model-with-elastic-net" class="section level2">
-<h2>Build model with elastic net</h2>
-<p>Since some of the variables have relatively high correlation with
-each other according to the correlation matrix, the process of model
-selection starts by using elastic net regression in order to remedy for
-potential multicollinearity. We find the best lambda with lowest se
-through cross validation, and then fit an elastic net model with
-coefficients shown below.</p>
-<pre class="r"><code>set.seed(2023)
-
-predictors = data.matrix(ny_data %&gt;% select(-sleep))
-outcome = ny_data %&gt;% pull(sleep)
-# 5 folds cv is used 
-cv_object = cv.glmnet(predictors, outcome, nfolds = 5)
-# Find the best lambda with lowest se
-best_lambda = cv_object %&gt;% broom::glance() %&gt;% pull(lambda.min)
-# build elastic net model
-elastic_model = glmnet(predictors, outcome, lambda = best_lambda, alpha = 0.5)
-model_coef = coef.glmnet(elastic_model) %&gt;% as.matrix() %&gt;% as.data.frame()
-model_coef[model_coef == 0] = NA
-plot(cv_object)</code></pre>
-<p><img src="report_files/figure-html/unnamed-chunk-4-1.png" width="90%" /></p>
-<pre class="r"><code>model_coef </code></pre>
-<pre><code>##                      s0
-## (Intercept) 40.24004577
-## arthritis    0.42778418
-## bphigh       0.44936628
-## cancer      -1.71375155
-## casthma      0.41079938
-## chd         -0.34697739
-## copd         0.66195820
-## depression  -0.52559907
-## diabetes     0.35317894
-## highchol    -0.30756909
-## kidney      -2.70665630
-## obesity     -0.00539821</code></pre>
-</div>
-<div id="build-model-with-multiple-linear-regression"
-class="section level2">
-<h2>Build model with multiple linear regression</h2>
-<p>A multiple linear regression is then built with all of the variables
-selected above. Since the variable of obesity does not show significant
-influence in predicting prevalance of insufficient sleep, another
-multiple linear regression excluding obesity is built. The anova result
-tells that the second MLR model excluding obesity is favored because of
-the principle of parsimony.</p>
-<pre class="r"><code>mlr_model_1 = lm(sleep ~ arthritis + bphigh + cancer + casthma + chd + copd + depression + diabetes + highchol + kidney + obesity, data = ny_data)
-
-# Use backward elimination based on AIC to find a mlr model 
-mlr_model_2 = step(mlr_model_1, direction = &quot;backward&quot;)</code></pre>
-<pre><code>## Start:  AIC=3282.65
-## sleep ~ arthritis + bphigh + cancer + casthma + chd + copd + 
-##     depression + diabetes + highchol + kidney + obesity
-## 
-##              Df Sum of Sq     RSS    AIC
-## - obesity     1      2.60  9492.1 3282.0
-## &lt;none&gt;                     9489.5 3282.6
-## - chd         1     42.75  9532.3 3302.4
-## - casthma     1     96.15  9585.7 3329.4
-## - diabetes    1    173.06  9662.6 3368.1
-## - arthritis   1    367.85  9857.4 3464.7
-## - copd        1    438.19  9927.7 3499.1
-## - kidney      1    499.94  9989.5 3529.1
-## - highchol    1    880.01 10369.5 3709.9
-## - bphigh      1   1229.06 10718.6 3870.1
-## - cancer      1   1257.82 10747.3 3883.1
-## - depression  1   1478.14 10967.7 3981.3
-## 
-## Step:  AIC=3281.97
-## sleep ~ arthritis + bphigh + cancer + casthma + chd + copd + 
-##     depression + diabetes + highchol + kidney
-## 
-##              Df Sum of Sq     RSS    AIC
-## &lt;none&gt;                     9492.1 3282.0
-## - chd         1     40.79  9532.9 3300.7
-## - casthma     1     94.44  9586.6 3327.9
-## - diabetes    1    176.98  9669.1 3369.4
-## - arthritis   1    430.13  9922.3 3494.5
-## - copd        1    441.12  9933.2 3499.8
-## - kidney      1    500.28  9992.4 3528.6
-## - highchol    1    889.92 10382.0 3713.7
-## - bphigh      1   1266.09 10758.2 3886.0
-## - cancer      1   1444.45 10936.6 3965.6
-## - depression  1   1477.66 10969.8 3980.2</code></pre>
-<pre class="r"><code>summary(mlr_model_2) %&gt;% broom::tidy() %&gt;% knitr::kable(digits = 3)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">term</th>
-<th align="right">estimate</th>
-<th align="right">std.error</th>
-<th align="right">statistic</th>
-<th align="right">p.value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">(Intercept)</td>
-<td align="right">40.334</td>
-<td align="right">0.505</td>
-<td align="right">79.921</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">arthritis</td>
-<td align="right">0.421</td>
-<td align="right">0.028</td>
-<td align="right">14.793</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">bphigh</td>
-<td align="right">0.446</td>
-<td align="right">0.018</td>
-<td align="right">25.379</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">cancer</td>
-<td align="right">-1.679</td>
-<td align="right">0.062</td>
-<td align="right">-27.108</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">casthma</td>
-<td align="right">0.397</td>
-<td align="right">0.057</td>
-<td align="right">6.931</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">chd</td>
-<td align="right">-0.372</td>
-<td align="right">0.082</td>
-<td align="right">-4.556</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">copd</td>
-<td align="right">0.686</td>
-<td align="right">0.046</td>
-<td align="right">14.981</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">depression</td>
-<td align="right">-0.527</td>
-<td align="right">0.019</td>
-<td align="right">-27.418</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">diabetes</td>
-<td align="right">0.373</td>
-<td align="right">0.039</td>
-<td align="right">9.489</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">highchol</td>
-<td align="right">-0.311</td>
-<td align="right">0.015</td>
-<td align="right">-21.278</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">kidney</td>
-<td align="right">-2.757</td>
-<td align="right">0.173</td>
-<td align="right">-15.953</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code>anova(mlr_model_2, mlr_model_1)</code></pre>
-<pre><code>## Analysis of Variance Table
-## 
-## Model 1: sleep ~ arthritis + bphigh + cancer + casthma + chd + copd + 
-##     depression + diabetes + highchol + kidney
-## Model 2: sleep ~ arthritis + bphigh + cancer + casthma + chd + copd + 
-##     depression + diabetes + highchol + kidney + obesity
-##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
-## 1   4829 9492.1                           
-## 2   4828 9489.5  1     2.598 1.3218 0.2503</code></pre>
-</div>
-<div id="examine-assumptions-for-the-chosen-mlr-model"
-class="section level2">
-<h2>Examine assumptions for the chosen MLR model</h2>
-<pre class="r"><code>par(mfrow = c(2, 2))
-plot(mlr_model_2)</code></pre>
-<p><img src="report_files/figure-html/unnamed-chunk-6-1.png" width="90%" /></p>
-<p>The diagnostic plots indicates that all of the assumptions of MLR
-below are met.<br />
-1.Residuals are normally distributed<br />
-2.Variance of residuals is constant across the range of variables<br />
-3.Residuals are independent of one another</p>
-</div>
-<div
-id="comparing-elastic-net-regression-model-with-the-chosen-mlr-model"
-class="section level2">
-<h2>Comparing elastic net regression model with the chosen MLR
-model</h2>
-<pre class="r"><code># Pseudo adjusted R squared of elastic model
-elastic_model %&gt;% broom::tidy() %&gt;% select(dev.ratio) %&gt;% unique()</code></pre>
-<pre><code>## # A tibble: 1 × 1
-##   dev.ratio
-##       &lt;dbl&gt;
-## 1     0.892</code></pre>
-<pre class="r"><code># Adjusted R squared of MLR model
-summary(mlr_model_2) %&gt;% broom::glance() %&gt;% select(adj.r.squared)</code></pre>
-<pre><code>## # A tibble: 1 × 1
-##   adj.r.squared
-##           &lt;dbl&gt;
-## 1         0.892</code></pre>
-<p>The dev.ratio and adjusted r.squared of <code>0.892</code> above
-shows that the elastic net regression model and MLR model give equally
-good fit to the training data from NY state.</p>
-<p><img src="report_files/figure-html/unnamed-chunk-8-1.png" width="90%" /></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">mse_mlr</th>
-<th align="left">mse_elas</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">Min. : 1.322</td>
-<td align="left">Min. : 1.329</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">1st Qu.: 6.215</td>
-<td align="left">1st Qu.: 6.224</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">Median :11.036</td>
-<td align="left">Median :11.001</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Mean :13.345</td>
-<td align="left">Mean :13.269</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">3rd Qu.:14.578</td>
-<td align="left">3rd Qu.:14.299</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Max. :47.712</td>
-<td align="left">Max. :47.768</td>
-</tr>
-</tbody>
-</table>
-<p>We then use the data from rest of the country to test the performance
-of the two models in predicting the prevalence of inadequate sleep in
-other <code>50</code> states. The violion plot above shows that the test
-mean squared error of the elastic net regression and the multiple linear
-regression model. The statistics show that there is no significant
-difference between these two models in terms of predictive performance.
-Therefore, we conclude that both of models could be used for regression
-analysis while the elastic net model is more preferred for prediction
-since it has smaller test MSE (minimal difference though) and retain
-more information of the potential risk factors.</p>
-<p>On the other hand, the multiple linear regression model is favored
-for its simplicity of interpretation. While all of the physiological
-risk factors except for <code>OBESITY</code> have significant
-correlation with the prevalence of insufficient adult sleep,
-<code>ARTHRITIS</code>, <code>BPHIGH</code>, <code>CASTHMA</code>,
-<code>COPD</code>, <code>DIABETES</code> shows a positive correlation
-while <code>CANCER</code>, <code>CHD</code>, <code>DEPRESSION</code>,
-<code>HIGHCHOL</code>, <code>KIDNEY</code> suggest a negative
-correlation. It is worth noticing that an 1% increase in the prevalence
-of most disease factors leads to a less than 1% change in the prevalence
-of insufficient sleep except for <code>CANCER</code> and
-<code>KIDNEY</code>, which lead to a drop of 1.7% and 2.7% in prevalence
-of insufficient sleep respectively. A reasonable explanation is that the
-adults suffered from cancer and kidney diseases are more likely to have
-challenged body functions, which force them to spend more time on
-sleep/lay in bed for recovery and thus lower the prevalence of short
-sleep.</p>
-</div>
-</div>
-<div id="shiny-app" class="section level1">
-<h1>Shiny APP</h1>
-<p>We made a questionnaire using Sleep Quality Scale and make different
-suggestions about sleeping in our shiny app. Users can answer the
-questions, and then they can get a score for their sleeping quality. The
-score can be calculated by adding all answers in 1-4 together. The
+<div id="report" class="section level1">
+<h1>report</h1>
+<p>Ruihan Zhang 2022-12-10</p>
+<p>Shiny APP We made a questionnaire using Sleep Quality Scale and make
+different suggestions about sleeping in our shiny app. Users can answer
+the questions, and then they can get a score for their sleeping quality.
+The score can be calculated by adding all answers in 1-4 together. The
 higher the score is, the poorer the quality of their sleeping is. In the
 end, there will be some suggestions to improve users’ sleeping quality,
 which is really useful, because the suggestions are based on many
@@ -777,11 +331,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
-});
-</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
