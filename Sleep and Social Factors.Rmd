@@ -425,8 +425,6 @@ rtxg = 0.8
 subxg = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
 data_trainxg = slp_df_new[sub,]
 data_testxg = slp_df_new[-sub,]
-dim(data_trainxg)
-dim(data_testxg)
 ```
 
 ```{r}
@@ -439,25 +437,11 @@ names(data_testy) = c('label')
 ```
 
 ```{r}
-# train_slp = list(data=data_trainx[,-1],label=data_trainy$label) 
-# test_slp = list(data=data_testx[,-1],label=data_testy$label) 
 dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
 dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 ```
 
 #### model training
-```{r}
-# xgb0 =  xgboost(
-#     data = dtrain,
-#     nrounds = 2000,
-#     objective = "reg:squarederror",
-#     early_stopping_rounds = 3,
-#     max_depth = 6,
-#     eta = .25
-#   )   
-# print(xgb0)
-```
-
 ```{r}
 xgb1 = xgboost(data = dtrain, max.depth = 10, nrounds = 300)
 print(xgb1)
@@ -465,25 +449,21 @@ print(xgb1)
 
 #### model prediction
 ```{r}
-xg_pred = predict(xgb1, dtest)
+xgbpred1 = predict(xgb1, dtest)
 
-dlm =  data.frame(
+dxg =  data.frame(
     Error = c("MSE", "MAE", "RMSE"), 
-    Value = c(mean((data_testy$label - xg_pred)^2),
-              caret::MAE(data_testy$label, xg_pred), 
-              caret::RMSE(data_testy$label, xg_pred)))
+    Value = c(mean((data_testy$label - xgbpred1)^2),
+              caret::MAE(data_testy$label, xgbpred1), 
+              caret::RMSE(data_testy$label, xgbpred1)))
 
-knitr::kable(dlm)
+knitr::kable(dxg)
 ```
 
-
 ```{r}
-par(mfrow = c(1,1))
 x = 1:length(data_testy$label)
 plot(x, data_testy$label, col = "red", type = "l")
-lines(x, xg_pred, col = "blue", type = "l")
-# legend(x = 1, y = 38,  legend = c("original test_y", "predicted test_y"), 
-#        col = c("red", "blue"), box.lty = 1, cex = 0.8, lty = c(1, 1))
+lines(x, xgbpred1, col = "blue", type = "l")
 ```
 
 ```{r}
@@ -528,19 +508,7 @@ dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 
 #### model training
 ```{r}
-# xgb0 =  xgboost(
-#     data = dtrain,
-#     nrounds = 2000,
-#     objective = "reg:squarederror",
-#     early_stopping_rounds = 3,
-#     max_depth = 6,
-#     eta = .25
-#   )   
-# print(xgb0)
-```
-
-```{r}
-xgb2 = xgboost(data = dtrain, max.depth = 5, nround = 300, objective = "binary:logistic")
+xgb2 = xgboost(data = dtrain, max.depth = 10, nround = 300, objective = "binary:logistic")
 print(xgb2)
 ```
 
@@ -557,12 +525,9 @@ print(xgb2)
 # knitr::kable(dlm)
 ```
 
-
 #### testing
 ```{r}
 xgpred = round(predict(xgb2, dtest))
-# predxg = ifelse(xgpred == 1, 'sufficient', 'insufficient')
-# predxg = factor(xgpred, levels = c('insufficient', 'sufficient'), order=TRUE)
 tablog = table(data_testy$label, xgpred, dnn=c("true","pre"))
 tablog
 ```
@@ -574,22 +539,16 @@ From the table, we find:
 
 #### ROC-AUC curve
 ```{r}
-# xgboost_roc <- roc(data_testy$label,as.numeric(pre_xgb))
-# plot(xgboost_roc, print.auc=TRUE, auc.polygon=TRUE, 
-#   grid=c(0.1, 0.2),grid.col=c("green", "red"), 
-#   max.auc.polygon=TRUE,auc.polygon.col="skyblue", 
-#   print.thres=TRUE,main='ROC curve')
-
-roc_curve = roc(data_testy$label, xgpred)
-names(roc_curve)
-x = 1-roc_curve$specificities
-y = roc_curve$sensitivities
-
-ggplot(data = NULL, aes(x = x, y = y)) + 
-  geom_line(colour = 'red') + 
-  geom_abline(intercept = 0, slope = 1) +
-  annotate('text', x = 0.5, y = 0.5, label =paste('AUC=',round(roc_curve$auc,2))) +
-  labs(x = '1-specificities',y = 'sensitivities', title = 'ROC Curve')
+# roc_curve = roc(data_testy$label, xgpred)
+# names(roc_curve)
+# x = 1-roc_curve$specificities
+# y = roc_curve$sensitivities
+# 
+# ggplot(data = NULL, aes(x = x, y = y)) + 
+#   geom_line(colour = 'red') + 
+#   geom_abline(intercept = 0, slope = 1) +
+#   annotate('text', x = 0.5, y = 0.5, label =paste('AUC=',round(roc_curve$auc,2))) +
+#   labs(x = '1-specificities',y = 'sensitivities', title = 'ROC Curve')
 ```
 
 ```{r}
