@@ -1,6 +1,5 @@
 ---
 title: "Correlation between prevalance of insufficient sleep and physiological disease"
-author: "Cary Ni"
 output: 
   html_document:
     code_folding: hide
