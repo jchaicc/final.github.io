@@ -1,6 +1,5 @@
 ---
 title: "Final report"
-author: "Ruihan Zhang", "Chenyao Ni"
 output: 
   html_document:
     code_folding: hide
