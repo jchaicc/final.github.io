@@ -70,9 +70,12 @@ The homepage builds the main framework and content for the website, showing the 
 
 ### Data preparation
 The 'leaflet' pacakage was used to complete the interactivity and visualization of sleep data from 500 Cities dataset provided by the Centers for Disease Control and Prevention (CDC) (https://www.opendatanetwork.com/dataset/chronicdata.cdc.gov/eqbn-8mpz). 
-To specify the coordinate values required to draw this map, I separated and read the latitude and longitude of each data point. In addition, for Leaflet function, I also got the basic layer from Esri.WorldStreetMap to add geographical boundaries to the map.
+To specify the coordinate values required to draw this map, I separated and read the latitude and longitude of each data point. 
 
 ### Visualization
+Firstly, I got the basic layer from Esri.WorldStreetMap to add geographical boundaries to the map. Then, I mapped the data points from 500 Cities dataset on the basic layer. I added markers to indicate the sleep value, which was positioned by the latitude and longitude values of the corresponding city and the color was determined by the city's average sleep duration. The sleep duration of the current city can be obtained by comparing the color of a city with the legend on the upper right.
+
+### Interactivity
 
 # Sleep and Diseases
 
