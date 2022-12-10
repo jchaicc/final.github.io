@@ -43,6 +43,9 @@
 <script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="site_libs/grViz-binding-1.0.9/grViz.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -580,8 +583,8 @@ has an average of 6 hours per day.</p>
   ) %&gt;%
   colorbar(title = &quot;Number of People&quot;, x = 1, y = 0.5) 
 layout(race_plot, xaxis = list(title = &quot;Average Sleeping Hours Per Day&quot;), yaxis = list(title = &quot;Race&quot;))</code></pre>
-<div id="htmlwidget-64040607b13daa635f9e" style="width:768px;height:576px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-64040607b13daa635f9e">{"x":{"visdat":{"3a6c7c3c1e24":["function () ","plotlyVisDat"]},"cur_data":"3a6c7c3c1e24","attrs":{"3a6c7c3c1e24":{"x":{},"y":{},"z":{},"colors":"BuPu","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"heatmap"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Average Sleeping Hours Per Day"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Race","type":"category","categoryorder":"array","categoryarray":["Mexican American","Non-Hispanic Asian","Non-Hispanic Black","Non-Hispanic White","Other Hispanic","Other Race"]},"scene":{"zaxis":{"title":"obs"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"Number of People","ticklen":2,"len":0.5,"lenmode":"fraction","y":0.5,"yanchor":"top","x":1},"colorscale":[["0","rgba(247,252,253,1)"],["0.0416666666666667","rgba(239,247,250,1)"],["0.0833333333333333","rgba(232,241,247,1)"],["0.125","rgba(224,236,244,1)"],["0.166666666666667","rgba(213,228,239,1)"],["0.208333333333333","rgba(202,219,235,1)"],["0.25","rgba(191,211,230,1)"],["0.291666666666667","rgba(180,203,226,1)"],["0.333333333333333","rgba(169,196,222,1)"],["0.375","rgba(158,188,218,1)"],["0.416666666666667","rgba(152,175,211,1)"],["0.458333333333333","rgba(146,163,205,1)"],["0.5","rgba(140,150,198,1)"],["0.541666666666667","rgba(141,136,191,1)"],["0.583333333333333","rgba(141,122,184,1)"],["0.625","rgba(140,107,177,1)"],["0.666666666666667","rgba(139,94,170,1)"],["0.708333333333333","rgba(138,80,164,1)"],["0.75","rgba(136,65,157,1)"],["0.791666666666667","rgba(134,52,146,1)"],["0.833333333333333","rgba(132,36,135,1)"],["0.875","rgba(129,15,124,1)"],["0.916666666666667","rgba(111,8,107,1)"],["0.958333333333333","rgba(94,3,91,1)"],["1","rgba(77,0,75,1)"]],"showscale":true,"x":[3.5,3.57142857142857,3.71428571428571,4,4.28571428571429,4.42857142857143,4.5,4.71428571428571,5,5.14285714285714,5.28571428571429,5.35714285714286,5.42857142857143,5.5,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3.14285714285714,3.5,4,4.07142857142857,4.14285714285714,4.28571428571429,4.42857142857143,4.85714285714286,4.92857142857143,5,5.07142857142857,5.14285714285714,5.21428571428571,5.28571428571429,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3,3.28571428571429,3.5,3.57142857142857,3.85714285714286,3.92857142857143,4,4.07142857142857,4.14285714285714,4.21428571428571,4.28571428571429,4.35714285714286,4.42857142857143,4.5,4.57142857142857,4.64285714285714,4.71428571428571,4.78571428571429,4.85714285714286,4.92857142857143,5,5.07142857142857,5.14285714285714,5.21428571428571,5.28571428571429,5.35714285714286,5.42857142857143,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3,3.28571428571429,3.5,3.57142857142857,3.71428571428571,3.78571428571429,3.92857142857143,4,4.14285714285714,4.21428571428571,4.28571428571429,4.35714285714286,4.42857142857143,4.5,4.57142857142857,4.64285714285714,4.71428571428571,4.78571428571429,4.85714285714286,5,5.07142857142857,5.14285714285714,5.21428571428571,5.28571428571429,5.35714285714286,5.42857142857143,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3,3.5,4,4.14285714285714,4.28571428571429,4.5,4.57142857142857,4.71428571428571,4.92857142857143,5,5.07142857142857,5.14285714285714,5.28571428571429,5.35714285714286,5.42857142857143,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3,3.5,3.78571428571429,3.92857142857143,4,4.28571428571429,4.42857142857143,4.57142857142857,4.85714285714286,5,5.14285714285714,5.28571428571429,5.42857142857143,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.85714285714286,6.92857142857143],"y":["Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race"],"z":[1,1,1,2,4,1,3,1,3,1,1,1,3,1,3,4,1,5,3,14,7,4,11,3,5,14,19,5,11,9,8,12,1,1,5,1,1,3,2,1,1,13,2,1,1,3,5,3,2,2,2,6,23,3,5,2,7,2,5,14,16,8,7,6,7,9,6,3,2,2,4,1,19,2,5,1,15,2,5,10,6,1,13,3,4,5,34,5,12,2,24,2,11,11,20,6,21,10,13,6,69,8,13,10,35,7,24,31,31,19,36,17,30,24,7,2,4,1,3,1,1,17,1,2,3,1,1,11,2,2,1,4,4,52,2,2,4,7,2,5,18,10,3,7,4,10,8,65,10,6,6,31,13,19,59,33,28,23,17,30,26,2,1,6,2,1,3,3,1,3,11,1,1,2,2,2,3,3,2,1,1,4,1,24,1,7,5,10,6,5,18,8,4,8,6,11,5,1,1,1,1,3,2,1,2,1,7,2,1,1,3,2,1,4,2,3,3,11,3,1,2,9,2,6,8,3,3,6,9,6],"type":"heatmap","xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cc63cba053b0f59cb87f" style="width:768px;height:576px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cc63cba053b0f59cb87f">{"x":{"visdat":{"3b207fe43e09":["function () ","plotlyVisDat"]},"cur_data":"3b207fe43e09","attrs":{"3b207fe43e09":{"x":{},"y":{},"z":{},"colors":"BuPu","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"heatmap"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Average Sleeping Hours Per Day"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Race","type":"category","categoryorder":"array","categoryarray":["Mexican American","Non-Hispanic Asian","Non-Hispanic Black","Non-Hispanic White","Other Hispanic","Other Race"]},"scene":{"zaxis":{"title":"obs"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"Number of People","ticklen":2,"len":0.5,"lenmode":"fraction","y":0.5,"yanchor":"top","x":1},"colorscale":[["0","rgba(247,252,253,1)"],["0.0416666666666667","rgba(239,247,250,1)"],["0.0833333333333333","rgba(232,241,247,1)"],["0.125","rgba(224,236,244,1)"],["0.166666666666667","rgba(213,228,239,1)"],["0.208333333333333","rgba(202,219,235,1)"],["0.25","rgba(191,211,230,1)"],["0.291666666666667","rgba(180,203,226,1)"],["0.333333333333333","rgba(169,196,222,1)"],["0.375","rgba(158,188,218,1)"],["0.416666666666667","rgba(152,175,211,1)"],["0.458333333333333","rgba(146,163,205,1)"],["0.5","rgba(140,150,198,1)"],["0.541666666666667","rgba(141,136,191,1)"],["0.583333333333333","rgba(141,122,184,1)"],["0.625","rgba(140,107,177,1)"],["0.666666666666667","rgba(139,94,170,1)"],["0.708333333333333","rgba(138,80,164,1)"],["0.75","rgba(136,65,157,1)"],["0.791666666666667","rgba(134,52,146,1)"],["0.833333333333333","rgba(132,36,135,1)"],["0.875","rgba(129,15,124,1)"],["0.916666666666667","rgba(111,8,107,1)"],["0.958333333333333","rgba(94,3,91,1)"],["1","rgba(77,0,75,1)"]],"showscale":true,"x":[3.5,3.57142857142857,3.71428571428571,4,4.28571428571429,4.42857142857143,4.5,4.71428571428571,5,5.14285714285714,5.28571428571429,5.35714285714286,5.42857142857143,5.5,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3.14285714285714,3.5,4,4.07142857142857,4.14285714285714,4.28571428571429,4.42857142857143,4.85714285714286,4.92857142857143,5,5.07142857142857,5.14285714285714,5.21428571428571,5.28571428571429,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3,3.28571428571429,3.5,3.57142857142857,3.85714285714286,3.92857142857143,4,4.07142857142857,4.14285714285714,4.21428571428571,4.28571428571429,4.35714285714286,4.42857142857143,4.5,4.57142857142857,4.64285714285714,4.71428571428571,4.78571428571429,4.85714285714286,4.92857142857143,5,5.07142857142857,5.14285714285714,5.21428571428571,5.28571428571429,5.35714285714286,5.42857142857143,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3,3.28571428571429,3.5,3.57142857142857,3.71428571428571,3.78571428571429,3.92857142857143,4,4.14285714285714,4.21428571428571,4.28571428571429,4.35714285714286,4.42857142857143,4.5,4.57142857142857,4.64285714285714,4.71428571428571,4.78571428571429,4.85714285714286,5,5.07142857142857,5.14285714285714,5.21428571428571,5.28571428571429,5.35714285714286,5.42857142857143,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3,3.5,4,4.14285714285714,4.28571428571429,4.5,4.57142857142857,4.71428571428571,4.92857142857143,5,5.07142857142857,5.14285714285714,5.28571428571429,5.35714285714286,5.42857142857143,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.78571428571429,6.85714285714286,6.92857142857143,3,3.5,3.78571428571429,3.92857142857143,4,4.28571428571429,4.42857142857143,4.57142857142857,4.85714285714286,5,5.14285714285714,5.28571428571429,5.42857142857143,5.5,5.57142857142857,5.64285714285714,5.71428571428571,5.78571428571429,5.85714285714286,5.92857142857143,6,6.07142857142857,6.14285714285714,6.21428571428571,6.28571428571429,6.35714285714286,6.42857142857143,6.5,6.57142857142857,6.64285714285714,6.71428571428571,6.85714285714286,6.92857142857143],"y":["Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Mexican American","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Asian","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic Black","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Non-Hispanic White","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Hispanic","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race","Other Race"],"z":[1,1,1,2,4,1,3,1,3,1,1,1,3,1,3,4,1,5,3,14,7,4,11,3,5,14,19,5,11,9,8,12,1,1,5,1,1,3,2,1,1,13,2,1,1,3,5,3,2,2,2,6,23,3,5,2,7,2,5,14,16,8,7,6,7,9,6,3,2,2,4,1,19,2,5,1,15,2,5,10,6,1,13,3,4,5,34,5,12,2,24,2,11,11,20,6,21,10,13,6,69,8,13,10,35,7,24,31,31,19,36,17,30,24,7,2,4,1,3,1,1,17,1,2,3,1,1,11,2,2,1,4,4,52,2,2,4,7,2,5,18,10,3,7,4,10,8,65,10,6,6,31,13,19,59,33,28,23,17,30,26,2,1,6,2,1,3,3,1,3,11,1,1,2,2,2,3,3,2,1,1,4,1,24,1,7,5,10,6,5,18,8,4,8,6,11,5,1,1,1,1,3,2,1,2,1,7,2,1,1,3,2,1,4,2,3,3,11,3,1,2,9,2,6,8,3,3,6,9,6],"type":"heatmap","xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <div id="race-gender-gap-by-education-level" class="section level3">
 <h3>Race Gender Gap by Education Level</h3>
 <p>The below plot demonstrates the gender gap in the patients for
@@ -600,8 +603,8 @@ education level.</p>
           colors=&quot;viridis&quot;,sizes = c(50, 700), marker = list(opacity = 0.7))
 
 layout(gender_plot, title = &quot;Race Gender Gap by Education Level&quot;, xaxis = list(title = &quot;Number of Male Sleeping less than 7 hrs&quot;), yaxis = list(title = &quot;Number of Female Sleeping less than 7 hrs&quot;))</code></pre>
-<div id="htmlwidget-441f35e9a49141e933aa" style="width:768px;height:576px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-441f35e9a49141e933aa">{"x":{"visdat":{"3a6c2fe33798":["function () ","plotlyVisDat"]},"cur_data":"3a6c2fe33798","attrs":{"3a6c2fe33798":{"x":{},"y":{},"text":{},"mode":"markers","marker":{"opacity":0.7},"color":{},"size":{},"colors":"viridis","alpha_stroke":1,"sizes":[50,700],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Race Gender Gap by Education Level","xaxis":{"domain":[0,1],"automargin":true,"title":"Number of Male Sleeping less than 7 hrs"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Female Sleeping less than 7 hrs"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[16,13,26,21,19],"y":[11,4,22,17,13],"text":["Race=Mexican American<br />Education level: 9-11th grade","Race=Mexican American<br />Education level: college graduate or above","Race=Mexican American<br />Education level: college or AA degree","Race=Mexican American<br />Education level: high school graduate","Race=Mexican American<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(68,1,84,1)","size":[241.176470588235,292.156862745098,228.43137254902,228.43137254902,253.921568627451],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(68,1,84,1)"}},"type":"scatter","name":"Mexican American","textfont":{"color":"rgba(68,1,84,1)","size":[241.176470588235,292.156862745098,228.43137254902,228.43137254902,253.921568627451]},"error_y":{"color":"rgba(68,1,84,1)","width":[]},"error_x":{"color":"rgba(68,1,84,1)","width":[]},"line":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[6,42,20,6,2],"y":[10,37,21,15,11],"text":["Race=Non-Hispanic Asian<br />Education level: 9-11th grade","Race=Non-Hispanic Asian<br />Education level: college graduate or above","Race=Non-Hispanic Asian<br />Education level: college or AA degree","Race=Non-Hispanic Asian<br />Education level: high school graduate","Race=Non-Hispanic Asian<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(65,68,135,1)","size":[126.470588235294,241.176470588235,164.705882352941,62.7450980392157,62.7450980392157],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(65,68,135,1)"}},"type":"scatter","name":"Non-Hispanic Asian","textfont":{"color":"rgba(65,68,135,1)","size":[126.470588235294,241.176470588235,164.705882352941,62.7450980392157,62.7450980392157]},"error_y":{"color":"rgba(65,68,135,1)","width":[]},"error_x":{"color":"rgba(65,68,135,1)","width":[]},"line":{"color":"rgba(65,68,135,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[34,65,131,101,11],"y":[29,75,133,60,1],"text":["Race=Non-Hispanic Black<br />Education level: 9-11th grade","Race=Non-Hispanic Black<br />Education level: college graduate or above","Race=Non-Hispanic Black<br />Education level: college or AA degree","Race=Non-Hispanic Black<br />Education level: high school graduate","Race=Non-Hispanic Black<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(42,120,142,1)","size":[241.176470588235,50,151.960784313725,700,304.901960784314],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(42,120,142,1)"}},"type":"scatter","name":"Non-Hispanic Black","textfont":{"color":"rgba(42,120,142,1)","size":[241.176470588235,50,151.960784313725,700,304.901960784314]},"error_y":{"color":"rgba(42,120,142,1)","width":[]},"error_x":{"color":"rgba(42,120,142,1)","width":[]},"line":{"color":"rgba(42,120,142,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[32,65,126,89,11],"y":[36,41,102,65,1],"text":["Race=Non-Hispanic White<br />Education level: 9-11th grade","Race=Non-Hispanic White<br />Education level: college graduate or above","Race=Non-Hispanic White<br />Education level: college or AA degree","Race=Non-Hispanic White<br />Education level: high school graduate","Race=Non-Hispanic White<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(34,168,132,1)","size":[126.470588235294,483.333333333333,483.333333333333,483.333333333333,304.901960784314],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(34,168,132,1)"}},"type":"scatter","name":"Non-Hispanic White","textfont":{"color":"rgba(34,168,132,1)","size":[126.470588235294,483.333333333333,483.333333333333,483.333333333333,304.901960784314]},"error_y":{"color":"rgba(34,168,132,1)","width":[]},"error_x":{"color":"rgba(34,168,132,1)","width":[]},"line":{"color":"rgba(34,168,132,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[13,18,27,19,16],"y":[7,16,23,14,21],"text":["Race=Other Hispanic<br />Education level: 9-11th grade","Race=Other Hispanic<br />Education level: college graduate or above","Race=Other Hispanic<br />Education level: college or AA degree","Race=Other Hispanic<br />Education level: high school graduate","Race=Other Hispanic<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(122,209,81,1)","size":[253.921568627451,202.941176470588,228.43137254902,241.176470588235,113.725490196078],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(122,209,81,1)"}},"type":"scatter","name":"Other Hispanic","textfont":{"color":"rgba(122,209,81,1)","size":[253.921568627451,202.941176470588,228.43137254902,241.176470588235,113.725490196078]},"error_y":{"color":"rgba(122,209,81,1)","width":[]},"error_x":{"color":"rgba(122,209,81,1)","width":[]},"line":{"color":"rgba(122,209,81,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[9,9,25,18,2],"y":[2,11,23,12,0],"text":["Race=Other Race<br />Education level: 9-11th grade","Race=Other Race<br />Education level: college graduate or above","Race=Other Race<br />Education level: college or AA degree","Race=Other Race<br />Education level: high school graduate","Race=Other Race<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(253,231,37,1)","size":[266.666666666667,151.960784313725,202.941176470588,253.921568627451,202.941176470588],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(253,231,37,1)"}},"type":"scatter","name":"Other Race","textfont":{"color":"rgba(253,231,37,1)","size":[266.666666666667,151.960784313725,202.941176470588,253.921568627451,202.941176470588]},"error_y":{"color":"rgba(253,231,37,1)","width":[]},"error_x":{"color":"rgba(253,231,37,1)","width":[]},"line":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0813007c527341a31c09" style="width:768px;height:576px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0813007c527341a31c09">{"x":{"visdat":{"3b205bb35a0":["function () ","plotlyVisDat"]},"cur_data":"3b205bb35a0","attrs":{"3b205bb35a0":{"x":{},"y":{},"text":{},"mode":"markers","marker":{"opacity":0.7},"color":{},"size":{},"colors":"viridis","alpha_stroke":1,"sizes":[50,700],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Race Gender Gap by Education Level","xaxis":{"domain":[0,1],"automargin":true,"title":"Number of Male Sleeping less than 7 hrs"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Female Sleeping less than 7 hrs"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[16,13,26,21,19],"y":[11,4,22,17,13],"text":["Race=Mexican American<br />Education level: 9-11th grade","Race=Mexican American<br />Education level: college graduate or above","Race=Mexican American<br />Education level: college or AA degree","Race=Mexican American<br />Education level: high school graduate","Race=Mexican American<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(68,1,84,1)","size":[241.176470588235,292.156862745098,228.43137254902,228.43137254902,253.921568627451],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(68,1,84,1)"}},"type":"scatter","name":"Mexican American","textfont":{"color":"rgba(68,1,84,1)","size":[241.176470588235,292.156862745098,228.43137254902,228.43137254902,253.921568627451]},"error_y":{"color":"rgba(68,1,84,1)","width":[]},"error_x":{"color":"rgba(68,1,84,1)","width":[]},"line":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[6,42,20,6,2],"y":[10,37,21,15,11],"text":["Race=Non-Hispanic Asian<br />Education level: 9-11th grade","Race=Non-Hispanic Asian<br />Education level: college graduate or above","Race=Non-Hispanic Asian<br />Education level: college or AA degree","Race=Non-Hispanic Asian<br />Education level: high school graduate","Race=Non-Hispanic Asian<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(65,68,135,1)","size":[126.470588235294,241.176470588235,164.705882352941,62.7450980392157,62.7450980392157],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(65,68,135,1)"}},"type":"scatter","name":"Non-Hispanic Asian","textfont":{"color":"rgba(65,68,135,1)","size":[126.470588235294,241.176470588235,164.705882352941,62.7450980392157,62.7450980392157]},"error_y":{"color":"rgba(65,68,135,1)","width":[]},"error_x":{"color":"rgba(65,68,135,1)","width":[]},"line":{"color":"rgba(65,68,135,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[34,65,131,101,11],"y":[29,75,133,60,1],"text":["Race=Non-Hispanic Black<br />Education level: 9-11th grade","Race=Non-Hispanic Black<br />Education level: college graduate or above","Race=Non-Hispanic Black<br />Education level: college or AA degree","Race=Non-Hispanic Black<br />Education level: high school graduate","Race=Non-Hispanic Black<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(42,120,142,1)","size":[241.176470588235,50,151.960784313725,700,304.901960784314],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(42,120,142,1)"}},"type":"scatter","name":"Non-Hispanic Black","textfont":{"color":"rgba(42,120,142,1)","size":[241.176470588235,50,151.960784313725,700,304.901960784314]},"error_y":{"color":"rgba(42,120,142,1)","width":[]},"error_x":{"color":"rgba(42,120,142,1)","width":[]},"line":{"color":"rgba(42,120,142,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[32,65,126,89,11],"y":[36,41,102,65,1],"text":["Race=Non-Hispanic White<br />Education level: 9-11th grade","Race=Non-Hispanic White<br />Education level: college graduate or above","Race=Non-Hispanic White<br />Education level: college or AA degree","Race=Non-Hispanic White<br />Education level: high school graduate","Race=Non-Hispanic White<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(34,168,132,1)","size":[126.470588235294,483.333333333333,483.333333333333,483.333333333333,304.901960784314],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(34,168,132,1)"}},"type":"scatter","name":"Non-Hispanic White","textfont":{"color":"rgba(34,168,132,1)","size":[126.470588235294,483.333333333333,483.333333333333,483.333333333333,304.901960784314]},"error_y":{"color":"rgba(34,168,132,1)","width":[]},"error_x":{"color":"rgba(34,168,132,1)","width":[]},"line":{"color":"rgba(34,168,132,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[13,18,27,19,16],"y":[7,16,23,14,21],"text":["Race=Other Hispanic<br />Education level: 9-11th grade","Race=Other Hispanic<br />Education level: college graduate or above","Race=Other Hispanic<br />Education level: college or AA degree","Race=Other Hispanic<br />Education level: high school graduate","Race=Other Hispanic<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(122,209,81,1)","size":[253.921568627451,202.941176470588,228.43137254902,241.176470588235,113.725490196078],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(122,209,81,1)"}},"type":"scatter","name":"Other Hispanic","textfont":{"color":"rgba(122,209,81,1)","size":[253.921568627451,202.941176470588,228.43137254902,241.176470588235,113.725490196078]},"error_y":{"color":"rgba(122,209,81,1)","width":[]},"error_x":{"color":"rgba(122,209,81,1)","width":[]},"line":{"color":"rgba(122,209,81,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[9,9,25,18,2],"y":[2,11,23,12,0],"text":["Race=Other Race<br />Education level: 9-11th grade","Race=Other Race<br />Education level: college graduate or above","Race=Other Race<br />Education level: college or AA degree","Race=Other Race<br />Education level: high school graduate","Race=Other Race<br />Education level: less than 9th grade"],"mode":"markers","marker":{"color":"rgba(253,231,37,1)","size":[266.666666666667,151.960784313725,202.941176470588,253.921568627451,202.941176470588],"sizemode":"area","opacity":0.7,"line":{"color":"rgba(253,231,37,1)"}},"type":"scatter","name":"Other Race","textfont":{"color":"rgba(253,231,37,1)","size":[266.666666666667,151.960784313725,202.941176470588,253.921568627451,202.941176470588]},"error_y":{"color":"rgba(253,231,37,1)","width":[]},"error_x":{"color":"rgba(253,231,37,1)","width":[]},"line":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="poverty-status" class="section level2">
@@ -672,8 +675,8 @@ age_group</code></pre>
 </div>
 <div id="statistical-analysis" class="section level1">
 <h1>Statistical Analysis</h1>
-<div id="models" class="section level2">
-<h2>Models</h2>
+<div id="multiple-linear-regression-mlr" class="section level2">
+<h2>Multiple Linear Regression (MLR)</h2>
 <div id="data" class="section level3">
 <h3>Data</h3>
 <pre class="r"><code>df_mod = slp_df %&gt;% 
@@ -688,8 +691,8 @@ dim(data_train)</code></pre>
 <pre class="r"><code>dim(data_test)</code></pre>
 <pre><code>## [1] 1533    8</code></pre>
 </div>
-<div id="multiple-linear-regression-mlr" class="section level3">
-<h3>Multiple Linear Regression (MLR)</h3>
+<div id="modeling" class="section level3">
+<h3>Modeling</h3>
 <pre class="r"><code>lmraw = lm(ave_slp_hr ~ ., data = data_train)
 summary(lmraw)</code></pre>
 <pre><code>## 
@@ -750,16 +753,28 @@ summary(lmraw)</code></pre>
 ## Multiple R-squared:  0.02996,    Adjusted R-squared:  0.02694 
 ## F-statistic: 9.935 on 19 and 6112 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The model driven by multiple linear regression is <span
-class="math inline">\(sleep\_hour=8.03-0.30I(gender = male)-0.31I(race =
-Non-Hispanic Black)-0.18I(education_level = college graduate or
-above)-0.22I(education_level = college or AA
-degree)-0.05income_poverty_ratio-0.13trouble_slpyes+0.34I(sleepy_freq =
-2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq =
-freqnever)+0.35I(sleepy_freq = freqonce a month)\)</span>. We find it
-strongly relating to</p>
+class="math inline">\(sleep\_hour=8.09-0.31I(gender = male)-0.31I(race =
+Non-Hispanic Black)-0.22I(education_level = college graduate or
+above)-0.28I(education_level = college or AA
+degree)-0.05income_poverty_ratio-0.10trouble_slpyes+0.32I(sleepy_freq =
+2-4 per month)+0.37I(sleepy_freq = freqnever)+0.33I(sleepy_freq =
+freqonce a month)\)</span>. We find it strongly relating to gender,
+trouble_types, income_poverty_ratio, and some levels in race,
+education_level and sleep frequency.</p>
+</div>
+<div id="diagnostic-plots" class="section level3">
+<h3>Diagnostic plots</h3>
 <pre class="r"><code>par(mfrow = c(2,2))
 plot(lmraw, cex.lab = 1)</code></pre>
 <p><img src="Data_files/figure-html/unnamed-chunk-12-1.png" width="768" /></p>
+<p>Overall, the diagnostic plots indicates that all of the assumptions
+of MLR below are met.<br />
+1.Residuals are normally distributed<br />
+2.Variance of residuals is constant across the range of variables<br />
+3.Residuals are independent of one another</p>
+</div>
+<div id="mlr-under-stepwise" class="section level3">
+<h3>MLR under stepwise</h3>
 <pre class="r"><code>step1 = step(lmraw, direction = &#39;both&#39;, trace=0)
 summary(step1)</code></pre>
 <pre><code>## 
@@ -818,21 +833,17 @@ summary(step1)</code></pre>
 ## Residual standard error: 1.457 on 6113 degrees of freedom
 ## Multiple R-squared:  0.02995,    Adjusted R-squared:  0.02709 
 ## F-statistic: 10.48 on 18 and 6113 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>The model after stepwise both direction is <span
-class="math inline">\(sleep\_hour=8.04-0.30I(gender = male)-0.30I(race =
-Non-Hispanic Black)+ 0.34I(sleepy_freq = 2-4 per
-month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq =
-freqnever)+0.35I(sleepy_freq = freqonce a
-month)-0.05income_poverty_ratio-0.13trouble_slpyes-0.18I(education_level
-= college graduate or above)-0.22I(education_level = college or AA
-degree)\)</span></p>
-<div id="testing-cross-validation" class="section level4">
-<h4>Testing : Cross-Validation</h4>
-<pre class="r"><code># set.seed(1)
-# train = trainControl(method = &quot;cv&quot;, number = 100)
-# model_caret = train(ave_slp_hr ~ ., data = data_train, method = &#39;lm&#39;, na.action = na.pass)
-# model_caret$finalModel
-# model_caret</code></pre>
+<p>The model after stepwise method is <span
+class="math inline">\(sleep\_hour=8.10-0.31I(gender = male)-0.28I(race =
+Non-Hispanic Black)+ 0.32I(sleepy_freq = 2-4 per
+month)+0.37I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce a
+month)-0.05income_poverty_ratio-0.10trouble_slpyes-0.22I(education_level
+= college graduate or above)-0.28I(education_level = college or AA
+degree)\)</span> We find it is nearly the same as previous multiple
+linear regression model.</p>
+</div>
+<div id="testing" class="section level3">
+<h3>Testing</h3>
 <pre class="r"><code>raw_pred = predict(lmraw, newdata = data_test)
 
 dlm =  data.frame(
@@ -864,13 +875,12 @@ knitr::kable(dlm)</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code># raw_pred = predict(lmraw, newdata = data_test)</code></pre>
-<pre class="r"><code># res_raw = residuals(lmraw)
-# segments(obs, pred, obs, pred_res)</code></pre>
+<p>The table above shows the statistical measurement factors about the
+linear model.</p>
 </div>
 </div>
-<div id="logistic" class="section level3">
-<h3>logistic</h3>
+<div id="logistic" class="section level2">
+<h2>Logistic</h2>
 <pre class="r"><code>data_logtrain = data_train %&gt;% 
   mutate(sufficient_slp = ifelse((ave_slp_hr &gt;= 7), 1, 0)) %&gt;% 
   select(-ave_slp_hr)
@@ -998,11 +1008,10 @@ the estimated coefficients change.</p>
 ## sleepy_freq           4   76.823      6112     6509.2 8.199e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>We did model significance test, ANOVA, and determine the significant
-predictors for logistic regression model are the same from stepwise
-results.</p>
-<div id="testing" class="section level4">
-<h4>testing</h4>
+<p>We did model significance test, ANOVA, and the significant predictors
+for logistic regression model are the same as stepwise results.</p>
+<div id="testing-1" class="section level3">
+<h3>Testing</h3>
 <pre class="r"><code>data_logtest = data_test %&gt;% 
   mutate(sufficient_slp = ifelse((ave_slp_hr &gt;= 7), &#39;sufficient&#39;, &#39;insufficient&#39;)) %&gt;% 
   select(-ave_slp_hr)
@@ -1022,28 +1031,10 @@ sleep. <span class="math inline">\(\frac{6}{6+356} = 0.02\%\)</span> 3.
 the total accuracy of the model prediction is <span
 class="math inline">\(\frac{1166+6}{1166+5+6+356} = 76.45\%\)</span></p>
 </div>
-<div id="roc-auc-curve" class="section level4">
-<h4>ROC-AUC curve</h4>
-<pre class="r"><code>roc_curve = roc(data_logtest$sufficient_slp, prob2)
-names(roc_curve)</code></pre>
-<pre><code>##  [1] &quot;percent&quot;            &quot;sensitivities&quot;      &quot;specificities&quot;     
-##  [4] &quot;thresholds&quot;         &quot;direction&quot;          &quot;cases&quot;             
-##  [7] &quot;controls&quot;           &quot;fun.sesp&quot;           &quot;auc&quot;               
-## [10] &quot;call&quot;               &quot;original.predictor&quot; &quot;original.response&quot; 
-## [13] &quot;predictor&quot;          &quot;response&quot;           &quot;levels&quot;</code></pre>
-<pre class="r"><code>x = 1-roc_curve$specificities
-y = roc_curve$sensitivities
-
-ggplot(data = NULL, aes(x = x, y = y)) + 
-  geom_line(colour = &#39;red&#39;) + 
-  geom_abline(intercept = 0, slope = 1) +
-  annotate(&#39;text&#39;, x = 0.5, y = 0.5, label =paste(&#39;AUC=&#39;,round(roc_curve$auc,2))) +
-  labs(x = &#39;1-specificities&#39;,y = &#39;sensitivities&#39;, title = &#39;ROC Curve&#39;)</code></pre>
-<p><img src="Data_files/figure-html/unnamed-chunk-22-1.png" width="768" /></p>
-</div>
-</div>
-<div id="xgboost-compare-with-mlr" class="section level3">
-<h3>xgboost (compare with mlr)</h3>
+<div id="xgboost-optimizing-mlr" class="section level3">
+<h3>XGBoost (Optimizing MLR)</h3>
+<div id="data-1" class="section level4">
+<h4>Data</h4>
 <pre class="r"><code>clafeats = c(&#39;gender&#39;, &#39;race&#39;, &#39;education_level&#39;, &#39;trouble_slp&#39;, &#39;sleepy_freq&#39;)
 dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = df_mod)
 slp_oh = as.data.frame(predict(dums, newdata = df_mod))
@@ -1061,338 +1052,323 @@ data_testy = data.frame(data_testxg[,3])
 names(data_testy) = c(&#39;label&#39;)</code></pre>
 <pre class="r"><code>dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
 dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)</code></pre>
-<div id="model-training" class="section level4">
-<h4>model training</h4>
-<pre class="r"><code>xgb1 = xgboost(data = dtrain, max.depth = 10, nrounds = 300)</code></pre>
-<pre><code>## [1]  train-rmse:5.308995 
-## [2]  train-rmse:3.858269 
-## [3]  train-rmse:2.886284 
-## [4]  train-rmse:2.245182 
-## [5]  train-rmse:1.829713 
-## [6]  train-rmse:1.563952 
-## [7]  train-rmse:1.392055 
-## [8]  train-rmse:1.288338 
-## [9]  train-rmse:1.196116 
-## [10] train-rmse:1.145216 
-## [11] train-rmse:1.099318 
-## [12] train-rmse:1.067830 
-## [13] train-rmse:1.049116 
-## [14] train-rmse:1.017877 
-## [15] train-rmse:0.991405 
-## [16] train-rmse:0.978619 
-## [17] train-rmse:0.946701 
-## [18] train-rmse:0.929606 
-## [19] train-rmse:0.917407 
-## [20] train-rmse:0.895506 
-## [21] train-rmse:0.880546 
-## [22] train-rmse:0.846006 
-## [23] train-rmse:0.817986 
-## [24] train-rmse:0.789218 
-## [25] train-rmse:0.773734 
-## [26] train-rmse:0.768133 
-## [27] train-rmse:0.751800 
-## [28] train-rmse:0.733366 
-## [29] train-rmse:0.714330 
-## [30] train-rmse:0.700871 
-## [31] train-rmse:0.699048 
-## [32] train-rmse:0.687810 
-## [33] train-rmse:0.674260 
-## [34] train-rmse:0.663500 
-## [35] train-rmse:0.649702 
-## [36] train-rmse:0.632670 
-## [37] train-rmse:0.624316 
-## [38] train-rmse:0.618072 
-## [39] train-rmse:0.598711 
-## [40] train-rmse:0.580068 
-## [41] train-rmse:0.571179 
-## [42] train-rmse:0.565043 
-## [43] train-rmse:0.555764 
-## [44] train-rmse:0.552828 
-## [45] train-rmse:0.547112 
-## [46] train-rmse:0.526388 
-## [47] train-rmse:0.508920 
-## [48] train-rmse:0.505224 
-## [49] train-rmse:0.496811 
-## [50] train-rmse:0.485498 
-## [51] train-rmse:0.479899 
-## [52] train-rmse:0.471725 
-## [53] train-rmse:0.466391 
-## [54] train-rmse:0.461427 
-## [55] train-rmse:0.445579 
-## [56] train-rmse:0.434203 
-## [57] train-rmse:0.421850 
-## [58] train-rmse:0.416001 
-## [59] train-rmse:0.414282 
-## [60] train-rmse:0.408379 
-## [61] train-rmse:0.405502 
-## [62] train-rmse:0.400294 
-## [63] train-rmse:0.390322 
-## [64] train-rmse:0.387858 
-## [65] train-rmse:0.379002 
-## [66] train-rmse:0.374546 
-## [67] train-rmse:0.367244 
-## [68] train-rmse:0.363043 
-## [69] train-rmse:0.359578 
-## [70] train-rmse:0.356745 
-## [71] train-rmse:0.353339 
-## [72] train-rmse:0.341020 
-## [73] train-rmse:0.337169 
-## [74] train-rmse:0.333815 
-## [75] train-rmse:0.330953 
-## [76] train-rmse:0.326217 
-## [77] train-rmse:0.325415 
-## [78] train-rmse:0.320496 
-## [79] train-rmse:0.312095 
-## [80] train-rmse:0.307786 
-## [81] train-rmse:0.303101 
-## [82] train-rmse:0.298793 
-## [83] train-rmse:0.295484 
-## [84] train-rmse:0.294416 
-## [85] train-rmse:0.287551 
-## [86] train-rmse:0.285232 
-## [87] train-rmse:0.281262 
-## [88] train-rmse:0.279899 
-## [89] train-rmse:0.278293 
-## [90] train-rmse:0.275461 
-## [91] train-rmse:0.273785 
-## [92] train-rmse:0.269553 
-## [93] train-rmse:0.268639 
-## [94] train-rmse:0.266809 
-## [95] train-rmse:0.262565 
-## [96] train-rmse:0.261277 
-## [97] train-rmse:0.259774 
-## [98] train-rmse:0.258482 
-## [99] train-rmse:0.257647 
-## [100]    train-rmse:0.251650 
-## [101]    train-rmse:0.249392 
-## [102]    train-rmse:0.245773 
-## [103]    train-rmse:0.242933 
-## [104]    train-rmse:0.241774 
-## [105]    train-rmse:0.239926 
-## [106]    train-rmse:0.238836 
-## [107]    train-rmse:0.238597 
-## [108]    train-rmse:0.238210 
-## [109]    train-rmse:0.236929 
-## [110]    train-rmse:0.236801 
-## [111]    train-rmse:0.229160 
-## [112]    train-rmse:0.226891 
-## [113]    train-rmse:0.225383 
-## [114]    train-rmse:0.223347 
-## [115]    train-rmse:0.222462 
-## [116]    train-rmse:0.219371 
-## [117]    train-rmse:0.216784 
-## [118]    train-rmse:0.213923 
-## [119]    train-rmse:0.211518 
-## [120]    train-rmse:0.208543 
-## [121]    train-rmse:0.207334 
-## [122]    train-rmse:0.206497 
-## [123]    train-rmse:0.205929 
-## [124]    train-rmse:0.201403 
-## [125]    train-rmse:0.199694 
-## [126]    train-rmse:0.197094 
-## [127]    train-rmse:0.194529 
-## [128]    train-rmse:0.192421 
-## [129]    train-rmse:0.189329 
-## [130]    train-rmse:0.187777 
-## [131]    train-rmse:0.185517 
-## [132]    train-rmse:0.183585 
-## [133]    train-rmse:0.182636 
-## [134]    train-rmse:0.182394 
-## [135]    train-rmse:0.182214 
-## [136]    train-rmse:0.180579 
-## [137]    train-rmse:0.179656 
-## [138]    train-rmse:0.178946 
-## [139]    train-rmse:0.178125 
-## [140]    train-rmse:0.177232 
-## [141]    train-rmse:0.176552 
-## [142]    train-rmse:0.175672 
-## [143]    train-rmse:0.173688 
-## [144]    train-rmse:0.173256 
-## [145]    train-rmse:0.172489 
-## [146]    train-rmse:0.172160 
-## [147]    train-rmse:0.171569 
-## [148]    train-rmse:0.170235 
-## [149]    train-rmse:0.169845 
-## [150]    train-rmse:0.168789 
-## [151]    train-rmse:0.168375 
-## [152]    train-rmse:0.167607 
-## [153]    train-rmse:0.167422 
-## [154]    train-rmse:0.166957 
-## [155]    train-rmse:0.166045 
-## [156]    train-rmse:0.165517 
-## [157]    train-rmse:0.165054 
-## [158]    train-rmse:0.164035 
-## [159]    train-rmse:0.163609 
-## [160]    train-rmse:0.163569 
-## [161]    train-rmse:0.163437 
-## [162]    train-rmse:0.162774 
-## [163]    train-rmse:0.161641 
-## [164]    train-rmse:0.160421 
-## [165]    train-rmse:0.160076 
-## [166]    train-rmse:0.159900 
-## [167]    train-rmse:0.159597 
-## [168]    train-rmse:0.159435 
-## [169]    train-rmse:0.158923 
-## [170]    train-rmse:0.158658 
-## [171]    train-rmse:0.158063 
-## [172]    train-rmse:0.157670 
-## [173]    train-rmse:0.156804 
-## [174]    train-rmse:0.156680 
-## [175]    train-rmse:0.156062 
-## [176]    train-rmse:0.155900 
-## [177]    train-rmse:0.155539 
-## [178]    train-rmse:0.155157 
-## [179]    train-rmse:0.154894 
-## [180]    train-rmse:0.154571 
-## [181]    train-rmse:0.154229 
-## [182]    train-rmse:0.153831 
-## [183]    train-rmse:0.153294 
-## [184]    train-rmse:0.153118 
-## [185]    train-rmse:0.153010 
-## [186]    train-rmse:0.152747 
-## [187]    train-rmse:0.152608 
-## [188]    train-rmse:0.152443 
-## [189]    train-rmse:0.152268 
-## [190]    train-rmse:0.152187 
-## [191]    train-rmse:0.152113 
-## [192]    train-rmse:0.152080 
-## [193]    train-rmse:0.151849 
-## [194]    train-rmse:0.151824 
-## [195]    train-rmse:0.151518 
-## [196]    train-rmse:0.151408 
-## [197]    train-rmse:0.151108 
-## [198]    train-rmse:0.150927 
-## [199]    train-rmse:0.150765 
-## [200]    train-rmse:0.150601 
-## [201]    train-rmse:0.150519 
-## [202]    train-rmse:0.150249 
-## [203]    train-rmse:0.150207 
-## [204]    train-rmse:0.150043 
-## [205]    train-rmse:0.149787 
-## [206]    train-rmse:0.149570 
-## [207]    train-rmse:0.149367 
-## [208]    train-rmse:0.149296 
-## [209]    train-rmse:0.149103 
-## [210]    train-rmse:0.148973 
-## [211]    train-rmse:0.148853 
-## [212]    train-rmse:0.148664 
-## [213]    train-rmse:0.148572 
-## [214]    train-rmse:0.148524 
-## [215]    train-rmse:0.148452 
-## [216]    train-rmse:0.148355 
-## [217]    train-rmse:0.148305 
-## [218]    train-rmse:0.148156 
-## [219]    train-rmse:0.148009 
-## [220]    train-rmse:0.147962 
-## [221]    train-rmse:0.147828 
-## [222]    train-rmse:0.147725 
-## [223]    train-rmse:0.147691 
-## [224]    train-rmse:0.147659 
-## [225]    train-rmse:0.147581 
-## [226]    train-rmse:0.147494 
-## [227]    train-rmse:0.147435 
-## [228]    train-rmse:0.147333 
-## [229]    train-rmse:0.147206 
-## [230]    train-rmse:0.147068 
-## [231]    train-rmse:0.146967 
-## [232]    train-rmse:0.146852 
-## [233]    train-rmse:0.146848 
-## [234]    train-rmse:0.146840 
-## [235]    train-rmse:0.146839 
-## [236]    train-rmse:0.146833 
-## [237]    train-rmse:0.146803 
-## [238]    train-rmse:0.146725 
-## [239]    train-rmse:0.146660 
-## [240]    train-rmse:0.146599 
-## [241]    train-rmse:0.146559 
-## [242]    train-rmse:0.146514 
-## [243]    train-rmse:0.146492 
-## [244]    train-rmse:0.146460 
-## [245]    train-rmse:0.146443 
-## [246]    train-rmse:0.146407 
-## [247]    train-rmse:0.146379 
-## [248]    train-rmse:0.146329 
-## [249]    train-rmse:0.146284 
-## [250]    train-rmse:0.146229 
-## [251]    train-rmse:0.146209 
-## [252]    train-rmse:0.146173 
-## [253]    train-rmse:0.146136 
-## [254]    train-rmse:0.146077 
-## [255]    train-rmse:0.146009 
-## [256]    train-rmse:0.145993 
-## [257]    train-rmse:0.145955 
-## [258]    train-rmse:0.145944 
-## [259]    train-rmse:0.145920 
-## [260]    train-rmse:0.145894 
-## [261]    train-rmse:0.145882 
-## [262]    train-rmse:0.145872 
-## [263]    train-rmse:0.145872 
-## [264]    train-rmse:0.145855 
-## [265]    train-rmse:0.145841 
-## [266]    train-rmse:0.145820 
-## [267]    train-rmse:0.145811 
-## [268]    train-rmse:0.145798 
-## [269]    train-rmse:0.145783 
-## [270]    train-rmse:0.145769 
-## [271]    train-rmse:0.145750 
-## [272]    train-rmse:0.145716 
-## [273]    train-rmse:0.145705 
-## [274]    train-rmse:0.145696 
-## [275]    train-rmse:0.145696 
-## [276]    train-rmse:0.145676 
-## [277]    train-rmse:0.145674 
-## [278]    train-rmse:0.145667 
-## [279]    train-rmse:0.145663 
-## [280]    train-rmse:0.145661 
-## [281]    train-rmse:0.145644 
-## [282]    train-rmse:0.145640 
-## [283]    train-rmse:0.145638 
-## [284]    train-rmse:0.145635 
-## [285]    train-rmse:0.145627 
-## [286]    train-rmse:0.145622 
-## [287]    train-rmse:0.145620 
-## [288]    train-rmse:0.145617 
-## [289]    train-rmse:0.145608 
-## [290]    train-rmse:0.145605 
-## [291]    train-rmse:0.145598 
-## [292]    train-rmse:0.145589 
-## [293]    train-rmse:0.145586 
-## [294]    train-rmse:0.145564 
-## [295]    train-rmse:0.145554 
-## [296]    train-rmse:0.145543 
-## [297]    train-rmse:0.145528 
-## [298]    train-rmse:0.145504 
-## [299]    train-rmse:0.145494 
-## [300]    train-rmse:0.145478</code></pre>
-<pre class="r"><code>print(xgb1)</code></pre>
-<pre><code>## ##### xgb.Booster
-## raw: 6.4 Mb 
-## call:
-##   xgb.train(params = params, data = dtrain, nrounds = nrounds, 
-##     watchlist = watchlist, verbose = verbose, print_every_n = print_every_n, 
-##     early_stopping_rounds = early_stopping_rounds, maximize = maximize, 
-##     save_period = save_period, save_name = save_name, xgb_model = xgb_model, 
-##     callbacks = callbacks, max.depth = 10)
-## params (as set within xgb.train):
-##   max_depth = &quot;10&quot;, validate_parameters = &quot;1&quot;
-## xgb.attributes:
-##   niter
-## callbacks:
-##   cb.print.evaluation(period = print_every_n)
-##   cb.evaluation.log()
-## # of features: 24 
-## niter: 300
-## nfeatures : 24 
-## evaluation_log:
-##     iter train_rmse
-##        1  5.3089952
-##        2  3.8582693
-## ---                
-##      299  0.1454936
-##      300  0.1454778</code></pre>
 </div>
-<div id="model-prediction" class="section level4">
-<h4>model prediction</h4>
+<div id="training" class="section level4">
+<h4>Training</h4>
+<pre class="r"><code>xgb1 = xgboost(data=dtrain, booster = &quot;gblinear&quot;, max_depth=5, eta = 0.1, nround = 300, objective = &quot;reg:squarederror&quot;)</code></pre>
+<pre><code>## [00:55:48] WARNING: amalgamation/../src/learner.cc:627: 
+## Parameters: { &quot;max_depth&quot; } might not be used.
+## 
+##   This could be a false alarm, with some parameters getting used by language bindings but
+##   then being mistakenly passed down to XGBoost core, or some parameter actually being used
+##   but getting flagged wrongly here. Please open an issue if you find any such cases.
+## 
+## 
+## [1]  train-rmse:3.376388 
+## [2]  train-rmse:2.046912 
+## [3]  train-rmse:1.676271 
+## [4]  train-rmse:1.596709 
+## [5]  train-rmse:1.574146 
+## [6]  train-rmse:1.561597 
+## [7]  train-rmse:1.552126 
+## [8]  train-rmse:1.544267 
+## [9]  train-rmse:1.537613 
+## [10] train-rmse:1.532000 
+## [11] train-rmse:1.527187 
+## [12] train-rmse:1.523054 
+## [13] train-rmse:1.519468 
+## [14] train-rmse:1.516374 
+## [15] train-rmse:1.513628 
+## [16] train-rmse:1.511238 
+## [17] train-rmse:1.509108 
+## [18] train-rmse:1.507118 
+## [19] train-rmse:1.505282 
+## [20] train-rmse:1.503593 
+## [21] train-rmse:1.502012 
+## [22] train-rmse:1.500539 
+## [23] train-rmse:1.499167 
+## [24] train-rmse:1.497866 
+## [25] train-rmse:1.496634 
+## [26] train-rmse:1.495464 
+## [27] train-rmse:1.494358 
+## [28] train-rmse:1.493292 
+## [29] train-rmse:1.492269 
+## [30] train-rmse:1.491299 
+## [31] train-rmse:1.490355 
+## [32] train-rmse:1.489437 
+## [33] train-rmse:1.488558 
+## [34] train-rmse:1.487697 
+## [35] train-rmse:1.486872 
+## [36] train-rmse:1.486074 
+## [37] train-rmse:1.485302 
+## [38] train-rmse:1.484546 
+## [39] train-rmse:1.483814 
+## [40] train-rmse:1.483102 
+## [41] train-rmse:1.482414 
+## [42] train-rmse:1.481741 
+## [43] train-rmse:1.481084 
+## [44] train-rmse:1.480443 
+## [45] train-rmse:1.479826 
+## [46] train-rmse:1.479234 
+## [47] train-rmse:1.478655 
+## [48] train-rmse:1.478091 
+## [49] train-rmse:1.477547 
+## [50] train-rmse:1.477016 
+## [51] train-rmse:1.476496 
+## [52] train-rmse:1.475989 
+## [53] train-rmse:1.475497 
+## [54] train-rmse:1.475014 
+## [55] train-rmse:1.474552 
+## [56] train-rmse:1.474098 
+## [57] train-rmse:1.473665 
+## [58] train-rmse:1.473234 
+## [59] train-rmse:1.472815 
+## [60] train-rmse:1.472404 
+## [61] train-rmse:1.472006 
+## [62] train-rmse:1.471618 
+## [63] train-rmse:1.471240 
+## [64] train-rmse:1.470872 
+## [65] train-rmse:1.470513 
+## [66] train-rmse:1.470163 
+## [67] train-rmse:1.469823 
+## [68] train-rmse:1.469491 
+## [69] train-rmse:1.469168 
+## [70] train-rmse:1.468852 
+## [71] train-rmse:1.468542 
+## [72] train-rmse:1.468238 
+## [73] train-rmse:1.467946 
+## [74] train-rmse:1.467660 
+## [75] train-rmse:1.467381 
+## [76] train-rmse:1.467109 
+## [77] train-rmse:1.466844 
+## [78] train-rmse:1.466586 
+## [79] train-rmse:1.466334 
+## [80] train-rmse:1.466091 
+## [81] train-rmse:1.465851 
+## [82] train-rmse:1.465617 
+## [83] train-rmse:1.465389 
+## [84] train-rmse:1.465166 
+## [85] train-rmse:1.464951 
+## [86] train-rmse:1.464740 
+## [87] train-rmse:1.464533 
+## [88] train-rmse:1.464331 
+## [89] train-rmse:1.464134 
+## [90] train-rmse:1.463942 
+## [91] train-rmse:1.463754 
+## [92] train-rmse:1.463570 
+## [93] train-rmse:1.463392 
+## [94] train-rmse:1.463217 
+## [95] train-rmse:1.463046 
+## [96] train-rmse:1.462880 
+## [97] train-rmse:1.462716 
+## [98] train-rmse:1.462559 
+## [99] train-rmse:1.462404 
+## [100]    train-rmse:1.462251 
+## [101]    train-rmse:1.462103 
+## [102]    train-rmse:1.461958 
+## [103]    train-rmse:1.461816 
+## [104]    train-rmse:1.461677 
+## [105]    train-rmse:1.461542 
+## [106]    train-rmse:1.461410 
+## [107]    train-rmse:1.461280 
+## [108]    train-rmse:1.461154 
+## [109]    train-rmse:1.461031 
+## [110]    train-rmse:1.460910 
+## [111]    train-rmse:1.460791 
+## [112]    train-rmse:1.460676 
+## [113]    train-rmse:1.460563 
+## [114]    train-rmse:1.460452 
+## [115]    train-rmse:1.460344 
+## [116]    train-rmse:1.460239 
+## [117]    train-rmse:1.460136 
+## [118]    train-rmse:1.460034 
+## [119]    train-rmse:1.459936 
+## [120]    train-rmse:1.459839 
+## [121]    train-rmse:1.459744 
+## [122]    train-rmse:1.459652 
+## [123]    train-rmse:1.459561 
+## [124]    train-rmse:1.459473 
+## [125]    train-rmse:1.459386 
+## [126]    train-rmse:1.459301 
+## [127]    train-rmse:1.459219 
+## [128]    train-rmse:1.459138 
+## [129]    train-rmse:1.459058 
+## [130]    train-rmse:1.458980 
+## [131]    train-rmse:1.458904 
+## [132]    train-rmse:1.458829 
+## [133]    train-rmse:1.458756 
+## [134]    train-rmse:1.458685 
+## [135]    train-rmse:1.458614 
+## [136]    train-rmse:1.458546 
+## [137]    train-rmse:1.458479 
+## [138]    train-rmse:1.458414 
+## [139]    train-rmse:1.458350 
+## [140]    train-rmse:1.458287 
+## [141]    train-rmse:1.458225 
+## [142]    train-rmse:1.458165 
+## [143]    train-rmse:1.458106 
+## [144]    train-rmse:1.458048 
+## [145]    train-rmse:1.457992 
+## [146]    train-rmse:1.457936 
+## [147]    train-rmse:1.457881 
+## [148]    train-rmse:1.457828 
+## [149]    train-rmse:1.457776 
+## [150]    train-rmse:1.457724 
+## [151]    train-rmse:1.457675 
+## [152]    train-rmse:1.457626 
+## [153]    train-rmse:1.457578 
+## [154]    train-rmse:1.457531 
+## [155]    train-rmse:1.457484 
+## [156]    train-rmse:1.457439 
+## [157]    train-rmse:1.457395 
+## [158]    train-rmse:1.457352 
+## [159]    train-rmse:1.457309 
+## [160]    train-rmse:1.457268 
+## [161]    train-rmse:1.457227 
+## [162]    train-rmse:1.457187 
+## [163]    train-rmse:1.457148 
+## [164]    train-rmse:1.457109 
+## [165]    train-rmse:1.457071 
+## [166]    train-rmse:1.457035 
+## [167]    train-rmse:1.456999 
+## [168]    train-rmse:1.456963 
+## [169]    train-rmse:1.456928 
+## [170]    train-rmse:1.456894 
+## [171]    train-rmse:1.456861 
+## [172]    train-rmse:1.456828 
+## [173]    train-rmse:1.456796 
+## [174]    train-rmse:1.456764 
+## [175]    train-rmse:1.456733 
+## [176]    train-rmse:1.456703 
+## [177]    train-rmse:1.456673 
+## [178]    train-rmse:1.456644 
+## [179]    train-rmse:1.456615 
+## [180]    train-rmse:1.456587 
+## [181]    train-rmse:1.456559 
+## [182]    train-rmse:1.456532 
+## [183]    train-rmse:1.456506 
+## [184]    train-rmse:1.456480 
+## [185]    train-rmse:1.456454 
+## [186]    train-rmse:1.456429 
+## [187]    train-rmse:1.456405 
+## [188]    train-rmse:1.456381 
+## [189]    train-rmse:1.456357 
+## [190]    train-rmse:1.456334 
+## [191]    train-rmse:1.456311 
+## [192]    train-rmse:1.456289 
+## [193]    train-rmse:1.456268 
+## [194]    train-rmse:1.456246 
+## [195]    train-rmse:1.456225 
+## [196]    train-rmse:1.456205 
+## [197]    train-rmse:1.456185 
+## [198]    train-rmse:1.456165 
+## [199]    train-rmse:1.456145 
+## [200]    train-rmse:1.456126 
+## [201]    train-rmse:1.456107 
+## [202]    train-rmse:1.456089 
+## [203]    train-rmse:1.456071 
+## [204]    train-rmse:1.456053 
+## [205]    train-rmse:1.456036 
+## [206]    train-rmse:1.456019 
+## [207]    train-rmse:1.456002 
+## [208]    train-rmse:1.455986 
+## [209]    train-rmse:1.455970 
+## [210]    train-rmse:1.455954 
+## [211]    train-rmse:1.455938 
+## [212]    train-rmse:1.455923 
+## [213]    train-rmse:1.455908 
+## [214]    train-rmse:1.455894 
+## [215]    train-rmse:1.455879 
+## [216]    train-rmse:1.455865 
+## [217]    train-rmse:1.455851 
+## [218]    train-rmse:1.455838 
+## [219]    train-rmse:1.455824 
+## [220]    train-rmse:1.455812 
+## [221]    train-rmse:1.455799 
+## [222]    train-rmse:1.455786 
+## [223]    train-rmse:1.455774 
+## [224]    train-rmse:1.455762 
+## [225]    train-rmse:1.455750 
+## [226]    train-rmse:1.455738 
+## [227]    train-rmse:1.455726 
+## [228]    train-rmse:1.455715 
+## [229]    train-rmse:1.455704 
+## [230]    train-rmse:1.455693 
+## [231]    train-rmse:1.455682 
+## [232]    train-rmse:1.455672 
+## [233]    train-rmse:1.455662 
+## [234]    train-rmse:1.455651 
+## [235]    train-rmse:1.455642 
+## [236]    train-rmse:1.455632 
+## [237]    train-rmse:1.455622 
+## [238]    train-rmse:1.455613 
+## [239]    train-rmse:1.455604 
+## [240]    train-rmse:1.455595 
+## [241]    train-rmse:1.455586 
+## [242]    train-rmse:1.455577 
+## [243]    train-rmse:1.455569 
+## [244]    train-rmse:1.455560 
+## [245]    train-rmse:1.455552 
+## [246]    train-rmse:1.455544 
+## [247]    train-rmse:1.455536 
+## [248]    train-rmse:1.455528 
+## [249]    train-rmse:1.455520 
+## [250]    train-rmse:1.455513 
+## [251]    train-rmse:1.455506 
+## [252]    train-rmse:1.455498 
+## [253]    train-rmse:1.455491 
+## [254]    train-rmse:1.455484 
+## [255]    train-rmse:1.455477 
+## [256]    train-rmse:1.455470 
+## [257]    train-rmse:1.455464 
+## [258]    train-rmse:1.455457 
+## [259]    train-rmse:1.455451 
+## [260]    train-rmse:1.455445 
+## [261]    train-rmse:1.455438 
+## [262]    train-rmse:1.455432 
+## [263]    train-rmse:1.455427 
+## [264]    train-rmse:1.455421 
+## [265]    train-rmse:1.455415 
+## [266]    train-rmse:1.455409 
+## [267]    train-rmse:1.455404 
+## [268]    train-rmse:1.455398 
+## [269]    train-rmse:1.455393 
+## [270]    train-rmse:1.455388 
+## [271]    train-rmse:1.455383 
+## [272]    train-rmse:1.455378 
+## [273]    train-rmse:1.455373 
+## [274]    train-rmse:1.455368 
+## [275]    train-rmse:1.455363 
+## [276]    train-rmse:1.455358 
+## [277]    train-rmse:1.455354 
+## [278]    train-rmse:1.455349 
+## [279]    train-rmse:1.455345 
+## [280]    train-rmse:1.455340 
+## [281]    train-rmse:1.455336 
+## [282]    train-rmse:1.455332 
+## [283]    train-rmse:1.455328 
+## [284]    train-rmse:1.455324 
+## [285]    train-rmse:1.455319 
+## [286]    train-rmse:1.455316 
+## [287]    train-rmse:1.455312 
+## [288]    train-rmse:1.455308 
+## [289]    train-rmse:1.455304 
+## [290]    train-rmse:1.455301 
+## [291]    train-rmse:1.455297 
+## [292]    train-rmse:1.455293 
+## [293]    train-rmse:1.455290 
+## [294]    train-rmse:1.455287 
+## [295]    train-rmse:1.455283 
+## [296]    train-rmse:1.455280 
+## [297]    train-rmse:1.455277 
+## [298]    train-rmse:1.455274 
+## [299]    train-rmse:1.455270 
+## [300]    train-rmse:1.455267</code></pre>
+<p>We choose the gblinear booster and reg:squarederror objective for
+training XGBoost model and comparing with MLR later.</p>
+</div>
+<div id="testing-2" class="section level4">
+<h4>Testing</h4>
 <pre class="r"><code>xgbpred1 = predict(xgb1, dtest)
 
 dxg =  data.frame(
@@ -1412,30 +1388,34 @@ knitr::kable(dxg)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">MSE</td>
-<td align="right">2.843923</td>
+<td align="right">2.111973</td>
 </tr>
 <tr class="even">
 <td align="left">MAE</td>
-<td align="right">1.289155</td>
+<td align="right">1.089930</td>
 </tr>
 <tr class="odd">
 <td align="left">RMSE</td>
-<td align="right">1.686394</td>
+<td align="right">1.453263</td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>x = 1:length(data_testy$label)
-plot(x, data_testy$label, col = &quot;red&quot;, type = &quot;l&quot;)
-lines(x, xgbpred1, col = &quot;blue&quot;, type = &quot;l&quot;)</code></pre>
-<p><img src="Data_files/figure-html/unnamed-chunk-29-1.png" width="768" /></p>
-<pre class="r"><code>names = dimnames(as.matrix(data_testx))[[2]]
-importance_matrix = xgb.importance(names, model = xgb1)
-xgb.plot.importance(importance_matrix[1:10,])</code></pre>
-<p><img src="Data_files/figure-html/unnamed-chunk-30-1.png" width="768" /></p>
+<p>We find the table above for XGBoost shows the similar statistical
+measurement results with the linear model. We claim XGBoost model using
+gblinear booster here does not simply work better than MLR model.</p>
+<pre class="r"><code>xgb_imp1 = xgb.importance(feature_names = xgb1$feature_names, model = xgb1)
+xgb.ggplot.importance(xgb_imp1, top_n =10, n_clusters = 2)</code></pre>
+<p><img src="Data_files/figure-html/unnamed-chunk-25-1.png" width="768" /></p>
+<p>The feature importance plot of XGBoost model indicates some levels of
+education_level and race factors are much important. Meanwhile, the
+result differs from MLR models as race:Mexican American and
+race:Non-Hispanic white are also important.</p>
 </div>
 </div>
-<div id="xgboost-compare-with-logit" class="section level3">
-<h3>xgboost (compare with logit)</h3>
+<div id="xgboost-optimizing-logistic" class="section level3">
+<h3>XGBoost (Optimizing Logistic)</h3>
+<div id="data-2" class="section level4">
+<h4>Data</h4>
 <pre class="r"><code>slp_df_new2 = slp_df_new %&gt;% 
   mutate(sufficient_slp = ifelse((ave_slp_hr &gt;= 7), 1, 0)) %&gt;% 
   select(-ave_slp_hr)</code></pre>
@@ -1456,9 +1436,10 @@ data_testy = data.frame(data_testxg[,25])
 names(data_testy) = c(&#39;label&#39;)</code></pre>
 <pre class="r"><code>dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
 dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)</code></pre>
-<div id="model-training-1" class="section level4">
-<h4>model training</h4>
-<pre class="r"><code>xgb2 = xgboost(data = dtrain, max.depth = 10, nround = 1000, objective = &quot;binary:logistic&quot;)</code></pre>
+</div>
+<div id="training-1" class="section level4">
+<h4>Training</h4>
+<pre class="r"><code>xgb2 = xgboost(data = dtrain, booster = &quot;gbtree&quot;, max.depth = 10, nround = 2000, objective = &quot;binary:logistic&quot;)</code></pre>
 <pre><code>## [1]  train-logloss:0.595103 
 ## [2]  train-logloss:0.533724 
 ## [3]  train-logloss:0.493842 
@@ -2458,77 +2439,1076 @@ dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)</cod
 ## [997]    train-logloss:0.021770 
 ## [998]    train-logloss:0.021766 
 ## [999]    train-logloss:0.021754 
-## [1000]   train-logloss:0.021747</code></pre>
+## [1000]   train-logloss:0.021747 
+## [1001]   train-logloss:0.021741 
+## [1002]   train-logloss:0.021738 
+## [1003]   train-logloss:0.021732 
+## [1004]   train-logloss:0.021721 
+## [1005]   train-logloss:0.021704 
+## [1006]   train-logloss:0.021679 
+## [1007]   train-logloss:0.021662 
+## [1008]   train-logloss:0.021641 
+## [1009]   train-logloss:0.021631 
+## [1010]   train-logloss:0.021614 
+## [1011]   train-logloss:0.021601 
+## [1012]   train-logloss:0.021591 
+## [1013]   train-logloss:0.021586 
+## [1014]   train-logloss:0.021580 
+## [1015]   train-logloss:0.021564 
+## [1016]   train-logloss:0.021556 
+## [1017]   train-logloss:0.021550 
+## [1018]   train-logloss:0.021541 
+## [1019]   train-logloss:0.021536 
+## [1020]   train-logloss:0.021519 
+## [1021]   train-logloss:0.021490 
+## [1022]   train-logloss:0.021474 
+## [1023]   train-logloss:0.021463 
+## [1024]   train-logloss:0.021444 
+## [1025]   train-logloss:0.021433 
+## [1026]   train-logloss:0.021423 
+## [1027]   train-logloss:0.021411 
+## [1028]   train-logloss:0.021398 
+## [1029]   train-logloss:0.021395 
+## [1030]   train-logloss:0.021387 
+## [1031]   train-logloss:0.021377 
+## [1032]   train-logloss:0.021372 
+## [1033]   train-logloss:0.021364 
+## [1034]   train-logloss:0.021353 
+## [1035]   train-logloss:0.021326 
+## [1036]   train-logloss:0.021314 
+## [1037]   train-logloss:0.021292 
+## [1038]   train-logloss:0.021286 
+## [1039]   train-logloss:0.021258 
+## [1040]   train-logloss:0.021249 
+## [1041]   train-logloss:0.021230 
+## [1042]   train-logloss:0.021222 
+## [1043]   train-logloss:0.021216 
+## [1044]   train-logloss:0.021210 
+## [1045]   train-logloss:0.021198 
+## [1046]   train-logloss:0.021190 
+## [1047]   train-logloss:0.021171 
+## [1048]   train-logloss:0.021162 
+## [1049]   train-logloss:0.021150 
+## [1050]   train-logloss:0.021139 
+## [1051]   train-logloss:0.021124 
+## [1052]   train-logloss:0.021107 
+## [1053]   train-logloss:0.021096 
+## [1054]   train-logloss:0.021086 
+## [1055]   train-logloss:0.021065 
+## [1056]   train-logloss:0.021057 
+## [1057]   train-logloss:0.021049 
+## [1058]   train-logloss:0.021023 
+## [1059]   train-logloss:0.021003 
+## [1060]   train-logloss:0.020994 
+## [1061]   train-logloss:0.020967 
+## [1062]   train-logloss:0.020960 
+## [1063]   train-logloss:0.020937 
+## [1064]   train-logloss:0.020914 
+## [1065]   train-logloss:0.020899 
+## [1066]   train-logloss:0.020892 
+## [1067]   train-logloss:0.020874 
+## [1068]   train-logloss:0.020863 
+## [1069]   train-logloss:0.020841 
+## [1070]   train-logloss:0.020834 
+## [1071]   train-logloss:0.020830 
+## [1072]   train-logloss:0.020812 
+## [1073]   train-logloss:0.020805 
+## [1074]   train-logloss:0.020784 
+## [1075]   train-logloss:0.020773 
+## [1076]   train-logloss:0.020771 
+## [1077]   train-logloss:0.020757 
+## [1078]   train-logloss:0.020748 
+## [1079]   train-logloss:0.020746 
+## [1080]   train-logloss:0.020744 
+## [1081]   train-logloss:0.020735 
+## [1082]   train-logloss:0.020730 
+## [1083]   train-logloss:0.020715 
+## [1084]   train-logloss:0.020710 
+## [1085]   train-logloss:0.020706 
+## [1086]   train-logloss:0.020699 
+## [1087]   train-logloss:0.020697 
+## [1088]   train-logloss:0.020684 
+## [1089]   train-logloss:0.020671 
+## [1090]   train-logloss:0.020663 
+## [1091]   train-logloss:0.020657 
+## [1092]   train-logloss:0.020647 
+## [1093]   train-logloss:0.020639 
+## [1094]   train-logloss:0.020637 
+## [1095]   train-logloss:0.020627 
+## [1096]   train-logloss:0.020610 
+## [1097]   train-logloss:0.020595 
+## [1098]   train-logloss:0.020589 
+## [1099]   train-logloss:0.020581 
+## [1100]   train-logloss:0.020572 
+## [1101]   train-logloss:0.020561 
+## [1102]   train-logloss:0.020553 
+## [1103]   train-logloss:0.020542 
+## [1104]   train-logloss:0.020523 
+## [1105]   train-logloss:0.020520 
+## [1106]   train-logloss:0.020518 
+## [1107]   train-logloss:0.020512 
+## [1108]   train-logloss:0.020505 
+## [1109]   train-logloss:0.020495 
+## [1110]   train-logloss:0.020489 
+## [1111]   train-logloss:0.020485 
+## [1112]   train-logloss:0.020477 
+## [1113]   train-logloss:0.020457 
+## [1114]   train-logloss:0.020449 
+## [1115]   train-logloss:0.020438 
+## [1116]   train-logloss:0.020428 
+## [1117]   train-logloss:0.020423 
+## [1118]   train-logloss:0.020407 
+## [1119]   train-logloss:0.020395 
+## [1120]   train-logloss:0.020389 
+## [1121]   train-logloss:0.020384 
+## [1122]   train-logloss:0.020373 
+## [1123]   train-logloss:0.020357 
+## [1124]   train-logloss:0.020354 
+## [1125]   train-logloss:0.020350 
+## [1126]   train-logloss:0.020340 
+## [1127]   train-logloss:0.020330 
+## [1128]   train-logloss:0.020308 
+## [1129]   train-logloss:0.020302 
+## [1130]   train-logloss:0.020293 
+## [1131]   train-logloss:0.020278 
+## [1132]   train-logloss:0.020267 
+## [1133]   train-logloss:0.020250 
+## [1134]   train-logloss:0.020243 
+## [1135]   train-logloss:0.020224 
+## [1136]   train-logloss:0.020213 
+## [1137]   train-logloss:0.020195 
+## [1138]   train-logloss:0.020181 
+## [1139]   train-logloss:0.020174 
+## [1140]   train-logloss:0.020169 
+## [1141]   train-logloss:0.020159 
+## [1142]   train-logloss:0.020151 
+## [1143]   train-logloss:0.020150 
+## [1144]   train-logloss:0.020146 
+## [1145]   train-logloss:0.020138 
+## [1146]   train-logloss:0.020125 
+## [1147]   train-logloss:0.020116 
+## [1148]   train-logloss:0.020099 
+## [1149]   train-logloss:0.020077 
+## [1150]   train-logloss:0.020070 
+## [1151]   train-logloss:0.020063 
+## [1152]   train-logloss:0.020046 
+## [1153]   train-logloss:0.020040 
+## [1154]   train-logloss:0.020025 
+## [1155]   train-logloss:0.020019 
+## [1156]   train-logloss:0.020004 
+## [1157]   train-logloss:0.019988 
+## [1158]   train-logloss:0.019980 
+## [1159]   train-logloss:0.019974 
+## [1160]   train-logloss:0.019969 
+## [1161]   train-logloss:0.019959 
+## [1162]   train-logloss:0.019955 
+## [1163]   train-logloss:0.019947 
+## [1164]   train-logloss:0.019946 
+## [1165]   train-logloss:0.019935 
+## [1166]   train-logloss:0.019925 
+## [1167]   train-logloss:0.019910 
+## [1168]   train-logloss:0.019902 
+## [1169]   train-logloss:0.019897 
+## [1170]   train-logloss:0.019888 
+## [1171]   train-logloss:0.019881 
+## [1172]   train-logloss:0.019873 
+## [1173]   train-logloss:0.019858 
+## [1174]   train-logloss:0.019852 
+## [1175]   train-logloss:0.019847 
+## [1176]   train-logloss:0.019844 
+## [1177]   train-logloss:0.019828 
+## [1178]   train-logloss:0.019825 
+## [1179]   train-logloss:0.019813 
+## [1180]   train-logloss:0.019808 
+## [1181]   train-logloss:0.019796 
+## [1182]   train-logloss:0.019792 
+## [1183]   train-logloss:0.019783 
+## [1184]   train-logloss:0.019778 
+## [1185]   train-logloss:0.019773 
+## [1186]   train-logloss:0.019761 
+## [1187]   train-logloss:0.019751 
+## [1188]   train-logloss:0.019727 
+## [1189]   train-logloss:0.019712 
+## [1190]   train-logloss:0.019699 
+## [1191]   train-logloss:0.019690 
+## [1192]   train-logloss:0.019685 
+## [1193]   train-logloss:0.019677 
+## [1194]   train-logloss:0.019672 
+## [1195]   train-logloss:0.019665 
+## [1196]   train-logloss:0.019645 
+## [1197]   train-logloss:0.019636 
+## [1198]   train-logloss:0.019622 
+## [1199]   train-logloss:0.019607 
+## [1200]   train-logloss:0.019603 
+## [1201]   train-logloss:0.019595 
+## [1202]   train-logloss:0.019585 
+## [1203]   train-logloss:0.019577 
+## [1204]   train-logloss:0.019571 
+## [1205]   train-logloss:0.019565 
+## [1206]   train-logloss:0.019557 
+## [1207]   train-logloss:0.019549 
+## [1208]   train-logloss:0.019544 
+## [1209]   train-logloss:0.019531 
+## [1210]   train-logloss:0.019525 
+## [1211]   train-logloss:0.019519 
+## [1212]   train-logloss:0.019512 
+## [1213]   train-logloss:0.019502 
+## [1214]   train-logloss:0.019489 
+## [1215]   train-logloss:0.019482 
+## [1216]   train-logloss:0.019479 
+## [1217]   train-logloss:0.019463 
+## [1218]   train-logloss:0.019461 
+## [1219]   train-logloss:0.019458 
+## [1220]   train-logloss:0.019452 
+## [1221]   train-logloss:0.019445 
+## [1222]   train-logloss:0.019438 
+## [1223]   train-logloss:0.019427 
+## [1224]   train-logloss:0.019425 
+## [1225]   train-logloss:0.019418 
+## [1226]   train-logloss:0.019414 
+## [1227]   train-logloss:0.019411 
+## [1228]   train-logloss:0.019400 
+## [1229]   train-logloss:0.019391 
+## [1230]   train-logloss:0.019381 
+## [1231]   train-logloss:0.019372 
+## [1232]   train-logloss:0.019364 
+## [1233]   train-logloss:0.019350 
+## [1234]   train-logloss:0.019332 
+## [1235]   train-logloss:0.019324 
+## [1236]   train-logloss:0.019315 
+## [1237]   train-logloss:0.019309 
+## [1238]   train-logloss:0.019301 
+## [1239]   train-logloss:0.019297 
+## [1240]   train-logloss:0.019291 
+## [1241]   train-logloss:0.019285 
+## [1242]   train-logloss:0.019276 
+## [1243]   train-logloss:0.019272 
+## [1244]   train-logloss:0.019268 
+## [1245]   train-logloss:0.019264 
+## [1246]   train-logloss:0.019256 
+## [1247]   train-logloss:0.019251 
+## [1248]   train-logloss:0.019244 
+## [1249]   train-logloss:0.019238 
+## [1250]   train-logloss:0.019231 
+## [1251]   train-logloss:0.019224 
+## [1252]   train-logloss:0.019215 
+## [1253]   train-logloss:0.019209 
+## [1254]   train-logloss:0.019204 
+## [1255]   train-logloss:0.019194 
+## [1256]   train-logloss:0.019183 
+## [1257]   train-logloss:0.019179 
+## [1258]   train-logloss:0.019172 
+## [1259]   train-logloss:0.019170 
+## [1260]   train-logloss:0.019165 
+## [1261]   train-logloss:0.019154 
+## [1262]   train-logloss:0.019142 
+## [1263]   train-logloss:0.019135 
+## [1264]   train-logloss:0.019127 
+## [1265]   train-logloss:0.019119 
+## [1266]   train-logloss:0.019116 
+## [1267]   train-logloss:0.019112 
+## [1268]   train-logloss:0.019111 
+## [1269]   train-logloss:0.019098 
+## [1270]   train-logloss:0.019083 
+## [1271]   train-logloss:0.019078 
+## [1272]   train-logloss:0.019076 
+## [1273]   train-logloss:0.019071 
+## [1274]   train-logloss:0.019064 
+## [1275]   train-logloss:0.019056 
+## [1276]   train-logloss:0.019046 
+## [1277]   train-logloss:0.019043 
+## [1278]   train-logloss:0.019039 
+## [1279]   train-logloss:0.019029 
+## [1280]   train-logloss:0.019021 
+## [1281]   train-logloss:0.019011 
+## [1282]   train-logloss:0.019006 
+## [1283]   train-logloss:0.019001 
+## [1284]   train-logloss:0.018997 
+## [1285]   train-logloss:0.018991 
+## [1286]   train-logloss:0.018980 
+## [1287]   train-logloss:0.018968 
+## [1288]   train-logloss:0.018952 
+## [1289]   train-logloss:0.018942 
+## [1290]   train-logloss:0.018937 
+## [1291]   train-logloss:0.018924 
+## [1292]   train-logloss:0.018912 
+## [1293]   train-logloss:0.018905 
+## [1294]   train-logloss:0.018899 
+## [1295]   train-logloss:0.018890 
+## [1296]   train-logloss:0.018880 
+## [1297]   train-logloss:0.018875 
+## [1298]   train-logloss:0.018865 
+## [1299]   train-logloss:0.018852 
+## [1300]   train-logloss:0.018842 
+## [1301]   train-logloss:0.018834 
+## [1302]   train-logloss:0.018822 
+## [1303]   train-logloss:0.018807 
+## [1304]   train-logloss:0.018801 
+## [1305]   train-logloss:0.018798 
+## [1306]   train-logloss:0.018797 
+## [1307]   train-logloss:0.018792 
+## [1308]   train-logloss:0.018786 
+## [1309]   train-logloss:0.018776 
+## [1310]   train-logloss:0.018767 
+## [1311]   train-logloss:0.018760 
+## [1312]   train-logloss:0.018752 
+## [1313]   train-logloss:0.018734 
+## [1314]   train-logloss:0.018713 
+## [1315]   train-logloss:0.018707 
+## [1316]   train-logloss:0.018705 
+## [1317]   train-logloss:0.018703 
+## [1318]   train-logloss:0.018696 
+## [1319]   train-logloss:0.018692 
+## [1320]   train-logloss:0.018686 
+## [1321]   train-logloss:0.018680 
+## [1322]   train-logloss:0.018672 
+## [1323]   train-logloss:0.018660 
+## [1324]   train-logloss:0.018651 
+## [1325]   train-logloss:0.018649 
+## [1326]   train-logloss:0.018638 
+## [1327]   train-logloss:0.018622 
+## [1328]   train-logloss:0.018610 
+## [1329]   train-logloss:0.018597 
+## [1330]   train-logloss:0.018586 
+## [1331]   train-logloss:0.018579 
+## [1332]   train-logloss:0.018575 
+## [1333]   train-logloss:0.018572 
+## [1334]   train-logloss:0.018568 
+## [1335]   train-logloss:0.018561 
+## [1336]   train-logloss:0.018552 
+## [1337]   train-logloss:0.018544 
+## [1338]   train-logloss:0.018539 
+## [1339]   train-logloss:0.018529 
+## [1340]   train-logloss:0.018517 
+## [1341]   train-logloss:0.018506 
+## [1342]   train-logloss:0.018502 
+## [1343]   train-logloss:0.018497 
+## [1344]   train-logloss:0.018487 
+## [1345]   train-logloss:0.018477 
+## [1346]   train-logloss:0.018470 
+## [1347]   train-logloss:0.018465 
+## [1348]   train-logloss:0.018454 
+## [1349]   train-logloss:0.018440 
+## [1350]   train-logloss:0.018434 
+## [1351]   train-logloss:0.018428 
+## [1352]   train-logloss:0.018424 
+## [1353]   train-logloss:0.018418 
+## [1354]   train-logloss:0.018415 
+## [1355]   train-logloss:0.018407 
+## [1356]   train-logloss:0.018396 
+## [1357]   train-logloss:0.018384 
+## [1358]   train-logloss:0.018380 
+## [1359]   train-logloss:0.018374 
+## [1360]   train-logloss:0.018368 
+## [1361]   train-logloss:0.018364 
+## [1362]   train-logloss:0.018362 
+## [1363]   train-logloss:0.018353 
+## [1364]   train-logloss:0.018339 
+## [1365]   train-logloss:0.018328 
+## [1366]   train-logloss:0.018318 
+## [1367]   train-logloss:0.018304 
+## [1368]   train-logloss:0.018299 
+## [1369]   train-logloss:0.018290 
+## [1370]   train-logloss:0.018285 
+## [1371]   train-logloss:0.018274 
+## [1372]   train-logloss:0.018262 
+## [1373]   train-logloss:0.018248 
+## [1374]   train-logloss:0.018239 
+## [1375]   train-logloss:0.018231 
+## [1376]   train-logloss:0.018213 
+## [1377]   train-logloss:0.018207 
+## [1378]   train-logloss:0.018192 
+## [1379]   train-logloss:0.018187 
+## [1380]   train-logloss:0.018172 
+## [1381]   train-logloss:0.018162 
+## [1382]   train-logloss:0.018152 
+## [1383]   train-logloss:0.018135 
+## [1384]   train-logloss:0.018127 
+## [1385]   train-logloss:0.018118 
+## [1386]   train-logloss:0.018113 
+## [1387]   train-logloss:0.018108 
+## [1388]   train-logloss:0.018099 
+## [1389]   train-logloss:0.018095 
+## [1390]   train-logloss:0.018087 
+## [1391]   train-logloss:0.018080 
+## [1392]   train-logloss:0.018073 
+## [1393]   train-logloss:0.018068 
+## [1394]   train-logloss:0.018062 
+## [1395]   train-logloss:0.018053 
+## [1396]   train-logloss:0.018049 
+## [1397]   train-logloss:0.018044 
+## [1398]   train-logloss:0.018035 
+## [1399]   train-logloss:0.018023 
+## [1400]   train-logloss:0.018013 
+## [1401]   train-logloss:0.018001 
+## [1402]   train-logloss:0.017995 
+## [1403]   train-logloss:0.017988 
+## [1404]   train-logloss:0.017984 
+## [1405]   train-logloss:0.017979 
+## [1406]   train-logloss:0.017976 
+## [1407]   train-logloss:0.017973 
+## [1408]   train-logloss:0.017967 
+## [1409]   train-logloss:0.017959 
+## [1410]   train-logloss:0.017954 
+## [1411]   train-logloss:0.017946 
+## [1412]   train-logloss:0.017938 
+## [1413]   train-logloss:0.017930 
+## [1414]   train-logloss:0.017916 
+## [1415]   train-logloss:0.017910 
+## [1416]   train-logloss:0.017903 
+## [1417]   train-logloss:0.017897 
+## [1418]   train-logloss:0.017889 
+## [1419]   train-logloss:0.017883 
+## [1420]   train-logloss:0.017869 
+## [1421]   train-logloss:0.017863 
+## [1422]   train-logloss:0.017860 
+## [1423]   train-logloss:0.017856 
+## [1424]   train-logloss:0.017848 
+## [1425]   train-logloss:0.017843 
+## [1426]   train-logloss:0.017840 
+## [1427]   train-logloss:0.017830 
+## [1428]   train-logloss:0.017820 
+## [1429]   train-logloss:0.017812 
+## [1430]   train-logloss:0.017807 
+## [1431]   train-logloss:0.017798 
+## [1432]   train-logloss:0.017790 
+## [1433]   train-logloss:0.017787 
+## [1434]   train-logloss:0.017780 
+## [1435]   train-logloss:0.017776 
+## [1436]   train-logloss:0.017775 
+## [1437]   train-logloss:0.017768 
+## [1438]   train-logloss:0.017762 
+## [1439]   train-logloss:0.017753 
+## [1440]   train-logloss:0.017750 
+## [1441]   train-logloss:0.017742 
+## [1442]   train-logloss:0.017737 
+## [1443]   train-logloss:0.017732 
+## [1444]   train-logloss:0.017726 
+## [1445]   train-logloss:0.017712 
+## [1446]   train-logloss:0.017701 
+## [1447]   train-logloss:0.017697 
+## [1448]   train-logloss:0.017691 
+## [1449]   train-logloss:0.017688 
+## [1450]   train-logloss:0.017682 
+## [1451]   train-logloss:0.017678 
+## [1452]   train-logloss:0.017675 
+## [1453]   train-logloss:0.017666 
+## [1454]   train-logloss:0.017659 
+## [1455]   train-logloss:0.017655 
+## [1456]   train-logloss:0.017651 
+## [1457]   train-logloss:0.017649 
+## [1458]   train-logloss:0.017644 
+## [1459]   train-logloss:0.017643 
+## [1460]   train-logloss:0.017637 
+## [1461]   train-logloss:0.017635 
+## [1462]   train-logloss:0.017628 
+## [1463]   train-logloss:0.017621 
+## [1464]   train-logloss:0.017613 
+## [1465]   train-logloss:0.017600 
+## [1466]   train-logloss:0.017587 
+## [1467]   train-logloss:0.017582 
+## [1468]   train-logloss:0.017578 
+## [1469]   train-logloss:0.017572 
+## [1470]   train-logloss:0.017568 
+## [1471]   train-logloss:0.017565 
+## [1472]   train-logloss:0.017562 
+## [1473]   train-logloss:0.017560 
+## [1474]   train-logloss:0.017556 
+## [1475]   train-logloss:0.017552 
+## [1476]   train-logloss:0.017543 
+## [1477]   train-logloss:0.017539 
+## [1478]   train-logloss:0.017533 
+## [1479]   train-logloss:0.017526 
+## [1480]   train-logloss:0.017521 
+## [1481]   train-logloss:0.017517 
+## [1482]   train-logloss:0.017513 
+## [1483]   train-logloss:0.017510 
+## [1484]   train-logloss:0.017506 
+## [1485]   train-logloss:0.017503 
+## [1486]   train-logloss:0.017496 
+## [1487]   train-logloss:0.017485 
+## [1488]   train-logloss:0.017477 
+## [1489]   train-logloss:0.017469 
+## [1490]   train-logloss:0.017464 
+## [1491]   train-logloss:0.017452 
+## [1492]   train-logloss:0.017447 
+## [1493]   train-logloss:0.017438 
+## [1494]   train-logloss:0.017427 
+## [1495]   train-logloss:0.017424 
+## [1496]   train-logloss:0.017419 
+## [1497]   train-logloss:0.017409 
+## [1498]   train-logloss:0.017400 
+## [1499]   train-logloss:0.017392 
+## [1500]   train-logloss:0.017382 
+## [1501]   train-logloss:0.017379 
+## [1502]   train-logloss:0.017375 
+## [1503]   train-logloss:0.017364 
+## [1504]   train-logloss:0.017355 
+## [1505]   train-logloss:0.017349 
+## [1506]   train-logloss:0.017340 
+## [1507]   train-logloss:0.017330 
+## [1508]   train-logloss:0.017320 
+## [1509]   train-logloss:0.017315 
+## [1510]   train-logloss:0.017306 
+## [1511]   train-logloss:0.017296 
+## [1512]   train-logloss:0.017289 
+## [1513]   train-logloss:0.017287 
+## [1514]   train-logloss:0.017280 
+## [1515]   train-logloss:0.017274 
+## [1516]   train-logloss:0.017269 
+## [1517]   train-logloss:0.017267 
+## [1518]   train-logloss:0.017257 
+## [1519]   train-logloss:0.017250 
+## [1520]   train-logloss:0.017245 
+## [1521]   train-logloss:0.017241 
+## [1522]   train-logloss:0.017239 
+## [1523]   train-logloss:0.017230 
+## [1524]   train-logloss:0.017221 
+## [1525]   train-logloss:0.017217 
+## [1526]   train-logloss:0.017212 
+## [1527]   train-logloss:0.017210 
+## [1528]   train-logloss:0.017205 
+## [1529]   train-logloss:0.017200 
+## [1530]   train-logloss:0.017195 
+## [1531]   train-logloss:0.017193 
+## [1532]   train-logloss:0.017190 
+## [1533]   train-logloss:0.017183 
+## [1534]   train-logloss:0.017179 
+## [1535]   train-logloss:0.017176 
+## [1536]   train-logloss:0.017168 
+## [1537]   train-logloss:0.017161 
+## [1538]   train-logloss:0.017159 
+## [1539]   train-logloss:0.017157 
+## [1540]   train-logloss:0.017156 
+## [1541]   train-logloss:0.017151 
+## [1542]   train-logloss:0.017146 
+## [1543]   train-logloss:0.017144 
+## [1544]   train-logloss:0.017137 
+## [1545]   train-logloss:0.017134 
+## [1546]   train-logloss:0.017131 
+## [1547]   train-logloss:0.017125 
+## [1548]   train-logloss:0.017123 
+## [1549]   train-logloss:0.017120 
+## [1550]   train-logloss:0.017114 
+## [1551]   train-logloss:0.017110 
+## [1552]   train-logloss:0.017106 
+## [1553]   train-logloss:0.017101 
+## [1554]   train-logloss:0.017094 
+## [1555]   train-logloss:0.017087 
+## [1556]   train-logloss:0.017083 
+## [1557]   train-logloss:0.017078 
+## [1558]   train-logloss:0.017073 
+## [1559]   train-logloss:0.017062 
+## [1560]   train-logloss:0.017059 
+## [1561]   train-logloss:0.017057 
+## [1562]   train-logloss:0.017055 
+## [1563]   train-logloss:0.017047 
+## [1564]   train-logloss:0.017043 
+## [1565]   train-logloss:0.017038 
+## [1566]   train-logloss:0.017033 
+## [1567]   train-logloss:0.017028 
+## [1568]   train-logloss:0.017025 
+## [1569]   train-logloss:0.017021 
+## [1570]   train-logloss:0.017019 
+## [1571]   train-logloss:0.017016 
+## [1572]   train-logloss:0.017011 
+## [1573]   train-logloss:0.017002 
+## [1574]   train-logloss:0.016993 
+## [1575]   train-logloss:0.016986 
+## [1576]   train-logloss:0.016984 
+## [1577]   train-logloss:0.016975 
+## [1578]   train-logloss:0.016972 
+## [1579]   train-logloss:0.016966 
+## [1580]   train-logloss:0.016963 
+## [1581]   train-logloss:0.016960 
+## [1582]   train-logloss:0.016954 
+## [1583]   train-logloss:0.016946 
+## [1584]   train-logloss:0.016940 
+## [1585]   train-logloss:0.016933 
+## [1586]   train-logloss:0.016928 
+## [1587]   train-logloss:0.016923 
+## [1588]   train-logloss:0.016921 
+## [1589]   train-logloss:0.016917 
+## [1590]   train-logloss:0.016913 
+## [1591]   train-logloss:0.016905 
+## [1592]   train-logloss:0.016898 
+## [1593]   train-logloss:0.016884 
+## [1594]   train-logloss:0.016879 
+## [1595]   train-logloss:0.016876 
+## [1596]   train-logloss:0.016872 
+## [1597]   train-logloss:0.016870 
+## [1598]   train-logloss:0.016867 
+## [1599]   train-logloss:0.016864 
+## [1600]   train-logloss:0.016862 
+## [1601]   train-logloss:0.016860 
+## [1602]   train-logloss:0.016854 
+## [1603]   train-logloss:0.016852 
+## [1604]   train-logloss:0.016850 
+## [1605]   train-logloss:0.016846 
+## [1606]   train-logloss:0.016839 
+## [1607]   train-logloss:0.016836 
+## [1608]   train-logloss:0.016826 
+## [1609]   train-logloss:0.016824 
+## [1610]   train-logloss:0.016817 
+## [1611]   train-logloss:0.016813 
+## [1612]   train-logloss:0.016808 
+## [1613]   train-logloss:0.016800 
+## [1614]   train-logloss:0.016790 
+## [1615]   train-logloss:0.016785 
+## [1616]   train-logloss:0.016782 
+## [1617]   train-logloss:0.016778 
+## [1618]   train-logloss:0.016775 
+## [1619]   train-logloss:0.016771 
+## [1620]   train-logloss:0.016761 
+## [1621]   train-logloss:0.016755 
+## [1622]   train-logloss:0.016752 
+## [1623]   train-logloss:0.016750 
+## [1624]   train-logloss:0.016746 
+## [1625]   train-logloss:0.016744 
+## [1626]   train-logloss:0.016742 
+## [1627]   train-logloss:0.016740 
+## [1628]   train-logloss:0.016734 
+## [1629]   train-logloss:0.016728 
+## [1630]   train-logloss:0.016724 
+## [1631]   train-logloss:0.016720 
+## [1632]   train-logloss:0.016713 
+## [1633]   train-logloss:0.016709 
+## [1634]   train-logloss:0.016706 
+## [1635]   train-logloss:0.016702 
+## [1636]   train-logloss:0.016698 
+## [1637]   train-logloss:0.016691 
+## [1638]   train-logloss:0.016688 
+## [1639]   train-logloss:0.016682 
+## [1640]   train-logloss:0.016679 
+## [1641]   train-logloss:0.016673 
+## [1642]   train-logloss:0.016670 
+## [1643]   train-logloss:0.016669 
+## [1644]   train-logloss:0.016667 
+## [1645]   train-logloss:0.016664 
+## [1646]   train-logloss:0.016661 
+## [1647]   train-logloss:0.016656 
+## [1648]   train-logloss:0.016653 
+## [1649]   train-logloss:0.016652 
+## [1650]   train-logloss:0.016650 
+## [1651]   train-logloss:0.016646 
+## [1652]   train-logloss:0.016642 
+## [1653]   train-logloss:0.016635 
+## [1654]   train-logloss:0.016631 
+## [1655]   train-logloss:0.016623 
+## [1656]   train-logloss:0.016615 
+## [1657]   train-logloss:0.016609 
+## [1658]   train-logloss:0.016599 
+## [1659]   train-logloss:0.016590 
+## [1660]   train-logloss:0.016585 
+## [1661]   train-logloss:0.016581 
+## [1662]   train-logloss:0.016579 
+## [1663]   train-logloss:0.016576 
+## [1664]   train-logloss:0.016573 
+## [1665]   train-logloss:0.016570 
+## [1666]   train-logloss:0.016567 
+## [1667]   train-logloss:0.016563 
+## [1668]   train-logloss:0.016560 
+## [1669]   train-logloss:0.016555 
+## [1670]   train-logloss:0.016550 
+## [1671]   train-logloss:0.016548 
+## [1672]   train-logloss:0.016543 
+## [1673]   train-logloss:0.016539 
+## [1674]   train-logloss:0.016534 
+## [1675]   train-logloss:0.016530 
+## [1676]   train-logloss:0.016526 
+## [1677]   train-logloss:0.016519 
+## [1678]   train-logloss:0.016514 
+## [1679]   train-logloss:0.016509 
+## [1680]   train-logloss:0.016506 
+## [1681]   train-logloss:0.016502 
+## [1682]   train-logloss:0.016496 
+## [1683]   train-logloss:0.016491 
+## [1684]   train-logloss:0.016485 
+## [1685]   train-logloss:0.016477 
+## [1686]   train-logloss:0.016475 
+## [1687]   train-logloss:0.016469 
+## [1688]   train-logloss:0.016464 
+## [1689]   train-logloss:0.016457 
+## [1690]   train-logloss:0.016455 
+## [1691]   train-logloss:0.016451 
+## [1692]   train-logloss:0.016446 
+## [1693]   train-logloss:0.016444 
+## [1694]   train-logloss:0.016442 
+## [1695]   train-logloss:0.016441 
+## [1696]   train-logloss:0.016439 
+## [1697]   train-logloss:0.016435 
+## [1698]   train-logloss:0.016432 
+## [1699]   train-logloss:0.016431 
+## [1700]   train-logloss:0.016428 
+## [1701]   train-logloss:0.016423 
+## [1702]   train-logloss:0.016419 
+## [1703]   train-logloss:0.016413 
+## [1704]   train-logloss:0.016412 
+## [1705]   train-logloss:0.016409 
+## [1706]   train-logloss:0.016407 
+## [1707]   train-logloss:0.016405 
+## [1708]   train-logloss:0.016401 
+## [1709]   train-logloss:0.016393 
+## [1710]   train-logloss:0.016385 
+## [1711]   train-logloss:0.016376 
+## [1712]   train-logloss:0.016370 
+## [1713]   train-logloss:0.016364 
+## [1714]   train-logloss:0.016359 
+## [1715]   train-logloss:0.016355 
+## [1716]   train-logloss:0.016350 
+## [1717]   train-logloss:0.016344 
+## [1718]   train-logloss:0.016341 
+## [1719]   train-logloss:0.016336 
+## [1720]   train-logloss:0.016335 
+## [1721]   train-logloss:0.016329 
+## [1722]   train-logloss:0.016326 
+## [1723]   train-logloss:0.016325 
+## [1724]   train-logloss:0.016322 
+## [1725]   train-logloss:0.016317 
+## [1726]   train-logloss:0.016315 
+## [1727]   train-logloss:0.016309 
+## [1728]   train-logloss:0.016307 
+## [1729]   train-logloss:0.016305 
+## [1730]   train-logloss:0.016302 
+## [1731]   train-logloss:0.016300 
+## [1732]   train-logloss:0.016296 
+## [1733]   train-logloss:0.016290 
+## [1734]   train-logloss:0.016286 
+## [1735]   train-logloss:0.016283 
+## [1736]   train-logloss:0.016279 
+## [1737]   train-logloss:0.016273 
+## [1738]   train-logloss:0.016264 
+## [1739]   train-logloss:0.016262 
+## [1740]   train-logloss:0.016258 
+## [1741]   train-logloss:0.016252 
+## [1742]   train-logloss:0.016251 
+## [1743]   train-logloss:0.016248 
+## [1744]   train-logloss:0.016239 
+## [1745]   train-logloss:0.016237 
+## [1746]   train-logloss:0.016235 
+## [1747]   train-logloss:0.016225 
+## [1748]   train-logloss:0.016219 
+## [1749]   train-logloss:0.016213 
+## [1750]   train-logloss:0.016208 
+## [1751]   train-logloss:0.016200 
+## [1752]   train-logloss:0.016191 
+## [1753]   train-logloss:0.016188 
+## [1754]   train-logloss:0.016183 
+## [1755]   train-logloss:0.016180 
+## [1756]   train-logloss:0.016175 
+## [1757]   train-logloss:0.016169 
+## [1758]   train-logloss:0.016166 
+## [1759]   train-logloss:0.016164 
+## [1760]   train-logloss:0.016162 
+## [1761]   train-logloss:0.016160 
+## [1762]   train-logloss:0.016155 
+## [1763]   train-logloss:0.016148 
+## [1764]   train-logloss:0.016143 
+## [1765]   train-logloss:0.016137 
+## [1766]   train-logloss:0.016126 
+## [1767]   train-logloss:0.016120 
+## [1768]   train-logloss:0.016115 
+## [1769]   train-logloss:0.016106 
+## [1770]   train-logloss:0.016102 
+## [1771]   train-logloss:0.016094 
+## [1772]   train-logloss:0.016088 
+## [1773]   train-logloss:0.016081 
+## [1774]   train-logloss:0.016075 
+## [1775]   train-logloss:0.016070 
+## [1776]   train-logloss:0.016069 
+## [1777]   train-logloss:0.016066 
+## [1778]   train-logloss:0.016062 
+## [1779]   train-logloss:0.016059 
+## [1780]   train-logloss:0.016056 
+## [1781]   train-logloss:0.016049 
+## [1782]   train-logloss:0.016043 
+## [1783]   train-logloss:0.016040 
+## [1784]   train-logloss:0.016036 
+## [1785]   train-logloss:0.016033 
+## [1786]   train-logloss:0.016029 
+## [1787]   train-logloss:0.016025 
+## [1788]   train-logloss:0.016022 
+## [1789]   train-logloss:0.016018 
+## [1790]   train-logloss:0.016015 
+## [1791]   train-logloss:0.016014 
+## [1792]   train-logloss:0.016012 
+## [1793]   train-logloss:0.016008 
+## [1794]   train-logloss:0.016006 
+## [1795]   train-logloss:0.016003 
+## [1796]   train-logloss:0.016000 
+## [1797]   train-logloss:0.015997 
+## [1798]   train-logloss:0.015995 
+## [1799]   train-logloss:0.015992 
+## [1800]   train-logloss:0.015988 
+## [1801]   train-logloss:0.015979 
+## [1802]   train-logloss:0.015975 
+## [1803]   train-logloss:0.015974 
+## [1804]   train-logloss:0.015969 
+## [1805]   train-logloss:0.015967 
+## [1806]   train-logloss:0.015962 
+## [1807]   train-logloss:0.015958 
+## [1808]   train-logloss:0.015956 
+## [1809]   train-logloss:0.015955 
+## [1810]   train-logloss:0.015953 
+## [1811]   train-logloss:0.015949 
+## [1812]   train-logloss:0.015946 
+## [1813]   train-logloss:0.015943 
+## [1814]   train-logloss:0.015942 
+## [1815]   train-logloss:0.015936 
+## [1816]   train-logloss:0.015935 
+## [1817]   train-logloss:0.015933 
+## [1818]   train-logloss:0.015929 
+## [1819]   train-logloss:0.015921 
+## [1820]   train-logloss:0.015915 
+## [1821]   train-logloss:0.015911 
+## [1822]   train-logloss:0.015906 
+## [1823]   train-logloss:0.015901 
+## [1824]   train-logloss:0.015897 
+## [1825]   train-logloss:0.015893 
+## [1826]   train-logloss:0.015892 
+## [1827]   train-logloss:0.015890 
+## [1828]   train-logloss:0.015886 
+## [1829]   train-logloss:0.015885 
+## [1830]   train-logloss:0.015882 
+## [1831]   train-logloss:0.015880 
+## [1832]   train-logloss:0.015878 
+## [1833]   train-logloss:0.015876 
+## [1834]   train-logloss:0.015870 
+## [1835]   train-logloss:0.015864 
+## [1836]   train-logloss:0.015859 
+## [1837]   train-logloss:0.015855 
+## [1838]   train-logloss:0.015849 
+## [1839]   train-logloss:0.015847 
+## [1840]   train-logloss:0.015845 
+## [1841]   train-logloss:0.015839 
+## [1842]   train-logloss:0.015834 
+## [1843]   train-logloss:0.015829 
+## [1844]   train-logloss:0.015824 
+## [1845]   train-logloss:0.015818 
+## [1846]   train-logloss:0.015813 
+## [1847]   train-logloss:0.015808 
+## [1848]   train-logloss:0.015805 
+## [1849]   train-logloss:0.015804 
+## [1850]   train-logloss:0.015800 
+## [1851]   train-logloss:0.015795 
+## [1852]   train-logloss:0.015790 
+## [1853]   train-logloss:0.015787 
+## [1854]   train-logloss:0.015784 
+## [1855]   train-logloss:0.015781 
+## [1856]   train-logloss:0.015778 
+## [1857]   train-logloss:0.015774 
+## [1858]   train-logloss:0.015769 
+## [1859]   train-logloss:0.015767 
+## [1860]   train-logloss:0.015758 
+## [1861]   train-logloss:0.015755 
+## [1862]   train-logloss:0.015751 
+## [1863]   train-logloss:0.015749 
+## [1864]   train-logloss:0.015745 
+## [1865]   train-logloss:0.015741 
+## [1866]   train-logloss:0.015731 
+## [1867]   train-logloss:0.015723 
+## [1868]   train-logloss:0.015716 
+## [1869]   train-logloss:0.015712 
+## [1870]   train-logloss:0.015708 
+## [1871]   train-logloss:0.015706 
+## [1872]   train-logloss:0.015703 
+## [1873]   train-logloss:0.015699 
+## [1874]   train-logloss:0.015696 
+## [1875]   train-logloss:0.015691 
+## [1876]   train-logloss:0.015687 
+## [1877]   train-logloss:0.015685 
+## [1878]   train-logloss:0.015683 
+## [1879]   train-logloss:0.015682 
+## [1880]   train-logloss:0.015679 
+## [1881]   train-logloss:0.015677 
+## [1882]   train-logloss:0.015677 
+## [1883]   train-logloss:0.015673 
+## [1884]   train-logloss:0.015670 
+## [1885]   train-logloss:0.015667 
+## [1886]   train-logloss:0.015661 
+## [1887]   train-logloss:0.015658 
+## [1888]   train-logloss:0.015653 
+## [1889]   train-logloss:0.015650 
+## [1890]   train-logloss:0.015644 
+## [1891]   train-logloss:0.015640 
+## [1892]   train-logloss:0.015634 
+## [1893]   train-logloss:0.015630 
+## [1894]   train-logloss:0.015625 
+## [1895]   train-logloss:0.015622 
+## [1896]   train-logloss:0.015619 
+## [1897]   train-logloss:0.015616 
+## [1898]   train-logloss:0.015615 
+## [1899]   train-logloss:0.015614 
+## [1900]   train-logloss:0.015612 
+## [1901]   train-logloss:0.015609 
+## [1902]   train-logloss:0.015605 
+## [1903]   train-logloss:0.015604 
+## [1904]   train-logloss:0.015599 
+## [1905]   train-logloss:0.015596 
+## [1906]   train-logloss:0.015592 
+## [1907]   train-logloss:0.015589 
+## [1908]   train-logloss:0.015586 
+## [1909]   train-logloss:0.015583 
+## [1910]   train-logloss:0.015579 
+## [1911]   train-logloss:0.015575 
+## [1912]   train-logloss:0.015573 
+## [1913]   train-logloss:0.015572 
+## [1914]   train-logloss:0.015571 
+## [1915]   train-logloss:0.015570 
+## [1916]   train-logloss:0.015568 
+## [1917]   train-logloss:0.015564 
+## [1918]   train-logloss:0.015561 
+## [1919]   train-logloss:0.015557 
+## [1920]   train-logloss:0.015555 
+## [1921]   train-logloss:0.015552 
+## [1922]   train-logloss:0.015548 
+## [1923]   train-logloss:0.015544 
+## [1924]   train-logloss:0.015539 
+## [1925]   train-logloss:0.015535 
+## [1926]   train-logloss:0.015533 
+## [1927]   train-logloss:0.015529 
+## [1928]   train-logloss:0.015525 
+## [1929]   train-logloss:0.015523 
+## [1930]   train-logloss:0.015519 
+## [1931]   train-logloss:0.015517 
+## [1932]   train-logloss:0.015512 
+## [1933]   train-logloss:0.015506 
+## [1934]   train-logloss:0.015504 
+## [1935]   train-logloss:0.015498 
+## [1936]   train-logloss:0.015495 
+## [1937]   train-logloss:0.015492 
+## [1938]   train-logloss:0.015489 
+## [1939]   train-logloss:0.015484 
+## [1940]   train-logloss:0.015482 
+## [1941]   train-logloss:0.015478 
+## [1942]   train-logloss:0.015477 
+## [1943]   train-logloss:0.015475 
+## [1944]   train-logloss:0.015474 
+## [1945]   train-logloss:0.015471 
+## [1946]   train-logloss:0.015467 
+## [1947]   train-logloss:0.015460 
+## [1948]   train-logloss:0.015458 
+## [1949]   train-logloss:0.015455 
+## [1950]   train-logloss:0.015449 
+## [1951]   train-logloss:0.015444 
+## [1952]   train-logloss:0.015440 
+## [1953]   train-logloss:0.015436 
+## [1954]   train-logloss:0.015434 
+## [1955]   train-logloss:0.015431 
+## [1956]   train-logloss:0.015430 
+## [1957]   train-logloss:0.015427 
+## [1958]   train-logloss:0.015423 
+## [1959]   train-logloss:0.015418 
+## [1960]   train-logloss:0.015415 
+## [1961]   train-logloss:0.015412 
+## [1962]   train-logloss:0.015409 
+## [1963]   train-logloss:0.015406 
+## [1964]   train-logloss:0.015398 
+## [1965]   train-logloss:0.015392 
+## [1966]   train-logloss:0.015382 
+## [1967]   train-logloss:0.015378 
+## [1968]   train-logloss:0.015373 
+## [1969]   train-logloss:0.015368 
+## [1970]   train-logloss:0.015363 
+## [1971]   train-logloss:0.015361 
+## [1972]   train-logloss:0.015359 
+## [1973]   train-logloss:0.015356 
+## [1974]   train-logloss:0.015351 
+## [1975]   train-logloss:0.015348 
+## [1976]   train-logloss:0.015346 
+## [1977]   train-logloss:0.015343 
+## [1978]   train-logloss:0.015341 
+## [1979]   train-logloss:0.015337 
+## [1980]   train-logloss:0.015333 
+## [1981]   train-logloss:0.015330 
+## [1982]   train-logloss:0.015327 
+## [1983]   train-logloss:0.015324 
+## [1984]   train-logloss:0.015320 
+## [1985]   train-logloss:0.015317 
+## [1986]   train-logloss:0.015312 
+## [1987]   train-logloss:0.015306 
+## [1988]   train-logloss:0.015303 
+## [1989]   train-logloss:0.015299 
+## [1990]   train-logloss:0.015294 
+## [1991]   train-logloss:0.015290 
+## [1992]   train-logloss:0.015289 
+## [1993]   train-logloss:0.015288 
+## [1994]   train-logloss:0.015285 
+## [1995]   train-logloss:0.015283 
+## [1996]   train-logloss:0.015282 
+## [1997]   train-logloss:0.015280 
+## [1998]   train-logloss:0.015276 
+## [1999]   train-logloss:0.015272 
+## [2000]   train-logloss:0.015271</code></pre>
 <pre class="r"><code>print(xgb2)</code></pre>
 <pre><code>## ##### xgb.Booster
-## raw: 4.5 Mb 
+## raw: 7.4 Mb 
 ## call:
 ##   xgb.train(params = params, data = dtrain, nrounds = nrounds, 
 ##     watchlist = watchlist, verbose = verbose, print_every_n = print_every_n, 
 ##     early_stopping_rounds = early_stopping_rounds, maximize = maximize, 
 ##     save_period = save_period, save_name = save_name, xgb_model = xgb_model, 
-##     callbacks = callbacks, max.depth = 10, objective = &quot;binary:logistic&quot;)
+##     callbacks = callbacks, booster = &quot;gbtree&quot;, max.depth = 10, 
+##     objective = &quot;binary:logistic&quot;)
 ## params (as set within xgb.train):
-##   max_depth = &quot;10&quot;, objective = &quot;binary:logistic&quot;, validate_parameters = &quot;TRUE&quot;
+##   booster = &quot;gbtree&quot;, max_depth = &quot;10&quot;, objective = &quot;binary:logistic&quot;, validate_parameters = &quot;TRUE&quot;
 ## xgb.attributes:
 ##   niter
 ## callbacks:
 ##   cb.print.evaluation(period = print_every_n)
 ##   cb.evaluation.log()
 ## # of features: 24 
-## niter: 1000
+## niter: 2000
 ## nfeatures : 24 
 ## evaluation_log:
 ##     iter train_logloss
 ##        1    0.59510259
 ##        2    0.53372440
 ## ---                   
-##      999    0.02175435
-##     1000    0.02174671</code></pre>
+##     1999    0.01527200
+##     2000    0.01527055</code></pre>
+<p>We choose the gbtree booster and binary:logistic objective for
+training XGBoost model and comparing with Logistic regression model
+later.</p>
 </div>
-<div id="model-prediction-1" class="section level4">
-<h4>model prediction</h4>
-</div>
-<div id="testing-1" class="section level4">
-<h4>testing</h4>
+<div id="testing-3" class="section level4">
+<h4>Testing</h4>
 <pre class="r"><code>xgbpred2 = round(predict(xgb2, dtest))
 tablog = table(data_testy$label, xgbpred2, dnn=c(&quot;true&quot;,&quot;pre&quot;))
 tablog</code></pre>
 <pre><code>##     pre
 ## true   0   1
-##    0  70 292
-##    1 195 976</code></pre>
+##    0  75 287
+##    1 201 970</code></pre>
 <p>From the table, we find: 1. the logistic model works well on
-sufficient sleep. <span class="math inline">\(\frac{976}{976+195} =
-83.35\%\)</span> 2. the logistic model works not well on sufficient
-sleep. <span class="math inline">\(\frac{70}{70+292} = 19.34\%\)</span>
+sufficient sleep. <span class="math inline">\(\frac{970}{970+201} =
+82.84\%\)</span> 2. the logistic model works not well on sufficient
+sleep. <span class="math inline">\(\frac{75}{75+287} = 20.72\%\)</span>
 3. the total accuracy of the model prediction is <span
-class="math inline">\(\frac{70+976}{70+192+976+195} =
-68.23\%\)</span></p>
-</div>
-<div id="roc-auc-curve-1" class="section level4">
-<h4>ROC-AUC curve</h4>
-<pre class="r"><code># roc_curve = roc(data_testy$label, xgpred)
-# names(roc_curve)
-# x = 1-roc_curve$specificities
-# y = roc_curve$sensitivities
-# 
-# ggplot(data = NULL, aes(x = x, y = y)) + 
-#   geom_line(colour = &#39;red&#39;) + 
-#   geom_abline(intercept = 0, slope = 1) +
-#   annotate(&#39;text&#39;, x = 0.5, y = 0.5, label =paste(&#39;AUC=&#39;,round(roc_curve$auc,2))) +
-#   labs(x = &#39;1-specificities&#39;,y = &#39;sensitivities&#39;, title = &#39;ROC Curve&#39;)</code></pre>
-<pre class="r"><code>names = dimnames(as.matrix(data_testx))[[2]]
-importance_matrix = xgb.importance(names, model = xgb2)
-xgb.plot.importance(importance_matrix[1:10,])</code></pre>
-<p><img src="Data_files/figure-html/unnamed-chunk-38-1.png" width="768" /></p>
+class="math inline">\(\frac{75+970}{75+287+970+201} =
+68.17\%\)</span></p>
+<p>Compared with logistic regression model, we find although the
+correctly prediction ability of XGBoost under gbtree booster and
+binary:logistic objective for sufficient sleep and the total are lower,
+the model actually is much reasonable as it could predict larger
+proportions of insufficient sleep cases with no extreme gap between the
+prediction ability between two groups.</p>
+<pre class="r"><code>xgb_imp2 = xgb.importance(feature_names = xgb2$feature_names, model = xgb2)
+xgb.ggplot.importance(xgb_imp2, top_n =10, n_clusters = 2)</code></pre>
+<p><img src="Data_files/figure-html/unnamed-chunk-32-1.png" width="768" /></p>
+<p>The feature importance plot of XGBoost model indicates two extremely
+important factors, income_poverty_ratio and age. Which differs from
+linear models so that we want to explore the decision tree
+structure.</p>
 </div>
 <div id="tree-plot" class="section level4">
-<h4>Tree-plot</h4>
-<pre class="r"><code># devtools::load_all()</code></pre>
-<pre class="r"><code># xgb.dump(xgb2, with_stats = T)</code></pre>
-<pre class="r"><code># xgpt = xgb.plot.tree(model = xgb2, trees=0:1, render=FALSE)
-# export_graph(xgpt, here::here(&quot;images/tree.png&quot;))</code></pre>
+<h4>Tree plot</h4>
+<pre class="r"><code>xgb.plot.tree(model = xgb2, trees=1999, plot_width = 900)</code></pre>
+<div id="htmlwidget-95b957d32af178c806b5" style="width:900px;height:576px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-95b957d32af178c806b5">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       rankdir = \"LR\"]\n\nnode [color = \"DimGray\",\n      style = \"filled\",\n      fontname = \"Helvetica\"]\n\nedge [color = \"DimGray\",\n     arrowsize = \"1.5\",\n     arrowhead = \"vee\",\n     fontname = \"Helvetica\"]\n\n  \"1\" [label = \"Tree 1999\nincome_poverty_ratio\nCover: 62.9733429\nGain: 0.000239511981\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"2\" [label = \"genderfemale\nCover: 2.51974988\nGain: 0.000889236573\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"3\" [label = \"income_poverty_ratio\nCover: 60.4535942\nGain: 0.00042200755\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"4\" [label = \"Leaf\nCover: 1.1346997\nValue: -0.00649295142\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"5\" [label = \"Leaf\nCover: 1.38505018\nValue: 0.00218060869\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"6\" [label = \"age\nCover: 4.25633192\nGain: 0.000606495887\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"7\" [label = \"income_poverty_ratio\nCover: 56.1972618\nGain: 0.000454759545\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"8\" [label = \"age\nCover: 2.50290895\nGain: 0.000761303178\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"9\" [label = \"Leaf\nCover: 1.75342321\nValue: 0.00573912729\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"10\" [label = \"age\nCover: 9.80618763\nGain: 0.0018956901\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"11\" [label = \"income_poverty_ratio\nCover: 46.3910713\nGain: 0.00111477321\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"12\" [label = \"Leaf\nCover: 1.29169559\nValue: 0.00342856953\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"13\" [label = \"Leaf\nCover: 1.21121323\nValue: -0.00438651629\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"14\" [label = \"income_poverty_ratio\nCover: 7.31453371\nGain: 0.000999105978\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"15\" [label = \"income_poverty_ratio\nCover: 2.4916544\nGain: 0.000509388454\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"16\" [label = \"Leaf\nCover: 1.26789522\nValue: 0.00674024131\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"17\" [label = \"income_poverty_ratio\nCover: 45.1231766\nGain: 0.000223552066\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"18\" [label = \"income_poverty_ratio\nCover: 4.25301218\nGain: 0.00269462331\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"19\" [label = \"education_levelcollege or AA degree\nCover: 3.06152129\nGain: 0.0018697253\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"20\" [label = \"Leaf\nCover: 1.44835281\nValue: 0.00656974083\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"21\" [label = \"Leaf\nCover: 1.04330146\nValue: -0.000733739464\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"22\" [label = \"income_poverty_ratio\nCover: 2.11389351\nGain: 0.00037438955\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"23\" [label = \"income_poverty_ratio\nCover: 43.009285\nGain: 0.000888135633\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"24\" [label = \"age\nCover: 2.74063253\nGain: 0.0015762226\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"25\" [label = \"Leaf\nCover: 1.51237965\nValue: 0.00692419615\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"26\" [label = \"Leaf\nCover: 1.72548771\nValue: -0.0121403635\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"27\" [label = \"Leaf\nCover: 1.33603358\nValue: 0.000926949724\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"28\" [label = \"Leaf\nCover: 1.11202657\nValue: 0.00106493745\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"29\" [label = \"Leaf\nCover: 1.00186682\nValue: -0.00505874353\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"30\" [label = \"Leaf\nCover: 1.14088988\nValue: 0.00606213277\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"31\" [label = \"sleepy_freq5-15 per month\nCover: 41.8683929\nGain: 0.000464290031\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"32\" [label = \"Leaf\nCover: 1.44494832\nValue: 0.00120314583\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"33\" [label = \"Leaf\nCover: 1.29568422\nValue: -0.010720876\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"34\" [label = \"income_poverty_ratio\nCover: 35.5099678\nGain: 0.00142374518\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"35\" [label = \"income_poverty_ratio\nCover: 6.35842705\nGain: 0.00171111012\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"36\" [label = \"Leaf\nCover: 1.0064764\nValue: -0.00840273593\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"37\" [label = \"education_levelhigh school graduate\nCover: 34.5034904\nGain: 0.00113918772\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"38\" [label = \"Leaf\nCover: 1.16683412\nValue: 0.00908000674\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"39\" [label = \"age\nCover: 5.19159269\nGain: 0.000993509195\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"40\" [label = \"income_poverty_ratio\nCover: 31.5898361\nGain: 0.00263882405\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"41\" [label = \"age\nCover: 2.91365457\nGain: 0.00704009179\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"42\" [label = \"genderfemale\nCover: 2.16317415\nGain: 0.000108649401\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"43\" [label = \"age\nCover: 3.02841854\nGain: 0.00141703419\", shape = \"rectangle\", fontcolor = \"black\", fillcolor = \"Beige\"] \n  \"44\" [label = \"Leaf\nCover: 1.33340657\nValue: 0.0101325326\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"45\" [label = \"Leaf\nCover: 30.2564297\nValue: -0.000329456729\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"46\" [label = \"Leaf\nCover: 1.04955447\nValue: -0.0176226739\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"47\" [label = \"Leaf\nCover: 1.8641001\nValue: 0.00576730724\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"48\" [label = \"Leaf\nCover: 1.10688221\nValue: 0.000441855722\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"49\" [label = \"Leaf\nCover: 1.05629182\nValue: 0.00459684944\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"50\" [label = \"Leaf\nCover: 1.09522605\nValue: -0.00930902828\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n  \"51\" [label = \"Leaf\nCover: 1.93319261\nValue: 0.0013697088\", shape = \"oval\", fontcolor = \"black\", fillcolor = \"Khaki\"] \n\"1\"->\"2\" [label = \"< 0.504999995\", style = \"bold\"] \n\"2\"->\"4\" [label = \"< 0.5\", style = \"bold\"] \n\"3\"->\"6\" [label = \"< 0.954999983\", style = \"bold\"] \n\"6\"->\"8\" [label = \"< 57.5\", style = \"bold\"] \n\"7\"->\"10\" [label = \"< 1.91499996\", style = \"bold\"] \n\"8\"->\"12\" [label = \"< 38.5\", style = \"bold\"] \n\"10\"->\"14\" [label = \"< 66.5\", style = \"bold\"] \n\"11\"->\"16\" [label = \"< 2.09499979\", style = \"bold\"] \n\"14\"->\"18\" [label = \"< 1.43499994\", style = \"bold\"] \n\"15\"->\"20\" [label = \"< 1.53499997\", style = \"bold\"] \n\"17\"->\"22\" [label = \"< 2.41499996\", style = \"bold\"] \n\"18\"->\"24\" [label = \"< 1.20500004\", style = \"bold\"] \n\"19\"->\"26\" [label = \"< 0.5\", style = \"bold\"] \n\"22\"->\"28\" [label = \"< 2.30499983\", style = \"bold\"] \n\"23\"->\"30\" [label = \"< 2.63500023\", style = \"bold\"] \n\"24\"->\"32\" [label = \"< 43.5\", style = \"bold\"] \n\"31\"->\"34\" [label = \"< 0.5\", style = \"bold\"] \n\"34\"->\"36\" [label = \"< 2.81500006\", style = \"bold\"] \n\"35\"->\"38\" [label = \"< 4.15499973\", style = \"bold\"] \n\"37\"->\"40\" [label = \"< 0.5\", style = \"bold\"] \n\"39\"->\"42\" [label = \"< 55.5\", style = \"bold\"] \n\"40\"->\"44\" [label = \"< 3.29500008\", style = \"bold\"] \n\"41\"->\"46\" [label = \"< 50.5\", style = \"bold\"] \n\"42\"->\"48\" [label = \"< 0.5\", style = \"bold\"] \n\"43\"->\"50\" [label = \"< 72.5\", style = \"bold\"] \n\"1\"->\"3\" [style = \"bold\", style = \"solid\"] \n\"2\"->\"5\" [style = \"solid\", style = \"solid\"] \n\"3\"->\"7\" [style = \"solid\", style = \"solid\"] \n\"6\"->\"9\" [style = \"solid\", style = \"solid\"] \n\"7\"->\"11\" [style = \"solid\", style = \"solid\"] \n\"8\"->\"13\" [style = \"solid\", style = \"solid\"] \n\"10\"->\"15\" [style = \"solid\", style = \"solid\"] \n\"11\"->\"17\" [style = \"solid\", style = \"solid\"] \n\"14\"->\"19\" [style = \"solid\", style = \"solid\"] \n\"15\"->\"21\" [style = \"solid\", style = \"solid\"] \n\"17\"->\"23\" [style = \"solid\", style = \"solid\"] \n\"18\"->\"25\" [style = \"solid\", style = \"solid\"] \n\"19\"->\"27\" [style = \"solid\", style = \"solid\"] \n\"22\"->\"29\" [style = \"solid\", style = \"solid\"] \n\"23\"->\"31\" [style = \"solid\", style = \"solid\"] \n\"24\"->\"33\" [style = \"solid\", style = \"solid\"] \n\"31\"->\"35\" [style = \"solid\", style = \"solid\"] \n\"34\"->\"37\" [style = \"solid\", style = \"solid\"] \n\"35\"->\"39\" [style = \"solid\", style = \"solid\"] \n\"37\"->\"41\" [style = \"solid\", style = \"solid\"] \n\"39\"->\"43\" [style = \"solid\", style = \"solid\"] \n\"40\"->\"45\" [style = \"solid\", style = \"solid\"] \n\"41\"->\"47\" [style = \"solid\", style = \"solid\"] \n\"42\"->\"49\" [style = \"solid\", style = \"solid\"] \n\"43\"->\"51\" [style = \"solid\", style = \"solid\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>According to the XGBoost tree plot above, we can clearly discover how
+the final tree model decide the values on each leaf which can directly
+lead to probability estimators based on the logistic function.</p>
 </div>
 </div>
 </div>
