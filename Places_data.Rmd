@@ -1,6 +1,5 @@
 ---
 title: "Correlation between prevalance of insufficient sleep and physiological disease"
-author: "Cary Ni"
 output: 
   html_document:
     code_folding: hide
@@ -8,6 +7,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(dplyr)
 library(glmnet)
 library(modelr)
 library(corrplot)
@@ -60,14 +60,12 @@ data_df = read_csv('PLACES__Census_Tract_Data__GIS_Friendly_Format___2022_releas
 
 data_df %>% 
   group_by(state_abbr) %>% 
-  summarise(
+  dplyr::summarize(
     number_of_regions = n(),
     population = sum(total_population)
   ) %>% 
   arrange(-population) %>% 
-  filter(
-    state_abbr %in% c('CA', 'TX', 'NY', 'FL', 'IL', 'PA' )
-  ) %>% knitr::kable()
+  head() %>% knitr::kable()
 ```
 
 The dataset has `r nrow(na.omit(data_df))` observations across the country, each represents a summarized estimate of a district. We select New York state as our sample data to build the model as it has third largest population with sufficient amount of sample. 
@@ -197,7 +195,7 @@ result_mse = cbind(predict_mlr, predict_elastic) %>%
     sse_elas = (sleep - elas_pred)^2
   ) %>% 
   group_by(state_abbr) %>% 
-  summarise(
+  dplyr::summarise(
     n = n(),
     mse_mlr = sum(sse_mlr)/n,
     mse_elas = sum(sse_elas)/n

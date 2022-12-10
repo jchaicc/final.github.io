@@ -31,7 +31,6 @@ library(caret)
 library(leaps)
 library(modelr)
 library(pROC)
-library(knitr)
 ```
 
 ## Data Sources
@@ -135,6 +134,7 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   * `trouble_slp`. A response on whether telling the doctor having trouble sleeping.
   * `sleepy_freq`. Average sleeply times during daytime per month.
   * `ave_slp_hr`. Average sleeping hours per day.
+  
 
 ## National trends in short sleep duration
 
