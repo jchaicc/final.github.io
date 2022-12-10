@@ -79,6 +79,13 @@ Firstly, I got the basic layer from Esri.WorldStreetMap to add geographical boun
 The current map can be zoomed with the zoom button in the upper left corner or with mouse scrolling. To show more specific information, I added interactive popups and defined them. Click any previously added marker to get the name of the state to which the current city belongs, the city name, the number of people participating in the survey, and the average sleep duration of this city. 
 
 # Sleep and Diseases
+## Data Sources
+* This data set is retrieved from Centers for Disease Control and Prevention, National Center for Chronic Disease Prevention and Health Promotion, Division of Population Health updated December 6, 2022, named [PLACES](https://chronicdata.cdc.gov/500-Cities-Places/PLACES-County-Data-GIS-Friendly-Format-2022-releas/i46a-9kgh).
+
+## Data Cleaning
+* We have extracted 11 physiological dieases to estimate the prevalence of insufficient sleep along with the identification variables including country name, population, and states. While all of the suffix of the raw varieties are changed, we finally keep all of the crude estimate of each risk factors as our predictors.
+
+## Data Description
 
 ### Interested physiological risk factors
 `ARTHRITIS`: Arthritis among adults aged >=18 Years\
@@ -96,7 +103,7 @@ The current map can be zoomed with the zoom button in the upper left corner or w
 ### Outcome measured
 `SLEEP`: Sleeping less than 7 hours among adults aged >=18 Years
 
-## Select interested physiological diseases and sample state
+### Select interested physiological diseases and sample state
 ```{r import_data}
 data_df = read_csv('PLACES__Census_Tract_Data__GIS_Friendly_Format___2022_release.csv') %>% 
   janitor::clean_names() %>% 
@@ -127,7 +134,7 @@ ny_data = data_df %>%
 
 ```
 
-## Show the statistics of risk factors prevalence
+### Show the statistics of risk factors prevalence
 
 The following is a boxplot of the prevalences of all of the interested variables. The risk factors with highest prevalence involve screening and medication (HIGHCHOL, BPHIGH and OBESITY). The risk factors with the lowest prevlances are diseases (KIDNEY, CHD, COPD). There is also a general trend that risk factors with higher prevalences have higher variance. 
 
@@ -153,15 +160,15 @@ ny_data %>% select(-sleep) %>%
 ```
 
 
-## Examine correlation of chosen factors
+### Examine correlation of chosen factors
 ```{r}
 par(mfrow = c(1, 1))
 ny_data %>% select(-sleep) %>% cor() %>% corrplot(
   method = "circle", addCoef.col = "black", tl.col = "black", tl.srt = 90, 
   insig = "blank", diag = FALSE, number.cex = .5)
 ```
-
-## Build model with elastic net
+## Statistical Analysis
+### Build model with elastic net
 
 Since some of the variables have relatively high correlation with each other according to the correlation matrix, the process of model selection starts by using elastic net regression in order to remedy for potential multicollinearity. We find the best lambda with lowest se through cross validation, and then fit an elastic net model with coefficients shown below. 
 
@@ -182,7 +189,7 @@ plot(cv_object)
 model_coef 
 ```
 
-## Build model with multiple linear regression
+### Build model with multiple linear regression
 
 A multiple linear regression is then built with all of the variables selected above. Since the variable of obesity does not show significant influence in predicting prevalance of insufficient sleep, another multiple linear regression excluding obesity is built. The anova result tells that the second MLR model excluding obesity is favored because of the principle of parsimony. 
 
@@ -199,7 +206,7 @@ anova(mlr_model_2, mlr_model_1)
 
 ```
 
-## Examine assumptions for the chosen MLR model
+### Examine assumptions for the chosen MLR model
 
 ```{r}
 par(mfrow = c(2, 2))
@@ -211,7 +218,7 @@ The diagnostic plots indicates that all of the assumptions of MLR below are met.
 2.Variance of residuals is constant across the range of variables\
 3.Residuals are independent of one another
 
-## Comparing elastic net regression model with the chosen MLR model
+### Comparing elastic net regression model with the chosen MLR model
 
 ```{r}
 # Pseudo adjusted R squared of elastic model
