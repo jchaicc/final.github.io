@@ -12,7 +12,7 @@ navbar:
     - text: "Final Report"
       href: report.html  
     - icon: fa-envelope fa-lg
-      href: mailto:<wz2631@cumc.columbia.edu>
+      href: mailto:<sleep8105@gmail.com>
     - icon: fa-github fa-lg
       href: https://github.com/jchaicc/final.github.io.git
     - icon: fa-book fa-lg
