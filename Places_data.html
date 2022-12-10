@@ -13,7 +13,7 @@
 
 <title>Correlation between prevalance of insufficient sleep and physiological disease</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -181,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -190,9 +190,16 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
+  content: "&#xe258;";
   border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -258,13 +265,13 @@ $(document).ready(function () {
   <a href="Data.html">Sleep &amp; Social factors</a>
 </li>
 <li>
-  <a href="app.html">Survey about sleep</a>
+  <a href="https://rheaaa.shinyapps.io/myshiny/?_ga=2.230249179.631808033.1670647588-175632102.1670647588">Survey about sleep</a>
 </li>
 <li>
   <a href="report.html">Final Report</a>
 </li>
 <li>
-  <a href="mailto:&lt;wz2631@cumc.columbia.edu&gt;">
+  <a href="mailto:&lt;sleep8105@gmail.com&gt;">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
