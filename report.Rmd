@@ -241,11 +241,13 @@ On the other hand, the multiple linear regression model is favored for its simpl
    For the third step, all empty cells was removed. Finally, the two cleaned data sets was joined through the patients' unique sequence number. 
 
 ```{r}
+
 demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
+  as.tibble() %>% 
   janitor::clean_names() %>%
   select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
   drop_na() %>%
-  rename(gender=riagendr,
+  dplyr::rename(gender=riagendr,
          age=ridageyr,
          race=ridreth3,
          education_level=dmdeduc2,
@@ -268,9 +270,10 @@ demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
 
 
 sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
+  as.tibble() %>%
   janitor::clean_names() %>% 
-  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
-  rename(weekday_slp_time=slq300,
+  dplyr::select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
+  dplyr::rename(weekday_slp_time=slq300,
          weekday_wake_time=slq310,
          weekday_slp_hr=sld012,
          weekend_slp_time=slq320,
@@ -362,7 +365,9 @@ We first want to get the distribution of sleeping hours less than 7 hours across
   filter(ave_slp_hr<7)%>%
   group_by(education_level,gender) %>%
   summarize(ave_sleep=mean((weekday_slp_hr*5+weekend_slp_hr*2)/7)) %>% 
-  ungroup() %>%
+  ungroup() %>% 
+  as.tibble() %>%
+  mutate(education_level=as.factor(education_level)) %>%
   mutate(education_level=fct_reorder(education_level,ave_sleep)) %>%
   ggplot(aes(x=education_level,y=ave_sleep,fill=gender))+ geom_bar(width=0.5,stat="identity")+
   viridis::scale_fill_viridis(
