@@ -25,10 +25,9 @@ library(stringr)
 library(caret)
 library(leaps)
 library(modelr)
-library(pROC)
+library(DiagrammeR)
 library(glmnet)
 library(corrplot)
-library(DiagrammeR)
 knitr::opts_chunk$set(
   fig.height = 6,
   fig.width = 8,
@@ -38,16 +37,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, include=FALSE}
+```{r}
 options(
   ggplot2.continuous.colour = "viridis",
   ggplot2.continuous.fill = "viridis"
 )
+
 scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
-theme_set(theme_minimal() + theme(legend.position = "bottom"))
-```
 
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+```
 ### Interested physiological risk factors
 `ARTHRITIS`: Arthritis among adults aged >=18 Years\
 `BPHIGH`: High blood pressure among adults aged >=18 Years\
@@ -92,7 +93,9 @@ ny_data = data_df %>%
   filter(state_abbr == 'NY') %>% 
   select(ends_with('prev')) %>% 
   rename_with(~str_remove(., '_crude_prev'))
+
 ```
+
 ## Show the statistics of risk factors prevalence
 
 The following is a boxplot of the prevalences of all of the interested variables. The risk factors with highest prevalence involve screening and medication (HIGHCHOL, BPHIGH and OBESITY). The risk factors with the lowest prevlances are diseases (KIDNEY, CHD, COPD). There is also a general trend that risk factors with higher prevalences have higher variance. 
@@ -133,6 +136,7 @@ Since some of the variables have relatively high correlation with each other acc
 
 ```{r}
 set.seed(2023)
+
 predictors = data.matrix(ny_data %>% select(-sleep))
 outcome = ny_data %>% pull(sleep)
 # 5 folds cv is used 
@@ -153,10 +157,15 @@ A multiple linear regression is then built with all of the variables selected ab
 
 ```{r}
 mlr_model_1 = lm(sleep ~ arthritis + bphigh + cancer + casthma + chd + copd + depression + diabetes + highchol + kidney + obesity, data = ny_data)
+
 # Use backward elimination based on AIC to find a mlr model 
 mlr_model_2 = step(mlr_model_1, direction = "backward")
+
+
 summary(mlr_model_2) %>% broom::tidy() %>% knitr::kable(digits = 3)
+
 anova(mlr_model_2, mlr_model_1)
+
 ```
 
 ## Examine assumptions for the chosen MLR model
@@ -176,8 +185,10 @@ The diagnostic plots indicates that all of the assumptions of MLR below are met.
 ```{r}
 # Pseudo adjusted R squared of elastic model
 elastic_model %>% broom::tidy() %>% select(dev.ratio) %>% unique()
+
 # Adjusted R squared of MLR model
 summary(mlr_model_2) %>% broom::glance() %>% select(adj.r.squared)
+
 ```
 
 The dev.ratio and adjusted r.squared of `0.892` above shows that the elastic net regression model and MLR model give equally good fit to the training data from NY state.  
@@ -188,10 +199,13 @@ nation_df = data_df %>%
   filter(state_abbr != 'NY') %>% 
   select(state_abbr, ends_with('prev')) %>% 
   rename_with(~str_remove(., '_crude_prev')) 
+
 nation_df_2 = nation_df %>% select(-c(state_abbr, sleep)) %>% data.matrix()
  
 predict_mlr = nation_df %>% add_predictions(mlr_model_2, var = "mlr_pred") %>% select(state_abbr, sleep, mlr_pred)
+
 predict_elastic = predict(elastic_model, nation_df_2) %>% as_tibble() %>% select(elas_pred = s0)
+
 result_mse = cbind(predict_mlr, predict_elastic) %>% 
   mutate(
     sse_mlr = (sleep - mlr_pred)^2,
@@ -203,6 +217,7 @@ result_mse = cbind(predict_mlr, predict_elastic) %>%
     mse_mlr = sum(sse_mlr)/n,
     mse_elas = sum(sse_elas)/n
   ) %>% na.omit()
+
 result_mse %>% 
   select(starts_with('mse')) %>% 
   pivot_longer(
@@ -224,11 +239,234 @@ result_mse %>%
   select(starts_with('mse')) %>% 
   summary() %>% 
   knitr::kable()
+
 ```
 
 We then use the data from rest of the country to test the performance of the two models in predicting the prevalence of inadequate sleep in other `50` states. The violion plot above shows that the test mean squared error of the elastic net regression and the multiple linear regression model. The statistics show that there is no significant difference between these two models in terms of predictive performance. Therefore, we conclude that both of models could be used for regression analysis while the elastic net model is more preferred for prediction since it has smaller test MSE (minimal difference though) and retain more information of the potential risk factors. 
 
 On the other hand, the multiple linear regression model is favored for its simplicity of interpretation. While all of the physiological risk factors except for `OBESITY` have significant correlation with the prevalence of insufficient adult sleep, `ARTHRITIS`, `BPHIGH`, `CASTHMA`, `COPD`, `DIABETES` shows a positive correlation while `CANCER`, `CHD`, `DEPRESSION`, `HIGHCHOL`, `KIDNEY` suggest a negative correlation. It is worth noticing that an 1% increase in the prevalence of most disease factors leads to a less than 1% change in the prevalence of insufficient sleep except for `CANCER` and `KIDNEY`, which lead to a drop of 1.7% and 2.7% in prevalence of insufficient sleep respectively. A reasonable explanation is that the adults suffered from cancer and kidney diseases are more likely to have challenged body functions, which force them to spend more time on sleep/lay in bed for recovery and thus lower the prevalence of short sleep. 
+
+# Data Sources
+
+*  The first data set that was used to explore the association between sleeping and social factors was downloaded from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) database.
+
+*  The second data set was from [CDC](https://www.cdc.gov/sleep/data-and-statistics/adults.html).
+
+## Data Processing and Cleaning
+
+*  For data from the NHANES database: The predictors and the response variable were from different data base in NHANES. First, the the column name for these response variables was changed to appropriate names. The original data included numbers to represent difference levels for each predictor, specific names was also replaced for each number. Then, the response variable related to sleeping was from another data base. For this data set, similar steps was used with dealing with the predictors data set. All column names was converted to appropriate names, and character names also replaced the numbers as well. An extra column was added to the data set:`ave_slp_hr`, which is the average sleeping hours per day, by calculating the mean of the weekday and weekend sleeping hours.
+   For the third step, all empty cells was removed. Finally, the two cleaned data sets was joined through the patients' unique sequence number. 
+
+```{r}
+demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
+  as.data.frame() %>%
+  janitor::clean_names() %>%
+  select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
+  drop_na() %>%
+  dplyr::rename(gender=riagendr,
+         age=ridageyr,
+         race=ridreth3,
+         education_level=dmdeduc2,
+         income_poverty_ratio=indfmpir) %>%
+  mutate(gender=case_when(gender==1 ~ "male",
+                          gender==2 ~ "female")) %>%
+  mutate(race=case_when(race==1 ~ "Mexican American",
+                        race==2 ~ "Other Hispanic",
+                        race==3 ~ "Non-Hispanic White",
+                        race==4 ~ "Non-Hispanic Black",
+                        race==6 ~ "Non-Hispanic Asian",
+                        race==7 ~ "Other Race")) %>%
+  mutate(education_level=case_when(education_level==1 ~ "less than 9th grade",
+                                   education_level==2 ~ "9-11th grade",
+                                   education_level==3 ~ "high school graduate",
+                                   education_level==4 ~ "college or AA degree",
+                                   education_level==5 ~ "college graduate or above",
+                                   education_level==7 ~ "refused",
+                                   education_level==9 ~ "don't know"))
+
+
+sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
+  as.data.frame() %>%
+  janitor::clean_names() %>% 
+  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
+  dplyr::rename(weekday_slp_time=slq300,
+         weekday_wake_time=slq310,
+         weekday_slp_hr=sld012,
+         weekend_slp_time=slq320,
+         weekend_wake_time=slq330,
+         weekend_slp_hr=sld013,
+         trouble_slp=slq050,
+         sleepy_freq=slq120
+         )              %>%
+  filter(weekday_slp_time!=77777 & weekday_slp_time!= 99999) %>%
+  filter(weekday_wake_time!=77777 & weekday_wake_time!= 99999) %>%
+  filter(weekend_slp_time!=77777 & weekend_slp_time != 99999) %>%
+  filter(weekend_wake_time!= 77777 & weekend_wake_time != 99999) %>%
+  filter(trouble_slp!=7 & trouble_slp!= 9) %>%
+  filter(sleepy_freq!= 7 & sleepy_freq!=9) %>%
+  drop_na() %>%
+  mutate(trouble_slp=case_when(trouble_slp==1 ~ "yes",
+                               trouble_slp==2 ~ "no")) %>%
+  mutate(sleepy_freq=case_when(sleepy_freq==0 ~ "never",
+                               sleepy_freq==1 ~ "once a month",
+                               sleepy_freq==2 ~ "2-4 per month",
+                               sleepy_freq==3 ~ "5-15 per month",
+                               sleepy_freq==4 ~ "16-30 per month",
+                               ))%>% 
+  mutate(ave_slp_hr = (5*weekday_slp_hr + 2*weekend_slp_hr)/7)
+
+```
+
+```{r}
+slp_df=inner_join(demo,sleep_df,by="seqn") %>%
+  na_if("") %>%
+  na.omit()
+write_csv(slp_df, "data/slp_df.csv")
+```
+
+
+## Data Description
+
+#### Social factors related to Sleeping Status Data
+
+The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp_df)` rows of data on `r ncol(slp_df)` variables, the list below is our variables of interest:
+
+
+
+  * `seqn`. The sequence number of the candidate.
+  * `gender`. Gender of the candidate.
+  * `age`. Age of the candidate.
+  * `race`. Race of the candidate.
+  * `hour`. Time(hour) violation occurred.
+  * `education_level`. The education level of the candidate.
+  * `income_poverty_ratio`. A ratio to classify poverty and not poverty. Ratio greater than 1        will be considered as not poverty, ratio less than 1 will considered as poverty.
+  * `weekday_slp_time`. Sleep time on weekdays or workdays.
+  * `weekday_wake_time`. Wake time on weekdays and workdays.
+  * `weekday_slp_hr`. Average sleeping hours on weekdays or workdays.
+  * `weekend_slp_time`. Sleep time on weekends.
+  * `weekday_wake_time`.Wake time on weekends.
+  * `weekend_slp_hr`. Average sleeping hours on weekends.
+  * `trouble_slp`. A response on whether telling the doctor having trouble sleeping.
+  * `sleepy_freq`. Average sleeply times during daytime per month.
+  * `ave_slp_hr`. Average sleeping hours per day.
+  
+#  Exploratory Analysis  
+
+## National trends in short sleep duration
+
+Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
+
+```{r}
+year_df=read_csv("data/AdultTrends.csv") %>%
+  janitor::clean_names() %>%
+  pivot_longer(cols=c("female", "male"),
+               names_to = "sex",
+               values_to = "age_adjust_prev") %>%
+  ggplot(aes(x=year,y=age_adjust_prev,col=sex))+geom_line()+geom_point()+labs(
+    title = "National trends in short sleep duration",
+    x = "Year",
+    y = "Age Adjusted Prevalence %"
+    )
+
+year_df+transition_reveal(year)
+
+```
+
+## Education level
+ 
+We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per week in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
+
+<center>
+<img src="plots/edu.jpg" height="400px" width="500px" />
+</center>
+
+From the above plot, high school graduates has the least sleeping hours, while college graduates or above has the highest. Female and male does not have a significant difference in both groups.
+
+## Race
+
+A heat map was made to visualize sleeping hours less than 7 hours among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
+
+```{r}
+race_plot=slp_df %>%
+  filter(ave_slp_hr<7) %>%
+  mutate(sleep_ave=(weekday_slp_hr*5+weekend_slp_hr*2)/7) %>%
+  group_by(race,sleep_ave) %>%
+  dplyr::summarize(obs=n()) %>%
+  plot_ly(
+    x = ~sleep_ave, y = ~race, z = ~obs, type = "heatmap", colors = "BuPu"
+  ) %>%
+  colorbar(title = "Number of People", x = 1, y = 0.5) 
+layout(race_plot, xaxis = list(title = "Average Sleeping Hours Per Day"), yaxis = list(title = "Race"))
+
+```
+### Race Gender Gap by Education Level
+
+The below plot demonstrates the gender gap in the patients for different races. Male outnumber female for sleeping less than 7 hours per day for all race, except Non-Hispanic Black and Non-Hispanic Asian. The bubble represents the degree of the gap, along inlcuding their education level. 
+
+```{r}
+gender_plot=slp_df %>%
+  filter(ave_slp_hr<7) %>%
+  group_by(race,education_level) %>%
+  dplyr::summarize(total_f=sum(gender=="female"),
+            total_m=sum(gender=="male"),
+            gap=total_m-total_f) %>%
+  mutate(text_lable=str_c("Race=",race,"\nEducation level: ", education_level)) %>%
+  plot_ly(x=~total_m,y=~total_f,text=~text_lable,color=~race,size=~gap,type="scatter",mode="markers",
+          colors="viridis",sizes = c(50, 700), marker = list(opacity = 0.7))
+
+layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(title = "Number of Male Sleeping less than 7 hrs"), yaxis = list(title = "Number of Female Sleeping less than 7 hrs"))
+
+```
+## Poverty Status
+
+We can observe that people who are in poverty tend to have less sleeping hours than those who are not in poverty. 
+
+```{r,fig.width=10,fig.asp=.6}
+income_df=slp_df %>%
+  filter(ave_slp_hr<7) %>%
+  mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
+                           income_poverty_ratio < 1~ "in poverty",
+                           income_poverty_ratio == 1~ "in poverty")) %>%
+  ggplot(aes(x=weekday_slp_hr,y=ip_stat,fill=ip_stat))+
+  geom_density_ridges(
+    aes(point_color = ip_stat, point_shape = ip_stat,point_fill=ip_stat),
+    alpha = .3, point_alpha = 0.7)+
+   scale_x_continuous(
+    breaks = c(2, 4, 6), 
+    labels = c("2hrs", "4hrs", "6hrs"),
+    limits = c(2, 6)
+    )+labs(
+    x = " Average Sleeping Hours"
+    )
+  
+box_plot=
+  slp_df %>%
+  filter(ave_slp_hr<7) %>%
+  mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
+                           income_poverty_ratio < 1~ "in poverty",
+                           income_poverty_ratio == 1~ "in poverty")) %>%
+  mutate(sleep_ave=(weekday_slp_hr*5+weekend_slp_hr*2)/7) %>%
+  ggplot(aes(x=ip_stat,y=sleep_ave))+geom_boxplot(aes(fill = ip_stat), alpha = 0.3)+
+  geom_hline(aes(yintercept=median(sleep_ave),
+            color="red", linetype="dashed"))+
+  geom_text(aes(0, median(ave_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")+labs(
+    x = " Poverty Status",
+    y = "Average Sleeping Hours"
+    )
+
+comb=income_df+box_plot
+comb+plot_annotation(
+  title = "Sleeping Hours By Poverty Status"
+) 
+
+```
+
+## Age
+A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day.
+
+<center>
+<img src="plots/age.jpg" height="400px" width="500px" />
+</center>
 
 # Statistical Analysis
 ## Multiple Linear Regression (MLR) 
