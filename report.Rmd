@@ -685,3 +685,4 @@ We made a questionnaire using Sleep Quality Scale and make different suggestions
  * **High school graduates** has the shortest average sleeping time, and **9-11th** grade has the second lowest sleeping length.
  * People who are in **poverty** status tends to have shorter sleeping length than people who are not in poverty. 
  * The logistic model performs well on sufficient sleep.
+ * All physiological risk factors except **OBESITY** have significant correlation with the prevalence of insufficient adult sleep.
