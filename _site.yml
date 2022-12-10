@@ -9,12 +9,15 @@ navbar:
       href: Data.html
     - text: "Survey about sleep"
       href: app.html
+    - text: "Final Report"
+      href: report.html  
     - icon: fa-envelope fa-lg
       href: mailto:<wz2631@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: https://github.com/jchaicc/final.github.io.git
     - icon: fa-book fa-lg
       href: References.html
+    
 output:
   html_document:
     theme: journal
