@@ -70,7 +70,7 @@ data_df %>%
   ) %>% knitr::kable()
 ```
 
-The dataset has `r nrow(na.omit(data_df))` observations across the country, each represents a summarized estimate of a district. We select New York state as our sample data to build the model as it has third largest population with sufficient amount of sample. 
+The dataset has `r nrow(data_df)` observations across the country, each represents a summarized estimate of a district. We select New York state as our sample data to build the model as it has third largest population with sufficient amount of sample. 
 
 ### Extract NY state as target sample
 ```{r}
@@ -197,11 +197,11 @@ result_mse = cbind(predict_mlr, predict_elastic) %>%
     sse_elas = (sleep - elas_pred)^2
   ) %>% 
   group_by(state_abbr) %>% 
-  summarise(
+  dplyr::summarise(
     n = n(),
     mse_mlr = sum(sse_mlr)/n,
     mse_elas = sum(sse_elas)/n
-  ) %>% na.omit()
+  ) %>% dplyr::na.omit()
 
 result_mse %>% 
   select(starts_with('mse')) %>% 
