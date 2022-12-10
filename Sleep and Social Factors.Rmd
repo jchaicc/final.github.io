@@ -600,14 +600,14 @@ xgb.plot.importance(importance_matrix[1:10,])
 
 #### Tree-plot
 ```{r}
-devtools::load_all()
+# devtools::load_all()
 ```
 
 ```{r}
-xgb.dump(xgb2, with_stats = T)
+# xgb.dump(xgb2, with_stats = T)
 ```
 
 ```{r}
-xgpt = xgb.plot.tree(model = xgb2, trees=0:1, render=FALSE)
-export_graph(xgpt, here::here("images/tree.png"))
+# xgpt = xgb.plot.tree(model = xgb2, trees=0:1, render=FALSE)
+# export_graph(xgpt, here::here("images/tree.png"))
 ```
