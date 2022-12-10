@@ -26,6 +26,8 @@ library(caret)
 library(leaps)
 library(modelr)
 library(pROC)
+library(glmnet)
+library(corrplot)
 knitr::opts_chunk$set(
   fig.height = 6,
   fig.width = 8,
@@ -35,33 +37,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, include=FALSE}
-library(tidyverse)
-library(dplyr)
-library(glmnet)
-library(modelr)
-library(corrplot)
-library(patchwork)
-library(knitr)
-library(gganimate)
-library(gifski)
-library(png)
-library(plotly)
-library(ggridges)
-library(xgboost)
-library(readr)
-library(stringr)
-library(caret)
-library(leaps)
-library(pROC)
-knitr::opts_chunk$set(
-	echo = TRUE,
-	warning = FALSE,
-	message = FALSE,
-	fig.width = 8, 
-  fig.height = 6,
-  out.width = "90%"
-)
+```{r, include=FALSE}
 options(
   ggplot2.continuous.colour = "viridis",
   ggplot2.continuous.fill = "viridis"

@@ -11,7 +11,7 @@
 
 
 
-<title>Final Report</title>
+<title>Sleep and Social Factors</title>
 
 <script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
@@ -225,6 +228,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -232,6 +298,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -295,7 +371,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Final Report</h1>
+<h1 class="title toc-ignore">Sleep and Social Factors</h1>
 
 </div>
 
@@ -427,7 +503,7 @@ have higher variance.</p>
       caption = &quot;Data from the CDC&quot;
     ) + 
   theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="report_files/figure-html/unnamed-chunk-2-1.png" width="90%" /></p>
+<p><img src="report_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
 </div>
 <div id="examine-correlation-of-chosen-factors" class="section level2">
 <h2>Examine correlation of chosen factors</h2>
@@ -435,7 +511,7 @@ have higher variance.</p>
 ny_data %&gt;% select(-sleep) %&gt;% cor() %&gt;% corrplot(
   method = &quot;circle&quot;, addCoef.col = &quot;black&quot;, tl.col=&quot;black&quot;, tl.srt=90, 
   insig = &quot;blank&quot;, diag=FALSE, number.cex = .5)</code></pre>
-<p><img src="report_files/figure-html/unnamed-chunk-3-1.png" width="90%" /></p>
+<p><img src="report_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
 </div>
 <div id="build-model-with-elastic-net" class="section level2">
 <h2>Build model with elastic net</h2>
@@ -457,7 +533,7 @@ elastic_model = glmnet(predictors, outcome, lambda = best_lambda, alpha = 0.5)
 model_coef = coef.glmnet(elastic_model) %&gt;% as.matrix() %&gt;% as.data.frame()
 model_coef[model_coef == 0] = NA
 plot(cv_object)</code></pre>
-<p><img src="report_files/figure-html/unnamed-chunk-4-1.png" width="90%" /></p>
+<p><img src="report_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
 <pre class="r"><code>model_coef </code></pre>
 <pre><code>##                      s0
 ## (Intercept) 40.24004577
@@ -626,7 +702,7 @@ class="section level2">
 <h2>Examine assumptions for the chosen MLR model</h2>
 <pre class="r"><code>par(mfrow = c(2, 2))
 plot(mlr_model_2)</code></pre>
-<p><img src="report_files/figure-html/unnamed-chunk-6-1.png" width="90%" /></p>
+<p><img src="report_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
 <p>The diagnostic plots indicates that all of the assumptions of MLR
 below are met.<br />
 1.Residuals are normally distributed<br />
@@ -653,7 +729,7 @@ summary(mlr_model_2) %&gt;% broom::glance() %&gt;% select(adj.r.squared)</code><
 <p>The dev.ratio and adjusted r.squared of <code>0.892</code> above
 shows that the elastic net regression model and MLR model give equally
 good fit to the training data from NY state.</p>
-<p><img src="report_files/figure-html/unnamed-chunk-8-1.png" width="90%" /></p>
+<p><img src="report_files/figure-html/unnamed-chunk-9-1.png" width="768" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -737,6 +813,8 @@ well-conducted scientific research.</p>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -774,6 +852,35 @@ $(document).ready(function () {
 });
 </script>
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
