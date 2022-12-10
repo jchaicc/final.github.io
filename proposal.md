@@ -1,13 +1,9 @@
 Final Project Proposal
 ================
-<<<<<<< HEAD
-Jingchen Chai, Wenjia Zhu, Ruihan Zhang, Yifei Zhao, Chenyao Ni(cn2604)
-=======
-Jingchen Chai(jc5929), Wenjia Zhu, Ruihan Zhang(rz2614), Yifei
+Jingchen Chai(jc5929), Wenjia Zhu(wz2631), Ruihan Zhang(rz2614), Yifei
 Zhao(yz4433), Chenyao Ni(cn2604)
 
 ## **Factors Influencing Sleeping Duration**
->>>>>>> e44d6c6a7379f4c7977f078f28f3f44692a71161
 
 ## Motivation of our project
 
@@ -77,36 +73,6 @@ Leaflet for mapping with sleepcrude values and populationcount,
 correlation plots among sleep figures and other disease values, and
 linear model for such factors.
 
-<<<<<<< HEAD
-The third data set is [PLACES: Census Tract
-Data](https://catalog.data.gov/dataset/places-census-tract-data-gis-friendly-format-2020-release-fb1ec).
-
-## The planned analyses / visualizations / coding challenges
-
-We plan to start from a map GIF image, which illustrates prevalence of
-short sleep duration among US adults by state from 2016 to 2020.
-
-For NHANES datasets, firstly, We can simply build a linear model between
-sleep disorder factors and length of sleep, and from this model we could
-briefly obtain the sleep length with sleee behavioral factors. Secondly,
-we classify the people into two groups by length of sleep in weekends
-and weekdays, people with sufficient sleep and people with insufficient
-sleep. We plan to use scatterplot and barplot to show the basic features
-of sleep conditions of the data. Thirdly, after joint with other
-datasets, we could discover the correlation among sleep conditions and
-social economic factors using bubble charts and heatmap.
-
-As for PLACES: Census Tract and City Data, we firstly classify the data
-into two groups by different geographic level, census tract and city,
-and use the same method to analyze and compare the two groups in further
-study. For each group, we focus on the key variables like cityname,
-category, disease name, datavalue, geolocation and populationcount.
-Visulization method will include Leaflet for mapping with corrsponding
-category and populationcount, correlation plots among sleep datavalue
-and other disease datavalues, and linear model for such factors.
-
-=======
->>>>>>> e44d6c6a7379f4c7977f078f28f3f44692a71161
 The coding challenges are mainly from tidying data and do further
 manipulation like aggregating and creating linear models, since some
 values are missing, undefined or ourliers, and the models maybe

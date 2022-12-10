@@ -253,13 +253,13 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="References.html">Sleep &amp; Diseases</a>
+  <a href="Places_data.html">Sleep &amp; Diseases</a>
 </li>
 <li>
-  <a href="References.html">Sleep &amp; Social factors</a>
+  <a href="Sleep-and-Social-Factors.html">Sleep &amp; Social factors</a>
 </li>
 <li>
-  <a href="References.html">Survey about sleep</a>
+  <a href="app.html">Survey about sleep</a>
 </li>
 <li>
   <a href="mailto:&lt;wz2631@cumc.columbia.edu&gt;">
@@ -345,7 +345,7 @@ class="section level2">
 
 data_df %&gt;% 
   group_by(state_abbr) %&gt;% 
-  summarise(
+  dplyr::summarize(
     number_of_regions = n(),
     population = sum(total_population)
   ) %&gt;% 
