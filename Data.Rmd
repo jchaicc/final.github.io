@@ -310,7 +310,7 @@ lmraw = lm(ave_slp_hr ~ ., data = data_train)
 
 The model driven by multiple linear regression is:
 $$\scriptsize
-sleep\_hour=8.09-0.31*I(gender = male)-0.31*I(race = Non-Hispanic Black)\\\scriptsize+0.32*I(sleepy_freq = 2-4 per month)+0.37*I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce month)\\\scriptsize-0.05*income_poverty_ratio-0.10*trouble_slpyes -0.22*I(education_level = college graduate or above)-0.28*I(education_level = college or AA degree).$$ 
+sleep\_hour=8.09-0.31*I(gender = male)-0.28*I(race = Non-Hispanic\ Black)-0.22*I(education\_level = college\ graduate\ or\ above)\\\scriptsize-0.28*I(education\_level = college\ or\ AA\ degree)-0.14*I(education\_level = high\ school\  graduate)-0.05*income\_poverty\_ratio-0.10*trouble\_slpyes\\\scriptsize +0.32*I(sleepy\_freq = 2-4 per\ month)+0.37*I(sleepy\_freq = freqnever)+0.33*I(sleepy\_freq = freqonce\ month).$$ 
 We find it strongly relating to gender, trouble_types, income_poverty_ratio, and some levels in race, education_level and sleep frequency.
 
 ### Diagnostic plots
@@ -331,7 +331,7 @@ step1 = step(lmraw, direction = 'both', trace=0)
 
 The model after stepwise method is: 
 $$\scriptsize
-sleep\_hour=8.10-0.31*I(gender = male)-0.28*I(race = Non-Hispanic Black) \\\scriptsize+ 0.32*I(sleepy_freq = 2-4 per month)+0.37*I(sleepy_freq = freqnever)+0.33*I(sleepy_freq = freqonce a month)\\\scriptsize-0.05*income_poverty_ratio-0.10*trouble_slpyes-0.22*I(education_level = college graduate or above)-0.28*I(education_level = college or AA degree).$$
+sleep\_hour=8.10-0.31*I(gender = male)-0.28*I(race = Non-Hispanic\ Black)-0.22*I(education\_level = college\ graduate\ or\ above)\\\scriptsize-0.28*I(education\_level = college\ or\ AA\ degree)-0.14*I(education\_level = high\ school\  graduate)-0.05*income\_poverty\_ratio-0.10*trouble\_slpyes\\\scriptsize +0.32*I(sleepy\_freq = 2-4 per\ month)+0.37*I(sleepy\_freq = freqnever)+0.33*I(sleepy\_freq = freqonce\ month).$$ 
 We find it is nearly the same as previous multiple linear regression model.
 
 ### Testing
