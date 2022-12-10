@@ -357,7 +357,7 @@ data_logtrain = data_train %>%
 glmraw = glm(sufficient_slp ~ ., data = data_logtrain, family = binomial)
 ```
 
-The first logistic model shows the significant predictors are gender, race, education_level, trouble_types, and sleep_freq.
+We use logistic regression model for predicting whether the person has sufficient sleep or not. Following the definition of sufficient sleep in Sleep & Diseases section, we label the ave_slp_hr greater or equal to 7 hours as 'sufficient'. The first logistic model shows the significant predictors are gender, race, education_level, trouble_types, and sleep_freq.
 
 ```{r}
 step2 = step(glmraw, direction = 'both', trace=0)
