@@ -66,10 +66,13 @@ Inspired by these works, we identified the main topics of our website to explore
  3. Does short sleeping time indicates insufficient sleep? 
 
 # Homepage
-The homepage builds the main framework and content for the website, showing the research background and motivation of our project. Inspired by the the website of American Academy of Sleep Medicine (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/) and the visualization in class of airbnb in the New York area, We decided to visualize the sleep data of Americans intuitively, exploring the overall situation and the regional differences of the current Americans sleep as the background of our project.
+The homepage builds the main framework and content for the website, showing the research background and motivation of our project. Inspired by the the website of American Academy of Sleep Medicine (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/) and the visualization in class of Airbnb in the New York area, We decided to visualize the sleep data of Americans intuitively, exploring the overall situation and the regional differences of the current Americans sleep as the our project background.
 
-### 
-The 'leaflet' pacakage was used to complete the interactivity and visualization of sleep data.
+### Data preparation
+The 'leaflet' pacakage was used to complete the interactivity and visualization of sleep data from 500 Cities dataset provided by the Centers for Disease Control and Prevention (CDC) (https://www.opendatanetwork.com/dataset/chronicdata.cdc.gov/eqbn-8mpz). 
+To specify the coordinate values required to draw this map, I separated and read the latitude and longitude of each data point. In addition, for Leaflet function, I also got the basic layer from Esri.WorldStreetMap to add geographical boundaries to the map.
+
+### Visualization
 
 # Sleep and Diseases
 
