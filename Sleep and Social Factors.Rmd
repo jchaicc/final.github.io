@@ -385,10 +385,10 @@ We did model significance test, ANOVA, and determine the significant predictors 
 data_logtest = data_test %>% 
   mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 'sufficient', 'insufficient')) %>% 
   select(-ave_slp_hr)
-prob2 = predict(object = glmraw, newdata = data_logtest,type = "response")
-pred2 = ifelse(prob2 >= 0.5, 'sufficient', 'insufficient')
+prob2 = round(predict(object = glmraw, newdata = data_logtest,type = "response"))
+pred2 = ifelse(prob2 == 1, 'sufficient', 'insufficient')
 pred2 = factor(pred2, levels = c('insufficient', 'sufficient'), order=TRUE)
-tablog = table(data_logtest$sufficient_slp, pred2)
+tablog = table(data_logtest$sufficient_slp, pred2, dnn=c("true","pre"))
 tablog
 ```
 
@@ -409,24 +409,6 @@ ggplot(data = NULL, aes(x = x, y = y)) +
   geom_abline(intercept = 0, slope = 1) +
   annotate('text', x = 0.5, y = 0.5, label =paste('AUC=',round(roc_curve$auc,2))) +
   labs(x = '1-specificities',y = 'sensitivities', title = 'ROC Curve')
-```
-
-```{r}
-# windows(width = 5, height = 5)
-# plot(glmraw, cex.lab = 1)
-```
-
-```{r}
-# lm0 = lm(ave_slp_hr ~ 1, data = df_mod)
-# lmstep = step(lm0, direction = 'both', scope=formula(lmraw), trace=0)
-# summary(lmstep)
-```
-
-#### adjust R2 Cp
-```{r}
-# par(mfrow = c(1,1))
-# leaps = regsubsets(ave_slp_hr ~ ., data = df_mod, nbest=20)
-# plot(leaps, scale = 'adjr2')
 ```
 
 ### xgboost (compare with mlr)
@@ -483,14 +465,6 @@ print(xgb1)
 
 #### model prediction
 ```{r}
-# pred_y = predict(xgb1, dtest)
-# 
-# mse = mean((data_testy$label - pred_y)^2)
-# mae = caret::MAE(data_testy$label, pred_y)
-# rmse = caret::RMSE(data_testy$label, pred_y)
-# 
-# cat("MSE: ", mse, "MAE: ", mae, " RMSE: ", rmse)
-
 xg_pred = predict(xgb1, dtest)
 
 dlm =  data.frame(
@@ -507,7 +481,7 @@ knitr::kable(dlm)
 par(mfrow = c(1,1))
 x = 1:length(data_testy$label)
 plot(x, data_testy$label, col = "red", type = "l")
-lines(x, pred_y, col = "blue", type = "l")
+lines(x, xg_pred, col = "blue", type = "l")
 # legend(x = 1, y = 38,  legend = c("original test_y", "predicted test_y"), 
 #        col = c("red", "blue"), box.lty = 1, cex = 0.8, lty = c(1, 1))
 ```
@@ -548,8 +522,6 @@ names(data_testy) = c('label')
 ```
 
 ```{r}
-# train_slp = list(data=data_trainx[,-1],label=data_trainy$label) 
-# test_slp = list(data=data_testx[,-1],label=data_testy$label) 
 dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
 dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 ```
@@ -568,48 +540,31 @@ dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 ```
 
 ```{r}
-xgb2 = xgboost(data = dtrain, max.depth = 10, nrounds = 500)
+xgb2 = xgboost(data = dtrain, max.depth = 5, nround = 300, objective = "binary:logistic")
 print(xgb2)
 ```
 
 #### model prediction
 ```{r}
-# pred_y = predict(xgb1, dtest)
+# xg_pred = predict(xgb2, dtest)
 # 
-# mse = mean((data_testy$label - pred_y)^2)
-# mae = caret::MAE(data_testy$label, pred_y)
-# rmse = caret::RMSE(data_testy$label, pred_y)
+# dlm =  data.frame(
+#     Error = c("MSE", "MAE", "RMSE"), 
+#     Value = c(mean((data_testy$label - xg_pred)^2),
+#               caret::MAE(data_testy$label, xg_pred), 
+#               caret::RMSE(data_testy$label, xg_pred)))
 # 
-# cat("MSE: ", mse, "MAE: ", mae, " RMSE: ", rmse)
-
-xg_pred = predict(xgb2, dtest)
-
-dlm =  data.frame(
-    Error = c("MSE", "MAE", "RMSE"), 
-    Value = c(mean((data_testy$label - xg_pred)^2),
-              caret::MAE(data_testy$label, xg_pred), 
-              caret::RMSE(data_testy$label, xg_pred)))
-
-knitr::kable(dlm)
+# knitr::kable(dlm)
 ```
 
 
 #### testing
 ```{r}
-# data_logtest = data_test %>% 
-#   mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 'sufficient', 'insufficient')) %>% 
-#   select(-ave_slp_hr)
-# prob2 = predict(object = glmraw, newdata = data_logtest,type = "response")
-# pred2 = ifelse(prob2 >= 0.5, 'sufficient', 'insufficient')
-# pred2 = factor(pred2, levels = c('insufficient', 'sufficient'), order=TRUE)
-# tablog = table(data_logtest$sufficient_slp, pred2)
-# tablog
-```
-
-#### ROC-AUC curve
-```{r}
-pre_xgb = round(predict(xgb2,newdata = dtest))
-table(data_testy$label,pre_xgb,dnn=c("true","pre"))
+xgpred = round(predict(xgb2, dtest))
+# predxg = ifelse(xgpred == 1, 'sufficient', 'insufficient')
+# predxg = factor(xgpred, levels = c('insufficient', 'sufficient'), order=TRUE)
+tablog = table(data_testy$label, xgpred, dnn=c("true","pre"))
+tablog
 ```
 
 From the table, we find:
@@ -617,6 +572,7 @@ From the table, we find:
 2. the logistic model works not well on sufficient sleep. $\frac{81}{81+281} =  22.38\%$
 3. the total accuracy of the model prediction is $\frac{81+966}{81+281+966+205} = 68.30\%$
 
+#### ROC-AUC curve
 ```{r}
 # xgboost_roc <- roc(data_testy$label,as.numeric(pre_xgb))
 # plot(xgboost_roc, print.auc=TRUE, auc.polygon=TRUE, 
@@ -624,7 +580,7 @@ From the table, we find:
 #   max.auc.polygon=TRUE,auc.polygon.col="skyblue", 
 #   print.thres=TRUE,main='ROC curve')
 
-roc_curve = roc(data_testy$label, pre_xgb)
+roc_curve = roc(data_testy$label, xgpred)
 names(roc_curve)
 x = 1-roc_curve$specificities
 y = roc_curve$sensitivities
@@ -640,4 +596,18 @@ ggplot(data = NULL, aes(x = x, y = y)) +
 names = dimnames(as.matrix(data_testx))[[2]]
 importance_matrix = xgb.importance(names, model = xgb2)
 xgb.plot.importance(importance_matrix[1:10,])
+```
+
+#### Tree-plot
+```{r}
+devtools::load_all()
+```
+
+```{r}
+xgb.dump(xgb2, with_stats = T)
+```
+
+```{r}
+xgpt = xgb.plot.tree(model = xgb2, trees=0:1, render=FALSE)
+export_graph(xgpt, here::here("images/tree.png"))
 ```
