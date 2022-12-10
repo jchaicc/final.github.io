@@ -65,7 +65,9 @@ data_df %>%
     population = sum(total_population)
   ) %>% 
   arrange(-population) %>% 
-  dplyr::head() %>% knitr::kable()
+  filter(
+    state_abbr %in% c('CA', 'TX', 'NY', 'FL', 'IL', 'PA' )
+  ) %>% knitr::kable()
 ```
 
 The dataset has `r nrow(na.omit(data_df))` observations across the country, each represents a summarized estimate of a district. We select New York state as our sample data to build the model as it has third largest population with sufficient amount of sample. 
