@@ -57,7 +57,7 @@ However, more than one-third of the US population gets less than the recommended
 
 #Related Work
 According to the website of American Academy of Sleep Medicine (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/), seven or more hours of sleep per night is  a health necessity for adults. There are also thought-provoking articles in this website discussing the influences of social factors on the sleep of Americans, like how financial and political worries make people difficult to fall asleep(https://aasm.org/politics-are-keeping-americans-up-at-night-nearly-60-of-adults-struggle-to-fall-asleep-due-to-political-worries/).
-Inspired by these works, we identified the main topics of our website to explore the biological, economic and social factors interacting with sleep, as well as collect and analyze more sleep data through the questionnaire page of our website.
+Inspired by these works, we identified the main topics of our website to explore the biological, economic and social factors interacting with sleep, as well as collect and analyze more sleep data through the questionnaire page of our website. All the papers we referred to were concluded and linked to the references page.
 
 # Initial Questions and Planned Analysis
 
@@ -68,7 +68,7 @@ Inspired by these works, we identified the main topics of our website to explore
 # Homepage
 The homepage builds the main framework and content for the website, showing the research background and motivation of our project. Inspired by the the website of American Academy of Sleep Medicine (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/) and the visualization in class of airbnb in the New York area, We decided to visualize the sleep data of Americans intuitively, exploring the overall situation and the regional differences of the current Americans sleep as the background of our project.
 
-###
+### 
 The 'leaflet' pacakage was used to complete the interactivity and visualization of sleep data.
 
 # Sleep and Diseases
