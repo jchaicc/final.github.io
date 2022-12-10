@@ -50,6 +50,18 @@ scale_fill_discrete = scale_fill_viridis_d
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 
 ```
+# Motivation
+
+Adults should sleep 7 or more hours per night on a regular basis to promote optimal health.
+However, more than one-third of the US population gets less than the recommended amount of sleep. Sleep is a necessary physiological process for individuals, interacting with several economic, social and physical factors, influencing risks of multiple health problems. Therefore, based on NHANES dataset, we focus on sleep-related public health issues to carry out our research, hoping to popularize the significance of adequate and healthy sleep, arousing the public's health awareness of improving sleep quality and obtaining adequate sleep duration. We also want to visualize and discuss the biological, economic and social factors interacting with sleep, informing the public and healthcare providers on the importance of advocating public policy to promoting the nowadays sleep situation and overall public health.
+
+# Initial Questions and Planned Analysis
+
+ 1. What is the correlation between insufficient sleep and physiological disease?
+ 2. Which age group has the shortest average sleeping time? Which education level has the shortest average sleeping time?
+ 3. Does short sleeping time indicates insufficient sleep? 
+
+
 # Sleep and Diseases
 
 ### Interested physiological risk factors
@@ -703,3 +715,8 @@ According to the XGBoost tree plot above, we can clearly discover how the final 
 
 # Shiny APP
 We made a questionnaire using Sleep Quality Scale and make different suggestions about sleeping in our shiny app. Users can answer the questions, and then they can get a score for their sleeping quality. The score can be calculated by adding all answers in 1-4 together. The higher the score is, the poorer the quality of their sleeping is. In the end, there will be some suggestions to improve users’ sleeping quality, which is really useful, because the suggestions are based on many well-conducted scientific research. 
+
+# Summaries
+ * People from age group **71-80** has the shortest average sleeping time. However, what need to consider is that older people usually tend to have shorter sleeping time due to physical factors. For elder people, there is a possibility that short sleeping time does not mean insufficient sleep for them.
+ * **High school graduates** has the shortest average sleeping time, and **9-11th** grade has the second lowest sleeping length.
+ * People who are in **poverty** status tends to have shorter sleeping length than people who are not in poverty. 
