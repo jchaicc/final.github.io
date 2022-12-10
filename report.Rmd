@@ -1,6 +1,6 @@
 ---
 title: "P8130 Final Report"
-author: "Ruihan Zhang, Jingchen Chai, Wenjia Zhu, Cary Ni, Yifei Zhao"
+author: "Ruihan Zhang, Jingchen Chai, Wenjia Zhu, Chenyao Ni, Yifei Zhao"
 output: 
   html_document:
     toc: true
@@ -672,7 +672,7 @@ The feature importance plot of XGBoost model indicates two extremely important f
 
 ### Tree plot
 ```{r}
-xgb.plot.tree(model = xgb2, trees=1999, plot_width = 900)
+xgb.plot.tree(model = xgb2, trees=1999, plot_width = 800)
 ```
 
 According to the XGBoost tree plot above, we can clearly discover how the final tree model decide the values on each leaf which can directly lead to probability estimators based on the logistic function.

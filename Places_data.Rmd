@@ -2,6 +2,8 @@
 title: "Correlation between prevalance of insufficient sleep and physiological disease"
 output: 
   html_document:
+    toc: true
+    toc_float: true
     code_folding: hide
 ---
 
