@@ -6,7 +6,7 @@ navbar:
     - text: "Sleep & Diseases"
       href: Places_data.html
     - text: "Sleep & Social factors"
-      href: Sleep-and-Social-Factors.html
+      href: Data.html
     - text: "Survey about sleep"
       href: app.html
     - icon: fa-envelope fa-lg

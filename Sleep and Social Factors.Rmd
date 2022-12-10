@@ -32,7 +32,6 @@ library(leaps)
 library(modelr)
 library(pROC)
 ```
-
 ## Data Sources
 
 *  The first data set that was used to explore the association between sleeping and social factors was downloaded from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) database.
@@ -108,34 +107,6 @@ slp_df=inner_join(demo,sleep_df,by="seqn") %>%
   na.omit()
 write_csv(slp_df, "data/slp_df.csv")
 ```
-
-
-## Data Description
-
-#### Social factors related to Sleeping Status Data
-
-The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp_df)` rows of data on `r ncol(slp_df)` variables, the list below is our variables of interest:
-
-
-
-  * `seqn`. The sequence number of the candidate.
-  * `gender`. Gender of the candidate.
-  * `age`. Age of the candidate.
-  * `race`. Race of the candidate.
-  * `hour`. Time(hour) violation occurred.
-  * `education_level`. The education level of the candidate.
-  * `income_poverty_ratio`. A ratio to classify poverty and not poverty. Ratio greater than 1 will be considered as not        poverty, ratio less than 1 will considered as poverty.
-  * `weekday_slp_time`. Sleep time on weekdays or workdays.
-  * `weekday_wake_time`. Wake time on weekdays and workdays.
-  * `weekday_slp_hr`. Average sleeping hours on weekdays or workdays.
-  * `weekend_slp_time`. Sleep time on weekends.
-  * `weekday_wake_time`.Wake time on weekends.
-  * `weekend_slp_hr`. Average sleeping hours on weekends.
-  * `trouble_slp`. A response on whether telling the doctor having trouble sleeping.
-  * `sleepy_freq`. Average sleeply times during daytime per month.
-  * `ave_slp_hr`. Average sleeping hours per day.
-  
-
 ## National trends in short sleep duration
 
 Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
@@ -600,14 +571,14 @@ xgb.plot.importance(importance_matrix[1:10,])
 
 #### Tree-plot
 ```{r}
-devtools::load_all()
+# devtools::load_all()
 ```
 
 ```{r}
-xgb.dump(xgb2, with_stats = T)
+# xgb.dump(xgb2, with_stats = T)
 ```
 
 ```{r}
-xgpt = xgb.plot.tree(model = xgb2, trees=0:1, render=FALSE)
-export_graph(xgpt, here::here("images/tree.png"))
+# xgpt = xgb.plot.tree(model = xgb2, trees=0:1, render=FALSE)
+# export_graph(xgpt, here::here("images/tree.png"))
 ```
