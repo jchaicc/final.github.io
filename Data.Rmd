@@ -331,7 +331,7 @@ step1 = step(lmraw, direction = 'both', trace=0)
 
 The model after stepwise method is: 
 $$\scriptsize
-sleep\_hour=8.10-0.31I(gender = male)-0.28I(race = Non-Hispanic Black) \\\scriptsize+ 0.32I(sleepy_freq = 2-4 per month)+0.37I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce a month)\\\scriptsize-0.05income_poverty_ratio-0.10trouble_slpyes-0.22I(education_level = college graduate or above)-0.28I(education_level = college or AA degree).$$
+sleep\_hour=8.10-0.31*I(gender = male)-0.28*I(race = Non-Hispanic Black) \\\scriptsize+ 0.32*I(sleepy_freq = 2-4 per month)+0.37*I(sleepy_freq = freqnever)+0.33*I(sleepy_freq = freqonce a month)\\\scriptsize-0.05*income_poverty_ratio-0.10*trouble_slpyes-0.22*I(education_level = college graduate or above)-0.28*I(education_level = college or AA degree).$$
 We find it is nearly the same as previous multiple linear regression model.
 
 ### Testing
