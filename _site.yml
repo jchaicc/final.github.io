@@ -8,13 +8,16 @@ navbar:
     - text: "Sleep & Social factors"
       href: Data.html
     - text: "Survey about sleep"
-      href: app.html
+      href: https://rheaaa.shinyapps.io/myshiny/?_ga=2.230249179.631808033.1670647588-175632102.1670647588
+    - text: "Final Report"
+      href: report.html  
     - icon: fa-envelope fa-lg
-      href: mailto:<wz2631@cumc.columbia.edu>
+      href: mailto:<sleep8105@gmail.com>
     - icon: fa-github fa-lg
       href: https://github.com/jchaicc/final.github.io.git
     - icon: fa-book fa-lg
       href: References.html
+    
 output:
   html_document:
     theme: journal

@@ -168,7 +168,6 @@ We first want to get the distribution of sleeping hours less than 7 hours across
   group_by(education_level,gender) %>%
   summarize(ave_sleep=mean((weekday_slp_hr*5+weekend_slp_hr*2)/7)) %>% 
   ungroup() %>%
-  mutate(education_level=fct_reorder(education_level,ave_sleep)) %>%
   ggplot(aes(x=education_level,y=ave_sleep,fill=gender))+ geom_bar(width=0.5,stat="identity")+
   viridis::scale_fill_viridis(
     name = "gender",
