@@ -60,7 +60,7 @@ data_df = read_csv('PLACES__Census_Tract_Data__GIS_Friendly_Format___2022_releas
 
 data_df %>% 
   group_by(state_abbr) %>% 
-  summarise(
+  dplyr::summarize(
     number_of_regions = n(),
     population = sum(total_population)
   ) %>% 
