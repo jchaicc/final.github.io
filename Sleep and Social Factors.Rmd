@@ -32,7 +32,6 @@ library(leaps)
 library(modelr)
 library(pROC)
 ```
-
 ## Data Sources
 
 *  The first data set that was used to explore the association between sleeping and social factors was downloaded from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) database.
@@ -108,34 +107,6 @@ slp_df=inner_join(demo,sleep_df,by="seqn") %>%
   na.omit()
 write_csv(slp_df, "data/slp_df.csv")
 ```
-
-
-## Data Description
-
-#### Social factors related to Sleeping Status Data
-
-The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp_df)` rows of data on `r ncol(slp_df)` variables, the list below is our variables of interest:
-
-
-
-  * `seqn`. The sequence number of the candidate.
-  * `gender`. Gender of the candidate.
-  * `age`. Age of the candidate.
-  * `race`. Race of the candidate.
-  * `hour`. Time(hour) violation occurred.
-  * `education_level`. The education level of the candidate.
-  * `income_poverty_ratio`. A ratio to classify poverty and not poverty. Ratio greater than 1 will be considered as not        poverty, ratio less than 1 will considered as poverty.
-  * `weekday_slp_time`. Sleep time on weekdays or workdays.
-  * `weekday_wake_time`. Wake time on weekdays and workdays.
-  * `weekday_slp_hr`. Average sleeping hours on weekdays or workdays.
-  * `weekend_slp_time`. Sleep time on weekends.
-  * `weekday_wake_time`.Wake time on weekends.
-  * `weekend_slp_hr`. Average sleeping hours on weekends.
-  * `trouble_slp`. A response on whether telling the doctor having trouble sleeping.
-  * `sleepy_freq`. Average sleeply times during daytime per month.
-  * `ave_slp_hr`. Average sleeping hours per day.
-  
-
 ## National trends in short sleep duration
 
 Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
@@ -474,20 +445,17 @@ xgb.plot.importance(importance_matrix[1:10,])
 
 ### xgboost (compare with logit)
 ```{r}
-clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
-dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = df_mod)
-slp_oh = as.data.frame(predict(dums, newdata = df_mod))
-slp_df_new =cbind(df_mod[,-c(which(colnames(df_mod) %in% clafeats))],slp_oh) %>% 
+slp_df_new2 = slp_df_new %>% 
   mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0)) %>% 
-  select(-ave_slp_hr, sufficient_slp)
+  select(-ave_slp_hr)
 ```
 
 ```{r}
-set.seed(1)
+set.seed(123)
 rtxg = 0.8
-subxg = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
-data_trainxg = slp_df_new[sub,]
-data_testxg = slp_df_new[-sub,]
+subxg = sample(1:nrow(slp_df_new2), round(nrow(slp_df_new2)*rt))
+data_trainxg = slp_df_new2[sub,]
+data_testxg = slp_df_new2[-sub,]
 dim(data_trainxg)
 dim(data_testxg)
 ```
@@ -508,34 +476,22 @@ dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 
 #### model training
 ```{r}
-xgb2 = xgboost(data = dtrain, max.depth = 10, nround = 300, objective = "binary:logistic")
+xgb2 = xgboost(data = dtrain, max.depth = 10, nround = 1000, objective = "binary:logistic")
 print(xgb2)
 ```
 
 #### model prediction
-```{r}
-# xg_pred = predict(xgb2, dtest)
-# 
-# dlm =  data.frame(
-#     Error = c("MSE", "MAE", "RMSE"), 
-#     Value = c(mean((data_testy$label - xg_pred)^2),
-#               caret::MAE(data_testy$label, xg_pred), 
-#               caret::RMSE(data_testy$label, xg_pred)))
-# 
-# knitr::kable(dlm)
-```
-
 #### testing
 ```{r}
-xgpred = round(predict(xgb2, dtest))
-tablog = table(data_testy$label, xgpred, dnn=c("true","pre"))
+xgbpred2 = round(predict(xgb2, dtest))
+tablog = table(data_testy$label, xgbpred2, dnn=c("true","pre"))
 tablog
 ```
 
 From the table, we find:
-1. the logistic model works well on sufficient sleep. $\frac{966}{966+205} = 82.50\%$
-2. the logistic model works not well on sufficient sleep. $\frac{81}{81+281} =  22.38\%$
-3. the total accuracy of the model prediction is $\frac{81+966}{81+281+966+205} = 68.30\%$
+1. the logistic model works well on sufficient sleep. $\frac{976}{976+195} = 83.35\%$
+2. the logistic model works not well on sufficient sleep. $\frac{70}{70+292} =  19.34\%$
+3. the total accuracy of the model prediction is $\frac{70+976}{70+192+976+195} = 68.23\%$
 
 #### ROC-AUC curve
 ```{r}
