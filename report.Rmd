@@ -76,6 +76,7 @@ To specify the coordinate values required to draw this map, I separated and read
 Firstly, I got the basic layer from Esri.WorldStreetMap to add geographical boundaries to the map. Then, I mapped the data points from 500 Cities dataset on the basic layer. I added markers to indicate the sleep value, which was positioned by the latitude and longitude values of the corresponding city and the color was determined by the city's average sleep duration. The sleep duration of the current city can be obtained by comparing the color of a city with the legend on the upper right.
 
 ### Interactivity
+The current map can be zoomed with the zoom button in the upper left corner or with mouse scrolling. To show more specific information, I added interactive popups and defined them. Click any previously added marker to get the name of the state to which the current city belongs, the city name, the number of people participating in the survey, and the average sleep duration of this city. 
 
 # Sleep and Diseases
 
