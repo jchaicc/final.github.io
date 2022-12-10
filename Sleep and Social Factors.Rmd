@@ -42,7 +42,7 @@ library(knitr)
 
 ## Data Processing and Cleaning
 
-*  For data from the NHANES database: The predictors and the response variable were from different data base in NHANES. First, the the column name for these response variables was changed to appropriate names. The original data included numbers to represent difference levels for each predictor, specific names was also replaced for each number. Then, the response variable related to sleeping was from another data base. For this data set, similar steps was used with dealing with the predictors data set. All column names was converted to appropriate names, and character names also replaced the numbers as well.
+*  For data from the NHANES database: The predictors and the response variable were from different data base in NHANES. First, the the column name for these response variables was changed to appropriate names. The original data included numbers to represent difference levels for each predictor, specific names was also replaced for each number. Then, the response variable related to sleeping was from another data base. For this data set, similar steps was used with dealing with the predictors data set. All column names was converted to appropriate names, and character names also replaced the numbers as well. An extra column was added to the data set:`ave_slp_hr`, which is the average sleeping hours per day, by calculating the mean of the weekday and weekend sleeping hours.
    For the third step, all empty cells was removed. Finally, the two cleaned data sets was joined through the patients' unique sequence number. 
 
 ```{r}
@@ -134,6 +134,7 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   * `weekend_slp_hr`. Average sleeping hours on weekends.
   * `trouble_slp`. A response on whether telling the doctor having trouble sleeping.
   * `sleepy_freq`. Average sleeply times during daytime per month.
+  * `ave_slp_hr`. Average sleeping hours per day.
 
 ## National trends in short sleep duration
 
@@ -161,7 +162,7 @@ We first want to get the distribution of sleeping hours less than 7 hours across
 
 ```{r}
  edu_plot=slp_df %>%
-  filter(weekday_slp_hr<7)%>%
+  filter(ave_slp_hr<7)%>%
   group_by(education_level,gender) %>%
   summarize(ave_sleep=mean((weekday_slp_hr*5+weekend_slp_hr*2)/7)) %>% 
   ungroup() %>%
@@ -189,7 +190,7 @@ A heat map was made to visualize sleeping hours less than 7 hours among differen
 
 ```{r}
 race_plot=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   mutate(sleep_ave=(weekday_slp_hr*5+weekend_slp_hr*2)/7) %>%
   group_by(race,sleep_ave) %>%
   summarise(obs=n()) %>%
@@ -206,7 +207,7 @@ The below plot demonstrates the gender gap in the patients for different races. 
 
 ```{r}
 gender_plot=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   group_by(race,education_level) %>%
   summarize(total_f=sum(gender=="female"),
             total_m=sum(gender=="male"),
@@ -224,7 +225,7 @@ We can observe that people who are in poverty tend to have less sleeping hours t
 
 ```{r,fig.width=10,fig.asp=.6}
 income_df=slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
                            income_poverty_ratio < 1~ "in poverty",
                            income_poverty_ratio == 1~ "in poverty")) %>%
@@ -242,7 +243,7 @@ income_df=slp_df %>%
   
 box_plot=
   slp_df %>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   mutate(ip_stat=case_when(income_poverty_ratio > 1 ~ "not in poverty",
                            income_poverty_ratio < 1~ "in poverty",
                            income_poverty_ratio == 1~ "in poverty")) %>%
@@ -250,7 +251,7 @@ box_plot=
   ggplot(aes(x=ip_stat,y=sleep_ave))+geom_boxplot(aes(fill = ip_stat), alpha = 0.3)+
   geom_hline(aes(yintercept=median(sleep_ave),
             color="red", linetype="dashed"))+
-  geom_text(aes(0, median(weekday_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")+labs(
+  geom_text(aes(0, median(ave_slp_hr), label = "sleep hours median"), vjust = -0.5, hjust = 0, color = "red")+labs(
     x = " Poverty Status",
     y = "Average Sleeping Hours"
     )
@@ -263,11 +264,11 @@ comb+plot_annotation(
 ```
 
 ## Age
-A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.66 hours per day.
+A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day.
 
 ```{r}
 age_group= slp_df%>%
-  filter(weekday_slp_hr<7) %>%
+  filter(ave_slp_hr<7) %>%
   mutate(age_gp=case_when(age>=20 & age<=30 ~ "20-30",
                           age>=31 &age <=40 ~ "31-40",
                           age>=41 &age<=50 ~ "41-50",
@@ -314,6 +315,7 @@ The model driven by multiple linear regression is $sleep\_hour=8.03-0.30I(gender
 ```{r}
 par(mfrow = c(2,2))
 plot(lmraw, cex.lab = 1)
+
 ```
 
 ```{r}

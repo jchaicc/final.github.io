@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 
 ## Data Processing and Cleaning
 
-*  For data from the NHANES database: The predictors and the response variable were from different data base in NHANES. First, the the column name for these response variables was changed to appropriate names. The original data included numbers to represent difference levels for each predictor, specific names was also replaced for each number. Then, the response variable related to sleeping was from another data base. For this data set, similar steps was used with dealing with the predictors data set. All column names was converted to appropriate names, and character names also replaced the numbers as well.
+*  For data from the NHANES database: The predictors and the response variable were from different data base in NHANES. First, the the column name for these response variables was changed to appropriate names. The original data included numbers to represent difference levels for each predictor, specific names was also replaced for each number. Then, the response variable related to sleeping was from another data base. For this data set, similar steps was used with dealing with the predictors data set. All column names was converted to appropriate names, and character names also replaced the numbers as well. An extra column was added to the data set:`ave_slp_hr`, which is the average sleeping hours per day, by calculating the mean of the weekday and weekend sleeping hours.
    For the third step, all empty cells was removed. Finally, the two cleaned data sets was joined through the patients' unique sequence number. 
 
 ```{r}
@@ -85,7 +85,8 @@ sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
                                sleepy_freq==2 ~ "2-4 per month",
                                sleepy_freq==3 ~ "5-15 per month",
                                sleepy_freq==4 ~ "16-30 per month",
-                               ))
+                               ))%>% 
+  mutate(ave_slp_hr = (5*weekday_slp_hr + 2*weekend_slp_hr)/7)
 
 ```
 
@@ -120,4 +121,5 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   * `weekend_slp_hr`. Average sleeping hours on weekends.
   * `trouble_slp`. A response on whether telling the doctor having trouble sleeping.
   * `sleepy_freq`. Average sleeply times during daytime per month.
+  * `ave_slp_hr`. Average sleeping hours per day.
   

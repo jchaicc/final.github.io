@@ -1,0 +1,20 @@
+name: "Factors Influencing Sleeping Duration!"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "Sleep & Diseases"
+      href: References.html
+    - text: "Sleep & Social factors"
+      href: References.html
+    - text: "Survey about sleep"
+      href: References.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<wz2631@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: https://github.com/jchaicc/final.github.io.git
+    - icon: fa-book fa-lg
+      href: References.html
+output:
+  html_document:
+    theme: journal
