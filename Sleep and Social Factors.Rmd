@@ -281,12 +281,11 @@ lmraw = lm(ave_slp_hr ~ ., data = data_train)
 summary(lmraw)
 ```
 
-The model driven by multiple linear regression is $sleep\_hour=8.03-0.30I(gender = male)-0.31I(race = Non-Hispanic Black)-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)-0.05income_poverty_ratio-0.13trouble_slpyes+0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)$. We find it strongly relating to 
+The model driven by multiple linear regression is $sleep\_hour=8.03-0.30I(gender = male)-0.31I(race = Non-Hispanic Black)-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)-0.05income_poverty_ratio-0.13trouble_slpyes+0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)$. We find it strongly relating to gender, trouble_types, income_poverty_ratio, and some levels in race, education_level and sleep frequency.
 
 ```{r}
 par(mfrow = c(2,2))
 plot(lmraw, cex.lab = 1)
-
 ```
 
 ```{r}
