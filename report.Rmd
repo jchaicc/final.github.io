@@ -384,6 +384,8 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   
 ##  Exploratory Analysis  
 
+We’ll explore the association between our key outcome - average sleeping hours less than 7 hours (insufficient sleep) and predictors, including major demographic variables like age, race, and sex, poverty status, and education level.
+
 ### National trends in short sleep duration
 
 Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
