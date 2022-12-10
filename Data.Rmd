@@ -357,7 +357,7 @@ data_logtrain = data_train %>%
 glmraw = glm(sufficient_slp ~ ., data = data_logtrain, family = binomial)
 ```
 
-We use logistic regression model for predicting whether the person has sufficient sleep or not. Following the definition of sufficient sleep in Sleep & Diseases section, we label the ave_slp_hr greater or equal to 7 hours as 'sufficient'. The first logistic model shows the significant predictors are gender, race, education_level, trouble_types, and sleep_freq.
+We use logistic regression model for predicting whether the person has sufficient sleep. Following the definition of sufficient sleep in Sleep & Diseases section, we label the ave_slp_hr greater or equal to 7 hours as 'sufficient'. The first logistic model shows the significant predictors are gender, race, education_level, trouble_types, and sleep_freq.
 
 ```{r}
 step2 = step(glmraw, direction = 'both', trace=0)
@@ -370,7 +370,7 @@ The model after stepwise method shows the significant predictors are still gende
 anova(object = glmraw,test = "Chisq")
 ```
 
-We did model significance test, ANOVA, and the significant predictors for logistic regression model are the same as stepwise results.
+We test model significance using ANOVA, and claim the significant predictors for logistic regression model are the same as stepwise method.
 
 ### Testing
 ```{r}
@@ -389,7 +389,7 @@ From the table, we find:\
 2. the logistic model works not well on sufficient sleep, $\frac{6}{6+356} =  0.02\%$\
 3. the total accuracy of the model prediction is $\frac{1166+6}{1166+5+6+356} = 76.45\%$
 
-We find the model does not have the ability to predict insufficient sleep cases, and the extreme gap extreme gap of the prediction ability between sufficient sleep and insufficient sleep inspires us to optimize logistic regression model.
+We find the model does not have the ability to predict insufficient sleep cases, and the extreme gap extreme gap of the prediction ability between sufficient sleep and insufficient sleep inspires us to optimize the logistic regression model.
 
 ## XGBoost
 Boosting is a well-known machine learning method, and we decide to use XGBoost algorithm to optimize the prediction ability based on the logistic objective.
@@ -425,7 +425,7 @@ dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 xgb2 = xgboost(data = dtrain, booster = "gbtree", max_depth = 10, nround = 2000, objective = "binary:logistic", verbose = 0)
 ```
 
-We choose the gbtree booster and binary:logistic objective for training XGBoost model and comparing with Logistic regression model later.
+We choose the gbtree booster and binary:logistic objective for training xgboost model and comparing with logistic regression model later.
 
 ### Testing
 ```{r}
@@ -439,7 +439,7 @@ From the table, we find:\
 2. the logistic model works not well on sufficient sleep, $\frac{75}{75+287} =  20.72\%$\
 3. the total accuracy of the model prediction is $\frac{75+970}{75+287+970+201} = 68.17\%$
 
-Compared with logistic regression model, we find although the correctly prediction ability of XGBoost under gbtree booster and binary:logistic objective for sufficient sleep and the total are lower, the model actually is much reasonable as it could predict larger proportions of insufficient sleep cases with no extreme gap of the prediction ability between two groups.
+Comparing xgboost with logistic regression, we find although the prediction abilities of xgboost under gbtree booster and binary:logistic objective for sufficient sleep and the total are lower, the model actually is much reasonable as it could better predict insufficient sleep cases without extreme gap of the prediction ability between two groups.
 
 ```{r}
 xgb_imp2 = xgb.importance(feature_names = xgb2$feature_names, model = xgb2)
@@ -453,4 +453,4 @@ The feature importance plot of XGBoost model indicates two extremely important f
 xgb.plot.tree(model = xgb2, trees=1999, plot_width = 800)
 ```
 
-According to the XGBoost tree plot above, we can clearly discover how the final tree model decide the values on each leaf which can directly lead to probability estimators based on the logistic function.
+According to the XGBoost tree plot above, we can clearly discover how the final tree model decides the values on each leaf, which are probability estimators based on the logistic function.
