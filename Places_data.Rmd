@@ -30,8 +30,14 @@ scale_fill_discrete = scale_fill_viridis_d
 
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
+# Data Sources
+* This data set is retrieved from Centers for Disease Control and Prevention, National Center for Chronic Disease Prevention and Health Promotion, Division of Population Health updated December 6, 2022, named [PLACES](https://chronicdata.cdc.gov/500-Cities-Places/PLACES-County-Data-GIS-Friendly-Format-2022-releas/i46a-9kgh).
 
-### Interested physiological risk factors
+# Data Cleaning
+* We have extracted 11 physiological dieases to estimate the prevalence of insufficient sleep along with the identification variables including country name, population, and states. While all of the suffix of the raw varieties are changed, we finally keep all of the crude estimate of each risk factors as our predictors.
+
+# Data Description
+## Interested physiological risk factors
 `ARTHRITIS`: Arthritis among adults aged >=18 Years\
 `BPHIGH`: High blood pressure among adults aged >=18 Years\
 `CANCER`: Cancer (excluding skin cancer) among adults aged >=18 Years\
@@ -44,9 +50,10 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 `KIDNEY`: Chronic kidney disease among adults aged >=18 Years\
 `OBESITY`: Obesity among adults aged >=18 Years
 
-### Outcome measured
+## Outcome measured
 `SLEEP`: Sleeping less than 7 hours among adults aged >=18 Years
 
+# Exploratory Analysis
 ## Select interested physiological diseases and sample state
 ```{r import_data}
 data_df = read_csv('PLACES__Census_Tract_Data__GIS_Friendly_Format___2022_release.csv') %>% 
@@ -70,7 +77,7 @@ data_df %>%
 
 The dataset has `r nrow(na.omit(data_df))` observations across the country, each represents a summarized estimate of a district. We select New York state as our sample data to build the model as it has third largest population with sufficient amount of sample. 
 
-### Extract NY state as target sample
+## Extract NY state as target sample
 ```{r}
 ny_data = data_df %>% 
   filter(state_abbr == 'NY') %>% 
@@ -113,6 +120,7 @@ ny_data %>% select(-sleep) %>% cor() %>% corrplot(
   insig = "blank", diag=FALSE, number.cex = .5)
 ```
 
+# Statistical Analysis
 ## Build model with elastic net
 
 Since some of the variables have relatively high correlation with each other according to the correlation matrix, the process of model selection starts by using elastic net regression in order to remedy for potential multicollinearity. We find the best lambda with lowest se through cross validation, and then fit an elastic net model with coefficients shown below. 
