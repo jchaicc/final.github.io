@@ -377,7 +377,7 @@ year_df+transition_reveal(year)
 We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per week in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
 
 <center>
-<img src="plots/edu.jpg" height="400px" width="500px" />
+<img src="plots/edu.jpg" height="600px" width="1000px" />
 </center>
 
 From the above plot, high school graduates has the least sleeping hours, while college graduates or above has the highest. Female and male does not have a significant difference in both groups.
@@ -465,7 +465,7 @@ comb+plot_annotation(
 A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day.
 
 <center>
-<img src="plots/age.jpg" height="400px" width="500px" />
+<img src="plots/age.jpg" height="600px" width="1000px" />
 </center>
 
 # Statistical Analysis
