@@ -295,9 +295,7 @@ age_group
 ```{r}
 df_mod = slp_df %>% 
   select(gender, age, race, education_level, income_poverty_ratio, trouble_slp, sleepy_freq, ave_slp_hr)
-```
 
-```{r}
 set.seed(1)
 rt = 0.8
 sub = sample(1:nrow(df_mod), round(nrow(df_mod)*rt))
@@ -452,7 +450,7 @@ The feature importance plot of XGBoost model indicates two extremely important f
 
 ### Tree plot
 ```{r}
-xgb.plot.tree(model = xgb2, trees=1999, plot_width = 900)
+xgb.plot.tree(model = xgb2, trees=1999, plot_width = 800)
 ```
 
 According to the XGBoost tree plot above, we can clearly discover how the final tree model decide the values on each leaf which can directly lead to probability estimators based on the logistic function.
