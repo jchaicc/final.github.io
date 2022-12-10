@@ -73,7 +73,7 @@ demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
 
 sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
   janitor::clean_names() %>% 
-  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120)  %>%
+  select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
   rename(weekday_slp_time=slq300,
          weekday_wake_time=slq310,
          weekday_slp_hr=sld012,
