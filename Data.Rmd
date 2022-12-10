@@ -1,5 +1,5 @@
 ---
-title: "Data"
+title: "Sleep and Social Factors"
 output: 
   html_document:
     toc: true
@@ -34,7 +34,7 @@ knitr::opts_chunk$set(
   warning = F
 )
 ```
-## Data Sources
+# Data Sources
 
 *  The first data set that was used to explore the association between sleeping and social factors was downloaded from the [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm) database.
 
@@ -136,6 +136,8 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   * `sleepy_freq`. Average sleeply times during daytime per month.
   * `ave_slp_hr`. Average sleeping hours per day.
   
+#  Exploratory Analysis  
+
 ## National trends in short sleep duration
 
 Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
@@ -611,4 +613,3 @@ xgb.plot.importance(importance_matrix[1:10,])
 # xgpt = xgb.plot.tree(model = xgb2, trees=0:1, render=FALSE)
 # export_graph(xgpt, here::here("images/tree.png"))
 ```
-  
