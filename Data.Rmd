@@ -25,7 +25,7 @@ library(stringr)
 library(caret)
 library(leaps)
 library(modelr)
-library(pROC)
+library(DiagrammeR)
 knitr::opts_chunk$set(
   fig.height = 6,
   fig.width = 8,
@@ -289,7 +289,7 @@ age_group
 ```
 
 # Statistical Analysis
-## Models
+## Multiple Linear Regression (MLR) 
 ### Data
 ```{r}
 df_mod = slp_df %>% 
@@ -306,36 +306,34 @@ dim(data_train)
 dim(data_test)
 ```
 
-### Multiple Linear Regression (MLR) 
+### Modeling
 ```{r}
 lmraw = lm(ave_slp_hr ~ ., data = data_train)
 summary(lmraw)
 ```
 
-The model driven by multiple linear regression is $sleep\_hour=8.03-0.30I(gender = male)-0.31I(race = Non-Hispanic Black)-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)-0.05income_poverty_ratio-0.13trouble_slpyes+0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)$. We find it strongly relating to 
+The model driven by multiple linear regression is $sleep\_hour=8.09-0.31I(gender = male)-0.31I(race = Non-Hispanic Black)-0.22I(education_level = college graduate or above)-0.28I(education_level = college or AA degree)-0.05income_poverty_ratio-0.10trouble_slpyes+0.32I(sleepy_freq = 2-4 per month)+0.37I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce a month)$. We find it strongly relating to gender, trouble_types, income_poverty_ratio, and some levels in race, education_level and sleep frequency.
 
+### Diagnostic plots
 ```{r}
 par(mfrow = c(2,2))
 plot(lmraw, cex.lab = 1)
-
 ```
 
+Overall, the diagnostic plots indicates that all of the assumptions of MLR below are met.\
+1.Residuals are normally distributed\
+2.Variance of residuals is constant across the range of variables\
+3.Residuals are independent of one another
+
+### MLR under stepwise
 ```{r}
 step1 = step(lmraw, direction = 'both', trace=0)
 summary(step1)
 ```
 
-The model after stepwise both direction is $sleep\_hour=8.04-0.30I(gender = male)-0.30I(race = Non-Hispanic Black)+ 0.34I(sleepy_freq = 2-4 per month)+0.18I(sleepy_freq = 5-15 per month)+0.39I(sleepy_freq = freqnever)+0.35I(sleepy_freq = freqonce a month)-0.05income_poverty_ratio-0.13trouble_slpyes-0.18I(education_level = college graduate or above)-0.22I(education_level = college or AA degree)$
+The model after stepwise method is $sleep\_hour=8.10-0.31I(gender = male)-0.28I(race = Non-Hispanic Black)+ 0.32I(sleepy_freq = 2-4 per month)+0.37I(sleepy_freq = freqnever)+0.33I(sleepy_freq = freqonce a month)-0.05income_poverty_ratio-0.10trouble_slpyes-0.22I(education_level = college graduate or above)-0.28I(education_level = college or AA degree)$ We find it is nearly the same as previous multiple linear regression model.
 
-#### Testing : Cross-Validation
-```{r}
-# set.seed(1)
-# train = trainControl(method = "cv", number = 100)
-# model_caret = train(ave_slp_hr ~ ., data = data_train, method = 'lm', na.action = na.pass)
-# model_caret$finalModel
-# model_caret
-```
-
+### Testing
 ```{r}
 raw_pred = predict(lmraw, newdata = data_test)
 
@@ -348,17 +346,9 @@ dlm =  data.frame(
 knitr::kable(dlm)
 ```
 
+The table above shows the statistical measurement factors about the linear model.
 
-```{r}
-# raw_pred = predict(lmraw, newdata = data_test)
-```
-
-```{r}
-# res_raw = residuals(lmraw)
-# segments(obs, pred, obs, pred_res)
-```
-
-### logistic
+## Logistic
 ```{r}
 data_logtrain = data_train %>% 
   mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0)) %>% 
@@ -380,9 +370,9 @@ The model after stepwise method shows the significant predictors are still gende
 anova(object = glmraw,test = "Chisq")
 ```
 
-We did model significance test, ANOVA, and determine the significant predictors for logistic regression model are the same from stepwise results.
+We did model significance test, ANOVA, and the significant predictors for logistic regression model are the same as stepwise results.
 
-#### testing
+### Testing
 ```{r}
 data_logtest = data_test %>% 
   mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 'sufficient', 'insufficient')) %>% 
@@ -399,21 +389,8 @@ From the table, we find:
 2. the logistic model works not well on sufficient sleep. $\frac{6}{6+356} =  0.02\%$
 3. the total accuracy of the model prediction is $\frac{1166+6}{1166+5+6+356} = 76.45\%$
 
-#### ROC-AUC curve
-```{r}
-roc_curve = roc(data_logtest$sufficient_slp, prob2)
-names(roc_curve)
-x = 1-roc_curve$specificities
-y = roc_curve$sensitivities
-
-ggplot(data = NULL, aes(x = x, y = y)) + 
-  geom_line(colour = 'red') + 
-  geom_abline(intercept = 0, slope = 1) +
-  annotate('text', x = 0.5, y = 0.5, label =paste('AUC=',round(roc_curve$auc,2))) +
-  labs(x = '1-specificities',y = 'sensitivities', title = 'ROC Curve')
-```
-
-### xgboost (compare with mlr)
+### XGBoost (Optimizing MLR)
+#### Data
 ```{r}
 clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
 dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = df_mod)
@@ -427,8 +404,6 @@ rtxg = 0.8
 subxg = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
 data_trainxg = slp_df_new[sub,]
 data_testxg = slp_df_new[-sub,]
-dim(data_trainxg)
-dim(data_testxg)
 ```
 
 ```{r}
@@ -441,75 +416,53 @@ names(data_testy) = c('label')
 ```
 
 ```{r}
-# train_slp = list(data=data_trainx[,-1],label=data_trainy$label) 
-# test_slp = list(data=data_testx[,-1],label=data_testy$label) 
 dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
 dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 ```
 
-#### model training
+#### Training
 ```{r}
-# xgb0 =  xgboost(
-#     data = dtrain,
-#     nrounds = 2000,
-#     objective = "reg:squarederror",
-#     early_stopping_rounds = 3,
-#     max_depth = 6,
-#     eta = .25
-#   )   
-# print(xgb0)
+xgb1 = xgboost(data=dtrain, booster = "gblinear", max_depth=5, eta = 0.1, nround = 300, objective = "reg:squarederror")
 ```
 
-```{r}
-xgb1 = xgboost(data = dtrain, max.depth = 10, nrounds = 300)
-print(xgb1)
-```
+We choose the gblinear booster and reg:squarederror objective for training XGBoost model and comparing with MLR later.
 
-#### model prediction
+#### Testing
 ```{r}
-xg_pred = predict(xgb1, dtest)
+xgbpred1 = predict(xgb1, dtest)
 
-dlm =  data.frame(
+dxg =  data.frame(
     Error = c("MSE", "MAE", "RMSE"), 
-    Value = c(mean((data_testy$label - xg_pred)^2),
-              caret::MAE(data_testy$label, xg_pred), 
-              caret::RMSE(data_testy$label, xg_pred)))
+    Value = c(mean((data_testy$label - xgbpred1)^2),
+              caret::MAE(data_testy$label, xgbpred1), 
+              caret::RMSE(data_testy$label, xgbpred1)))
 
-knitr::kable(dlm)
+knitr::kable(dxg)
 ```
 
+We find the table above for XGBoost shows the similar statistical measurement results with the linear model. We claim XGBoost model using gblinear booster here does not simply work better than MLR model.
 
 ```{r}
-par(mfrow = c(1,1))
-x = 1:length(data_testy$label)
-plot(x, data_testy$label, col = "red", type = "l")
-lines(x, xg_pred, col = "blue", type = "l")
-# legend(x = 1, y = 38,  legend = c("original test_y", "predicted test_y"), 
-#        col = c("red", "blue"), box.lty = 1, cex = 0.8, lty = c(1, 1))
+xgb_imp1 = xgb.importance(feature_names = xgb1$feature_names, model = xgb1)
+xgb.ggplot.importance(xgb_imp1, top_n =10, n_clusters = 2)
 ```
 
-```{r}
-names = dimnames(as.matrix(data_testx))[[2]]
-importance_matrix = xgb.importance(names, model = xgb1)
-xgb.plot.importance(importance_matrix[1:10,])
-```
+The feature importance plot of XGBoost model indicates some levels of education_level and race factors are much important. Meanwhile, the result differs from MLR models as race:Mexican American and race:Non-Hispanic white are also important.
 
-### xgboost (compare with logit)
+### XGBoost (Optimizing Logistic)
+#### Data
 ```{r}
-clafeats = c('gender', 'race', 'education_level', 'trouble_slp', 'sleepy_freq')
-dums = dummyVars(~ gender + race + education_level + trouble_slp + sleepy_freq, data = df_mod)
-slp_oh = as.data.frame(predict(dums, newdata = df_mod))
-slp_df_new =cbind(df_mod[,-c(which(colnames(df_mod) %in% clafeats))],slp_oh) %>% 
+slp_df_new2 = slp_df_new %>% 
   mutate(sufficient_slp = ifelse((ave_slp_hr >= 7), 1, 0)) %>% 
-  select(-ave_slp_hr, sufficient_slp)
+  select(-ave_slp_hr)
 ```
 
 ```{r}
-set.seed(1)
+set.seed(123)
 rtxg = 0.8
-subxg = sample(1:nrow(slp_df_new), round(nrow(slp_df_new)*rt))
-data_trainxg = slp_df_new[sub,]
-data_testxg = slp_df_new[-sub,]
+subxg = sample(1:nrow(slp_df_new2), round(nrow(slp_df_new2)*rt))
+data_trainxg = slp_df_new2[sub,]
+data_testxg = slp_df_new2[-sub,]
 dim(data_trainxg)
 dim(data_testxg)
 ```
@@ -528,88 +481,38 @@ dtrain = xgb.DMatrix(data = as.matrix(data_trainx), label = data_trainy$label)
 dtest = xgb.DMatrix(data = as.matrix(data_testx), label = data_testy$label)
 ```
 
-#### model training
+#### Training
 ```{r}
-# xgb0 =  xgboost(
-#     data = dtrain,
-#     nrounds = 2000,
-#     objective = "reg:squarederror",
-#     early_stopping_rounds = 3,
-#     max_depth = 6,
-#     eta = .25
-#   )   
-# print(xgb0)
-```
-
-```{r}
-xgb2 = xgboost(data = dtrain, max.depth = 5, nround = 300, objective = "binary:logistic")
+xgb2 = xgboost(data = dtrain, booster = "gbtree", max.depth = 10, nround = 2000, objective = "binary:logistic")
 print(xgb2)
 ```
 
-#### model prediction
-```{r}
-# xg_pred = predict(xgb2, dtest)
-# 
-# dlm =  data.frame(
-#     Error = c("MSE", "MAE", "RMSE"), 
-#     Value = c(mean((data_testy$label - xg_pred)^2),
-#               caret::MAE(data_testy$label, xg_pred), 
-#               caret::RMSE(data_testy$label, xg_pred)))
-# 
-# knitr::kable(dlm)
-```
+We choose the gbtree booster and binary:logistic objective for training XGBoost model and comparing with Logistic regression model later.
 
-
-#### testing
+#### Testing
 ```{r}
-xgpred = round(predict(xgb2, dtest))
-# predxg = ifelse(xgpred == 1, 'sufficient', 'insufficient')
-# predxg = factor(xgpred, levels = c('insufficient', 'sufficient'), order=TRUE)
-tablog = table(data_testy$label, xgpred, dnn=c("true","pre"))
+xgbpred2 = round(predict(xgb2, dtest))
+tablog = table(data_testy$label, xgbpred2, dnn=c("true","pre"))
 tablog
 ```
 
 From the table, we find:
-1. the logistic model works well on sufficient sleep. $\frac{966}{966+205} = 82.50\%$
-2. the logistic model works not well on sufficient sleep. $\frac{81}{81+281} =  22.38\%$
-3. the total accuracy of the model prediction is $\frac{81+966}{81+281+966+205} = 68.30\%$
+1. the logistic model works well on sufficient sleep. $\frac{970}{970+201} = 82.84\%$
+2. the logistic model works not well on sufficient sleep. $\frac{75}{75+287} =  20.72\%$
+3. the total accuracy of the model prediction is $\frac{75+970}{75+287+970+201} = 68.17\%$
 
-#### ROC-AUC curve
-```{r}
-# xgboost_roc <- roc(data_testy$label,as.numeric(pre_xgb))
-# plot(xgboost_roc, print.auc=TRUE, auc.polygon=TRUE, 
-#   grid=c(0.1, 0.2),grid.col=c("green", "red"), 
-#   max.auc.polygon=TRUE,auc.polygon.col="skyblue", 
-#   print.thres=TRUE,main='ROC curve')
-
-roc_curve = roc(data_testy$label, xgpred)
-names(roc_curve)
-x = 1-roc_curve$specificities
-y = roc_curve$sensitivities
-
-ggplot(data = NULL, aes(x = x, y = y)) + 
-  geom_line(colour = 'red') + 
-  geom_abline(intercept = 0, slope = 1) +
-  annotate('text', x = 0.5, y = 0.5, label =paste('AUC=',round(roc_curve$auc,2))) +
-  labs(x = '1-specificities',y = 'sensitivities', title = 'ROC Curve')
-```
+Compared with logistic regression model, we find although the correctly prediction ability of XGBoost under gbtree booster and binary:logistic objective for sufficient sleep and the total are lower, the model actually is much reasonable as it could predict larger proportions of insufficient sleep cases with no extreme gap between the prediction ability between two groups.
 
 ```{r}
-names = dimnames(as.matrix(data_testx))[[2]]
-importance_matrix = xgb.importance(names, model = xgb2)
-xgb.plot.importance(importance_matrix[1:10,])
+xgb_imp2 = xgb.importance(feature_names = xgb2$feature_names, model = xgb2)
+xgb.ggplot.importance(xgb_imp2, top_n =10, n_clusters = 2)
 ```
 
-#### Tree-plot
+The feature importance plot of XGBoost model indicates two extremely important factors, income_poverty_ratio and age. Which differs from linear models so that we want to explore the decision tree structure.
+
+#### Tree plot
 ```{r}
-# devtools::load_all()
+xgb.plot.tree(model = xgb2, trees=1999, plot_width = 900)
 ```
 
-```{r}
-# xgb.dump(xgb2, with_stats = T)
-```
-
-```{r}
-# xgpt = xgb.plot.tree(model = xgb2, trees=0:1, render=FALSE)
-# export_graph(xgpt, here::here("images/tree.png"))
-```
+According to the XGBoost tree plot above, we can clearly discover how the final tree model decide the values on each leaf which can directly lead to probability estimators based on the logistic function.
