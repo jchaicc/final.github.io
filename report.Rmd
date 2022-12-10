@@ -65,6 +65,11 @@ Inspired by these works, we identified the main topics of our website to explore
  2. Which age group has the shortest average sleeping time? Which education level has the shortest average sleeping time?
  3. Does short sleeping time indicates insufficient sleep? 
 
+# Homepage
+The homepage builds the main framework and content for the website, showing the research background and motivation of our project. Inspired by the the website of American Academy of Sleep Medicine (https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/) and the visualization in class of airbnb in the New York area, We decided to visualize the sleep data of Americans intuitively, exploring the overall situation and the regional differences of the current Americans sleep as the background of our project.
+
+###
+The 'leaflet' pacakage was used to complete the interactivity and visualization of sleep data.
 
 # Sleep and Diseases
 
@@ -145,8 +150,8 @@ ny_data %>% select(-sleep) %>%
 ```{r}
 par(mfrow = c(1, 1))
 ny_data %>% select(-sleep) %>% cor() %>% corrplot(
-  method = "circle", addCoef.col = "black", tl.col="black", tl.srt=90, 
-  insig = "blank", diag=FALSE, number.cex = .5)
+  method = "circle", addCoef.col = "black", tl.col = "black", tl.srt = 90, 
+  insig = "blank", diag = FALSE, number.cex = .5)
 ```
 
 ## Build model with elastic net
@@ -278,25 +283,25 @@ On the other hand, the multiple linear regression model is favored for its simpl
    For the third step, all empty cells was removed. Finally, the two cleaned data sets was joined through the patients' unique sequence number. 
 
 ```{r}
-demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
+demo = foreign::read.xport("nhanes/P_DEMO.XPT") %>%
   as.data.frame() %>%
   janitor::clean_names() %>%
   select(seqn,riagendr,ridageyr,ridreth3,dmdeduc2,indfmpir) %>%
   drop_na() %>%
-  dplyr::rename(gender=riagendr,
-         age=ridageyr,
-         race=ridreth3,
-         education_level=dmdeduc2,
-         income_poverty_ratio=indfmpir) %>%
-  mutate(gender=case_when(gender==1 ~ "male",
+  dplyr::rename(gender = riagendr,
+         age = ridageyr,
+         race = ridreth3,
+         education_level = dmdeduc2,
+         income_poverty_ratio = indfmpir) %>%
+  mutate(gender = case_when(gender==1 ~ "male",
                           gender==2 ~ "female")) %>%
-  mutate(race=case_when(race==1 ~ "Mexican American",
+  mutate(race = case_when(race==1 ~ "Mexican American",
                         race==2 ~ "Other Hispanic",
                         race==3 ~ "Non-Hispanic White",
                         race==4 ~ "Non-Hispanic Black",
                         race==6 ~ "Non-Hispanic Asian",
                         race==7 ~ "Other Race")) %>%
-  mutate(education_level=case_when(education_level==1 ~ "less than 9th grade",
+  mutate(education_level = case_when(education_level==1 ~ "less than 9th grade",
                                    education_level==2 ~ "9-11th grade",
                                    education_level==3 ~ "high school graduate",
                                    education_level==4 ~ "college or AA degree",
@@ -305,7 +310,7 @@ demo=foreign::read.xport("nhanes/P_DEMO.XPT") %>%
                                    education_level==9 ~ "don't know"))
 
 
-sleep_df=foreign::read.xport("nhanes/P_SLQ.XPT") %>%
+sleep_df = foreign::read.xport("nhanes/P_SLQ.XPT") %>%
   as.data.frame() %>%
   janitor::clean_names() %>% 
   select(seqn,slq300,slq310,sld012,slq320,slq330,sld013,slq050,slq120) %>%
