@@ -7,7 +7,7 @@ output:
 runtime: shiny
 ---
 
-```{r}
+```{r setup, include=FALSE}
 library(shiny)
 library(viridis)
 library(plotly)
