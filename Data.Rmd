@@ -138,7 +138,7 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   
 #  Exploratory Analysis  
 
-On this page, we’ll explore the association between our key outcome - average sleeping hours less than 7 hours (insufficient sleep) and predictors, including major demographic variables like age, race, and sex, poverty status, and education level.
+On this page, we’ll explore the association between our key outcome - average sleeping hours less than 7 hours per day (insufficient sleep) and predictors, including major demographic variables like age, race, and sex, poverty status, and education level.
 
 ## National trends in short sleep duration
 
@@ -162,7 +162,7 @@ year_df+transition_reveal(year)
 
 ## Education level
  
-We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per day in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
+We first want to get the distribution of sleeping hours less than 7 hours per day across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per day in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
 
 ```{r}
  edu_plot=slp_df %>%
@@ -185,11 +185,11 @@ edu_plot
 
 ```
 
-From the above plot, high school graduates has the least average sleeping hours among people who has insufficient sleep (average sleeping hours less than 7 hours). Female and male does not have a significant difference in both groups.
+From the above plot, high school graduates has the least average sleeping hours among people who has insufficient sleep (average sleeping hours less than 7 hours per day). Female and male does not have a significant difference in both groups.
 
 ## Race
 
-A heat map was made to visualize sleeping hours less than 7 hours (insufficient sleep) among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
+A heat map was made to visualize sleeping hours less than 7 hours per day(insufficient sleep) among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
 
 ```{r}
 race_plot=slp_df %>%
@@ -268,7 +268,7 @@ comb+plot_annotation(
 
 ## Age
 
-A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day. However, what need to consider is that older people usually tend to have shorter sleeping time due to physical factors. For elder people, there is a possibility that short sleeping time does not mean insufficient sleep for them.
+A bar plot was made to see the distribution of average sleeping hours less than 7 hours per day in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day. However, what need to consider is that older people usually tend to have shorter sleeping time due to physical factors. For elder people, there is a possibility that short sleeping time does not mean insufficient sleep for them.
 
 ```{r}
 age_group= slp_df%>%

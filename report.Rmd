@@ -391,11 +391,11 @@ The resulting data file of `slp_df` contains a single dataframe with `r nrow(slp
   
 ##  Exploratory Analysis  
 
-We’ll explore the association between our key outcome - average sleeping hours less than 7 hours (insufficient sleep) and predictors, including major demographic variables like age, race, and sex, poverty status, and education level.
+We’ll explore the association between our key outcome - average sleeping hours less than 7 hours per day (insufficient sleep) and predictors, including major demographic variables like age, race, and sex, poverty status, and education level.
 
 ### National trends in short sleep duration
 
-Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
+Short sleep duration is based on age group recommended hours of sleep per day and defined as less than 7 hours per day for adults. This plot shows age-adjusted prevalence of adults who reported short sleep duration from 2013 to 2020. Overall, short sleep duration prevalence was higher among males than females across years.
 
 ```{r}
 year_df=read_csv("data/AdultTrends.csv") %>%
@@ -415,17 +415,17 @@ year_df+transition_reveal(year)
 
 ### Education level
  
-We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per day in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
+We first want to get the distribution of sleeping hours less than 7 hours per day across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per day in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
 
 <center>
 <img src="plots/edu.jpg" height="600px" width="1000px" />
 </center>
 
-From the above plot, high school graduates has the least average sleeping hours among people who has insufficient sleep (average sleeping hours less than 7 hours). Female and male does not have a significant difference in both groups.
+From the above plot, high school graduates has the least average sleeping hours among people who has insufficient sleep (average sleeping hours less than 7 hours per day). Female and male does not have a significant difference in both groups.
 
 ### Race
 
-A heat map was made to visualize sleeping hours less than 7 hours (insufficient sleep) among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
+A heat map was made to visualize sleeping hours less than 7 hours per day (insufficient sleep) among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
 
 ```{r}
 race_plot=slp_df %>%
@@ -503,7 +503,7 @@ comb+plot_annotation(
 ```
 
 ### Age
-A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day.
+A bar plot was made to see the distribution of average sleeping hours less than 7 hours per day in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day.
 
 <center>
 <img src="plots/age.jpg" height="600px" width="1000px" />
@@ -681,8 +681,8 @@ According to the XGBoost tree plot above, we can clearly discover how the final 
 We made a questionnaire using Sleep Quality Scale and make different suggestions about sleeping in our shiny app. Users can answer the questions, and then they can get a score for their sleeping quality. The score can be calculated by adding all answers in 1-4 together. The higher the score is, the poorer the quality of their sleeping is. In the end, there will be some suggestions to improve users’ sleeping quality, which is really useful, because the suggestions are based on many well-conducted scientific research. 
 
 # Summaries
- * People from age group **71-80** has the shortest average sleeping time. However, what need to consider is that older people usually tend to have shorter sleeping time due to physical factors. For elder people, there is a possibility that short sleeping time does not mean insufficient sleep for them.
- * **High school graduates** has the shortest average sleeping time, and **9-11th** grade has the second lowest sleeping length.
- * People who are in **poverty** status tends to have shorter sleeping length than people who are not in poverty. 
+ * People from age group **71-80** has the shortest average sleeping time among people who sleep less than 7 hours per day. However, what need to consider is that older people usually tend to have shorter sleeping time due to physical factors. For elder people, there is a possibility that short sleeping time does not mean insufficient sleep for them.
+ * **High school graduates** has the shortest average sleeping time among people who sleep less than 7 hours per day, and **9-11th** grade has the second lowest sleeping length among them.
+ * People who are in **poverty** tend to have a higher probability of not having sufficient sleep than those who are not in poverty. 
  * The logistic model performs well on sufficient sleep.
  * All physiological risk factors except **OBESITY** have significant correlation with the prevalence of insufficient adult sleep.
