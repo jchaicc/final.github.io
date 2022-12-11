@@ -162,7 +162,7 @@ year_df+transition_reveal(year)
 
 ## Education level
  
-We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per week in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
+We first want to get the distribution of sleeping hours less than 7 hours across the five different education levels. We will construct a bar chart tabulating the average sleeping hours per day in each of the five education levels. Gender consideration was also added into to the bar chart in order to see a difference between female and male in each category.
 
 ```{r}
  edu_plot=slp_df %>%
@@ -185,11 +185,11 @@ edu_plot
 
 ```
 
-From the above plot, high school graduates has the least sleeping hours, while college graduates or above has the highest. Female and male does not have a significant difference in both groups.
+From the above plot, high school graduates has the least average sleeping hours among people who has insufficient sleep (average sleeping hours less than 7 hours). Female and male does not have a significant difference in both groups.
 
 ## Race
 
-A heat map was made to visualize sleeping hours less than 7 hours among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
+A heat map was made to visualize sleeping hours less than 7 hours (insufficient sleep) among different races. The below plot indicates that there is a large number of people who has a sleeping hour of 6 hours per day among the Non-Hispanic black group. There are also many Non-Hispanic Whites who has an average of 6 hours per day. 
 
 ```{r}
 race_plot=slp_df %>%
@@ -206,7 +206,7 @@ layout(race_plot, xaxis = list(title = "Average Sleeping Hours Per Day"), yaxis 
 ```
 ### Race Gender Gap by Education Level
 
-The below plot demonstrates the gender gap in the patients for different races. Male outnumber female for sleeping less than 7 hours per day for all race, except Non-Hispanic Black and Non-Hispanic Asian. The bubble represents the degree of the gap, along inlcuding their education level. 
+The below plot demonstrates the gender gap in the patients for different races. Male outnumber female for sleeping less than 7 hours per day for all race, except Non-Hispanic Black and Non-Hispanic Asian. The bubble represents the degree of the gap, along including their education level. 
 
 ```{r}
 gender_plot=slp_df %>%
@@ -224,7 +224,7 @@ layout(gender_plot, title = "Race Gender Gap by Education Level", xaxis = list(t
 ```
 ## Poverty Status
 
-We can observe that people who are in poverty tend to have less sleeping hours than those who are not in poverty. 
+We can observe that people who are in poverty tend to have a higher probability of not having sufficient sleep than those who are not in poverty. 
 
 ```{r,fig.width=10,fig.asp=.6}
 income_df=slp_df %>%
@@ -267,7 +267,8 @@ comb+plot_annotation(
 ```
 
 ## Age
-A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day.
+
+A bar plot was made to see the distribution of average sleeping hours less than 7 hours in different age groups. People age between 71 and 80 has the least sleeping hours with about 5.68 hours per day. However, what need to consider is that older people usually tend to have shorter sleeping time due to physical factors. For elder people, there is a possibility that short sleeping time does not mean insufficient sleep for them.
 
 ```{r}
 age_group= slp_df%>%
